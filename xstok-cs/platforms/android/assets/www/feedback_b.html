@@ -1,0 +1,572 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>XSTOK</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="XSTOK" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <!-- Custom Theme files -->
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <!-- Custom Theme files -->
+        <!----font-Awesome----->
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+        <!----font-Awesome----->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=device-dpi,user-scalable=yes" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script>
+            //localStorage.seller = 1;
+            if (localStorage.logged_in == 1) {
+                window.location.href = "dashboard.html";
+            }
+            $(document).ready(function () {
+                $('.container').fadeIn(800).show();
+            });
+        </script>
+    </head>
+    <body>
+        <div class="iso_blur background-image background-blur"></div>
+        <!-----container----->
+        <div class="container black_wrapper" style="display: none">
+            <div class="menu"><a href="home.html"><i class="fa fa-fw fa-angle-left x-white fa-2x"></i></a></span></div>
+
+            <!------ content ----->
+            <div class="content">
+                <div class="3-cols">
+                    <div class="col-1 col-md-3">
+                        <!---- user-profile ---->
+                        <!-- //user-profile ---->
+                        <!---- sign-in-box ---->
+                        <div class="sign-in-box" style="margin: 1.5em 0;">
+                            <div style="background: rgba(0,0,0,0.5); padding: 15px;">
+                                <h2><img src="images/logo_y.png" style="height: 50px;"></h2>
+                                <h3 class="heading-text font-18 x-white">Help us know you better</h3>
+                                <hr />
+                                <form id="login" action="">
+                                    <div class="text-boxs">
+                                        <h3 class="x-white">Your company name <i class="fa fa-fw fa-asterisk font-10 x-red"></i></h3>
+                                        <span class="text-box">                                       
+                                            <input type="text" placeholder="Company Name" required class="text-indent-2em background-black" name="name"/> 
+                                        </span>                                    
+                                    </div>
+                                    <div class="text-boxs">
+                                        <h3 class="x-white">Your company address <i class="fa fa-fw fa-asterisk font-10 x-red"></i></h3>
+                                        <span class="text-box">
+                                            <textarea required placeholder="Company Address" id="text-area" class=" text-indent-2em background-black"></textarea>                                       
+                                        </span>                                    
+                                    </div> 
+                                    <h3 class="x-white" style="text-align: left;font-size:16px">Business type :<i class="fa fa-fw fa-asterisk font-10 x-red"></i></h3><br/>
+                                    <div style="padding-left:1em;font-weight:bolder;" class="x-white">
+                                        <label class="label_check" for="checkbox-2-1">
+                                            <input type="checkbox"  name="buz_type[]" class="chk" value="Dealer" id="checkbox-2-1" />
+                                            Dealer
+                                        </label>
+                                        <br/>
+                                        <label class="label_check" for="checkbox-2-2">
+                                            <input type="checkbox"  name="buz_type[]" class="chk" value="Distributor" id="checkbox-2-2" />
+                                            Distributor
+                                        </label>
+                                        <br/>
+                                        <label class="label_check" for="checkbox-2-3">
+                                            <input type="checkbox"  name="buz_type[]" class="chk" value="Retailer" id="checkbox-2-3" />
+                                            Retailer
+                                        </label>
+                                        <br/>                                    
+                                        <label class="label_check" for="checkbox-2-4">
+                                            <input type="checkbox"  name="buz_type[]" class="chk" value="Garment Manufacturer" id="checkbox-2-4" />
+                                            Garment Manufacturer
+                                        </label>
+                                        <br/>
+                                        <label class="label_check" for="checkbox-2-5">
+                                            <input type="checkbox"  name="buz_type[]" class="chk" value="Weaver" id="checkbox-2-5" />
+                                            Weaver
+                                        </label>
+                                        <br/>
+                                        <label class="label_check" for="checkbox-2-6">
+                                            <input type="checkbox"  name="buz_type[]" class="chk" value="Knitter" id="checkbox-2-6" />
+                                            Knitter
+                                        </label>
+                                        <br/>
+                                        <label class="label_check" for="checkbox-2-7">
+                                            <input type="checkbox"  name="buz_type[]" class="chk" value="Yarns Manufacturer" id="checkbox-2-7" />
+                                            Yarns Manufacturer
+                                        </label>
+                                        <br/>
+                                        <label class="text-box other" >
+                                            <input type="text"  name="buz_type_other" placeholder="Others" class="text-indent-2em background-black" id="checkbox-2-7" />  
+                                        </label>                                                                
+                                    </div>                                
+                                    <h3 class="x-white" style="text-align: left;font-size:16px">Do you currently buy excess or surplus goods ? <i class="fa fa-fw fa-asterisk font-10 font-10 x-red"></i></h3><br/>
+                                    <div style="padding-left:1em;font-weight:bolder;" class="x-white">
+                                        <label class="label_radio" for="checkbox-3-1">
+                                            <input type="radio"  name="current_buy" class="chk2" value="Yes" id="checkbox-3-1" />
+                                            Yes
+                                        </label>
+                                        <br/>
+                                        <label class="label_radio" for="checkbox-3-2">
+                                            <input type="radio"  name="current_buy" class="chk2" value="No" id="checkbox-3-2" />
+                                            No
+                                        </label>
+                                        <br/>                                                                      
+                                        <label class="text-box other" >
+                                            <input type="text"  name="current_buy_other" placeholder="Others" class="text-indent-2em background-black" id="checkbox-2-7" />  
+                                        </label>
+                                    </div>
+                                    <h3 class="x-white" style="text-align: left;font-size:16px">Product(s) categories of interest  :<i class="fa fa-fw fa-asterisk font-10 x-red"></i></h3><br/>
+                                    <div style="padding-left:1em;font-weight:bolder;" class="x-white">
+                                        <label class="label_check" for="checkbox-5-1">
+                                            <input type="checkbox"  name="want_sell[]" class="chk4" value="Apparel" id="checkbox-5-1" />
+                                            Apparel
+                                        </label>
+                                        <br/>
+                                        <label class="label_check" for="checkbox-5-2">
+                                            <input type="checkbox"  name="want_sell[]" class="chk4" value="Home Textile" id="checkbox-5-2" />
+                                            Home Textile
+                                        </label>
+                                        <br/>
+                                        <label class="label_check" for="checkbox-5-3">
+                                            <input type="checkbox"  name="want_sell[]" class="chk4" value="Made ups" id="checkbox-5-3" />
+                                            Made ups
+                                        </label>
+                                        <br/>                                    
+                                        <label class="label_check" for="checkbox-5-4">
+                                            <input type="checkbox"  name="want_sell[]" class="chk4" value="Fabrics" id="checkbox-5-4" />
+                                            Fabrics
+                                        </label>
+                                        <br/>
+                                        <label class="label_check" for="checkbox-5-5">
+                                            <input type="checkbox"  name="want_sell[]" class="chk4" value="Yarns" id="checkbox-5-5" />
+                                            Yarns
+                                        </label>
+                                        <br/>
+                                        <label class="label_check" for="checkbox-5-6">
+                                            <input type="checkbox"  name="want_sell[]" class="chk4" value="Accessories" id="checkbox-5-6" />
+                                            Accessories
+                                        </label>
+                                        <br/>
+                                        <label class="text-box other" >
+                                            <input type="text"  name="want_sell_other" placeholder="Others" class="text-indent-2em background-black" id="checkbox-5-7" />  
+                                        </label>
+                                    </div>
+                                    <div class="text-boxs">
+                                        <h3 class="x-white" style="text-align: left;font-size:16px">Product specifications as per above selected category </h3>
+                                        <span class="text-box">
+                                            <textarea placeholder="E.g Fabric composition,GSM/fabric etc" id="text-area1" class=" text-indent-2em background-black"></textarea>                                       
+                                        </span>                                    
+                                    </div>
+                                    <h3 class="x-white" style="text-align: left;font-size:16px">Annual purchase of excess or surplus goods:</h3><br/>
+                                    <div style="padding-left:1em;font-weight:bolder;" class="x-white">
+                                        <label class="label_radio" for="checkbox-9-1">
+                                            <input type="radio"  name="surplus" class="rd" value="Less than 1 Lakh" id="checkbox-9-1" />
+                                            Less than 1 Lakh
+                                        </label>
+                                        <br/>
+                                        <label class="label_radio" for="checkbox-9-2">
+                                            <input type="radio"  name="surplus" class="rd" value="1 Lakh to 10 Lakhs" id="checkbox-9-2" />
+                                            1 Lakh to 10 Lakhs
+                                        </label>
+                                        <br/>
+                                        <label class="label_radio" for="checkbox-9-3">
+                                            <input type="radio"  name="surplus" class="rd" value="Greater than 10 Lakhs" id="checkbox-9-3" />
+                                            Greater than 10 Lakhs
+                                        </label> 
+                                        <br/>                                    
+                                        <br/>
+                                    </div>
+                                    <div class="text-boxs">
+                                        <h3 class="x-white" style="text-align: left;font-size:16px">Location of Delivery</h3>
+                                        <span class="text-box">
+                                            <textarea placeholder="Location of Delivery" id="text-location" class=" text-indent-2em background-black"></textarea>                                       
+                                        </span>                                    
+                                    </div> 
+                                    <h3 class="x-white" style="text-align: left;font-size:16px">Would you like to become a seller?<i class="fa fa-fw fa-asterisk font-10 x-red"></i></h3><br/>
+                                    <div style="padding-left:1em;font-weight:bolder;" class="x-white">
+                                        <label class="label_radio" for="checkbox-4-1">
+                                            <input type="radio"  name="seller" class="rd5" value="Yes" id="checkbox-4-1" />
+                                            Yes
+                                        </label>
+                                        <br/>
+                                        <label class="label_radio" for="checkbox-4-2">
+                                            <input type="radio"  name="seller" class="rd5" value="No" id="checkbox-4-2" />
+                                            No
+                                        </label>
+                                        <br/> 
+                                    </div>
+                                    <br/> 
+                                    <br/>
+
+                                    <input type="submit" value="Submit" />
+                                </form>                            
+                            </div>
+                        </div>
+                        <!----//sign-in-box ---->
+                        <!----up-load-stats---->
+                        <!--//up-load-stats---->
+                        <!----social-tags---->
+
+                        <!--//social-tags---->
+                    </div><!----//End-col-1 ----->
+                    <!---- col-2 ----->                    
+                    <!---- col-3 ----->                    
+                    <!---- col-3 ----->
+                    <div class="clear"> </div>
+                </div>
+
+            </div>
+
+            <!---- //content ----->
+
+        </div>     
+        <script type="text/javascript" src="js/PushNotification.js"></script>
+        <script type="text/javascript" src="js/fastclick.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <!---//container----->
+        <script type="text/javascript">
+            function onBodyLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+
+            function onDeviceReady() {
+                FastClick.attach(document.body);
+            }
+            var d = document;
+            var safari = (navigator.userAgent.toLowerCase().indexOf('safari') != -1) ? true : false;
+            var gebtn = function (parEl, child) {
+                return parEl.getElementsByTagName(child);
+            };
+            onload = function () {
+
+                var body = gebtn(d, 'body')[0];
+                body.className = body.className && body.className != '' ? body.className + ' has-js' : 'has-js';
+
+                if (!d.getElementById || !d.createTextNode)
+                    return;
+                var ls = gebtn(d, 'label');
+                for (var i = 0; i < ls.length; i++) {
+                    var l = ls[i];
+                    if (l.className.indexOf('label_') == -1)
+                        continue;
+                    var inp = gebtn(l, 'input')[0];
+                    if (l.className == 'label_check') {
+                        l.className = (safari && inp.checked == true || inp.checked) ? 'label_check c_on' : 'label_check c_off';
+                        l.onclick = check_it;
+                    }
+                    ;
+                    if (l.className == 'label_radio') {
+                        l.className = (safari && inp.checked == true || inp.checked) ? 'label_radio r_on' : 'label_radio r_off';
+                        l.onclick = turn_radio;
+                    }
+                    ;
+                }
+                ;
+            };
+            var check_it = function () {
+                var inp = gebtn(this, 'input')[0];
+                if (this.className == 'label_check c_off' || (!safari && inp.checked)) {
+                    this.className = 'label_check c_on';
+                    if (safari)
+                        inp.click();
+                } else {
+                    this.className = 'label_check c_off';
+                    if (safari)
+                        inp.click();
+                }
+                ;
+            };
+            var turn_radio = function () {
+                var inp = gebtn(this, 'input')[0];
+                if (this.className == 'label_radio r_off' || inp.checked) {
+                    var ls = gebtn(this.parentNode, 'label');
+                    for (var i = 0; i < ls.length; i++) {
+                        var l = ls[i];
+                        if (l.className.indexOf('label_radio') == -1)
+                            continue;
+                        l.className = 'label_radio r_off';
+                    }
+                    ;
+                    this.className = 'label_radio r_on';
+                    if (safari)
+                        inp.click();
+                } else {
+                    this.className = 'label_radio r_off';
+                    if (safari)
+                        inp.click();
+                }
+                ;
+            };
+            $(document).ready(function () {
+                $('input[type="text"]').keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+
+
+                if (localStorage.feedback_b_name == '' || localStorage.feedback_b_name == null) {
+               // if (1) {
+                    $.ajax({url: localStorage.host + 'get_feedback_b.php', data: {email: localStorage.email}, type: 'get', success: function (data) {
+                            if (data != 'false') {
+                                var logininfo = JSON.parse(data);
+                                //console.log(logininfo);
+                                localStorage.feedback_b_name = logininfo['name'];
+                                localStorage.feedback_b_address = logininfo['address'];
+                                localStorage.feedback_b_buz_type = logininfo['buz_type'];
+                                localStorage.feedback_b_email = logininfo['email'];
+                                localStorage.feedback_b_buz_type_other = logininfo['buz_type_other'];
+                                localStorage.feedback_b_current_buy = logininfo['current_buy'];
+                                localStorage.feedback_b_current_buy_other = logininfo['current_buy_other'];
+                                localStorage.feedback_b_good_location = logininfo['good_location'];
+                                localStorage.feedback_b_seller = logininfo['seller'];
+                                localStorage.feedback_b_specf_product = logininfo['specf_product'];
+                                localStorage.feedback_b_surplus_goods = logininfo['surplus_goods'];
+                                localStorage.feedback_b_want_buy = logininfo['want_buy'];
+                                localStorage.feedback_b_want_buy_other = logininfo['want_buy_other'];
+                                $('input[name="name"]').val(localStorage.feedback_b_name);
+                                $('input[name="want_sell_other"]').val(localStorage.feedback_b_want_buy_other);
+                                $('input[name="current_buy_other"]').val(localStorage.feedback_b_current_buy_other);
+                                $('input[name="buz_type_other"]').val(localStorage.feedback_b_buz_type_other);
+                                $('#text-area').val(localStorage.feedback_b_address);
+                                $('#text-location').val(localStorage.feedback_b_good_location);
+                                $('#text-area1').val(localStorage.feedback_b_specf_product);
+                                var chk = localStorage.feedback_b_buz_type.split(",");
+                                //console.log(chk);
+                                for (var i = 0; i < chk.length - 1; i++) {
+                                    $(".chk").each(function (ii, value) {
+                                        if ($(this).val() == chk[i]) {
+                                            $(this).prop('checked', 'checked');
+                                            $(this).parent().removeClass('c_off');
+                                            $(this).parent().addClass('c_on');
+                                        }
+                                    });
+                                }                                
+                               /* var chk2 = localStorage.feedback_b_current_buy.split(",");
+                                for (var i = 0; i < chk2.length - 1; i++) {
+                                    $(".chk2").each(function (ii, value) {
+                                        if ($(this).val() == chk2[i]) {
+                                            $(this).prop('checked', 'checked');
+                                            $(this).parent().removeClass('c_off');
+                                            $(this).parent().addClass('c_on');
+                                        }
+                                    });
+                                }
+                                */
+                                var chk2 = localStorage.feedback_b_current_buy;
+                                $(".chk2").each(function (i, value) {
+                                    if ($(this).val() == chk2) {
+                                        $(this).parent().addClass('r_on');
+                                    }
+                                });
+
+
+
+                                var chk5 = localStorage.feedback_b_call_back;
+                                $(".chk5").each(function (i, value) {
+                                    if ($(this).val() == chk5) {
+                                        $(this).prop('checked', 'checked');
+                                        $(this).parent().removeClass('c_off');
+                                        $(this).parent().addClass('c_on');
+                                    }
+                                });
+                                
+                                var chk4 = localStorage.feedback_b_want_buy.split(",");
+                                for (var i = 0; i < chk4.length - 1; i++) {
+                                    $(".chk4").each(function (ii, value) {
+                                        if ($(this).val() == chk4[i]) {
+                                            $(this).prop('checked', 'checked');
+                                            $(this).parent().removeClass('c_off');
+                                            $(this).parent().addClass('c_on');
+                                        }
+                                    });
+                                }
+                                
+
+                                var rd = localStorage.feedback_b_surplus_goods;
+                                $(".rd").each(function (i, value) {
+                                    if ($(this).val() == rd) {
+                                        $(this).parent().addClass('r_on');
+                                    }
+                                });
+                                var rd5 = localStorage.feedback_b_seller;
+                                $(".rd5").each(function (i, value) {
+                                    if ($(this).val() == rd5) {
+                                        $(this).parent().addClass('r_on');
+                                    }
+                                });
+
+
+                            }
+
+
+                            //  var logininfo = JSON.parse(data);
+                            // localStorage.email = $('input[name="email"]').val();
+                            //console.log(logininfo);
+                            //window.location.href = "form2.html";
+
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            if (textStatus === "timeout") {
+                                navigator.notification.alert('Please Check Your Network',function( index ){},'Network Error','Ok');
+                            }
+                        }
+                    });
+                } else {
+                    $('input[name="name"]').val(localStorage.feedback_b_name);
+                                $('input[name="want_sell_other"]').val(localStorage.feedback_b_want_buy_other);
+                                $('input[name="current_buy_other"]').val(localStorage.feedback_b_current_buy_other);
+                                $('input[name="buz_type_other"]').val(localStorage.feedback_b_buz_type_other);
+                                $('#text-area').val(localStorage.feedback_b_address);
+                                $('#text-location').val(localStorage.feedback_b_good_location);
+                                $('#text-area1').val(localStorage.feedback_b_specf_product);
+                                var chk = localStorage.feedback_b_buz_type.split(",");
+                                //console.log(chk);
+                                for (var i = 0; i < chk.length - 1; i++) {
+                                    $(".chk").each(function (ii, value) {
+                                        if ($(this).val() == chk[i]) {
+                                            $(this).prop('checked', 'checked');
+                                            
+                                        }
+                                    });
+                                }                                
+                               /* var chk2 = localStorage.feedback_b_current_buy.split(",");
+                                for (var i = 0; i < chk2.length - 1; i++) {
+                                    $(".chk2").each(function (ii, value) {
+                                        if ($(this).val() == chk2[i]) {
+                                            $(this).prop('checked', 'checked');
+                                           
+                                        }
+                                    });
+                                }*/
+                                 var chk2 = localStorage.feedback_b_current_buy;
+                                $(".chk2").each(function (i, value) {
+                                    if ($(this).val() == chk2) {
+                                        $(this).prop('checked', 'checked');
+                                    }
+                                });
+
+
+                                var chk5 = localStorage.feedback_b_call_back;
+                                $(".chk5").each(function (i, value) {
+                                    if ($(this).val() == chk5) {
+                                        $(this).prop('checked', 'checked');
+                                        
+                                    }
+                                });
+                                
+                                var chk4 = localStorage.feedback_b_want_buy.split(",");
+                                for (var i = 0; i < chk4.length - 1; i++) {
+                                    $(".chk4").each(function (ii, value) {
+                                        if ($(this).val() == chk4[i]) {
+                                            $(this).prop('checked', 'checked');
+                                            
+                                        }
+                                    });
+                                }
+                                
+
+                                var rd = localStorage.feedback_b_surplus_goods;
+                                $(".rd").each(function (i, value) {
+                                    if ($(this).val() == rd) {
+                                        $(this).prop('checked', 'checked');
+                                    }
+                                });
+                                var rd5 = localStorage.feedback_b_seller;
+                                $(".rd5").each(function (i, value) {
+                                    if ($(this).val() == rd5) {
+                                        $(this).prop('checked', 'checked');
+                                    }
+                                });
+                }
+
+
+
+
+
+                $('#mobile').keyup(function () {
+                    var data = $('#mobile').val();
+                    if ($.isNumeric(data)) {
+                        $('input[type="submit"]').removeAttr('disabled');
+                    } else {
+                        $('input[type="submit"]').attr('disabled', 'disabled');
+                    }
+                });
+            });
+            $("#login").submit(function (e) {
+                var buz_type = '';
+                $(".chk").each(function (i, value) {
+                    if ($(this).parent().hasClass('c_on')) {
+                        buz_type += $(this).val() + ',';
+                    }
+                });
+               /* var current_buy = '';
+                $(".chk2").each(function (i, value) {
+                    if ($(this).parent().hasClass('c_on')) {
+                        current_buy += $(this).val() + ',';
+                    }
+                });*/
+                var current_buy = '';
+                $(".chk2").each(function (i, value) {
+                    if ($(this).parent().hasClass('r_on')) {
+                        current_buy += $(this).val();
+                    }
+                });
+                var want_sell = '';
+                $(".chk4").each(function (i, value) {
+                    if ($(this).parent().hasClass('c_on')) {
+                        want_sell += $(this).val() + ',';
+                    }
+                });
+                var seller = '';
+                $(".rd5").each(function (i, value) {
+                    if ($(this).parent().hasClass('r_on')) {
+                        seller += $(this).val();
+                    }
+                });
+
+                var rd = '';
+                $(".rd").each(function (i, value) {
+                    if ($(this).parent().hasClass('r_on')) {
+                        rd += $(this).val();
+                    }
+                });
+                
+                localStorage.feedback_b_name = $('input[name="name"]').val();
+                localStorage.feedback_b_address = $('#text-area').val();
+                localStorage.feedback_b_buz_type = buz_type;
+                localStorage.feedback_b_email = localStorage.email;
+                localStorage.feedback_b_buz_type_other = $('input[name="buz_type_other"]').val();
+                localStorage.feedback_b_current_buy = current_buy;
+                localStorage.feedback_b_current_buy_other = $('input[name="current_buy_other"]').val();
+                localStorage.feedback_b_good_location = $('#text-location').val();
+                localStorage.feedback_b_seller = seller;
+                localStorage.feedback_b_specf_product = $('#text-area1').val();
+                localStorage.feedback_b_surplus_goods = rd;
+                localStorage.feedback_b_want_buy = want_sell;
+                localStorage.feedback_b_want_buy_other = $('input[name="want_sell_other"]').val(); 
+                
+                e.preventDefault();
+                var self = this;
+                $.ajax({url: localStorage.host + 'put_feedback_b.php', data: {buz_type_other: $('input[name="buz_type_other"]').val(), current_buy_other: $('input[name="current_buy_other"]').val(), want_sell_other: $('input[name="want_sell_other"]').val(), inventory_other: $('input[name="inventory_other"]').val(), text: $('#text-area').val(), text1: $('#text-area1').val(), text_location: $('#text-location').val(), email: localStorage.email, buz_type: buz_type, current_buy: current_buy, want_sell: want_sell, seller: seller, name: $('input[name="name"]').val(), rd: rd}, type: 'get', success: function (data) {
+                        if (data) {
+                            window.location.href = "home.html";
+                        }
+
+                        // localStorage.email = $('input[name="email"]').val();
+                        //console.log(logininfo);
+                        //window.location.href = "form2.html";
+
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        if (textStatus === "timeout") {
+                            navigator.notification.alert('Please Check Your Network',function( index ){},'Network Error','Ok');
+                        }
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
+

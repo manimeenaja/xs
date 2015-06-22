@@ -1,0 +1,258 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>XSTOK</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="XSTOK" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <!-- Custom Theme files -->
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <!-- Custom Theme files -->
+        <!----font-Awesome----->
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+        <!----font-Awesome----->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=device-dpi,user-scalable=yes" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script>
+            if (localStorage.logged_in == 3) {
+                window.location.href = "home.html";
+            }
+            $(document).ready(function () {
+                $('.container').fadeIn(800).show();
+                var referrer =  document.referrer;
+               if (localStorage.home == 1) {
+                    localStorage.logged_in = 3;
+                } else {
+                     localStorage.logged_in = 2;
+                }
+               
+            });
+        </script>
+    </head>
+    <body>        
+        <div class="iso_blur background-image background-blur"></div>
+        <!-----container----->
+        <div class="container black_wrapper" style="display: none">
+
+
+            <!------ content ----->
+            <div class="content">
+                <div class="3-cols">
+                    <div class="col-1 col-md-3">
+                        <div class="menu"><a href="form1.html" ><i class="fa fa-fw fa-angle-left x-white fa-2x"></i></a></div>
+                        <!---- user-profile ---->
+                        <!-- //user-profile ---->
+                        <!---- sign-in-box ---->
+                        <div class="sign-in-box" style="    margin-top: 1em;">
+                            <h2><img src="images/logo_y.png" style="    width: 80%;"></h2>
+                            <h4 class="heading-text x-white" style="font-size:17px">We’ve added you to the signup queue <br/><br/> Interested in priority access?<br/><br/> Get early access by providing business references. The more references you give, the sooner you’ll get access.</h4>
+                            <form id="login" action="">
+                                <div class="form" id="1">
+                                    <div class="text-boxs">
+                                        <span class="text-box">                                        
+                                            <input type="text" required="" placeholder="Name"  class="text-indent-2em background-black name" name="name1"/> 
+                                        </span>                                    
+                                    </div>
+                                    <div class="text-boxs">
+                                        <span class="text-box">  
+                                            <input type="email" required="" value="" placeholder="Email"  class="text-indent-2em background-black email" name="email1">
+                                        </span>                                    
+                                    </div>
+                                    <div class="text-boxs">
+                                        <span class="text-box">
+                                            <input type="text" required="" value="" placeholder="Mobile"  class="text-indent-2em background-black mobile" name="mobile1" maxlength="10"  onkeyup="check_mobile()">
+                                        </span>                                    
+                                    </div>                                
+                                </div>
+                                <a href="javascript:void(0)" onClick="add_feilds()" style="float: right;"><i class="fa fa-plus-circle fa-fw x-orange fa-2x"></i></a>
+                                <br/>
+                                <br/>
+                                <input type="submit" value="I’m done" class="display-inline" style="margin-bottom:1em;" />
+                                <p class="text-align-center display-inline float-rt" style=""><a href="javascript:void(0)" onClick="skip_step()" class="x-white font-18">Skip <i class='fa fa-angle-right fa-lg'></i></a></p>                      
+                            </form>                            
+                        </div>
+                        <!----//sign-in-box ---->
+                        <!----up-load-stats---->
+                        <!--//up-load-stats---->
+                        <!----social-tags---->
+
+                        <!--//social-tags---->
+                    </div><!----//End-col-1 ----->
+                    <!---- col-2 ----->                    
+                    <!---- col-3 ----->                    
+                    <!---- col-3 ----->
+                    <div class="clear"> </div>
+                </div>
+                <!--<div id="ajaxProgress"><i class="fa fa-spinner fa-pulse x-orange fa-5x"></i></div>-->
+            </div>
+
+            <!---- //content ----->
+
+        </div>
+        <script type="text/javascript" src="js/PushNotification.js"></script>
+        <script type="text/javascript" src="js/fastclick.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <!---//container----->
+        <script type="text/javascript">
+            function onBodyLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+
+            function onDeviceReady() {
+                FastClick.attach(document.body);
+            }
+            function skip_step() {
+                if ($('input[name="name1"]').val() == '' || $('input[name="email1"]').val() == '' || $('input[name="mobile1"]').val() == '') {
+                    localStorage.logged_in = 3;
+                    window.location.href = "home.html";
+                    //alert('sad');
+                } else {
+                    localStorage.logged_in = 3;
+                    //window.location.href = "home.html";
+
+                    /*e.preventDefault();
+                     var self = this;*/
+                    var info = [];
+                    $('.form').each(function (key, value) {
+                      if($(this).find('.name').val() != "" && $(this).find('.email').val() != "" && $(this).find('.mobile').val() != '') {
+                        var name = $(this).find('.name').val();
+                        var email = $(this).find('.email').val();
+                        var mobile = $(this).find('.mobile').val();
+                        info[key] = [name, email, mobile];
+                          
+                      } else {
+                       
+                       }
+                    });
+                    //console.log(info);
+                   $.ajax({url: localStorage.host + 'put_form2_info.php', data: {e: localStorage.email, info: info}, type: 'get', success: function (data) {
+                            var logininfo = JSON.parse(data);
+                            window.location.href = "home.html";
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            if (textStatus === "timeout") {
+                                navigator.notification.alert('Please Check Your Network', function (index) {
+                                }, 'Network Error', 'Ok');
+                            }
+                        }
+                    });
+                }
+
+
+            }
+            function check_mobile() {
+                /*$('.form').each( function(key,value ) {                   
+                 var mobile = $(this).find('.mobile').val();
+                 if ($.isNumeric(mobile)) {
+                 $('input[type="submit"]').removeAttr('disabled');
+                 } else {
+                 $('input[type="submit"]').attr('disabled', 'disabled');
+                 }
+                 console.log(mobile);
+                 });*/
+
+            }
+            function delete_element(id) {
+                $('#' + id).remove();
+            }
+            function add_feilds() {
+                var last = $('form .form:last').attr('id');
+                var new_id = parseInt(last) + 1;
+                if ($('input[name="name' + last + '"]').val() == '' || $('input[name="email' + last + '"]').val() == '' || $('input[name="mobile' + last + '"]').val() == '') {
+                    navigator.notification.alert('Please fill all the fields', function (index) {
+                    }, 'Incomplete', 'Ok');
+                } else {
+                    // var current_click = id;
+                    // if (current_click == last) {
+                    var body = '<div class="form" id="' + new_id + '"><hr/><div class="text-boxs"><span class="text-box"><input  type="text"  placeholder="Name"  class="text-indent-2em background-black name" name="name' + new_id + '"/></span></div><div class="text-boxs"><span class="text-box"><input type="email"  value="" placeholder="Email"  class="text-indent-2em background-black email" name="email' + new_id + '"></span></div><div class="text-boxs"><span class="text-box"><input type="text" value="" placeholder="Mobile"  class="text-indent-2em background-black mobile" name="mobile' + new_id + '" maxlength="10"></span></div></div>';
+                    /*'<div class="text-boxs"><span class=" text-align-center " style="    margin: 0 auto;    display: block;    width: 20%;"><a href="javascript:void(0)" class="x-white text-box x-red-background" style="padding:10px;font-weight: bold;" onClick="delete_element(\'' + new_id + '\')" onkeyup="check_mobile()"><b>Delete</b></a></span></div>'*/
+                    $('#' + last).after(body);
+                }
+                // }
+            }
+            $(document).ajaxStart(function () {
+                $('#ajaxProgress').show();
+            });
+            $(document).ajaxStop(function () {
+                // $('#ajaxProgress').hide(); 
+            });
+            $(document).ready(function () {
+
+                $.ajax({url: localStorage.host + 'get_form2_info.php', data: {e: localStorage.email}, type: 'get', success: function (data) {
+
+                        var logininfo = JSON.parse(data);
+                        //console.log(logininfo['name']);
+                        //console.log(logininfo[0]);
+                        for (var i = 1; i <= logininfo.length; i++) {
+                            if (i == 1) {
+                                $('input[name="name1"]').val(logininfo[0]['name']);
+                                $('input[name="mobile1"]').val(logininfo[0]['mobile']);
+                                $('input[name="email1"]').val(logininfo[0]['email']);
+                                $('input[name="name1"]').attr('readonly','readonly');
+                                $('input[name="mobile1"]').attr('readonly','readonly');
+                                $('input[name="email1"]').attr('readonly','readonly');
+                            } else {
+                                var last = i - 1;
+                                var body = '<div class="form" id="' + i + '"><hr/><div class="text-boxs"><span class="text-box"><input type="text" placeholder="Name"  class="text-indent-2em background-black name"  readonly="" name="name' + i + '" value="' + logininfo[last]['name'] + '"/></span></div><div class="text-boxs"><span class="text-box"><input readonly="" type="email" placeholder="Email"  class="text-indent-2em background-black email" name="email' + i + '" value="' + logininfo[last]['email'] + '"></span></div><div class="text-boxs"><span class="text-box"><input readonly="" type="text" placeholder="Mobile"  class="text-indent-2em background-black mobile" name="mobile' + i + '" maxlength="10" value="' + logininfo[last]['mobile'] + '"></span></div></div>';
+                            /*    '<div class="text-boxs"><span class=" text-align-center " style="    margin: 0 auto;    display: block;    width: 20%;"><a href="javascript:void(0)" class="x-white text-box x-red-background" style="padding:10px;font-weight: bold;" onClick="delete_element(\'' + i + '\')" onkeyup="check_mobile()"><b>Delete</b></a></span></div>'*/
+                                $('#' + last).after(body);
+                            }
+                        }
+                        /*$('input[name="name"]').val(logininfo['name']);
+                         $('input[name="company"]').val(logininfo['companyname']);
+                         $('input[name="mobile"]').val(logininfo['mobileno']);
+                         $('#business').val(logininfo['whoru']);*/
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        if (textStatus === "timeout") {
+                            navigator.notification.alert('Please Check Your Network', function (index) {
+                            }, 'Network Error', 'Ok');
+                        }
+                    }
+                });
+            });
+            $("#login").submit(function (e) {
+                var error = 0;
+                $('.form').each(function (key, value) {
+                    if ($.isNumeric($(this).find('.mobile').val()) && $(this).find('.mobile').val().length == 10 ) {
+
+                    } else {
+                        error = 1;
+                    }
+                });
+
+                e.preventDefault();
+                var self = this;
+                if (!error) {
+                    var info = [];
+                    $('.form').each(function (key, value) {
+                        var name = $(this).find('.name').val();
+                        var email = $(this).find('.email').val();
+                        var mobile = $(this).find('.mobile').val();
+                        info[key] = [name, email, mobile];
+                    });
+                    $.ajax({url: localStorage.host + 'put_form2_info.php', data: {e: localStorage.email, info: info}, type: 'get', success: function (data) {
+
+                            var logininfo = JSON.parse(data);
+                            window.location.href = "form3.html";
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            if (textStatus === "timeout") {
+                                navigator.notification.alert('Please Check Your Network', function (index) {
+                                }, 'Network Error', 'Ok');
+                            }
+                        }
+                    });
+                } else {
+                    navigator.notification.alert('Please check entered mobile number(s)', function (index) {
+                    }, 'Mobile Number', 'Ok');
+                }
+            });
+        </script>
+    </body>
+</html>
+

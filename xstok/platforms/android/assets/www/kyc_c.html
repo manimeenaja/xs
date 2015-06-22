@@ -1,0 +1,259 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>xstok</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="xstok" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=medium-dpi,user-scalable=yes" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <script src='js/main_script.js'></script>
+        <!-- Custom Theme files -->
+        <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <link type="text/css" rel="stylesheet" href="css/jquery.mmenu.all.css" />
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css" type='text/css'>
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <link rel="shortcut icon" href="favicon.ico">
+        <!-- Custom Theme files -->
+        <!----font-Awesome----->
+
+        <!----font-Awesome----->
+
+        <script src='js/jquery.min.js'></script>        
+        <script src='js/jquery-ui.min.js'></script>  
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script  type="text/javascript" src='js/main_script.js'></script>   
+
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script type="text/javascript">
+            //	The menu on the left
+            function onBackKeyDown() {// Handle the back button
+                navigator.notification.confirm(
+                        'Are you sure want to exit?', // message
+                        function (index) {
+                            if (index == 1) {//look at the docs for this part
+                                navigator.app.exitApp();
+                            }
+                        }, // callback to invoke with index of button pressed
+                        'Exit', // title
+                        'Yes,No' // buttonLabels
+                        );
+            }
+
+            function onDeviceReady() {
+                //FastClick.attach(document.body);
+                if (device.platform == "Android") {
+                    document.addEventListener("backbutton", onBackKeyDown, false);
+                }
+
+            }
+
+            function onBodyLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+            $(function () {
+                $('.container').fadeIn(1000).show();
+                //show_loader();localStorage.u_
+                //console.log(localStorage.host+'../login/autologin/'+localStorage.u_+'/'+localStorage.p_);
+                //window.location.href = localStorage.host+'../login/autologin/'+localStorage.u_+'/'+localStorage.p_;
+                add_menu();
+                $.ajax({url: localStorage.host + 'under_review.php', data: {}, type: 'get', success: function (data) {
+                        var logininfo = JSON.parse(data);
+                        //console.log(logininfo['tagline'][1]);
+                        //x_alert(logininfo['category'].length);
+                        var body = "";
+                        for (var i = 0; i < logininfo['review'].length; i++) {
+                            console.log(logininfo['review'][i][1]);
+                            localStorage.tagline = logininfo['review'][i][1];
+                            $('.alert').html(logininfo['review'][i][1]);
+                            $('.alert').fadeIn();
+                            //body = logininfo['category'][i][1].toLowerCase().split(' ').join('_');
+                            // body += '<a href="javascript:void(0)" class="btn" onClick="category_select(\''+logininfo['tagline'][i][0]+'\',\''+logininfo['tagline'][i][1]+'\',\''+logininfo['tagline'][i][2]+'\')" role="button">'+logininfo['tagline'][i][1]+' <i class="fa fa-angle-right"></i></a><br>';
+                        }
+
+                        if (typeof localStorage.verified == 'undefined' || localStorage.verified == '0') {
+                            $('.alert-success').show();
+                        } else {
+                            $('.alert-success').html('<span class="review">My Profile</span>');
+                        }
+                    }
+                });
+
+                /*------------------FISRT----*/
+              $.ajax({url: localStorage.host + 'buyer_profile_select.php?id=' + rc4_dr(localStorage.user_id), data: {}, type: 'get', success: function (data) {
+                        console.log(data['msg']);
+                        if (data['msg'][0]['company_name'] != '') {
+                            $('.company_name').html(data['msg'][0]['company_name']);
+                        }
+                        if (data['msg'][0]['name'] != '') {
+                            $('.name').html(data['msg'][0]['name']);
+                        }
+                        if (data['msg'][0]['mobile_no'] != '') {
+                            $('.mobile_no').html(data['msg'][0]['mobile_no']);
+                        }
+                        if (data['msg'][0]['email_id'] != '') {
+                            $('.email_id').html(data['msg'][0]['email_id']);
+                        }
+                        if (data['msg'][0]['nature_business_type'] == '0') {
+                            $('.nature_business_type').html('');
+                        } else if (data['msg'][0]['nature_business_type'] == '1') {
+                            $('.nature_business_type').html('Dealer/Distributor');
+                        } else if (data['msg'][0]['nature_business_type'] == '2') {
+                            $('.nature_business_type').html('Manufacturer');
+                        } else if (data['msg'][0]['nature_business_type'] == '3') {
+                            $('.nature_business_type').html('Retailer');
+                        } else if (data['msg'][0]['nature_business_type'] == '4') {
+                            $('.nature_business_type').html('Trader');
+                        } else if (data['msg'][0]['nature_business_type'] == '5') {
+                            $('.nature_business_type').html('Others');
+                        }
+                        if (data['msg'][0]['business_type'] == '0') {
+                            $('.business_type').html('');
+                        } else if (data['msg'][0]['business_type'] == '1') {
+                            $('.business_type').html('Company');
+                        } else if (data['msg'][0]['business_type'] == '2') {
+                            $('.business_type').html('Partnership');
+                        } else if (data['msg'][0]['business_type'] == '3') {
+                            $('.business_type').html('Proprietary');
+                        }
+                         if (data['msg'][0]['pan_no'] != '') {
+                            $('.pan_no').html(data['msg'][0]['pan_no']);
+                        }
+                        if (data['msg'][0]['company_address'] != '') {
+                            $('.company_address').html(data['msg'][0]['company_address']);
+                        }
+                         var type = data['msg'][0]['dealing_product'].replace('1', 'Home Textiles');
+                        type = type.replace('3', ' Apparels');
+                        type = type.replace('4', ' Yarns');
+                        type = type.replace('7', ' Fabrics');
+                        //console.log(type);
+                        $('.dealing_product').html(type);
+                        localStorage.interested_category = data['msg'][0]['dealing_product'];
+                         if (data['msg'][0]['cst_no'] != '') {
+                            $('.cst_no').html(data['msg'][0]['cst_no']);
+                        }
+                        
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        //if (textStatus === "timeout") {
+                        x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                        //}
+                    }
+                });
+                
+
+
+
+
+            });
+            function  download_file_open(url) {
+                window.open(url, '_system');
+            }
+
+
+
+        </script>
+    </head>
+    <body>
+        <div class="container black_wrapper" style="display: none" >
+
+
+            <!------ content ----->
+            <div class="content">
+                <div class="3-cols">
+                    <div class="col-1 col-md-3">
+                        <div id="page" class="kyc-menu"></div>
+                        <!---- user-profile ---->
+                        <!-- //user-profile ---->
+                        <!---- sign-in-box ---->
+                        <div class="sign-in-box kyc-form">
+                            <h2 class="header-image"><img src="images/logo_y.png"></h2>
+                            <br>
+                            <div class="alert alert-success font-size-0-9-em" style="display:none" role="alert"><span class="review">Application under review</span><br>We are delighted that you have started your XSTOK application! Your profile is under consideration by XSTOK.<br>Once approved, you’ll be among the first to have access to surplus inventory from largest suppliers in India.<br>
+                                Please <a href="contact.html">contact us</a> if you have any questions or suggestions.</div>
+                            <br>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title font-size-1-em font-family-helvetica-bold"><i class="fa fa-pencil"></i>  Buyer Profile <a class="edit" href="kyc_single.html">Edit <i class="fa fa-cog"></i></a></h3>
+                                </div>
+                                <div class="panel-body">
+                                    
+                                    <div class="row row-cancel-margin padding-tb-5">
+                                        <div class="col-xs-6">Name</div>
+                                        <div class="col-xs-6 font-size-0-9-em "><span class="name"></span></div>
+                                    </div>
+                                    <div class="row row-cancel-margin padding-tb-5">
+                                        <div class="col-xs-6">Mobile No</div>
+                                        <div class="col-xs-6 font-size-0-9-em "><span class="mobile_no"></span></div>
+                                    </div>                                   
+                                    <div class="row row-cancel-margin padding-tb-5">
+                                        <div class="col-xs-6">Email ID</div>
+                                        <div class="col-xs-6 font-size-0-9-em "><span class="email_id"></span></div>
+                                    </div>
+                                    <div class="row row-cancel-margin padding-tb-5">
+                                        <div class="col-xs-6 ">Company Name</div>
+                                        <div class="col-xs-6 font-size-0-9-em "><span class="company_name"></span></div>
+                                    </div>
+                                    <div class="row row-cancel-margin padding-tb-5">
+                                        <div class="col-xs-6">Company Address</div>
+                                        <div class="col-xs-6 font-size-0-9-em"><span class="company_address">-</span></div>
+                                    </div>
+                                    <div class="row row-cancel-margin padding-tb-5">
+                                        <div class="col-xs-6">Dealing in which category</div>
+                                        <div class="col-xs-6 font-size-0-9-em"><span class="dealing_product">-</span></div>
+                                    </div>
+                                    <div class="row row-cancel-margin padding-tb-5">
+                                        <div class="col-xs-6">Nature of Business</div>
+                                        <div class="col-xs-6 font-size-0-9-em"><span class="nature_business_type">-</span></div>
+                                    </div>
+                                     <div class="row row-cancel-margin padding-tb-5">
+                                        <div class="col-xs-6">Business Type </div>
+                                        <div class="col-xs-6 font-size-0-9-em"><span class="business_type">-</span></div>
+                                    </div>
+                                    <div class="row row-cancel-margin padding-tb-5">
+                                        <div class="col-xs-6 ">PAN</div>
+                                        <div class="col-xs-6 font-size-0-9-em"><span class="pan_no">-</span></div>
+                                    </div>
+                                    <div class="row row-cancel-margin padding-tb-5">
+                                        <div class="col-xs-6">CST/VAT No</div>
+                                        <div class="col-xs-6 font-size-0-9-em"><span class="cst_no">-</span></div>
+                                    </div>
+                                </div>                                    
+                            </div>                            
+                        </div>
+                        <!----//sign-in-box ---->
+                        <!----up-load-stats---->
+                        <!--//up-load-stats---->
+                        <!----social-tags---->
+
+                        <!--//social-tags---->
+                    </div><!----//End-col-1 ----->
+                    <!---- col-2 ----->                    
+                    <!---- col-3 ----->                    
+                    <!---- col-3 ----->
+                    <div class="clear"> </div>
+                </div>
+
+            </div>
+
+            <!---- //content ----->
+
+        </div>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile.custom.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mmenu.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+
+        <script type="text/javascript" src="js/fastclick.js"></script>
+        <script>
+            $("body").swiperight(function () {
+                $("#header a").click();
+            });
+
+
+        </script>
+    </body>
+</html>

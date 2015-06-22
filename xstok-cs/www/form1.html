@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>XSTOK</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="XSTOK" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <!-- Custom Theme files -->
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <!-- Custom Theme files -->
+        <!----font-Awesome----->
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+        <!----font-Awesome----->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=device-dpi,user-scalable=yes" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script>
+            if (localStorage.logged_in == 2) {
+                window.location.href = "form2.html";
+            } else if (localStorage.logged_in == 3) {
+                window.location.href = "home.html";
+            }
+            $(document).ready(function () {
+                $('.container').fadeIn(800).show();
+                localStorage.logged_in = 1;
+            });
+        </script>
+    </head>
+    <body>
+        <div class="iso_blur background-image background-blur"></div>
+        <!-----container----->
+        <div class="container black_wrapper" style="display: none">
+
+
+            <!------ content ----->
+            <div class="content">
+                <div class="3-cols">
+                    <div class="col-1 col-md-3">
+                        <div class="menu"><a href="logout.html"><i class="fa fa-fw fa-angle-left x-white fa-2x"></i></a></div>
+                        <!---- user-profile ---->
+                        <!-- //user-profile ---->
+                        <!---- sign-in-box ---->
+                        <div class="sign-in-box">
+                            <h2><img src="images/logo_y.png"></h2>
+                            <h3 class="heading-text x-white">Thank you! <br/> We have added your email address to the signup queue.<br/>Help us get to know you better!</h3>
+                            <form id="login" action="">
+                                <div class="text-boxs">
+                                    <span class="text-box">                                        
+                                        <input type="text" placeholder="Name" required class="text-indent-2em background-black" name="name"/> 
+                                    </span>                                    
+                                </div>
+                                <div class="text-boxs">
+                                    <span class="text-box">
+                                        <input type="text" value="" placeholder="Mobile" required class="text-indent-2em background-black" name="mobile" maxlength="10" id="mobile">
+                                    </span>                                    
+                                </div>
+                                <div class="text-boxs">
+                                    <span class="text-box">  
+                                        <input type="text" value="" placeholder="Company" required class="text-indent-2em background-black" name="company">
+                                    </span>                                    
+                                </div>
+                                <div class="text-boxs">
+                                    <span class="text-box" >  
+                                        <select id="business" class="text-indent-2em background-black">
+                                            <option style="font-weight:bold;" selected="" value=""> Nature of Business</option>
+                                            <!--<option value="Manufacturer">Manufacturer</option>-->
+                                            <option value="Dealer/Distributor">Dealer/Distributor</option>
+                                            <option value="Retailers">Retailer</option>
+                                            <option value="Other" >Other</option>
+                                        </select>
+                                    </span>                                    
+                                </div>
+                                <input type="submit" value="Jump the queue " />
+                            </form>                            
+                        </div>
+                        <!----//sign-in-box ---->
+                        <!----up-load-stats---->
+                        <!--//up-load-stats---->
+                        <!----social-tags---->
+
+                        <!--//social-tags---->
+                    </div><!----//End-col-1 ----->
+                    <!---- col-2 ----->                    
+                    <!---- col-3 ----->                    
+                    <!---- col-3 ----->
+                    <div class="clear"> </div>
+                </div>
+
+            </div>
+
+            <!---- //content ----->
+
+        </div>
+        <script type="text/javascript" src="js/PushNotification.js"></script>
+        <script type="text/javascript" src="js/fastclick.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <!---//container----->
+        <script type="text/javascript">
+            function onBodyLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+
+            function onDeviceReady() {
+                FastClick.attach(document.body);
+            }
+            $(document).ready(function () {
+                $('#mobile').keyup(function () {
+                    var data = $('#mobile').val();
+                    if ($.isNumeric(data)) {
+                        $('input[type="submit"]').removeAttr('disabled');
+                    } else {
+                        $('input[type="submit"]').attr('disabled', 'disabled');
+                    }
+                });
+                $.ajax({url: localStorage.host + 'get_form1_info.php', data: {e: localStorage.email}, type: 'get', success: function (data) {
+
+                        var logininfo = JSON.parse(data);
+                        /*console.log(logininfo['name']);
+                         console.log(logininfo);*/
+                        if (logininfo['name'] == '' && logininfo['seller_name'] == '') {
+
+                        } else if (logininfo['name'] != '' && logininfo['seller_name'] == '') {
+                            $('input[name="name"]').val(logininfo['name']);
+                            $('input[name="company"]').val(logininfo['companyname']);
+                            $('input[name="mobile"]').val(logininfo['mobileno']);
+                            $('#business').val(logininfo['whoru']);
+
+                        } else if (logininfo['name'] == '' && logininfo['seller_name'] != '') {
+                            var loc_array = logininfo['seller_name'].split(',');
+                            var loc_array_mobile = logininfo['seller_mobileno'].split(',');
+                            $('input[name="name"]').val(loc_array[loc_array.length - 1]);
+                            $('input[name="mobile"]').val(loc_array_mobile[loc_array_mobile.length - 1]);
+                            $('input[name="company"]').val(logininfo['companyname']);
+                            $('#business').val(logininfo['whoru']);
+
+                        } else {
+                            $('input[name="name"]').val(logininfo['name']);
+                            $('input[name="company"]').val(logininfo['companyname']);
+                            $('input[name="mobile"]').val(logininfo['mobileno']);
+                            $('#business').val(logininfo['whoru']);
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        if (textStatus === "timeout") {
+                            navigator.notification.alert('Please Check Your Network',function( index ){},'Network Error','Ok');
+                        }
+                    }
+                });
+            });
+            $("#login").submit(function (e) {
+                e.preventDefault();
+                var self = this;
+                $.ajax({url: localStorage.host + 'put_form1_info.php', data: {e: localStorage.email, m: $('input[name="mobile"]').val(), n: $('input[name="name"]').val(), cn: $('input[name="company"]').val(), b: $("#business option:selected").text()}, type: 'get', success: function (data) {
+
+                        var logininfo = JSON.parse(data);
+                        //console.log(logininfo);
+                        window.location.href = "form2.html";
+                        
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        if (textStatus === "timeout") {                            
+                            navigator.notification.alert('Please Check Your Network',function( index ){},'Network Error','Ok');
+                        }
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
+

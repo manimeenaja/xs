@@ -1,0 +1,273 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>xstok</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="xstok" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <script src='js/main_script.js'></script>
+        <!-- Custom Theme files -->
+        <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+         <link type="text/css" rel="stylesheet" href="css/jquery.mmenu.all.css" />
+        <link href="css/flat-ui.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <link rel="shortcut icon" href="favicon.ico">
+        <!-- Custom Theme files -->
+        <!----font-Awesome----->
+
+        <!----font-Awesome----->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=medium-dpi,user-scalable=yes" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script>
+            if (localStorage.logged_in == 1) {
+                // window.location.href = "search_result.html";
+            }
+            $(document).ready(function () {
+                $('.container').fadeIn(1000).show();
+                add_menu ();
+                $.ajax({url: localStorage.host + 'buyer_generaldetails_select.php?id=' + localStorage.user_id, data: {}, type: 'get', success: function (data) {
+                        console.log(data['result'][0]);
+                        $('input[name="buying_brand_name"]').val(data['result'][0]['buying_brand_name']);
+                        $('input[name="interested_buying_brand"]').val(data['result'][0]['interested_buying_brand']);
+                        $('input[name="hear_about_us"]').val(data['result'][0]['hear_about_us']);
+                        $('#comments_feedback').html(data['result'][0]['comments_feedback']);
+                        if(data['result'][0]['buying_branded'] == "Y") {
+                            $("#buying_branded_y").prop("checked", true);
+                        } else if(data['result'][0]['buying_branded'] == "N") {
+                              $("#buying_branded_n").prop("checked", true);
+                        }
+                        if(data['result'][0]['interested_selling_on_platform'] == "Y") {
+                            $("#interested_selling_on_platform_y").prop("checked", true);
+                        } else if(data['result'][0]['interested_selling_on_platform'] == "N") {
+                              $("#interested_selling_on_platform_n").prop("checked", true);
+                        }
+                        
+                        $('input[name="business_turnover"]').val(data['result'][0]['business_turnover']);
+                        var type = data['result'][0]['interested_category'].split(',');
+                        localStorage.interested_category = data['result'][0]['interested_category'];
+                        $.each(type,function(i,item) {
+                            $('.checkbox'+item).prop('checked',true);
+                        });                        
+                        $('#login').height($(window).innerHeight() - parseFloat($('.header-image').innerHeight()) - parseFloat($('.row-menu').innerHeight()) - 37);
+                        localStorage.form_id = data['result'][0]['id'];
+                        $('[data-toggle="checkbox"]').radiocheck();
+                        $('[data-toggle="radio"]').radiocheck();
+                        $("input[type='checkbox']").change(function () {
+                                        var interested_category = [];
+                                        $('input[type="checkbox"]').each(function () {
+                                            if ($(this).is(":checked")) {
+                                                interested_category.push($(this).attr('value'));
+                                            }
+                                        });
+                                        localStorage.interested_category = interested_category;
+                                        //  $('#textbox1').val($(this).is(':checked')); 
+                                    });
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                     //   if (textStatus === "timeout") {
+                            x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                      //  }
+                    }
+                });
+            });
+           
+        </script>
+    </head>
+    <body>
+        <div class="iso_blur background-image background-blur"></div>
+        <!-----container----->
+        <div class="container black_wrapper" style="display: none">
+
+
+            <!------ content ----->
+            <div class="content">
+                <div class="3-cols">
+                    <div class="col-1 col-md-3">
+                        <!---- user-profile ---->
+                        <!-- //user-profile ---->
+                        <!---- sign-in-box ---->
+                         <div id="page" class="kyc-menu"></div>
+                        <div class="sign-in-box kyc-form">
+                            <h2 class="header-image"><img src="images/logo_y.png"></h2>
+                            <div class="row row-cancel-margin row-menu">
+                                <nav>
+                                    <ul class="pager">
+                                        <li class="mtab-action-prev"><a href="kyc_form3.html"><i class="fa fa-chevron-left"></i></a></li>
+                                        <li class="mobile-tab-title"><i class="fa fa-bars"></i> General Details</li>
+                                        <li class="mtab-action-next"><a href="kyc_form5.html"><i class="fa fa-chevron-right"></i></a></li>
+                                    </ul>
+                                </nav>
+                            </div>                           
+                            <form id="login" action="kyc_form5.html" style="overflow-x: hidden;overflow-y: scroll;"  data-parsley-validate novalidate>
+                                <div class="text-boxs">
+                                    Are you buying branded goods?
+                                    <label class="radio">
+                                            <input type="radio" name="buying_branded" id="buying_branded_y" value="Y" data-toggle="radio"> Yes
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="buying_branded" id="buying_branded_n" value="N" data-toggle="radio"> No
+                                    </label>
+                                    
+                                    <span class="text-box">
+                                        If yes, what brands do you normally buy?<input type="text" placeholder="" class="form-control  background-black input-sm" name="buying_brand_name"/> 
+                                    </span>
+                                    <span class="text-box">                                        
+                                        Which brands would you be interested in buying?<input type="text" placeholder="" class=" form-control  background-black input-sm" name="interested_buying_brand"/> 
+                                    </span>
+                                    Would you be interested in selling on the platform?
+                                    <label class="radio">
+                                        <input type="radio" name="interested_selling_on_platform" id="interested_selling_on_platform_y" value="Y" data-toggle="radio"> Yes
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="interested_selling_on_platform" id="interested_selling_on_platform_n" value="N" data-toggle="radio"> No
+                                    </label>
+                                    <span class="text-box">                                        
+                                        How did you hear about us?<input type="text" placeholder="" class=" form-control  background-black input-sm" name="hear_about_us"/> 
+                                    </span>
+                                    <span class="text-box"> 
+                                        Any other comments or feedback?<textarea id="comments_feedback" name="comments_feedback" class="form-control  background-black input-sm"></textarea>
+                                    </span> 
+                                    What categories are you interested in?
+                                    <label class="checkbox" for="home_textiles"><input type="checkbox" name="dealing_product[]" id="home_textiles" value="1" class="checkbox1"  data-toggle="checkbox">Home Textiles</label>
+                                    <label class="checkbox" for="apparels"><input type="checkbox" name="dealing_product[]" id="apparels"  class="checkbox3" value="3" data-toggle="checkbox">Apparels</label>
+                                    <label class="checkbox" for="yarns"><input type="checkbox" name="dealing_product[]" id="yarns"  value="4" class="checkbox4"  data-toggle="checkbox">Yarns</label>
+                                    <label class="checkbox" for="fabrics"><input type="checkbox" name="dealing_product[]" id="fabrics" value="7" class="checkbox7" data-toggle="checkbox">Fabrics</label>
+                                </div>
+                                <button type="submit" class="btn btn-xstok width-100p font-20 font-family-helvetica font-weight-normal" />Save & Proceed</button>
+                            </form>                            
+                        </div>
+                        <!----//sign-in-box ---->
+                        <!----up-load-stats---->
+                        <!--//up-load-stats---->
+                        <!----social-tags---->
+
+                        <!--//social-tags---->
+                    </div><!----//End-col-1 ----->
+                    <!---- col-2 ----->                    
+                    <!---- col-3 ----->                    
+                    <!---- col-3 ----->
+                    <div class="clear"> </div>
+                </div>
+
+            </div>
+
+            <!---- //content ----->
+
+        </div>        
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+         <script type="text/javascript" src="js/jquery.mobile.custom.min.js"></script>
+         <script type="text/javascript" src="js/jquery.mmenu.js"></script>
+        <script type="text/javascript" src="js/jquery.md5.js"></script>
+        <script type="text/javascript" src="js/flat-ui.min.js"></script>
+        <script type="text/javascript" src="js/parsley.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+
+        <!---//container----->
+        <script type="text/javascript">
+                $('.icon').hover(function () {
+                    $('.password').attr('type', 'text');
+                    $('.show').removeClass('fa-eye');
+                    $('.show').addClass('fa-eye-slash');
+                }, function () {
+                    $('.password').attr('type', 'password');
+                    $('.show').addClass('fa-eye');
+                    $('.show').removeClass('fa-eye-slash');
+                });
+               
+                function sameAsAbove() {
+                    if ($('#shipping_same_as').is(":checked")) {
+                        $('#shipping_address').attr('readonly', 'readonly');
+                        $("#shipping_address").html($("#company_address").val());
+                    } else {
+                        $('#shipping_address').removeAttr('readonly', 'readonly');
+
+                    }
+                }
+                function sameAsAbove1() {
+                    if ($('#billing_same_as').is(":checked")) {
+                        $('#billing_address').attr('readonly', 'readonly');
+                        $("#billing_address").html($("#company_address").val());
+                    } else {
+                        $('#billing_address').removeAttr('readonly', 'readonly');
+
+                    }
+                }
+                function apparels () {
+                    
+                }
+                $("#login").submit(function (e) {
+                     if($( '#login' ).parsley( 'isValid' )) {
+                    $('button[type="submit"]').addClass('disable');
+                    $('button[type="submit"]').html('Processing   <i class="fa fa-refresh fa-spin"></i>');
+                    e.preventDefault();
+                    var self = this;
+                    var buying_branded = $('input[name=buying_branded]:checked', '#login').val();
+                    if(buying_branded == null) {
+                        buying_branded = 'N';
+                    }
+                    var interested_selling_on_platform = $('input[name=interested_selling_on_platform]:checked', '#login').val();
+                    if(interested_selling_on_platform == null) {
+                        interested_selling_on_platform = 'N';
+                    }
+                   
+                    var json = '{"id":"' + localStorage.form_id + '","user_id":"' + rc4_dr(localStorage.user_id) + '","interested_category":"'+localStorage.interested_category+'","buying_branded":"'+ buying_branded +'","buying_brand_name":"' + $('input[name="buying_brand_name"]').val() + '","interested_buying_brand":"' + $('input[name="interested_buying_brand"]').val() + '","interested_selling_on_platform":"'+interested_selling_on_platform+'","hear_about_us":"' + $('input[name="hear_about_us"]').val() + '","comments_feedback":"' + $('#comments_feedback').val() + '","action":"update"}';
+                    //console.log(json);
+                    $.ajax({url: localStorage.host + 'buyer_generaldetails.php', data: {json: json}, type: 'get', success: function (data) {
+                            $('button[type="submit"]').html('Done   <i class="fa fa-check"></i>');
+                            $('button[type="submit"]').removeClass('disable');
+                            setTimeout(function () {
+                                 self.submit();
+                                return false;
+                            }, 700);
+                            //console.log(data);                   
+                            // self.submit();
+                            //  return false;                    
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                        //    if (textStatus === "timeout") {
+                                x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                         //   }
+                        }
+                    });
+                }
+                });
+                function onBackKeyDown() {// Handle the back button
+                navigator.notification.confirm(
+                        'Are you sure want to exit?', // message
+                        function (index) {
+                            if (index == 1) {//look at the docs for this part
+                                navigator.app.exitApp();
+                            }
+                        }, // callback to invoke with index of button pressed
+                        'Exit', // title
+                        'Yes,No' // buttonLabels
+                        );
+            }
+
+            function onDeviceReady() {
+                //FastClick.attach(document.body);
+                if (device.platform == "Android") {
+                    document.addEventListener("backbutton", onBackKeyDown, false);
+                }
+
+            }  
+            
+            function onBodyLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+        </script>
+        <script>
+        $("body").swiperight(function() { 
+                $("#header a").click();
+            });  
+  
+
+        </script>
+    </body>
+</html>
+

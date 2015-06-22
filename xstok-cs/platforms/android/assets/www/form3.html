@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>XSTOK</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="XSTOK" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <!-- Custom Theme files -->
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <!-- Custom Theme files -->
+        <!----font-Awesome----->
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+        <!----font-Awesome----->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=device-dpi,user-scalable=yes" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script>
+            /*if (localStorage.logged_in == 1) {
+                window.location.href = "dashboard.html";
+            }*/
+            $(document).ready(function () {
+                $('.container').fadeIn(800).show();
+                //localStorage.logged_in = 3;
+                setTimeout(function(){ window.location.href = "home.html"; }, 3000);
+            });
+        </script>
+    </head>
+    <body>        
+        <div class="iso_blur background-image background-blur"></div>
+        <!-----container----->
+        <div class="container black_wrapper" style="display: none">
+
+
+            <!------ content ----->
+            <div class="content">
+                <div class="3-cols">
+                    <div class="col-1 col-md-3">
+                        <!---- user-profile ---->
+                        <!-- //user-profile ---->
+                        <!---- sign-in-box ---->
+                        <div class="sign-in-box">
+                            <h2><img src="images/logo_y.png"></h2>
+                            <br/>
+                            <br/>
+                            <h3 class="heading-text x-white" >Thank you for providing the references!</h3>
+                            <br/>
+                            <br/>
+                            <br/>
+                           <!-- <p class="text-align-center font-bold"><a href="form2.html" onclick="localStorage.logged_in = 2" class="x-orange font-20">Add more references</a> <br/><br/>  <a href="home.html" class="x-orange font-20">Home</a></p>-->
+                        </div>
+                        <!----//sign-in-box ---->
+                        <!----up-load-stats---->
+                        <!--//up-load-stats---->
+                        <!----social-tags---->
+
+                        <!--//social-tags---->
+                    </div><!----//End-col-1 ----->
+                    <!---- col-2 ----->                    
+                    <!---- col-3 ----->                    
+                    <!---- col-3 ----->
+                    <div class="clear"> </div>
+                </div>
+                <!--<div id="ajaxProgress"><i class="fa fa-spinner fa-pulse x-orange fa-5x"></i></div>-->
+            </div>
+
+            <!---- //content ----->
+
+        </div>
+        <script type="text/javascript" src="js/PushNotification.js"></script>
+        <script type="text/javascript" src="js/fastclick.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <!---//container----->
+        <script type="text/javascript">
+            function onBodyLoad(){ 
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+            
+            function onDeviceReady(){
+                FastClick.attach(document.body);
+            }
+            
+        </script>
+    </body>
+</html>
+

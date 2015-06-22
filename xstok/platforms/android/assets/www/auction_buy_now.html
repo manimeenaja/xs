@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>XSTOK</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=medium-dpi,user-scalable=yes" />
+        <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <link href="css/flat-ui.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <link rel="shortcut icon" href="favicon.ico">
+        <script src='js/jquery.min.js'></script>        
+
+        <script type="text/javascript">
+            //	The menu on the left
+            $(function () {
+                $('.container').fadeIn(1000).show();
+                $('html,body').css('background', '#f4f4f4');
+            });
+                
+        function onBackKeyDown() {// Handle the back button
+                navigator.notification.confirm(
+                        'Are you sure want to exit?', // message
+                        function (index) {
+                            if (index == 1) {//look at the docs for this part
+                                navigator.app.exitApp();
+                            }
+                        }, // callback to invoke with index of button pressed
+                        'Exit', // title
+                        'Yes,No' // buttonLabels
+                        );
+            }
+
+            function onDeviceReady() {
+                //FastClick.attach(document.body);
+                if (device.platform == "Android") {
+                    document.addEventListener("backbutton", onBackKeyDown, false);
+                }
+
+            }  
+            
+            function onBodyLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+        </script>
+    </head>
+    <body class="">
+
+
+        <div class="container" style="padding-right: 0; padding-left: 0;" >
+            <div class="top-header" style="position: fixed;z-index:10;  border-bottom: 1px solid #ddd;">
+                <!----script-for-sidepanle-nav----> 
+                <!--//script-for-sidepanle-nav---->
+                <div id="page">
+                    <div id="header"><a onclick="back()" style="margin-top: -5px;"><i class="fa fa-angle-left fa-lg fa-2x x-grey"></i></a></div>
+                </div>
+                <div class="logo width-100p filter-head x-grey">
+                    Buy Now
+                </div>
+                <!---usernotifications---->
+                <div class="usernotifications margin-top-5">
+
+                </div>
+                <div class="clear"> </div>
+                <!--//usernotifications---->               
+
+            </div>
+            <div class="panel-group" id="filder-options">
+                <form id="form" method="post" class="form-horizontal group-border-dashed" action="#" accept-charset='UTF-8' enctype="multipart/form-data"  parsley-validate novalidate>
+                    <div class="sup-head-text">Product Location</div>
+                    <div class="sup-body"><span class="sup-address"></span>,<br><span class="sup-city"></span>, <span class="sup-postal-code"></span>, <span class="sup-state-name"></span>, <span class="sup-country-name"></span>.</div>
+                    <div class="sup-head-text">Shipping Details</div>
+                    <div class="sup-body shipping-details"></div>
+                    <div class="sup-head-text">Enter Your Shipping Address</div>
+                    <div class="sup-body"><div class="porlets-content">
+                            <div class="row row-cancel-margin padding-tb-10">
+                                <div class="col-xs-4 line-height-1-8">Shipment by</div>
+                                <div class="col-xs-7">
+                                    <label for="shipment_by" class="radio">
+                                        <input type="radio" onclick="test_check('discount')" id="shipment_by" checked="checked" value="Xstok" name="shipment_by" data-toggle="radio"> Xstok
+                                    </label>
+                                    <label for="shipment_by1" class="radio">
+                                        <input type="radio" value="Self" id="shipment_by1" name="shipment_by" data-toggle="radio"> Self
+                                    </label> 
+                                </div>
+                            </div>
+                            <div class="row row-cancel-margin padding-tb-10">
+                                <input type="hidden" name="admin_id" value="">
+                                <input type="hidden" name="user_id" value="">
+                                <input type="hidden" name="lot_id" value="">
+                                <input type="hidden" name="room_id" value="">
+                                <input type="hidden" name="buy_type" id="buy_type" value="">
+                                <input type="hidden" name="edit_mode" id="edit_mode" value="">
+                                <div class="col-xs-4 line-height-1-8">Full Name</div>
+                                <div class="col-xs-7">
+                                    <input type="text" value="" id="full_name" name="full_name" placeholder="Full name" required parsley-minlength="4" class="form-control input-sm">
+                                </div>
+                                 <div class="col-xs-1">
+                                    <i class="fa fa-asterisk x-red padding-lr-10 line-height-1-8"></i>
+                                </div>
+                            </div>
+                            <div class="row row-cancel-margin padding-tb-10">
+                                <div class="col-xs-4 line-height-1-8">Address Line 1</div>
+                                <div class="col-xs-7">
+                                    <input type="text" value="" id="address_lin1" name="address_lin1" placeholder="Address Line 1"  required parsley-minlength="4" class="form-control input-sm">
+                                </div>
+                                 <div class="col-xs-1">
+                                    <i class="fa fa-asterisk x-red padding-lr-10 line-height-1-8"></i>
+                                </div>
+                            </div>                      
+                            <div class="row row-cancel-margin padding-tb-10">
+                                <div class="col-xs-4 line-height-1-8">Address Line 2</div>
+                                <div class="col-xs-7">
+                                    <input type="text" value="" id="address_lin2" parsley-minlength="4" name="address_lin2" placeholder="Address Line 2"  class="form-control input-sm">
+                                </div>
+                                <div class="col-xs-1">
+                                    <i class="fa fa-asterisk x-red padding-lr-10 line-height-1-8"></i>
+                                </div>
+                            </div>                        
+                            <div class="row row-cancel-margin padding-tb-10">
+                                <div class="col-xs-4 line-height-1-8">Country</div>
+                                <div class="col-xs-7">
+                                    <select class="form-control input-sm" id="country" name="country"></select>
+                                </div>
+                            </div>
+                            <div class="row row-cancel-margin padding-tb-10">
+                                <div class="col-xs-4 line-height-1-8">State</div>
+                                <div class="col-xs-7">
+                                    <select id="state" required="" name="state" class="form-control input-sm"></select>
+                                </div>
+                            </div> 
+                            <div class="row row-cancel-margin padding-tb-10">
+                                <div class="col-xs-4 line-height-1-8">City</div>
+                                <div class="col-xs-7">
+                                    <input type="text" value="" id="city" name="city" placeholder="City" required parsley-minlength="4" class="form-control input-sm">
+                                </div>
+                                 <div class="col-xs-1">
+                                    <i class="fa fa-asterisk x-red padding-lr-10 line-height-1-8"></i>
+                                </div>
+                            </div>
+                            <div class="row row-cancel-margin padding-tb-10">
+                                <div class="col-xs-4 line-height-1-8">Postal Code</div>
+                                <div class="col-xs-7">
+                                    <input type="text" value="" id="postal_code" name="postal_code" placeholder="Min 6 chars." required parsley-minlength="4" class="form-control input-sm">
+                                </div>
+                                 <div class="col-xs-1">
+                                    <i class="fa fa-asterisk x-red padding-lr-10 line-height-1-8"></i>
+                                </div>
+                            </div>
+                            <div class="row row-cancel-margin padding-tb-10">
+                                <div class="col-xs-4 line-height-1-8">Phone Number</div>
+                                <div class="col-xs-7">
+                                    <input type="text" value="" placeholder="Phone Number" required="" class="form-control parsley-validated input-sm" name="phone_no" id="phone_no">
+                                </div>
+                                 <div class="col-xs-1">
+                                    <i class="fa fa-asterisk x-red padding-lr-10 line-height-1-8"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sup-head-text">Order Details</div>
+                    <div class="sup-body">
+                        <div class="row row-cancel-margin padding-tb-5">
+                            <div class="col-xs-4 line-height-1-8">Winning Price</div>
+                            <div class="col-xs-8 bid_amount line-height-1-8"></div>
+                            <input type="hidden" name="sub_total" id="sub_total" value="">
+                        </div>
+                        <div class="row row-cancel-margin padding-tb-5">
+                            <div class="col-xs-4 line-height-1-8">Tax <span id="tax_applied"></span></div>
+                            <div class="col-xs-8 line-height-1-8" id="div_tax_display"></div>
+                            <input type="hidden" name="tax_applied" id="input_tax_applied" value="">
+                            <input type="hidden" name="tax_value" id="tax_value" value="">
+                            <input type="hidden" name="tax" id="tax" value="<?php echo $tax?>">
+                            <input type="hidden" name="gst" id="gst" value="<?php echo $gst_on?>">
+                        </div>
+                        <div class="row row-cancel-margin subtotal padding-tb-5">
+                            <div class="col-xs-4 line-height-1-8">Subtotal(Winning Price + Tax)</div>
+                            <div class="col-xs-8 line-height-1-8" id="div_sub_total_with_tax"></div>
+                            <input type="hidden" name="shipping_charge" id="shipping_charge" value="0">
+                            <input type="hidden" name="promotion" id="promotion" value="0">
+                        </div>
+                        <div class="row row-cancel-margin padding-tb-5">
+                            <div class="col-xs-4 line-height-1-8">Redeem Your EMD</div>
+                            <div class="col-xs-8 line-height-1-8">
+                                <div class="row row-cancel-margin">
+                                    <input type="hidden" name="og_left_emd" id="og_left_emd" value=""/> Left EMD = <span  id="left_emd"></span>
+                                    <div class="col-xs-6">
+                                        <input type="text" name="use_my_emd" id="use_my_emd" value="" class="form-control input-sm" required ></div>
+                                    <input type="hidden" name="c_form_limit_emd" id="c_form_limit_emd" value="">
+                                    <input id="os_total_amount" type="hidden" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-cancel-margin padding-tb-5">
+                            <div class="col-xs-4 line-height-1-8">Total</div>
+                            <div class="col-xs-8 line-height-1-8" id="div_os_total_amount"></div>
+                            <input type="hidden" name="total" id="total" value="">
+                        </div>
+                        <div class="row row-cancel-margin padding-tb-5">
+                            <div class="loader_sup"></div>
+                            <div class="col-xs-8"></div>
+                            <div class="col-xs-4 line-height-1-8"><button type="submit" name="Continue" class="font-family-helvetica btn btn-primary" value="Continue">Continue</button></div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>   
+        
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile.custom.min.js"></script>
+        <script type="text/javascript" src="js/flat-ui.min.js"></script>
+        <script type="text/javascript" src="js/filter.js"></script>
+        <script type="text/javascript" src='js/main_script.js'></script> 
+        <script type="text/javascript" src="js/fastclick.js"></script>
+        <script type="text/javascript" src="js/parsley.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script>
+            $("body").swiperight(function() { 
+                $("#header a").click();
+            });  
+  
+                                            function onBodyLoad() {
+                                                document.addEventListener("deviceready", onDeviceReady, false);
+                                            }
+
+                                            function onDeviceReady() {
+                                                FastClick.attach(document.body);
+                                            }
+                                            $(window).resize(function () {
+                                                var windowWidth = $(window).width();
+                                                var windowHeight = $(window).height();
+                                            });
+                                            $(document).ready(function () {
+                                                $("#form").submit(function (event) {
+                                                   // x_alert('asdadas');
+                                                    insertIntoDb(event);
+                                                    event.preventDefault();
+                                                });
+                                                $('#filder-options').css('margin-top', $('.top-header').innerHeight());
+                                                var hash = window.location.hash.split('#')[1];
+                                                var lot_id = hash.split('-')[0];
+                                                var room_id = hash.split('-')[1];
+                                                var buy_type = '';
+                                                if (hash.split('-')[2]) {
+                                                    buy_type = hash.split('-')[2];
+                                                }
+                                                localStorage.buy_type = buy_type;
+
+                                                $('#state').change(function () {
+                                                    cal_tax($(this).val(), lot_id, room_id);
+                                                });
+                                                $.ajax({url: localStorage.host + '../classes/common.class.php', data: {action: 'get_buyer_detail_user_id', u_: localStorage.user_id}, type: 'get', success: function (data) {
+                                                        var user_detail = JSON.parse(data);
+                                                        $('#full_name').val(user_detail[0]['name']);
+                                                        $('#phone_no').val(user_detail[0]['phone_no']);
+                                                        $('#address_lin1').val(user_detail[0]['address']);
+                                                    }
+                                                });
+                                                if (buy_type == '') {
+                                                    $.ajax({url: localStorage.host + '../classes/service_manage_auction.class.php', data: {action: 'get_auction_winner_details', r_: room_id, l_: lot_id}, type: 'get', success: function (data) {
+                                                            var bid_amount = JSON.parse(data);
+                                                            console.log(bid_amount['amount']);
+                                                            $('.bid_amount').html(bid_amount['amount']);
+                                                            $('#sub_total').val(bid_amount['amount']);
+                                                            localStorage.bid_amount = bid_amount['amount'];
+                                                            gst_status();
+                                                            c_form(lot_id, room_id);
+                                                        }
+                                                    });
+                                                } else {
+                                                    $.ajax({url: localStorage.host + '../classes/service_manage_auction.class.php', data: {action: 'get_auction_winner_details', r_: room_id, l_: lot_id, d_: 'ui'}, type: 'get', success: function (data) {
+                                                            var bid_amount = JSON.parse(data);
+                                                            console.log(bid_amount['amount']);
+                                                            $('.bid_amount').html(bid_amount['amount']);
+                                                            $('#sub_total').val(bid_amount['amount']);
+                                                            localStorage.bid_amount = bid_amount['amount'];
+                                                            gst_status();
+                                                            c_form(lot_id, room_id);
+                                                        }
+                                                    });
+                                                }
+
+                                                $.ajax({url: localStorage.host + '../classes/service_manage_auction.class.php', data: {action: 'get_lot_origin_detail', l_: lot_id, r_: room_id}, type: 'get', success: function (data) {
+                                                        var address = JSON.parse(data);
+                                                        console.log(address);
+                                                        $('input[name="admin_id"]').val(localStorage.user_id);
+                                                        $('input[name="user_id"]').val(localStorage.user_id);
+                                                        $('input[name="lot_id"]').val(lot_id);
+                                                        $('input[name="room_id"]').val(room_id);
+                                                        var buy_type_name = 'Normal Buy';
+                                                        if (buy_type != '') {
+                                                            buy_type_name = 'Direct Buy';
+                                                        }
+                                                        $('input[name="buy_type"]').val(buy_type_name);
+                                                        $('.sup-address').html(address[0]['origin_address1']);
+                                                        $('.sup-city').html(address[0]['origin_city']);
+                                                        $('.sup-postal-code').html(address[0]['origin_postal_code']);
+                                                        $.ajax({url: localStorage.host + '../classes/common.class.php', data: {action: 'get_country_name_by_id', c_: address[0]['origin_country']}, type: 'get', success: function (data1) {
+                                                                var address1 = JSON.parse(data1);
+                                                                $('.sup-country-name').html(address1[0]['country_name']);
+                                                            }
+                                                        });
+                                                        localStorage.origin_state = address[0]['origin_state'];
+                                                        $.ajax({url: localStorage.host + '../classes/common.class.php', data: {action: 'get_state_name_by_id', c_: address[0]['origin_state']}, type: 'get', success: function (data2) {
+                                                                var address2 = JSON.parse(data2);
+                                                                $('.sup-state-name').html(address2[0]['state_name']);
+                                                            }
+                                                        });
+                                                    }
+                                                });
+                                                $.ajax({url: localStorage.host + '../classes/service_manage_auction.class.php', data: {action: 'get_packege_detail', l_: lot_id, r_: room_id}, type: 'get', success: function (data) {
+                                                        var detail = JSON.parse(data);
+                                                        //console.log(detail);
+
+                                                        var body = '';
+                                                        if (detail[0]['pack_by'] == 'W') {
+                                                            body = '<div class="row row-cancel-margin text-align-center"><div class="col-xs-4 line-height-1-8">Gross Weight: <span class="gross_weight">' + detail[0]['gross_weight'] + '</span></div><div class="col-xs-4 line-height-1-8">No Carton: <span class="no_carton">' + detail[0]['no_carton'] + '</span></div><div class="col-xs-4 line-height-1-8">Net Weight: <span class="net_weight">' + detail[0]['net_weight'] + '</span></div></div>';
+                                                        } else if (detail[0]['pack_by'] == 'D') {
+                                                            body = '<div class="row row-cancel-margin text-align-center"><div class="col-xs-4 line-height-1-8">Length: ' + detail[0]['length'] + '</div><div class="col-xs-4 line-height-1-8">Breadth: ' + detail[0]['breadth'] + '</div><div class="col-xs-4 line-height-1-8">Width: ' + detail[0]['width'] + '</div></div><div class="row row-cancel-margin text-align-center"><div class="col-xs-4 line-height-1-8">Net Weight: ' + detail[0]['net_weight'] + '</div><div class="col-xs-4 line-height-1-8">No Carton: ' + detail[0]['no_carton'] + '</div></div>';
+                                                        }
+                                                        $('.shipping-details').html(body);
+                                                    }
+                                                });
+                                                $.ajax({url: localStorage.host + '../classes/common.class.php', data: {action: 'get_shipment_details', u_: localStorage.user_id, l_: lot_id, r_: room_id}, type: 'get', success: function (data) {
+                                                        var shipment_details = JSON.parse(data);
+                                                        var body = '';
+                                                        console.log(shipment_details);
+                                                        var shipment_details = 'N';
+                                                        if (typeof shipment_details[0]['state'] != 'undefined' && shipment_details[0]['state'] != '') {
+                                                            $("#use_my_emd").focus();
+                                                            cal_tax(shipment_details[0]['state'], lot_id, room_id);
+                                                        }
+                                                        if (typeof shipment_details[0]['status'] != 'undefined') {
+                                                            shipment_details = shipment_details[0]['status'];
+                                                        }
+                                                        $('#edit_mode').val(shipment_details);
+                                                        $('#shipment_by').val(localStorage.ship_xstok);
+                                                        $('#shipment_by1').val(localStorage.ship_other);
+                                                        $('#shipment_by').prop('checked', true);
+                                                        if (shipment_details[0]['shipment_by'] == localStorage.ship_other) {
+                                                            $('#shipment_by1').prop('checked', true);
+                                                        }
+
+                                                        $('#address_lin2').val(shipment_details[0]['address_lin2']);
+                                                        $('#city').val(shipment_details[0]['city']);
+                                                        $('#postal_code').val(shipment_details[0]['postal_code']);
+                                                        $('#use_my_emd').val(shipment_details[0]['emd_used']);
+                                                        localStorage.emd_used = shipment_details[0]['emd_used'];
+                                                        /* $.each(country,function(i,item) {
+                                                         if(item['id'] == 99) {
+                                                         body += '<option selected value="' +item['id']+ '">'  +item['country_name']+ '</option>';
+                                                         } else {
+                                                         body += '<option value="' +item['id']+ '">'  +item['country_name']+ '</option>';
+                                                         }
+                                                         
+                                                         });*/
+
+                                                        //$('#country').html(body);
+                                                    }
+                                                });
+                                                $.ajax({url: localStorage.host + '../classes/common.class.php', data: {action: 'get_country_list'}, type: 'get', success: function (data) {
+                                                        var country = JSON.parse(data);
+                                                        var body = '';
+                                                        $.each(country, function (i, item) {
+                                                            if (item['id'] == 99) {
+                                                                body += '<option selected value="' + item['id'] + '">' + item['country_name'] + '</option>';
+                                                            } else {
+                                                                body += '<option value="' + item['id'] + '">' + item['country_name'] + '</option>';
+                                                            }
+
+                                                        });
+                                                        $('#country').html(body);
+                                                    }
+                                                });
+                                                $.ajax({url: localStorage.host + '../classes/common.class.php', data: {action: 'get_statte_list', c_: '99'}, type: 'get', success: function (data) {
+                                                        var statte = JSON.parse(data);
+                                                        var body = '<option value="0" >Please select..</option>';
+                                                        $.each(statte, function (i, item) {
+                                                            if (item['id'] == 99) {
+                                                                body += '<option selected value="' + item['id'] + '">' + item['state_name'] + '</option>';
+                                                            } else {
+                                                                body += '<option value="' + item['id'] + '">' + item['state_name'] + '</option>';
+                                                            }
+
+                                                        });
+                                                        $('#state').html(body);
+                                                    }
+                                                });
+                                            });
+
+                                            function insertIntoDb(event) {
+                                                event.stopPropagation(); // Stop stuff happening
+                                                event.preventDefault(); // Totally stop stuff happening
+                                                $('.loader_sup').html('Loading....');
+                                                var data = new FormData();
+                                                var form_data = $('#form').serialize();
+                                                ///x_alert(form_data);
+                                                if ($('#form').parsley().validate() && $('#phone_no').val() != "" && $('#postal_code').val() != "" && $('#os_total_amount').val() != "") {
+                                                    $.ajax({
+                                                        url: localStorage.host + '../classes/service_manage_auction.class.php?action=save_shipping_details&files&' + form_data + '',
+                                                        type: 'POST',
+                                                        data: data,
+                                                        cache: false,
+                                                        dataType: 'json',
+                                                        processData: false, // Don't process the files
+                                                        contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+                                                        success: function (data, textStatus, jqXHR) {
+                                                            if (typeof data.error === 'undefined') {
+                                                                if ($('#reserve_price').val() != "" && $('#phone_no').val() != "" && $('#postal_code').val() != "" && $('#os_total_amount').val() != "") {
+                                                                    $('.loader_sup').html('completed');
+                                                                    if (localStorage.buy_type != '') {
+                                                                        window.location = "/pay_now_direct/<?php echo $lot_id ?>/<?php echo $room_id ?>/ui/";
+                                                                    } else {
+                                                                        window.location = "/pay_now/<?php echo $lot_id ?>/<?php echo $room_id ?>/";
+                                                                    }
+                                                                } else {
+                                                                    $('.loader_sup').html('Some Field Are missing');
+                                                                }
+                                                            } else {
+                                                                $('.loader_sup').html(data.error);
+                                                            }
+                                                        },
+                                                        error: function (jqXHR, textStatus, errorThrown) {
+                                                            $('.loader_sup').html(textStatus);
+                                                        }
+                                                    });
+                                                } else {
+                                                    $('.loader_sup').html('Some Field Are missing');
+                                                }
+                                            }
+
+                                            function c_form(lot_id, room_id) {
+                                                $.ajax({url: localStorage.host + '../classes/common.class.php', data: {action: 'get_c_form_status_by_user_id', u_: localStorage.user_id}, type: 'get', success: function (data) {
+                                                        var c_form_detail = JSON.parse(data);
+                                                        localStorage.c_form = c_form_detail[0]['c_form'];
+                                                        $.ajax({url: localStorage.host + '../classes/service_manage_auction.class.php', data: {action: 'get_applied_emd_by_lot', l_: lot_id, r_: room_id, u_: localStorage.user_id}, type: 'get', success: function (data) {
+                                                                var apply_emd = JSON.parse(data);
+                                                                // console.log(apply_emd);
+                                                                $.ajax({url: localStorage.host + '../classes/service_manage_auction.class.php', data: {action: 'get_orignal_emd_val', u_: localStorage.user_id}, type: 'get', success: function (data) {
+                                                                        var emd_details = JSON.parse(data);
+                                                                        console.log(emd_details);
+                                                                        var emd = 0;
+                                                                        if (emd_details[0]['left_emd'] != '') {
+                                                                            emd = emd_details[0]['left_emd'];
+                                                                        } else {
+                                                                            emd = emd_details[0]['total_emd'];
+                                                                        }
+                                                                        var left_emd = Math.round(((parseFloat(emd) + parseFloat(apply_emd)) / parseFloat(emd_details[0]['code'])).toFixed(2));
+                                                                        var c_form_limit_emd = 0;
+                                                                        $('#left_emd').html(left_emd);
+                                                                        $('#og_left_emd').val(left_emd);
+                                                                        if (c_form_detail[0]['c_form'] == 'Y') {
+                                                                            c_form_limit_emd = Math.round(((parseFloat(localStorage.bid_amount) * parseFloat(localStorage.c_form_limit)) / 100).toFixed(2));
+                                                                            left_emd = (parseFloat(left_emd) - parseFloat(c_form_limit_emd));
+                                                                            var body = '<div> ' + localStorage.c_form_limit + ' % of ' + localStorage.bid_amount + ' i.e ' + c_form_limit_emd + ' EMD is blocked </div>';
+                                                                            $('.subtotal').after(body);
+                                                                        } else {
+                                                                            c_form_limit_emd = 0;
+                                                                        }
+
+                                                                        $('#c_form_limit_emd').val(c_form_limit_emd);
+                                                                    }
+                                                                });
+                                                            }
+                                                        });
+                                                    }
+                                                });
+                                            }
+                                            function gst_status() {
+                                                var tax = 0.00;
+                                                var gst_on = 'N';
+                                                $.ajax({url: localStorage.host + '../classes/common.class.php', data: {action: 'get_gst_status_value'}, type: 'get', success: function (data) {
+                                                        var gst_status = JSON.parse(data);
+                                                        // console.log(gst_status);
+                                                        gst_on = gst_status[0]['gst_on'];
+                                                        localStorage.gst_on = gst_on;
+                                                        if (gst_on == "Y") {
+                                                            tax = ((parseFloat(localStorage.bid_amount) * pasrseFloat(gst_status[0]['gst_val'])) / 100);
+                                                        }
+
+                                                        $('#div_tax_display').html(tax);
+                                                        $('#tax').val(tax);
+                                                        $('#gst').val(gst_on);
+                                                        $('#div_sub_total_with_tax').html(parseFloat(localStorage.bid_amount) + parseFloat(tax));
+                                                        $('#div_os_total_amount').html(parseFloat(localStorage.bid_amount) + parseFloat(tax));
+                                                        $('#total').html(parseFloat(localStorage.bid_amount) + parseFloat(tax));
+                                                        $('#os_total_amount').html(parseFloat(localStorage.bid_amount) + parseFloat(tax));
+                                                        //$('#state').html(body);
+                                                    }
+                                                });
+                                            }
+
+                                            function cal_tax(state_id, lot_id, room_id) {
+                                                if (localStorage.gst_on == 'N') {
+                                                    $.post(localStorage.host + '../classes/common.class.php?action=get_related_tax_detail&l_=' + lot_id + '&r_=' + room_id + '&c_=' + state_id + '', {id: state_id},
+                                                    function (data) {
+                                                        var items = [];
+                                                        if (data) {
+                                                            $.each($.parseJSON(data), function (idx, obj) {
+                                                                if (localStorage.origin_state == state_id) {
+                                                                    $('#tax_applied').html(' (' + localStorage.tax_vat + ' ' + obj.vat + '%)');
+                                                                    $('#input_tax_applied').val(localStorage.tax_vat);
+                                                                    $('#tax_value').val(obj.vat);
+                                                                    var discount_value = parseFloat($('#sub_total').val()) * parseFloat((100 - Math.abs(100 - obj.vat)) / 100);
+                                                                    $('#div_tax_display').html(discount_value);
+                                                                    $('#tax').val(discount_value);
+                                                                    $('#os_total_amount').val(parseFloat($('#sub_total').val()) + parseFloat(discount_value));
+                                                                    $('#div_os_total_amount').html(parseFloat($('#sub_total').val()) + parseFloat(discount_value));
+                                                                    $('#total').val(parseFloat($('#sub_total').val()) + parseFloat(discount_value));
+                                                                    $('#div_sub_total_with_tax').html(parseFloat($('#sub_total').val()) + parseFloat(discount_value));
+                                                                    $('#sub_total_with_tax').html(parseFloat($('#sub_total').val()) + parseFloat(discount_value));
+                                                                } else {
+                                                                    if (localStorage.c_form == 'Y') {
+                                                                        var sales_tax_emd = obj.sales_tax - parseFloat(localStorage.c_form_limit);
+                                                                        $('#tax_applied').html(' (' + localStorage.tax_sales_tax + ' ' + sales_tax_emd + '%)');
+                                                                        $('#input_tax_applied').val(localStorage.tax_sales_tax);
+                                                                        $('#tax_value').val(sales_tax_emd);
+                                                                        $('#c_form_applied').html('C-Form Given, and ' + localStorage.tax_sales_tax + ' would be ' + obj.sales_tax + ' - ' + localStorage.c_form_limit + ' = ' + sales_tax_emd + '% ');
+                                                                        var discount_value = parseFloat($('#sub_total').val()) * parseFloat((100 - Math.abs(100 - sales_tax_emd)) / 100);
+                                                                        $('#div_tax_display').html(round(discount_value, 2));
+                                                                        $('#tax').val(discount_value);
+                                                                        $('#os_total_amount').val(parseFloat($('#sub_total').val()) + parseFloat(discount_value));
+                                                                        $('#div_os_total_amount').html(parseFloat($('#sub_total').val()) + parseFloat(discount_value));
+                                                                        $('#total').val(parseFloat($('#sub_total').val()) + parseFloat(discount_value));
+                                                                        $('#div_sub_total_with_tax').html(parseFloat($('#sub_total').val()) + parseFloat(discount_value));
+                                                                        $('#sub_total_with_tax').html(parseFloat($('#sub_total').val()) + parseFloat(discount_value));
+                                                                    } else {
+                                                                        $('#tax_applied').html(' (' + localStorage.tax_sales_tax + ' ' + obj.sales_tax + '%)');
+                                                                        $('#input_tax_applied').val(localStorage.tax_sales_tax);
+                                                                        $('#tax_value').val(obj.sales_tax);
+                                                                        var discount_value = parseFloat($('#sub_total').val()) * parseFloat((100 - Math.abs(100 - obj.sales_tax)) / 100);
+                                                                        $('#div_tax_display').html(round(discount_value, 2));
+                                                                        $('#tax').val(discount_value);
+                                                                        $('#os_total_amount').val(parseFloat($('#sub_total').val()) + parseFloat(discount_value));
+                                                                        $('#div_os_total_amount').html(parseFloat($('#sub_total').val()) + parseFloat(discount_value));
+                                                                        $('#total').val(parseFloat($('#sub_total').val()) + parseFloat(discount_value));
+                                                                    }
+                                                                }
+                                                            });
+                                                        }
+
+
+                                                    });
+                                                }
+                                                $('#left_emd').html($('#og_left_emd').val());
+                                                if (localStorage.emd_used != '') {
+                                                    $('#use_my_emd').val(0);
+                                                } else {
+                                                    $('#total').val($('#os_total_amount').val());
+                                                    $("#div_os_total_amount").html($('#os_total_amount').val());
+                                                }
+                                            }
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>XSTOK</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="XSTOK" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <!-- Custom Theme files -->
+        <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <!-- Custom Theme files -->
+        <!----font-Awesome----->
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+        <!----font-Awesome----->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=device-dpi,user-scalable=yes" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script>
+            $(document).ready(function () {
+                $('.container').fadeIn(800).show();
+            });
+        </script>
+    </head>
+    <body>
+        <div class="iso_blur background-image background-blur"></div>
+        <!-----container----->
+        <div class="container black_wrapper" style="display: none">
+
+
+            <!------ content ----->
+            <div class="content">
+                <div class="3-cols">
+
+                    <div class="col-1 col-md-3">                       
+                        <div class="menu"><a href="home.html"><i class="fa fa-fw fa-angle-left x-white fa-2x"></i></a></span></div>
+                        <!---- user-profile ---->
+                        <!-- //user-profile ---->
+                        <!---- sign-in-box ---->
+                        <div class="sign-in-box" style="">
+                            <h2><img src="images/logo_y.png"></h2>
+                            <div style="    background: rgba(0,0,0,0.5);    padding: 15px;">
+                                <h3 class="heading-text x-white">Contact us <hr/> </h3>
+                                <br/>
+                                <p class="x-white text-center">Daulatram Mansion, 4th Floor, St. Kittridge Road, Colaba, Mumbai 400005, India.</p>
+                                <br/>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-xs-2"></div>
+                                    <div class="col-xs-2 center-block"><i class="fa fa-fw fa-mobile x-white fa-2x"></i></div>
+                                    <div class="col-xs-2"></div>
+                                    <div class="col-xs-2"></div>
+                                    <div class="col-xs-2"><i class="fa fa-fw fa-envelope x-white fa-2x"></i></div>
+                                    <div class="col-xs-2"></div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-xs-6 x-white text-align-center"><a href="tel:+912266291133" class="x-white">+ 91 2266291133</a></div>
+
+                                    <div class="col-xs-6 x-white text-align-center"><a  href="mailto:info@xstok.com"  class="x-white">info@xstok.com</a></div>
+
+                                </div>
+                                <br/>
+                                <div class="row">
+
+                                    <div class="col-xs-3 x-white text-align-center"><a onClick="window.open('https://twitter.com/xstokIndia', '_system')" href="#"><img  height="33" src="images/twitter.png"></a></div>
+                                    <div class="col-xs-3 x-white text-align-center"><a onClick="window.open('https://www.linkedin.com/company/xstok?trk=tyah&trkInfo=idx%3A1-1-1,tarId%3A1423812100161,tas%3Axstok', '_system')" href="#"><img  height="33" src="images/linkedin.png"></a></div>
+                                    <div class="col-xs-3 x-white text-align-center"><a onClick="window.open('https://www.facebook.com/pages/XStok/798400676920131?ref=hl', '_system')" href="#"><img  height="33" src="images/facebook.png"></a></div>
+                                    <div class="col-xs-3 x-white text-align-center"><a onClick="add_contact()" href="#"><img  height="33" src="images/whatsapp.png"></a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!----//sign-in-box ---->
+                        <!----up-load-stats---->
+                        <!--//up-load-stats---->
+                        <!----social-tags---->
+
+                        <!--//social-tags---->
+                    </div><!----//End-col-1 ----->
+                    <!---- col-2 ----->                    
+                    <!---- col-3 ----->                    
+                    <!---- col-3 ----->
+                    <div class="clear"> </div>
+                </div>
+
+            </div>
+
+            <!---- //content ----->
+
+        </div>       
+        <script type="text/javascript" src="js/PushNotification.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/fastclick.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <!---//container----->
+        <script type="text/javascript">
+                                        function onBodyLoad() {
+                                            document.addEventListener("deviceready", onDeviceReady, false);
+                                        }
+
+                                        function onDeviceReady() {
+                                            FastClick.attach(document.body);
+                                        }
+
+                                        function onSuccess(contact) {
+                                            if (device.platform == "Android") {
+                                                if (localStorage.contact == 1) {
+                                                    cordova.plugins.Whatsapp.send("9833273172");
+                                                } else {
+                                                    setTimeout(function () {
+                                                        localStorage.contact = 1;
+                                                        cordova.plugins.Whatsapp.send("9833273172");
+                                                    }, 3000);
+                                                }
+                                            }
+                                        }
+
+                                        function onError(contactError) {
+                                            // alert("Error = " + contactError.code);
+                                        }
+
+// create a new contact object
+                                        function add_contact() {
+                                            var contact = navigator.contacts.create();
+                                            contact.displayName = "XSTOK Support";
+                                            contact.nickname = "XSTOK";       //specify both to support all devices
+
+
+                                            var phoneNumbers = [];
+                                            phoneNumbers[0] = new ContactField('mobile', '+919833273172', true);
+                                            contact.phoneNumbers = phoneNumbers;
+                                            var emails = [];
+                                            emails[0] = new ContactField('work', 'info@xstok.com', true);
+                                            contact.emails = emails;
+                                            contact.name = "XSTOK";
+
+                                            // save to device
+                                            contact.save(onSuccess, onError);
+                                        }
+        </script>
+    </body>
+</html>
+

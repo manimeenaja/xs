@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>XSTOK</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=medium-dpi,user-scalable=yes" />
+        <link type="text/css" rel="stylesheet" href="css/jquery.mmenu.all.css" />
+        <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <link rel="shortcut icon" href="favicon.ico">
+        <script src='js/jquery.min.js'></script>        
+        <script src='js/jquery-ui.min.js'></script>   
+        <script type="text/javascript">function onBackKeyDown() {// Handle the back button
+                navigator.notification.confirm(
+                        'Are you sure want to exit?', // message
+                        function (index) {
+                            if (index == 1) {//look at the docs for this part
+                                navigator.app.exitApp();
+                            }
+                        }, // callback to invoke with index of button pressed
+                        'Exit', // title
+                        'Yes,No' // buttonLabels
+                        );
+            }
+
+            function onDeviceReady() {
+                //FastClick.attach(document.body);
+                if (device.platform == "Android") {
+                    document.addEventListener("backbutton", onBackKeyDown, false);
+                }
+
+            }  
+            
+            function onBodyLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+            //	The menu on the left
+            $(function () {
+                show_loader();
+                $('.container').fadeIn(1000).show();
+            });</script>
+    </head>
+    <body class="">
+
+
+        <div class="container" style="padding-right: 0; padding-left: 0;" >
+            <div class="top-header x-orange-background" style="position: fixed;z-index:10;">
+                <!----script-for-sidepanle-nav----> 
+                <!--//script-for-sidepanle-nav---->
+                <div id="page">
+                    <div id="header"><a onclick="back()" style="margin-top: -4px;"><i class="fa fa-angle-left fa-lg fa-2x x-white"></i></a></div>
+                </div>
+                <div class="logo width-100p filter-head room_head margin-top-2" style="line-height: 1.1;">-</div>
+                <!---usernotifications---->
+                <div class="usernotifications hidden" style="margin-top: 3px;line-height: 1.1;">
+                    Bid Limit ₹ <span class="bid-limit">-</span>
+                </div>
+                <div class="clear"> </div>
+                <!--//usernotifications---->
+            </div>
+            <div class="overlay-loader" style="display: none "><div class="loader">Loading...</div></div>
+            <div class=" row row-cancel-margin room-des-main" onclick="show_more()">
+                <div class="room-des-head">Description<span class="heading-arrow" style="padding-left: 8px;"><i class="fa fa-angle-down"></i></span></div>     
+                <div class="col-xs-12 room-des "></div>                
+            </div>            
+            <div class=" row row-cancel-margin room-time-main">
+                <div class="col-xs-6 text-align-center">Start Date: <b><span class="room-time-start"></span></b></div>
+                <div class="col-xs-6 text-align-center">End Date: <b><span class="room-time-end"></span></b></div>
+            </div>
+            <div class=" row row-cancel-margin room-timer-main">
+                <div class="col-xs-12 text-align-center"><i class="fa fa-clock-o"></i> Time Left: <b><span id="clock_" class="room-time-start"></span></b></div>
+            </div> 
+            <div class=" row row-cancel-margin col-name font-bold room-table-head ">
+                <div class="col-xs-6" style="padding-top: 10px; padding-left: 10px;">Product</div>
+                <div class="col-xs-2 text-align-center">Current Bid</div>
+                <div class="col-xs-2">Status</div>
+                <div class="col-xs-2"></div>
+            </div> 
+
+            <ul class="list-room">
+
+            </ul>
+        </div>        
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile.custom.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mmenu.js"></script>
+        <script  type="text/javascript" src="js/classie.js"></script>
+        <script  type="text/javascript" src='js/main_script.js'></script>
+        <script type="text/javascript" src="js/fastclick.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script>
+        $("body").swiperight(function() { 
+                $("#header a").click();
+            });  
+  
+                //x_alert(localStorage.search_category_name);
+                function onBodyLoad() {
+                    document.addEventListener("deviceready", onDeviceReady, false);
+                }
+
+                function onDeviceReady() {
+                    FastClick.attach(document.body);
+                }
+                function show_more() {
+                    $('.room-des-main').height($('.room-des').innerHeight() + $('.room-des-head').innerHeight());
+                    $('.heading-arrow').html('<i class="fa fa-angle-up"></i>');
+                    //$('.room-des').removeClass('room-shawdow');
+                    $('.room-des-main').attr('onclick', 'show_less()');
+                }
+                function show_less() {
+                    $('.room-des-main').height(90);
+                    $('.room-des-main').attr('onclick', 'show_more()');
+                    $('.heading-arrow').html('<i class="fa fa-angle-down"></i>');
+                     //$('.room-des').addClass('room-shawdow');
+                }
+                function supplier_circle() {
+
+                }
+
+                $(window).resize(function () {
+                    var windowWidth = $(window).width();
+                    $('.list-row').height($('.list-image').innerWidth());
+                    $('.list-body').height($('.list-image-body').innerWidth());
+                    $('.list-image-body').height($('.list-image-body').innerWidth());
+                });
+                $(document).ready(function () {
+                    var windowHeight = $(window).height();
+                    var windowWidth = $(window).width();
+                    localStorage.image_count = 0;
+                    $('.room-des-main').css('margin-top', $('.top-header').innerHeight());
+                    $('.list-room').height(windowHeight - $('.top-header').innerHeight() - 2 - $('.col-name').innerHeight() - $('.room-timer-main').innerHeight() - $('.room-time-main').innerHeight() - $('.room-des-main').innerHeight());
+                    // $('body, html').css('background-color', '#fff');
+                    //console.log(rc4_er(localStorage.id));
+                    var final_status = '';
+                    //x_alert(localStorage.key_code);
+                    var hash = window.location.hash.split('#')[1];
+                    var lot_id = hash.split('-')[0];
+                    var room_id = hash.split('-')[1];
+                    /*$('.list-row').height($('.list-image').innerWidth());
+                     $('.list-image-body').height($('.list-image-body').innerWidth());
+                     $('.list-body').height($('.list-image-body').innerWidth());*/
+                    var supplier_circle = [];
+
+                    $.ajax({url: localStorage.host + '../classes/service_manage_auction.class.php', data: {action: 'get_buyer_supplier_circle_company_id', user_id: localStorage.user_id}, type: 'get', success: function (data) {
+                            console.log(data);
+                            if (data) {
+                                supplier_circle = JSON.parse(data);
+                            }
+                            search_result(lot_id, room_id, supplier_circle);
+                        }
+                    });
+                    //supplier_circle =  supplier_circle();                   
+
+                });
+                /*(function (window) {
+                 
+                 // get vars
+                 var searchEl = document.querySelector("#input");
+                 var labelEl = document.querySelector("#label");
+                 
+                 // register clicks and toggle classes
+                 labelEl.addEventListener("click", function () {
+                 if (classie.has(searchEl, "focus")) {
+                 classie.remove(searchEl, "focus");
+                 classie.remove(labelEl, "active");
+                 } else {
+                 classie.add(searchEl, "focus");
+                 classie.add(labelEl, "active");
+                 }
+                 });
+                 
+                 // register clicks outisde search box, and toggle correct classes
+                 document.addEventListener("click", function (e) {
+                 var clickedID = e.target.id;
+                 if (clickedID != "search-terms" && clickedID != "search-label") {
+                 if (classie.has(searchEl, "focus")) {
+                 classie.remove(searchEl, "focus");
+                 classie.remove(labelEl, "active");
+                 }
+                 }
+                 });
+                 }(window));*/
+                function filter() {
+                    window.location.href = 'filter.html';
+                }
+
+                function search_result(lot_id, room_id, supplier_circle) {
+                    $.ajax({url: localStorage.host + '../classes/service_manage_auction.class.php', data: {action: 'get_auction_and_room_table_details', l_: lot_id, r_: room_id}, type: 'get', success: function (data) {
+
+                            var detail = JSON.parse(data);
+                            console.log(detail);
+                            var body = '';
+                            if (detail != null) {
+                                for (var i = 0; i < detail.length; i++) {
+                                    var flag = 'Y';
+                                    $('.room-des').html(detail[i]['description']);
+                                    $('.filter-head').html(detail[i]['title']);
+                                    var today = new Date(detail[i]['end_date']);
+                                    var dd = today.getDate();
+                                    var mm = today.getMonth() + 1; //January is 0!
+
+                                    var yyyy = today.getFullYear();
+                                    if (dd < 10) {
+                                        dd = '0' + dd;
+                                    }
+                                    if (mm < 10) {
+                                        mm = '0' + mm;
+                                    }
+                                    var today = dd + '.' + mm + '.' + yyyy;
+                                    $('.room-time-end').html(today);
+                                    var today = new Date(detail[i]['start_date']);
+                                    var dd = today.getDate();
+                                    var mm = today.getMonth() + 1; //January is 0!
+
+                                    var yyyy = today.getFullYear();
+                                    if (dd < 10) {
+                                        dd = '0' + dd;
+                                    }
+                                    if (mm < 10) {
+                                        mm = '0' + mm;
+                                    }
+                                    var today = dd + '.' + mm + '.' + yyyy;
+                                    $('.room-time-start').html(today);
+                                    if (detail[i]['auc_type_id'] == localStorage.private_auction) {
+                                        if (typeof supplier_circle[0] != "undefined" && supplier_circle[0]['buyer_user_id'] == localStorage.user_id) { //if buyer is allowed to
+                                            flag = 'Y';
+                                        } else {
+                                            flag = 'N';
+                                        }
+
+                                    } else {
+                                        flag = 'Y';
+                                    }
+                                    if (flag == 'Y') {
+                                        var golden_time_value = detail[i]['golden_time'];
+                                        var apply_golden_time = detail[i]['apply_golden_time'];
+                                        var row_end_date = new Date(detail[i]['end_date']);
+                                        row_end_date = row_end_date.getTime();
+                                        var today = new Date();
+                                        today = today.getTime();
+                                        if (Math.abs(today - row_end_date) <= apply_golden_time) {
+                                            var golden_time = detail[i]['end_date'];
+                                        } else {
+                                            var golden_time = 'N';
+                                        }
+                                        var auc_dis_id_er = rc4_er(detail[i]['auc_dis_id']);
+                                        var room_id_er = rc4_er(detail[i]['room_id']);
+                                        var reserve_price_er = rc4_er(detail[i]['reserve_price']);
+                                        var min_user_er = rc4_er(detail[i]['min_user']);
+                                        var golden_time_er = rc4_er(detail[i]['golden_time']);
+                                        var actual_price = (parseFloat(detail[i]['reserve_price']) + parseFloat(detail[i]['discount_value']));
+                                        /* if (detail[i]['hot_auction'] == 'N') {
+                                         hot = 'hidden';
+                                         }*/
+                                        var y2k = new Date(detail[i]['end_date']);
+                                        // console.log(y2k);
+                                        var Jan1st2010 = new Date(y2k.getFullYear() + 10, y2k.getMonth(), y2k.getDate());
+                                        var today = new Date();
+                                        var auction_detail_over = 'auction-detail-over';
+                                        var display_dis = 'hidden';
+                                        var display_sold = '';
+                                        var discount = detail[i]['discount_per_val'];
+                                        var day = Date.daysBetween(y2k, today);
+                                        var lable = 'Days';
+                                        if (day > 0) {
+                                            auction_detail_over = '';
+                                            display_dis = '';
+                                            display_sold = 'hidden';
+                                        } else {
+                                            discount = '-';
+                                            if (day < 0) {
+                                                day = '-';
+                                                lable = '-';
+                                            } else {
+                                                day = 0;
+                                                lable = 'Mins';
+                                            }
+
+                                        }
+                                        var seen = 'hidden';
+                                        if (detail[i]['seen'] = 'Y') {
+                                            seen = '';
+                                        }
+                                        var new_list = 'hidden';
+                                        var cr_date = new Date(detail[i]['created']);
+                                        var cr_date_new = new Date(cr_date.getFullYear() + 10, cr_date.getMonth(), cr_date.getDate());
+                                        var today_new = new Date();
+                                        var new_date = Date.daysBetween(cr_date, today_new);
+
+                                        if (new_date >= 3) {
+                                            new_list = '';
+                                        }
+                                        var er_id = rc4_er(detail[i]['lot_id']);
+                                        var description = detail[i]['short_lot_desc'];
+                                        if (description.length > 49) {
+                                            description = description.substring(0, 50) + '...';
+                                        }
+                                        var lot_name = detail[i]['short_lot_name'];
+                                        if (lot_name.length > 15) {
+                                            lot_name = lot_name.substring(0, 16) + '...';
+                                        }
+                                        
+                                        
+                                        body += '<li class="li-list" onClick="auction_detail(\'' + er_id + '\')" discount="' + discount + '" time="' + day + '" ><div class="seen ' + seen + '"><img src="images/seen.png"></div><div class="seen ' + new_list + '"><img src="images/new.png"></div><div class="row list-row ' + auction_detail_over + '"><div class="col-xs-2 list-image"><div class="heart" auc-type-id="' + detail[i]['auc_type_id'] + '" lot-id="' + detail[i]['id'] + '" room-id="' + detail[i]['room_id'] + '"><i class="fa fa-heart"></i></div><div class="list-image-body"><img class="list-image-photo" src="' + detail[i]['image'] + '"><div class="list-image-overlay"></div></div></div><div class="col-xs-4 list-body"><div class="list-head">' + lot_name + '</div> <div class="list-subhead">' + description + '</div></div><div class="col-xs-6 list-sold ' + display_sold + '"><div class="list-sold-text">Closed</div></div><div class="col-xs-2 list-discount ' + display_dis + ' span_no_curr_bid_' + auc_dis_id_er + ' "><div class="list-discount-value curr_per_bid_' + auc_dis_id_er + '">-</div><div class="list-discount-text curr_bid_' + auc_dis_id_er + '">-</div></div><div class="col-xs-2 list-bid-now ' + display_dis + ' "><div class="list-status-text bid_status_' + auc_dis_id_er + ' f_well_for_count"  dynamic_lot="' + auc_dis_id_er + '" og_lot="' + detail[i]['auc_dis_id'] + '" dynamic_room="' + room_id_er + '" dynamic_min_user="' + detail[i]['min_user'] + '" dynamic_r_price="' + reserve_price_er + '" >' + localStorage.bid_No_place__ + '</div></div><div class="col-xs-2 list-bid-now ' + display_dis + ' "><div class="list-bid-now-text">BID<br/>NOW</div></div></div><div id="dd_' + auc_dis_id_er + '" class="dd" tabindex="1" golden_time="' + golden_time_value + '" golden_time_value = "' + golden_time_er + '" dynamic_min_user="' + min_user_er + '" dynamic_lot="' + auc_dis_id_er + '" dynamic_room="' + room_id_er + '" actual_price="' + actual_price + '" discount_value="' + detail[i]['discount_value'] + '" reserve_price="' + detail[i]['reserve_price'] + '" auction_on="' + detail[i]['auction_on'] + '" min_incr_value = "' + detail[i]['min_incr_value'] + '"></li>';
+                                        localStorage.enc_id = rc4_er(detail[i]['id']);
+                                        localStorage.id = detail[i]['id'];
+                                        localStorage.enc_room_id = rc4_er(detail[i]['room_id']);
+                                        localStorage.room_id = detail[i]['room_id'];
+                                    }
+                                }
+                                $('.list-room').html(body);
+                            } else {
+                                no_result();
+                            }
+
+                            $('.list-row').height($('.list-image').innerWidth());
+                            $('.list-image-body').height($('.list-image-body').innerWidth());
+                            $('.list-body').height($('.list-image-body').innerWidth());
+                            $('.list-image-overlay').height($('.list-image-body').innerHeight());
+                            $('.list-image-overlay').width($('.list-image-body').innerWidth());
+
+                            $(".heart").click(function (event) {
+                                var div = this;
+                                event.stopPropagation();
+                                $.ajax({
+                                    type: "POST",
+                                    url: localStorage.host + '../classes/service_manage_auction.class.php?action=save_wishlist_details',
+                                    data: {l_: $(this).attr('lot-it'), r_: $(this).attr('room-id'), u_: localStorage.user_id, au_: $(this).attr('auc-type-id')},
+                                    success: function (data) {
+                                        if (data == 'success') {
+                                            $(div).html('<i class="fa fa-heart x-orange"></i>');
+                                        } else {
+                                            $(div).html('<i class="fa fa-heart"></i>');
+                                        }
+                                        //$('div#result').text('You added <?php echo $res[0]->{'lot_name'}?> to your wishlist.');
+
+                                    }
+                                });
+                            });
+                            show_data_room();
+                            setInterval('show_data_room()', 1000);
+
+                            setTimeout('hide_loader()', 1000);
+
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                         //   if (textStatus === "timeout") {
+                                x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                          //  }
+                        }
+                    });
+                }
+        </script>
+
+    </body>
+</html>

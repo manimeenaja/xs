@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>XSTOK</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=medium-dpi,user-scalable=yes" />
+        <link type="text/css" rel="stylesheet" href="css/jquery.mmenu.all.css" />
+        <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+
+        <script src='js/jquery.min.js'></script>        
+        <script src='js/jquery-ui.min.js'></script>   
+        <link rel="shortcut icon" href="favicon.ico">
+        <script type="text/javascript">
+            //	The menu on the left
+        
+          
+            if (localStorage.logged_in == '1') {                
+                if (localStorage.otp == '1') {                      
+                    if (localStorage.verified == '1') {
+                        //window.location.href = "search_result.html";
+                    } else {
+                        if (localStorage.kyc_status == '1') {
+                            window.location.href = "kyc_c.html";
+                        } else {
+                            window.location.href = "kyc.html";
+                        }
+                    }
+                } else {
+                    window.location.href = "otp.html";
+                }
+            } else {
+                window.location.href = "signin.html";
+            }
+
+
+            $(function () {
+                $('.container').fadeIn(1000).show();
+                
+  
+            });</script>
+    </head>
+    <body class="">
+        
+        <div class="overlay" style="display: none"></div>
+        <div class="container"  >
+            <div class="top-header x-orange-background">
+                <!----script-for-sidepanle-nav----> 
+                <!--//script-for-sidepanle-nav---->
+                <div id="page">
+
+                </div>
+                <div class="logo">
+                    <span>
+                        <select class="search_category">
+                            <i class="fa fa-recycle fa-lg x-white"></i>
+                        </select>
+                    </span>
+                </div>
+                <!---usernotifications---->
+                <div class="usernotifications">
+                    <ul class="user-profile list-unstyled">
+                        <li style="padding: 11px;margin-right: 10px;">
+                            <input class="search" type="search" placeholder="Search" />
+                            <div class="src_icon"><i class="fa fa-search fa-lg x-white"></i></div>
+                        </li>
+                        <li><a href="#" class="toggle-view"><i class="fa fa-th-large fa-lg x-white"></i></a></li>
+                    </ul>
+                </div>
+                <div class="clear"> </div>
+                <!--//usernotifications---->
+            </div>           
+            <div class="order-by row">
+                <div class="col-xs-6 text-align-center order-by-text " id="sortDiscount">Discount</div>
+                <div class="col-xs-6 text-align-center border-left order-by-text"  id="sortTime">Time Left</div>
+            </div>
+            <div id="search_feedback" style="display:none">
+                    <div class="more-detail-body">
+                        <div  class="feedback-head">I'm Looking for</div> 
+                        <div class="row padding-lr-25 padding-top-5-p">
+                            <div class="form-group">
+                                <label class="font-18" for="text">Product Name <span class="x-red font-20">*</span></label>
+                                <input type="text" required="" name="product_name" id="product_name" class="form-control  parsley-validated">
+                            </div>
+                        </div>
+                        <div class="row padding-lr-25 padding-top-5-p">
+                            <div class="form-group">
+                                <label class="font-18" for="text">Feedback</label>
+                                <textarea class="form-control" name="feedback" id="feedback" style="margin-left: 0;"></textarea>
+                            </div>
+                        </div>                        
+                        <div class="text-align-center  x-orange-background search_feedback_send width-49-5p" style="" onClick="search_feedback_send_submit()">Submit</div>
+                        <div class="text-align-center search_feedback_close width-49-5p" style="" onClick="search_feedback_send_close()">Close</div>
+                    </div>
+                </div>
+            <div class="filter-icon" onclick="filter()"><div class="filter-count" style="display: none">0</div></div>
+
+            <ul class="list">
+                <i class="fa fa-refresh  fa-spin middle load" style="font-size: 3em;color: #888;"></i>
+            </ul>
+        </div>
+        
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile.custom.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mmenu.js"></script>
+        <script type="text/javascript" src="js/classie.js"></script>
+        <script type="text/javascript" src="js/PushNotification.js"></script>
+        <script  type="text/javascript" src='js/main_script.js'></script>   
+        <script type="text/javascript" src="js/fastclick.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        
+        <script>
+                //x_alert(localStorage.search_category_name);
+                 var devicecheck = setInterval(function () {
+                     onDeviceReady(devicecheck);
+                 }, 1000);
+                 function onDeviceReady(devicecheck) {
+                     FastClick.attach(document.body);
+                     reg_function(devicecheck);
+                 }
+                 
+                 function sortDiscount () {
+                     $("#sortDiscount").addClass('seleted-sort');
+                    $("#sortTime").removeClass('seleted-sort');
+                    if ($("#sortDiscount").attr('sort') != '1') {
+                        $("#sortDiscount").attr('sort', '1');
+                        $("#sortDiscount").html('<i class="fa fa-caret-down"></i> ' + localStorage.discount);
+                        $("#sortTime").html(localStorage.timeleft);
+                    } else {
+                        $("#sortDiscount").attr('sort', '0');
+                        $("#sortDiscount").html('<i class="fa fa-caret-up"></i> ' + localStorage.discount);
+                        $("#sortTime").html(localStorage.timeleft);
+                    }
+                    var sort = 1;
+                    if($('#sortDiscount').attr('sort') == '1') {
+                        sort = 1;
+                    } else if($('#sortDiscount').attr('sort') == '0') {
+                        sort = 0;
+                    }                    
+                    var array = [];
+                    $('.li-list').each(function (i,value){
+                        if($(this).attr('discount') != '-') { 
+                            array[$(this).attr('id')] = parseFloat($(this).attr('discount'));
+                        }
+                    }); 
+                    if(sort == 1 ) {
+                         array.sort(function(a, b){return a-b});       
+                    } else {
+                         array.sort(function(a, b){return b-a});       
+                    }
+                                
+                    $.each(array, function(key, value) {
+                        $('.li-list').each(function (i,v){
+                            if( $(this).attr('discount') == value) {
+                                var li = $(this).clone();
+                                $(this).remove();
+                                $('.list').prepend(li);                                
+                            }
+                        });                       
+                    }); 
+                 }
+                 
+                function sortTime() {
+                    $("#sortDiscount").removeClass('seleted-sort');
+                    $("#sortTime").addClass('seleted-sort');
+                    if ($("#sortTime").attr('sortt') != '1') {
+                        $("#sortTime").attr('sortt', '1');
+                        $("#sortTime").html('<i class="fa fa-caret-down"></i> ' + localStorage.timeleft);
+                        $("#sortDiscount").html(localStorage.discount);
+                    } else {
+                        $("#sortTime").attr('sortt', '0');
+                        $("#sortTime").html('<i class="fa fa-caret-up"></i> ' + localStorage.timeleft);
+                        $("#sortDiscount").html(localStorage.discount);
+                    }                   
+                    
+                    var sort = 1;
+                    if($('#sortTime').attr('sortt') == '1') {
+                        sort = 1;
+                    } else if($('#sortTime').attr('sortt') == '0') {
+                        sort = 0;
+                    }                    
+                    var array = [];
+                    $('.li-list').each(function (i,value){
+                        if($(this).attr('time') != '-') { 
+                            array[$(this).attr('id')] = parseFloat($(this).attr('time'));
+                        }
+                    }); 
+                    console.log(array);
+                    console.log(sort);
+                    if(sort == 1 ) {
+                         array.sort(function(a, b){return a-b});       
+                    } else {
+                         array.sort(function(a, b){return b-a});       
+                    }
+                          console.log(array);       
+                    $.each(array, function(key, value) {
+                        $('.li-list').each(function (i,v){
+                            if( $(this).attr('time') == value) {
+                                var li = $(this).clone();
+                                $(this).remove();
+                                $('.list').prepend(li);                                
+                            }
+                        });                       
+                    }); 
+                }
+                $("#sortDiscount").on("click", function () {
+                    sortDiscount ();                   
+                });
+
+                $('.toggle-view').on('click', function () {
+                     if($('.search').hasClass('expanded')) {
+                         $('.src_icon').click();
+                         $('.search').val('');
+                     }
+                    
+                    if ($('.toggle-view').attr('view') == 'list') {
+                        localStorage.toggle = 'grid';
+                        $(".toggle-view").attr('view', 'grid');
+                        search_result_grid();
+                    } else {
+                        localStorage.toggle = 'list';
+                        $(".toggle-view").attr('view', 'list');
+                        search_result();
+                    }
+                });
+                $("#sortTime").on("click", function () {
+                    sortTime();
+                });
+
+
+                $(window).resize(function () {
+                    var windowWidth = $(window).width();
+                    $('.list-row').height($('.list-image').innerWidth());
+                    $('.list-body').height($('.list-image-body').innerWidth());
+                    $('.list-image-body').height($('.list-image-body').innerWidth());
+                    $('.search').width(windowWidth - $('.usernotifications').width() - 66);
+                    $('.search').css("maxWidth", (windowWidth - $('.usernotifications').width() - 55) + 'px');
+                });
+                $(document).ready(function () {
+                    var windowHeight = $(window).height();
+                    var windowWidth = $(window).width();
+                    $('.list').height(windowHeight - $('.top-header').innerHeight() - 2 - $('.order-by').innerHeight() + 2);
+                    $('.search').width(windowWidth - $('.usernotifications').width() - 64);
+                    $('.search').css("maxWidth", (windowWidth - $('.usernotifications').width() - 55) + 'px');
+                    /*$('.list-row').height($('.list-image').innerWidth());
+                     $('.list-image-body').height($('.list-image-body').innerWidth());
+                     $('.list-body').height($('.list-image-body').innerWidth());*/
+                    $('.src_icon').click(function () {
+                        if($('.search').hasClass('expanded')) {
+                            $('.search').toggleClass('expanded');
+                            $('.search').blur();
+                            $('.logo').css('visibility','visible');
+                        } else {
+                            $('.search').toggleClass('expanded');
+                            $('.search').focus();
+                            $('.logo').css('visibility','hidden');                            
+                        }                        
+                    });
+
+                    add_menu('home');
+                    $.ajax({url: localStorage.host + 'search_category.php', data: {}, type: 'get', success: function (data) {
+                            var logininfo = JSON.parse(data);
+                            var body = "<option value='' table=''>All Category</option>";
+                            for (var i = 0; i < logininfo['category'].length; i++) {
+                                var select = '';
+                                if (localStorage.search_category == logininfo['category'][i][0]) {
+                                    select = 'selected';
+                                }
+                                body += '<option ' + select + ' value="' + logininfo['category'][i][0] + '" table="' + logininfo['category'][i][2] + '">' + logininfo['category'][i][1] + '</option>';
+
+                            }
+                            $('.search_category').append(body);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                           // if (textStatus === "timeout") {
+                                x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                           // }
+                        }
+                    });
+
+                    if (localStorage.toggle == 'grid') {
+                        search_result_grid();
+                        $(".toggle-view").attr('view', 'grid');
+                    } else {
+                        search_result();
+                        $(".toggle-view").attr('view', 'list');
+                    }
+
+
+                    $('.search_category').on('change', function () {
+                        localStorage.search_category = this.value;
+                        localStorage.search_table_name = $(".search_category option:selected").attr('table');
+                        localStorage.search_category_name = $(".search_category option:selected").text();
+                        if (localStorage.toggle == 'grid') {
+                            search_result_grid();
+                            $(".toggle-view").attr('view', 'grid');
+                        } else {
+                            search_result();
+                            $(".toggle-view").attr('view', 'list');
+                        }
+                    });
+
+                    $('.search').keyup(function () {
+                        $(".list li").each(function (index) {
+                            var serch = $('.search').val().toLowerCase();
+                            if (serch != '') {
+                                if (localStorage.toggle == 'grid') {
+                                    var text = $(this).find(".grid-head").text().toLowerCase();
+                                } else {
+                                    var text = $(this).find(".list-head").text().toLowerCase();
+                                }
+                                if (text.indexOf(serch) > -1) {
+                                    $(this).show();
+                                } else {
+                                    $(this).hide();
+                                }
+                            } else {
+                                $(this).show();
+                            }
+                        });
+                    });
+                    //  console.log(( localStorage.conditioncount) + (localStorage.locationcount) + (localStorage.sort_by_count) + (localStorage.discountcount) + (localStorage.suppliercount));
+                    if (localStorage.getItem("conditioncount") < 0 || localStorage.getItem("conditioncount") === null) {
+                        localStorage.conditioncount = 0;
+                    }
+
+                    if (localStorage.getItem("locationcount") < 0 || localStorage.getItem("locationcount") === null) {
+                        localStorage.locationcount = 0;
+                    }
+                    if (localStorage.getItem("sort_by_count") < 0 || localStorage.getItem("sort_by_count") === null) {
+                        localStorage.sort_by_count = 0;
+                    }
+                    if (localStorage.getItem("discountcount") < 0 || localStorage.getItem("discountcount") === null) {
+                        localStorage.discountcount = 0;
+                    }
+                    if (localStorage.getItem("suppliercount") < 0 || localStorage.getItem("suppliercount") === null) {
+                        localStorage.suppliercount = 0;
+                    }
+                    var count_filter = parseInt(localStorage.conditioncount) + parseInt(localStorage.locationcount) + parseInt(localStorage.sort_by_count) + parseInt(localStorage.discountcount) + parseInt(localStorage.suppliercount);
+                    // console.log(( localStorage.conditioncount) + (localStorage.locationcount) + (localStorage.sort_by_count) + (localStorage.discountcount) + (localStorage.suppliercount));
+                    $('.filter-count').hide();
+                    $('.filter-count').html(count_filter);
+                    if (count_filter > 0) {
+                        $('.filter-count').show();
+                    }
+
+                });
+                /*(function (window) {
+                 
+                 // get vars
+                 var searchEl = document.querySelector("#input");
+                 var labelEl = document.querySelector("#label");
+                 
+                 // register clicks and toggle classes
+                 labelEl.addEventListener("click", function () {
+                 if (classie.has(searchEl, "focus")) {
+                 classie.remove(searchEl, "focus");
+                 classie.remove(labelEl, "active");
+                 } else {
+                 classie.add(searchEl, "focus");
+                 classie.add(labelEl, "active");
+                 }
+                 });
+                 
+                 // register clicks outisde search box, and toggle correct classes
+                 document.addEventListener("click", function (e) {
+                 var clickedID = e.target.id;
+                 if (clickedID != "search-terms" && clickedID != "search-label") {
+                 if (classie.has(searchEl, "focus")) {
+                 classie.remove(searchEl, "focus");
+                 classie.remove(labelEl, "active");
+                 }
+                 }
+                 });
+                 }(window));*/
+                function filter() {
+                    window.location.href = 'filter.html';
+                }
+                function search_result() {
+                    //http://192.168.0.13/webservices/search_result.php?undefined&search_cat_id=1&search_table_name=sll_category_level1&user_id=121
+                    $.ajax({url: localStorage.host + 'search_result.php?' + localStorage.sort_by, data: {search_cat_id: localStorage.search_category, search_table_name: localStorage.search_table_name, user_id: rc4_dr(localStorage.user_id), search_location: localStorage.locationcheck, search_supplier: localStorage.suppliercheck, search_condition: localStorage.conditioncheck, search_discount: localStorage.discountcheck}, type: 'get', success: function (data) {
+                            console.log(data.result);
+                            localStorage.room_lot_id_dis = '';
+                            var body = '';
+                            var lot_array = '';
+                            var room_id_array = '';
+                            $('.toggle-view').html('<i class="fa fa-th-large fa-2x x-white font-size-1-6-em"></i>');
+                            if (data.result != null) {
+                                for (var i = 0; i < data.result.length; i++) {
+                                    //  console.log(data.result[i]);
+                                    var qx = '';
+                                    if (data.result[i]['qx_verified'] == 'N') {
+                                        qx = 'hidden';
+                                    }
+                                    var hot = '';
+                                    if (data.result[i]['hot_auction'] == 'N') {
+                                        hot = 'hidden';
+                                    }
+                                    var y2k = new Date(data.result[i]['end_date']);
+                                    // console.log(y2k);  if(y2k.getTime() < today.getTime()) {
+                                    var Jan1st2010 = new Date(y2k.getFullYear() + 10, y2k.getMonth(), y2k.getDate());
+                                    var today = new Date();
+                                    var auction_detail_over = 'auction-detail-over';
+                                    var display_dis = 'hidden';
+                                    var display_sold = '';
+                                    var discount = data.result[i]['discount_per_val'];
+                                    var day = Date.daysBetween(y2k, today);
+                                    var lable = 'Days';
+                                    var dateshow = '';
+                                    if (day > 0) {
+                                        auction_detail_over = '';
+                                        display_dis = '';
+                                        display_sold = 'hidden';
+                                    } else {
+                                        if (day < 0) {
+                                            discount = '-';
+                                            day = '-';
+                                            lable = '-';
+                                            dateshow = 'hidden';
+                                        } else {
+                                            if (y2k.getTime() < today.getTime()) {
+                                                day = '-';
+                                                discount = '-';
+                                                lable = '-';
+                                                dateshow = 'hidden';
+                                            } else {
+                                                // console.log(data.result[i]['short_lot_name']);
+                                                day = parseInt(y2k.getHours()) - parseInt(today.getHours());
+                                                // day = parseInt(today.getHours()) - parseInt(y2k.getHours());
+
+                                                lable = 'Hrs';
+                                                if (day < 0) {
+                                                    day = parseInt(y2k.getMinutes()) - parseInt(today.getMinutes());
+                                                    lable = 'Mins';
+
+                                                }
+                                                auction_detail_over = '';
+                                                display_dis = '';
+                                                display_sold = 'hidden';
+                                            }
+                                        }
+                                    }
+                                    var day_time = day;
+                                    if(lable == 'Hrs' ) {
+                                        day_time = parseFloat(day)/10;
+                                    } else if (lable == 'Mins') {
+                                         day_time = parseFloat(day)/1000;
+                                    }
+                                    
+                                    
+                                    var wish_list = '<i class="fa fa-heart"></i>';
+                                    if (data.result[i]['wish_list'] == 'Y') {
+                                        wish_list = '<i class="fa fa-heart x-red"></i>';
+                                    }
+                                    var new_list = 'hidden';
+                                    var cr_date = new Date(data.result[i]['created']);
+                                    var cr_date_new = new Date(cr_date.getFullYear() + 10, cr_date.getMonth(), cr_date.getDate());
+                                    var today_new = new Date();
+                                    var new_date = Date.daysBetween(cr_date, today_new);
+
+                                    if (new_date >= 3) {
+                                        new_list = '';
+                                    }
+                                    var er_id = rc4_er(data.result[i]['id']);
+                                    var description = data.result[i]['short_lot_desc'];
+                                    if (description.length > 49) {
+                                        description = description.substring(0, 50) + '...';
+                                    }
+                                    var seen = 'hidden';
+                                    var img = '';
+                                    if(typeof data.result[i]['seen_status'] != 'undefined') {
+                                        if (data.result[i]['seen_status'] != '') {
+                                            seen = '';  
+                                            img = data.result[i]['seen_status'].toLowerCase();
+                                        }
+                                    }
+                                    
+                                   
+                                    body += '<li id="' + i + '" class="li-list" onClick="auction_detail(\'' + er_id + '\')" discount="' + discount + '" time="' + day_time + '" ><div class="seen ' + seen + '  tag' +er_id+ '"><img src="images/'+img +'.png"></div><div class="seen ' + new_list + '"><img src="images/new.png"></div><div class="row list-row ' + auction_detail_over + '"><div class="col-xs-3 list-image"><div class="heart" auc-type-id="' + data.result[i]['auc_type_id'] + '" lot-id="' + data.result[i]['id'] + '" room-id="' + data.result[i]['room_id'] + '">' + wish_list + '</div><div class="list-image-body"><img class="list-image-photo" src="' + data.result[i]['image'] + '"><div class="list-image-overlay"></div></div></div><div class="col-xs-5 list-body"><div class="list-head">' + data.result[i]['short_lot_name'] + '</div> <div class="list-subhead">' + description + '</div><div class="list-icon"><div class="day-left ' + dateshow + '"><i class="fa fa-clock-o"></i> ' + day + ' ' + lable + '</div><div class="qx ' + qx + '">QX</div><div class="hot_auction ' + hot + '"></div></div></div><div class="col-xs-4 list-sold ' + display_sold + '"><div class="list-sold-text">Closed</div></div><div class="col-xs-2 list-discount ' + display_dis + ' "><div class="list-discount-value discount-value-'+data.result[i]['id']+'-'+data.result[i]['room_id']+'">' + discount + '%</div><div class="list-discount-text discount-text-'+data.result[i]['id']+'-'+data.result[i]['room_id']+'">DISCOUNT</div></div><div class="col-xs-2 list-bid-now ' + display_dis + ' "><div class="list-bid-now-text">BID<br/>NOW</div></div></div></li>';
+                                    lot_array += rc4_er(data.result[i]['id']) + ',';
+                                    room_id_array += rc4_er(data.result[i]['room_id']) + ',';                                    
+                                    localStorage.enc_id = rc4_er(data.result[i]['id']);
+                                    localStorage.id = data.result[i]['id'];
+                                    localStorage.enc_room_id = rc4_er(data.result[i]['room_id']);
+                                    localStorage.room_id = data.result[i]['room_id'];
+                                    localStorage.room_lot_id_dis += rc4_er(data.result[i]['id'])+ '|'+rc4_er(data.result[i]['room_id'])+',';
+                                }
+                                lot_array = lot_array.substring(0, lot_array.length - 1);
+                                room_id_array = room_id_array.substring(0, room_id_array.length - 1);
+                                localStorage.lot_id_array = lot_array;
+                                localStorage.room_id_array = room_id_array;
+                                localStorage.room_lot_id_dis = localStorage.room_lot_id_dis.substring(0, localStorage.room_lot_id_dis.length - 1);
+                               // console.log(localStorage.room_lot_id_dis);
+                                $('.list').html(body);
+                                update_discount ();
+                            } else {
+                                no_result();
+                            }
+
+                            $('.list-row').height($('.list-image').innerWidth());
+                            $('.list-image-body').height($('.list-image-body').innerWidth());
+                            $('.list-body').height($('.list-image-body').innerWidth());
+                            $('.list-image-overlay').height($('.list-image-body').innerHeight());
+                            $('.list-image-overlay').width($('.list-image-body').innerWidth());
+
+                            $(".heart").click(function (event) {
+                                var div = this;
+                                event.stopPropagation();
+                                $.ajax({
+                                    type: "POST",
+                                    url: localStorage.host + '../classes/service_manage_auction.class.php?action=save_wishlist_details',
+                                    data: {l_: rc4_er($(this).attr('lot-id')), r_: rc4_er($(this).attr('room-id')), u_: localStorage.user_id, au_: $(this).attr('auc-type-id')},
+                                    success: function (data) {
+                                        if (data == 'success') {
+                                            $(div).html('<i class="fa fa-heart x-red"></i>');
+                                        } else {
+                                            $(div).html('<i class="fa fa-heart"></i>');
+                                        }
+                                        //$('div#result').text('You added <?php echo $res[0]->{'lot_name'}?> to your wishlist.');
+
+                                    }
+                                });
+                            });
+                            setInterval(function() {
+                                 update_discount ();
+                                
+                            },5000);
+                            list_update();
+                            if($('#sortDiscount').hasClass('seleted-sort') && !$('#sortTime').hasClass('seleted-sort')) {
+                                sortDiscount();
+                                sortDiscount();
+                            } else if(!$('#sortDiscount').hasClass('seleted-sort') && $('#sortTime').hasClass('seleted-sort')) {
+                                sortTime();
+                                sortTime();
+                            }                            
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                         /*   if (textStatus === "timeout") {
+                                x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                            }*/
+                        }
+                    });
+                }
+                
+                function update_discount () {
+                 //   192.168.0.13/webservices/lot_discount.php?room_lot_id=d6|d7,d5|d7,d4|d7
+                  $.ajax({url: localStorage.host + 'lot_discount.php', data: {room_lot_id : localStorage.room_lot_id_dis }, type: 'get', success: function (data) {
+                          console.log(data['result']);
+                          for(var i = 0; i < data['result'].length; i++ ) {
+                              if(data['result'][i] != ',,') {
+                                  var info = data['result'][i].split(',');
+                                  console.log();
+                                  if(parseFloat(info[2]) < 0) {
+                                        $('.discount-value-'+info[0]+'-'+info[1]).html((parseFloat(info[2]) * -1 )+'%');
+                                        $('.discount-text-'+info[0]+'-'+info[1]).html('PREMIUM');
+                                        if( $('.discount-value-'+info[0]+'-'+info[1]).parent().parent().parent().attr('time') != '-') {
+                                            $('.discount-value-'+info[0]+'-'+info[1]).parent().parent().parent().attr('discount',(parseFloat(info[2]) * -1 ));
+                                        }
+                                  } else {
+                                        $('.discount-value-'+info[0]+'-'+info[1]).html(info[2]+'%');
+                                        if( $('.discount-value-'+info[0]+'-'+info[1]).parent().parent().parent().attr('time') != '-') {
+                                            $('.discount-value-'+info[0]+'-'+info[1]).parent().parent().parent().attr('discount',info[2])
+                                        }
+                                  }
+                              //  console.log(data['result'][i]);
+                          }
+                          
+                          }
+                      }
+                  });
+                }
+                
+                function list_update() {
+                    //   http://test.xstok.com/classes/buyer_dashboard.class.php?action=get_tym_ticker&lot_id=d4dc,d6d0,d5dd,d5dc,d4d5,d4dd,d3d5,d4dc,d4d3,d4d1,d6d5,d4dc&room_id=d7,d7,d7,d7,d7,d4,d7,d7,d7,d7,d7,d7&user_id=d0
+                  
+                   
+                   
+                //   http://stocklotlo/webservices/search_status_flag.php?user_id=d1&lot_id=d2&room_id=d5
+               
+               
+                    $.ajax({url: localStorage.host + 'search_status_flag.php', data: { user_id :localStorage.user_id, room_lot_id : localStorage.room_lot_id_dis}, type: 'get', success: function (data) {
+                                //var logininfo = JSON.parse(data);
+                              
+                                for (i in data['result']) {
+                                   
+                                    if(data['result'][i].toLowerCase() == 'ready for bidding' || data['result'][i].toLowerCase() ==  'increase bid') { } else {
+                                        console.log(data['result']);
+                                        console.log('.tag'+i+'.seen img');
+                                        var src = data['result'][i].toLowerCase();
+                                        if(data['result'][i].toLowerCase() == 'losing') {
+                                            src = 'outbid';
+                                        }
+                                        $('.tag'+i+'.seen img').attr('src','images/'+src+'.png');
+                                    }
+                                }
+                                                       
+                            }
+                        });
+                }
+
+
+                function search_result_grid() {
+                    $.ajax({url: localStorage.host + 'search_result.php?' + localStorage.sort_by, data: {search_cat_id: localStorage.search_category, search_table_name: localStorage.search_table_name, user_id: rc4_dr(localStorage.user_id), search_location: localStorage.locationcheck, search_supplier: localStorage.suppliercheck, search_condition: localStorage.conditioncheck, search_discount: localStorage.discountcheck}, type: 'get', success: function (data) {
+                            console.log(data.result);
+                            localStorage.room_lot_id_dis = '';
+                            var body = '';
+                            var lot_array = '';
+                            var room_id_array = '';
+                            $('.toggle-view').html('<i class="fa fa-list-ul fa-2x x-white font-size-1-6-em"></i>');
+                            if (data.result != null) {
+                                for (var i = 0; i < data.result.length; i++) {
+                                    //  console.log(data.result[i]);
+                                    var qx = '';
+                                    if (data.result[i]['qx_verified'] == 'N') {
+                                        qx = 'hidden';
+                                    }
+                                    var hot = '';
+                                    if (data.result[i]['hot_auction'] == 'N') {
+                                        hot = 'hidden';
+                                    }
+                                    var y2k = new Date(data.result[i]['end_date']);
+                                    // console.log(y2k);  if(y2k.getTime() < today.getTime()) {
+                                    var Jan1st2010 = new Date(y2k.getFullYear() + 10, y2k.getMonth(), y2k.getDate());
+                                    var today = new Date();
+                                    var auction_detail_over = 'auction-detail-over';
+                                    var display_dis = 'hidden';
+                                    var display_sold = '';
+                                    var discount = data.result[i]['discount_per_val'];
+                                    var day = Date.daysBetween(y2k, today);
+                                    var lable = 'Days';
+                                    var dateshow = '';
+                                    var closedshow = 'hidden';
+                                    if (day > 0) {
+                                        auction_detail_over = '';
+                                        display_dis = '';
+                                        display_sold = 'hidden';
+                                    } else {
+                                        if (day < 0) {
+                                            discount = '-';
+                                            day = '-';
+                                            lable = '-';
+                                            dateshow = 'hidden';
+                                            closedshow = '';
+                                        } else {
+                                            if (y2k.getTime() < today.getTime()) {
+                                                day = '-';
+                                                discount = '-';
+                                                lable = '-';
+                                                dateshow = 'hidden';
+                                                closedshow = '';
+                                            } else {
+                                                // console.log(data.result[i]['short_lot_name']);
+                                                day = parseInt(y2k.getHours()) - parseInt(today.getHours());
+                                                // day = parseInt(today.getHours()) - parseInt(y2k.getHours());
+
+                                                lable = 'Hrs';
+                                                if (day <= 0) {
+                                                    day = parseInt(y2k.getMinutes()) - parseInt(today.getMinutes());
+                                                    lable = 'Mins';
+
+                                                }
+                                                auction_detail_over = '';
+                                                display_dis = '';
+                                                display_sold = 'hidden';
+                                            }
+                                        }
+                                    }
+                                    var day_time = day;
+                                    if(lable == 'Hrs' ) {
+                                        day_time = parseFloat(day)/10;
+                                    } else if (lable == 'Mins') {
+                                         day_time = parseFloat(day)/1000;
+                                    }
+                                    var seen = 'hidden';
+                                    var img = '';
+                                    if(typeof data.result[i]['seen_status'] != 'undefined') {
+                                        if (data.result[i]['seen_status'] != '') {
+                                            seen = '';  
+                                            img = data.result[i]['seen_status'].toLowerCase();
+                                        }
+                                    }
+                                    var wish_list = '<i class="fa fa-heart"></i>';
+                                    if (data.result[i]['wish_list'] == 'Y') {
+                                        wish_list = '<i class="fa fa-heart x-red"></i>';
+                                    }
+                                    var new_list = 'hidden';
+                                    var cr_date = new Date(data.result[i]['created']);
+                                    var cr_date_new = new Date(cr_date.getFullYear() + 10, cr_date.getMonth(), cr_date.getDate());
+                                    var today_new = new Date();
+                                    var new_date = Date.daysBetween(cr_date, today_new);
+
+                                    if (new_date >= 3) {
+                                        new_list = '';
+                                    }
+                                    var er_id = rc4_er(data.result[i]['id']);
+                                    var description = data.result[i]['short_lot_desc'];
+                                    console.log(description);
+                                   /* if (description.length > 49) {
+                                        description = description.substring(0, 50) + '...';
+                                    }*/
+
+                                    var mL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                                    var tender_date = new Date(data.result[i]['start_date']);
+                                    var tender_date_text_strt = tender_date.getDate() + ' ' + mL[tender_date.getMonth()] + ' ' + tender_date.getFullYear() + ', ' + tender_date.getHours() + ':' + tender_date.getMinutes();
+                                    var tender_date = new Date(data.result[i]['end_date']);
+                                    console.log(data.result[0]['end_date'] +' -> '+tender_date);
+                                    var tender_date_text_end = tender_date.getDate() + ' ' + mL[tender_date.getMonth()] + ' ' + tender_date.getFullYear() + ', ' + tender_date.getHours() + ':' + tender_date.getMinutes();
+                                    
+                                    //$('.head-tender-start-text').html(tender_date_text);
+                                    // body += '<li id="' + i + '" class="li-list" onClick="auction_detail(\'' + er_id + '\')" discount="' + discount + '" time="' + day + '" ><div class="seen ' + seen + '"><img src="images/seen.png"></div><div class="seen ' + new_list + '"><img src="images/new.png"></div><div class="row list-row ' + auction_detail_over + '"><div class="col-xs-3 list-image"><div class="heart" auc-type-id="' + data.result[i]['auc_type_id'] + '" lot-id="' + data.result[i]['id'] + '" room-id="' + data.result[i]['room_id'] + '">' + wish_list + '</div><div class="list-image-body"><img class="list-image-photo" src="' + data.result[i]['image'] + '"><div class="list-image-overlay"></div></div></div><div class="col-xs-5 list-body"><div class="list-head">' + data.result[i]['short_lot_name'] + '</div> <div class="list-subhead">' + description + '</div><div class="list-icon"><div class="day-left ' + dateshow + '"><i class="fa fa-clock-o"></i> ' + day + ' ' + lable + '</div><div class="qx ' + qx + '">QX</div><div class="hot_auction ' + hot + '"><i class="fa fa-trophy x-white"></i></div></div></div><div class="col-xs-4 list-sold ' + display_sold + '"><div class="list-sold-text">Closed</div></div><div class="col-xs-2 list-discount ' + display_dis + ' "><div class="list-discount-value">' + discount + '%</div><div class="list-discount-text">DISCOUNT</div></div><div class="col-xs-2 list-bid-now ' + display_dis + ' "><div class="list-bid-now-text">BID<br/>NOW</div></div></div></li>';
+                                   
+                                    body += '<li id="' + i + '" class="li-list grid-list" onclick="auction_detail(\'' + er_id + '\')" discount="' + discount + '" time="' + day_time + '"><div class="seen grid-seen ' + seen +' tag' +er_id+ '"><img src="images/'+img+'.png"></div><div class="seen  grid-seen ' + new_list + '"><img src="images/new.png"></div><div class="grid-white"><div class="grid-head-left"><div class="grid-head">' + data.result[i]['short_lot_name'] + '</div><div class="grid-cat">' + data.result[i]['category_name'] + '</div></div></div><div class="grid-image" style=background-image:url("' + data.result[i]['image'] + '")><div class="heart gird-heart" auc-type-id="' + data.result[i]['auc_type_id'] + '" lot-id="' + data.result[i]['id'] + '" room-id="' + data.result[i]['room_id'] + '">' + wish_list + '</div></div><div class="grid-detail"><div class="grid-body-sup">' + data.result[i]['company_name'] + '</div><div class="grid-body-city"><i class="fa  fa-map-marker"></i> ' + data.result[i]['origin_city'] + '</div></div><div class="grid-body ' + dateshow + '"><span class="font-bold font-14 x-light-green discount-value-'+data.result[i]['id']+'-'+data.result[i]['room_id']+'">'+discount+'%</span><span class="font-bold font-14 x-light-green"> DISCOUNT</span></div><div class="grid-body ' + closedshow + ' "><span class="font-bold font-14 x-red">Closed</span></div><div class="grid-body-foot"><span class="font-bold">Time Left</span><br><b> ' + day + ' ' + lable + '</b></div></li>';
+                                    lot_array += rc4_er(data.result[i]['id']) + ',';
+                                    room_id_array += rc4_er(data.result[i]['room_id']) + ',';
+                                    localStorage.enc_id = rc4_er(data.result[i]['id']);
+                                    localStorage.id = data.result[i]['id'];
+                                    localStorage.enc_room_id = rc4_er(data.result[i]['room_id']);
+                                    localStorage.room_id = data.result[i]['room_id'];
+                                    localStorage.room_lot_id_dis += rc4_er(data.result[i]['id'])+ '|'+rc4_er(data.result[i]['room_id'])+',';
+                                }
+                                lot_array = lot_array.substring(0, lot_array.length - 1);
+                                room_id_array = room_id_array.substring(0, room_id_array.length - 1); 
+                                localStorage.lot_id_array = lot_array;
+                                localStorage.room_id_array = room_id_array;
+                                localStorage.room_lot_id_dis = localStorage.room_lot_id_dis.substring(0, localStorage.room_lot_id_dis.length - 1);
+                              //  console.log(localStorage.room_lot_id_dis);
+                                $('.list').html(body);
+                                update_discount ();
+                            } else {
+                                no_result();
+                            }
+
+                            $('.list-row').height($('.list-image').innerWidth());
+                            $('.list-image-body').height($('.list-image-body').innerWidth());
+                            $('.list-body').height($('.list-image-body').innerWidth());
+                            $('.list-image-overlay').height($('.list-image-body').innerHeight());
+                            $('.list-image-overlay').width($('.list-image-body').innerWidth());
+                            $('.seen').css('top', $('.grid-white').innerHeight() - 2);
+
+                            $(".heart").click(function (event) {
+                                var div = this;
+                                event.stopPropagation();
+                                $.ajax({
+                                    type: "POST",
+                                    url: localStorage.host + '../classes/service_manage_auction.class.php?action=save_wishlist_details',
+                                    data: {l_: rc4_er($(this).attr('lot-id')), r_: rc4_er($(this).attr('room-id')), u_: localStorage.user_id, au_: $(this).attr('auc-type-id')},
+                                    success: function (data) {
+                                        if (data == 'success') {
+                                            $(div).html('<i class="fa fa-heart x-red"></i>');
+                                        } else {
+                                            $(div).html('<i class="fa fa-heart"></i>');
+                                        }
+                                        //$('div#result').text('You added <?php echo $res[0]->{'lot_name'}?> to your wishlist.');
+
+                                    }
+                                });
+                            });
+                            setInterval(function() {
+                                 update_discount ();
+                                
+                            },5000);
+                            if($('#sortDiscount').hasClass('seleted-sort') && !$('#sortTime').hasClass('seleted-sort')) {
+                                sortDiscount();
+                                sortDiscount();
+                            } else if(!$('#sortDiscount').hasClass('seleted-sort') && $('#sortTime').hasClass('seleted-sort')) {
+                                sortTime();
+                                sortTime();
+                            }   
+                            // list_update();
+                            //list_update();
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                          /*  if (textStatus === "timeout") {
+                                x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                            }*/
+                        }
+                    });
+                }
+        </script>
+        <script>
+        $("body").swiperight(function() { 
+                $("#header a").click();
+            });  
+  
+
+        </script>
+
+    </body>
+</html>

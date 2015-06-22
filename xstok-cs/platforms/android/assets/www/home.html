@@ -1,0 +1,254 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>XSTOK</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="XSTOK" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <!-- Custom Theme files -->
+        <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <!-- Custom Theme files -->
+        <!----font-Awesome----->
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+        <!----font-Awesome----->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=device-dpi,user-scalable=yes" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script>
+            if (localStorage.login == 0) {
+                window.location.href = "index.html";
+            }
+            $(document).ready(function () {
+                $('.container').fadeIn(800).show();
+                localStorage.logged_in = 3;
+            });
+        </script>
+    </head>
+    <body onload="get_noti()">
+        <div class="iso_blur background-image background-blur"></div>
+        <!-----container----->
+        <div class="container black_wrapper" style="display: none">
+
+
+            <!------ content ----->
+            <div class="content">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#"><img src="images/logo_y.png" height="40"/></a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav font-family_roboto">
+                                <li class="active"><a href="home.html"><i class="fa fa-fw  fa-home "></i> Home</a></li>
+                                <li><a href="feedback.html"><i class="fa fa-fw fa-comment "></i> My profile</a></li> 
+                                <li><a href="form2.html" onclick="localStorage.logged_in = 2;localStorage.home = 1;"><i class="fa fa-fw fa-user "></i> Add more references</a></li>
+                                <li><a href="story.html"><i class="fa fa-fw  fa-book "></i> Story</a></li>
+                                <li><a href="contact.html"><i class="fa fa-fw fa-phone "></i> Contact Us</a></li>     
+                                <li><a onClick="window.open('http://xstok.com/blog/', '_system')" href="#"><i class="fa fa-fw  fa-pencil-square "></i> Blogs</a></li>
+                                <li><a href="logout.html"><i class="fa fa-fw fa-sign-out "></i> Logout</a></li>                                
+                            </ul>                            
+                        </div><!--/.nav-collapse -->
+                    </div><!--/.container-fluid -->
+                </nav>
+                <div class="3-cols">
+
+                    <div class="col-1 col-md-3">                        
+                        <!---- user-profile ---->
+                        <!-- //user-profile ---->
+                        <!---- sign-in-box ---->
+                        <div class="sign-in-box" style=" padding-left: 0.1em;  padding-right: 0.1em; margin:0px;">                            
+                            <div style="">
+                                <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingOne1">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1">
+                                                    <font>XSTOK notification</font><font class="count" onClick="noficationPanel()"><i class="fa fa-fw fa-bell"></i><b class="count_val"></b></font>
+                                                </a>
+                                                
+                                            </h4>
+                                        </div>
+                                        <div id="collapseOne1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne1" onClick="noficationPanel()">
+                                            <div class="panel-body">
+                                                <div class="message" style="display:none">
+                                                    <div class="msg_head">
+                                                        <div class="msg_icon"><img src="images/xs.png"></div>
+                                                        <div class=""><div class="msg_tile truncate"></div><div class="msg_time"></div></div>
+                                                    </div>
+                                                    <div class="msg_body">No notification available!</div> 
+                                                </div>
+                                                <div class="no_message"><i class="fa fa-cog fa-spin x-orange fa-2x"></i></div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading x-orange-background" role="tab" id="headingOne">
+                                            <h4 class="panel-title x-white">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                    Daily pricing (INR)
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                            <div class="col-xs-5 text-center x-heading">Product</div><div class="col-xs-3 text-center x-heading">Movement</div><div class="col-xs-4 text-center x-heading">Actual price</div>
+                                            <div class="panel-body" id="dlpr_pp">
+                                                
+                                                <table id="dlpr_tt" cellspacing="10" cellpadding="10"> 
+                                                    <tbody align="center" id="dlpr" style="height: 150px;overflow-y: scroll;display: table-caption;">
+                                                        <tr>                                                            
+                                                            <td colspan="3" class="text-center" style="padding-top: 5em;"><i class="fa fa-cog fa-spin x-orange fa-2x"></i></td>                                                            
+                                                        </tr>
+                                                    </tbody>
+                                                </table>                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!----//sign-in-box ---->
+                        <!----up-load-stats---->
+                        <!--//up-load-stats---->
+                        <!----social-tags---->
+
+                        <!--//social-tags---->
+                    </div><!----//End-col-1 ----->
+                    <!---- col-2 ----->                    
+                    <!---- col-3 ----->                    
+                    <!---- col-3 ----->
+                    <div class="clear"> </div>
+                </div>
+
+            </div>
+
+            <!---- //content ----->
+
+        </div>     
+        <script type="text/javascript" src="js/PushNotification.js"></script>
+        <script type="text/javascript" src="js/fastclick.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <!---//container----->
+        <script type="text/javascript">
+            function onBodyLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+             document.addEventListener("deviceready", onDeviceReady, false);
+             
+            function onBackKeyDown() {// Handle the back button
+                navigator.notification.confirm(
+                        'Are you certain you want to close the app?', // message
+                        function (index) {
+                            if (index == 1) {//look at the docs for this part
+                                navigator.app.exitApp();
+                            }
+                        }, // callback to invoke with index of button pressed
+                        'Exit', // title
+                        'Yes,No' // buttonLabels
+                        );
+            }
+
+            function onDeviceReady() {
+                FastClick.attach(document.body);
+                if (device.platform == "Android") {
+                    document.addEventListener("backbutton", onBackKeyDown, false);
+                }
+
+            }            
+
+            function get_noti() {
+                $.ajax({url: localStorage.host + 'get_message_1.php', data: {}, type: 'get', success: function (data) {
+                        var logininfo = JSON.parse(data);
+                        if (typeof logininfo['id'] != 'undefined') {
+                            $('.no_message').hide();
+                            $('.message').show();
+                            $('.msg_tile').width((($('.panel-body').width() - $('.msg_icon').width()) / 100) * 95);
+                            $('.msg_tile').html(capitalizeFirstLetter(logininfo['message_head']));
+                            $('.msg_body').html(capitalizeFirstLetter(logininfo['message']));
+                            $('.msg_time').html('( ' + date_change(logininfo['date']) + ' )');
+                            $('.count_val').html('');
+                            $('.count_val').html(logininfo['count']);
+                        }  else {
+                            $('.no_message').html('No notification available!');
+                        }
+                    }
+                });
+            }
+            setTimeout(function () {
+                $.ajax({url: 'http://www.yarnsandfibers.com/web_services_dp/xstok.php', data: {}, type: 'get', success: function (data) {
+                       // $('#dlpr_tt').width($('.panel-body').innerWidth());
+                        //$('#dept_example_ajax_table3').html(data);
+                        var logininfo = JSON.parse(data);
+                        var body = '';
+                        for (var i = 0; i <= logininfo['product'].length; i++) {
+                            if (typeof logininfo['product'][i] != 'undefined') {
+                                var mo = (parseInt(logininfo['product'][i]['price']) - parseInt(logininfo['product'][i]['price2']));
+                                var mo_sy = '';
+                                if (mo < 0) {
+                                    mo_sy = ' <i class="fa fa-fw fa-arrow-down x-green"></i>';
+                                } else if (mo > 0) {
+                                    mo_sy = ' <i class="fa fa-fw fa-arrow-up x-red"></i>';
+
+
+                                } else {
+                                    mo_sy = '~';
+                                }
+                                var p = logininfo['product'][i]['price'];
+                                p = p.split('.')[0];
+                                //body += "<tr><td class='pr'>" + logininfo['product'][i]['product_name'] + "</td><td class='mo'>" + mo_sy + ' ' + mo + "</td><td class='ap'>" + p + "</td></tr>";
+                                body += '<div class="row"><div class="col-xs-5 pr">'+ logininfo['product'][i]['product_name'] +'</div><div class="col-xs-3 mo">'+ mo_sy + ' ' + mo +'</div><div class="col-xs-3 ap">'+ p +'</div></div>';
+                                //console.log(i + ' ->  product_name: ' + logininfo['product'][i]['product_name'] + '   Movement : ' + (parseInt(logininfo['product'][i]['price']) - parseInt(logininfo['product'][i]['price2'])) + '  Act price : ' + logininfo['product'][i]['price']);
+                                $('#dlpr').removeAttr('align');
+                                $('#dlpr_tt').remove();
+                            }
+                        }
+
+                        $('#dlpr_pp').html(body);
+                        // console.log(logininfo['product'].length);
+                        //window.open("//<?php echo $_SERVER['HTTP_HOST'] ?>/upload/Detailed_application_Tracking.xls");
+                    }
+                });
+            }, 1500);
+            setInterval(function () {
+                get_noti();
+
+            }, 3000);
+            function capitalizeFirstLetter(string) {
+                return string.charAt(0).toUpperCase() + string.slice(1);
+            }
+
+            function heading(string) {
+                //$('.msg_icon').width()
+                console.log((($('.panel-body').width() - $('.msg_icon').width()) / 100) * 90);
+            }
+
+            function noficationPanel() {
+                window.location.href = "notification.html";
+            }
+
+            function date_change(date) {
+                var startDate = new Date(date);
+                var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                var timeString = startDate.getHours() + ":" + startDate.getMinutes();
+                var H = +timeString.substr(0, 2);
+                var h = H % 12 || 12;
+                var ampm = H < 12 ? " AM" : " PM";
+                timeString = h + timeString.substr(2, 3) + ampm;
+                return MONTHS[startDate.getMonth()] + ' ' + startDate.getDate() + ' ' + startDate.getFullYear() + ', ' + timeString;
+            }
+        </script>
+    </body>
+</html>
+

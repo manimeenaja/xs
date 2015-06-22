@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>xstok</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="xstok" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <!-- Custom Theme files -->
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <!-- Custom Theme files -->
+        <!----font-Awesome----->
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+        <!----font-Awesome----->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=medium-dpi,user-scalable=yes" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script>
+            localStorage.host = "192.168.0.13/webservices";
+            $(document).ready(function () {
+                $('.container').fadeIn(1000).show();
+            });
+        </script>
+    </head>
+    <body>
+        <div class="iso_blur background-image background-blur"></div>
+        <!-----container----->
+
+        <div class="unlock">           
+            <a class=" x-white footer_new_user heading-text" href="javascript:void(0)">Zip Right to start<i class="fa fa-angle-right fa-lg" style="margin-left: 10px;"></i></a>
+
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <!---//container----->
+        <script type="text/javascript">
+            $("#login").submit(function (e) {
+                e.preventDefault();
+                var self = this;
+                $.ajax({url: '//' + localStorage.host + '/login.php', data: {email_id: $('input[type="email"]').val(), password: $('input[type="password"]').val()}, type: 'get', success: function (data) {
+                        //console.log(logininfo);
+                        if (data['login']) {
+                            x_alert('logged in');
+                            self.submit();
+                            return false;
+                        } else {
+                            var logininfo = JSON.parse(data);
+                            x_alert(logininfo.error_message[0]['error']);
+                        }
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
+

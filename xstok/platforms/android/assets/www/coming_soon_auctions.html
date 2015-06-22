@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>xstok</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="xstok" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=medium-dpi,user-scalable=yes" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <script src='js/main_script.js'></script>
+        <!-- Custom Theme files -->
+        <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css" type='text/css'>
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <link rel="shortcut icon" href="favicon.ico">
+        <!-- Custom Theme files -->
+        <!----font-Awesome----->
+
+        <!----font-Awesome----->
+
+        <script type="text/javascript" src='js/jquery.min.js'></script>    
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script type="text/javascript">
+            //	The menu on the left
+            function onBackKeyDown() {// Handle the back button
+                navigator.notification.confirm(
+                        'Are you sure want to exit?', // message
+                        function (index) {
+                            if (index == 1) {//look at the docs for this part
+                                navigator.app.exitApp();
+                            }
+                        }, // callback to invoke with index of button pressed
+                        'Exit', // title
+                        'Yes,No' // buttonLabels
+                        );
+            }
+
+            function onDeviceReady() {
+                //FastClick.attach(document.body);
+                if (device.platform == "Android") {
+                    document.addEventListener("backbutton", onBackKeyDown, false);
+                }
+
+            }
+
+            function onBodyLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+            $(function () {
+
+                $.ajax({url: localStorage.host + 'coming_soon_auctions.php', data: {}, type: 'get', success: function (data) {
+                        var logininfo = JSON.parse(data);
+                        var body = "";
+                        for (var i = 0; i < logininfo['tagline'].length; i++) {
+                            //console.log(logininfo['tagline'][i][1]);
+                            localStorage.coming_soon_head = logininfo['tagline'][i][0];
+                            $('.coming-soon-head-head').html(logininfo['tagline'][i][0]);
+                            $('.coming-soon-head-head').fadeIn();
+                            localStorage.coming_soon_text = logininfo['tagline'][i][1];
+                            $('.coming-soon-head-text').html(logininfo['tagline'][i][1]);
+                            $('.coming-soon-head-text').fadeIn();
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                       // if (textStatus === "timeout") {
+                            x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                       // }
+                    }
+                });
+                var userid = localStorage.user_id;
+                if (localStorage.logged_in == '0' || typeof localStorage.logged_in == 'undefined') {
+                    userid = rc4_er('0');
+                }
+                $.ajax({url: localStorage.host + '../classes/common.class.php?action=coming_soon_data&user_id=' + userid, data: {}, type: 'get', success: function (data) {
+                        var logininfo = JSON.parse(data);
+                        //console.log(logininfo);
+                        var body = "";
+                        for (var i = 0; i < logininfo.length; i++) {
+                            console.log(logininfo[i]);
+                            var heart = '<i id="heart_' + logininfo[i]['id'] + '" class="fa fa-heart-o"></i>';
+                            if (logininfo[i]['watchlist'] == 'Y') {
+                                heart = '<i id="heart_' + logininfo[i]['id'] + '" class="fa fa-heart"></i>';
+                            }
+                            body += '<div class="sliding-item"><div class="product_titles"><div><h1 style="text-align: center !important; font-size:small;" id="category_' + logininfo[i]['id'] + '">' + logininfo[i]['category'] + '</h1><h2 style="text-align: center !important;" id="title_' + logininfo[i]['id'] + '"><b>' + logininfo[i]['title'] + '</b></h2></div></div><div class="coming-sauct"><img src="' + logininfo[i]['auc_image'] + '"><div class="addtofav1"   onclick="add_watch_list(\'' + logininfo[i]['id'] + '\')">' + heart + '</div></div><div class="p_location_company description"><div align="left" style="font-size:13px !important;">' + logininfo[i]['desc'] + '</div></div><div class="p_location_company by_whom_where"><div class="keep-on-left">Leading Supplier</div><div class="keep-on-right">  ' + logininfo[i]['leading_supplier'] + '</div></div><div class="product_lpl"><div style="border-bottom: none !important;" class="p_location_company time_left"><div align="center"><b>List Price Between:  ' + logininfo[i]['list_price_between'] + '<br> Discount Between: ' + logininfo[i]['discount_between'] + '</b></div></div></div></div>';
+                        }
+                        body += '<div class="text-align-center">More coming soon :)</div>';
+                        $('.coming-soon-list').hide().html(body).fadeIn();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                      /*  if (textStatus === "timeout") {
+                            x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                        }*/
+                    }
+                });
+                //show_loader();localStorage.u_
+                console.log(localStorage.host + '../login/autologin/' + localStorage.u_ + '/' + localStorage.p_);
+                //window.location.href = localStorage.host+'../login/autologin/'+localStorage.u_+'/'+localStorage.p_;
+                $(window).scroll(function () {
+                    var window_top = $(window).scrollTop();
+                    var div_top = $('.coming-soon-head-head').height();
+                    //console.log(window_top);
+                    // console.log(div_top);
+                    if (window_top > div_top) {
+                        $('.header-story ').css('background', '#36454F');
+                    } else {
+                        $('.header-story ').css('background', 'transparent');
+                    }
+                });
+            });
+            function add_watch_list(x){ 
+               
+                                   
+                if (localStorage.logged_in == '0' || typeof localStorage.logged_in == 'undefined') {
+                    window.location.href = "signin.html";
+                } else {
+                     $('#heart_'+x).removeClass('fa-heart-o');
+                /*$('#heart_'+x).addClass('fa-spin');
+                $('#heart_'+x).addClass('fa-refresh');
+                $('#heart_'+x).addClass('x-white');*/
+                $('#heart_'+x).addClass('fa-heart');
+                    var title= $('#title_'+x).text();
+                    var cat= $('#category_'+x).text(); 
+                    var auc_id= x;
+            //alert(title+"||"+cat);
+           // $('#coming_soon_loading_pop_open_click').trigger('click');
+                    $.getJSON( localStorage.host + "../ajax.php?action=send_coming_soon_mail&title="+title+"&cat="+cat+"&user_id="+ localStorage.user_id+"&auc_id="+auc_id, function (data) {
+                        if (data['status']) {
+                            if(data['status']=="success"){
+                               /* $('#heart_'+x).removeClass('fa-spin');
+                                 $('#heart_'+x).removeClass('fa-refresh');*/
+                                //if($('#heart_'+x).hasClass('fa-heart-o')){
+                                    $('#heart_'+x).addClass('fa-heart');
+                                   /* $('#heart_'+x).addClass('x-red');
+                                    $('#heart_'+x).removeClass('x-white');*/
+                               // }
+                                //x_alert('You have shown interest in '+title+'. XSTOK Team will contact you soon');
+                            } else if(data['status']=="error"){
+                                //  $('#coming_soon_msg').html('Error');
+                            }
+                        }
+                    });
+                }
+            }
+
+        </script>
+    </head>
+    <body>
+        <div class="header-story ">
+            <a onclick="back()" style="text-align: left;padding-top: 17px;float: left;padding-left: 20px;"><i class="fa fa-angle-left fa-lg fa-2x x-white"></i></a>
+            <a style="text-align: right;padding-top: 10px;padding-right: 20px;padding-bottom: 10px;float: right;"><img src="images/logo_y.png" style="height: 35px;"></a>
+        </div>
+        <div class="row coming-soon row-cancel-margin">
+            <div class="font-family_roboto coming-soon-head-head">The XSTOK Story</div>
+            <div class="font-family_roboto coming-soon-head-text">The XSTOK Story</div>
+        </div>
+        <div class="sign-in-box " style="margin-top: 0;">
+            <div class="row row-cancel-margin">
+                <div class="col-xs-12 font-20 font-family-helvetica padding-lr-10 coming-soon-list">
+                    <i class="fa fa-refresh  fa-spin middle load" style="font-size: 3em;color: #888;"></i>                   
+                </div>
+            </div>
+
+
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script  type="text/javascript" src='js/main_script.js'></script>   
+        <script type="text/javascript" src="js/fastclick.js"></script>
+    </body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>XSTOK</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="XSTOK" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <!-- Custom Theme files -->
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <!-- Custom Theme files -->
+        <!----font-Awesome----->
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+        <!----font-Awesome----->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=device-dpi,user-scalable=yes" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script>
+            localStorage.seller = 1;
+            if (localStorage.logged_in == 1) {
+                window.location.href = "dashboard.html";
+            }
+            
+            $(document).ready(function () {
+                $('.container').fadeIn(800).show();
+            });
+        </script>
+    </head>
+    <body>
+        <div class="iso_blur background-image background-blur"></div>
+        <!-----container----->
+        <div class="container black_wrapper" style="display: none">
+
+
+            <!------ content ----->
+            <div class="content">
+                <div class="3-cols">
+                    <div class="col-1 col-md-3">
+                        <div class="menu"><a href="index.html"><i class="fa fa-fw fa-angle-left x-white fa-2x"></i></a></div>
+                        <!---- user-profile ---->
+                        <!-- //user-profile ---->
+                        <!---- sign-in-box ---->
+                        <div class="sign-in-box" style="margin: 1.5em 0;">
+                            <h2><img src="images/logo_y.png"></h2>
+                            <h3 class="heading-text font-18 x-white">Become a XSTOK seller!<br/><br/> XSTOK helps you sell your excess inventory in a fast, secure and transparent manner</h3>
+                            <form id="login" action="">
+                                <div class="text-boxs">
+                                    <span class="text-box">                                        
+                                        <input type="text" placeholder="Name" required class="text-indent-2em background-black" name="name"/> 
+                                    </span>                                    
+                                </div>
+                                <div class="text-boxs">
+                                    <span class="text-box">
+                                        <input type="text" value="" placeholder="Mobile" required class="text-indent-2em background-black" name="mobile" maxlength="10" id="mobile">
+                                    </span>                                    
+                                </div>
+                                <div class="text-boxs">
+                                    <span class="text-box">  
+                                        <input type="email" value="" placeholder="Email" required class="text-indent-2em background-black" name="email">
+                                    </span>                                    
+                                </div>
+                                <h3 class="heading-text font-18 x-white" style="text-align: left;">I want to sell:</h3><br/>
+                                <div style="padding-left:2em;font-weight:bolder;" class="x-white">
+                                    <label class="label_check" for="checkbox-2-1">
+                                        <input type="checkbox"  name="want_sell[]" class="chk" value="Apparel" id="checkbox-2-1" />
+                                        Apparel
+                                    </label>
+                                    <br/>
+                                    <label class="label_check" for="checkbox-2-2">
+                                        <input type="checkbox"  name="want_sell[]" class="chk" value="Home Textile" id="checkbox-2-2" />
+                                        Home Textile
+                                    </label>
+                                    <br/>
+                                    <label class="label_check" for="checkbox-2-3">
+                                        <input type="checkbox"  name="want_sell[]" class="chk" value="Made ups" id="checkbox-2-3" />
+                                        Made ups
+                                    </label>
+                                    <br/>
+                                    <label class="label_check" for="checkbox-2-4">
+                                        <input type="checkbox"  name="want_sell[]" class="chk" value="Fabrics" id="checkbox-2-4" />
+                                        Fabrics
+                                    </label>
+                                    <br/>
+                                    <label class="label_check" for="checkbox-2-5">
+                                        <input type="checkbox"  name="want_sell[]" class="chk" value="Yarns" id="checkbox-2-5" />
+                                        Yarns
+                                    </label>
+                                    <br/>
+                                    <br/>
+                                </div>
+                                <input type="submit" value="Jump the queue " />
+                            </form>                            
+                        </div>
+                        <!----//sign-in-box ---->
+                        <!----up-load-stats---->
+                        <!--//up-load-stats---->
+                        <!----social-tags---->
+
+                        <!--//social-tags---->
+                    </div><!----//End-col-1 ----->
+                    <!---- col-2 ----->                    
+                    <!---- col-3 ----->                    
+                    <!---- col-3 ----->
+                    <div class="clear"> </div>
+                </div>
+
+            </div>
+
+            <!---- //content ----->
+
+        </div>  
+        <script type="text/javascript" src="js/PushNotification.js"></script>
+        <script type="text/javascript" src="js/fastclick.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <!---//container----->
+        <script type="text/javascript">
+            function onBodyLoad(){ 
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+            
+            function onDeviceReady(){
+                FastClick.attach(document.body);
+            }
+            var d = document;
+            var safari = (navigator.userAgent.toLowerCase().indexOf('safari') != -1) ? true : false;
+            var gebtn = function (parEl, child) {
+                return parEl.getElementsByTagName(child);
+            };
+            
+            function reg_device () {
+                 $.ajax({url: localStorage.host + 'reg_device.php', data: {e: $('input[name="email"]').val() ,r : localStorage.regid } , type: 'get', success: function (data) {
+                         
+                 }
+             });
+            }
+            onload = function () {
+
+                var body = gebtn(d, 'body')[0];
+                body.className = body.className && body.className != '' ? body.className + ' has-js' : 'has-js';
+
+                if (!d.getElementById || !d.createTextNode)
+                    return;
+                var ls = gebtn(d, 'label');
+                for (var i = 0; i < ls.length; i++) {
+                    var l = ls[i];
+                    if (l.className.indexOf('label_') == -1)
+                        continue;
+                    var inp = gebtn(l, 'input')[0];
+                    if (l.className == 'label_check') {
+                        l.className = (safari && inp.checked == true || inp.checked) ? 'label_check c_on' : 'label_check c_off';
+                        l.onclick = check_it;
+                    }
+                    ;
+                    if (l.className == 'label_radio') {
+                        l.className = (safari && inp.checked == true || inp.checked) ? 'label_radio r_on' : 'label_radio r_off';
+                        l.onclick = turn_radio;
+                    }
+                    ;
+                }
+                ;
+            };
+            var check_it = function () {
+                var inp = gebtn(this, 'input')[0];
+                if (this.className == 'label_check c_off' || (!safari && inp.checked)) {
+                    this.className = 'label_check c_on';
+                    if (safari)
+                        inp.click();
+                } else {
+                    this.className = 'label_check c_off';
+                    if (safari)
+                        inp.click();
+                }
+                ;
+            };
+            var turn_radio = function () {
+                var inp = gebtn(this, 'input')[0];
+                if (this.className == 'label_radio r_off' || inp.checked) {
+                    var ls = gebtn(this.parentNode, 'label');
+                    for (var i = 0; i < ls.length; i++) {
+                        var l = ls[i];
+                        if (l.className.indexOf('label_radio') == -1)
+                            continue;
+                        l.className = 'label_radio r_off';
+                    }
+                    ;
+                    this.className = 'label_radio r_on';
+                    if (safari)
+                        inp.click();
+                } else {
+                    this.className = 'label_radio r_off';
+                    if (safari)
+                        inp.click();
+                }
+                ;
+            };
+            $(document).ready(function () {
+                $('#mobile').keyup(function () {
+                    var data = $('#mobile').val();
+                    if ($.isNumeric(data)) {
+                        $('input[type="submit"]').removeAttr('disabled');
+                    } else {
+                        $('input[type="submit"]').attr('disabled', 'disabled');
+                    }
+                });
+                if (typeof localStorage.email != 'undefined') {
+                    $.ajax({url: localStorage.host + 'get_form2_s_info.php', data: {e: localStorage.email}, type: 'get', success: function (data) {
+
+                            var logininfo = JSON.parse(data);
+                            /*console.log(logininfo['name']);
+                             console.log(logininfo);*/
+                            var loc_array = logininfo['seller_name'].split(',');
+                            var loc_array_mobile = logininfo['seller_mobileno'].split(',');
+                            $('input[name="name"]').val(loc_array[loc_array.length - 1]);
+                            $('input[name="email"]').val(logininfo['emailid']);
+                            $('input[name="mobile"]').val(loc_array_mobile[loc_array_mobile.length - 1]);
+                            var ws = logininfo['want_sell'].split(",");                           
+                            for(var i = 0; i < ws.length-1 ; i++) {
+                                $(".chk").each(function (ii, value) {
+                                    if ($(this).val() == ws[i] ) {
+                                        $(this).parent().removeClass('c_off');
+                                        $(this).parent().addClass('c_on');
+                                    }
+                                });
+                            }
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            if (textStatus === "timeout") {
+                                navigator.notification.alert('Please Check Your Network',function( index ){},'Network Error','Ok');
+                            }
+                        }
+                    });
+                }
+            });
+            $("#login").submit(function (e) {
+                var want_sell = '';
+                $(".chk").each(function (i, value) {
+                    if ($(this).parent().hasClass('c_on')) {
+                        want_sell += $(this).val() + ',';
+                    }
+                });
+                e.preventDefault();
+                var self = this;
+                $.ajax({url: localStorage.host + 'put_form2_s_info.php', data: {e: $('input[name="email"]').val(), m: $('input[name="mobile"]').val(), n: $('input[name="name"]').val(), ws: want_sell}, type: 'get', success: function (data) {
+
+                        var logininfo = JSON.parse(data);
+                        localStorage.email = $('input[name="email"]').val();
+                        //console.log(logininfo);
+                        localStorage.login = 1;
+                        localStorage.type = 2;
+                        reg_device ();
+                        window.location.href = "form2.html";
+
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        if (textStatus === "timeout") {
+                            navigator.notification.alert('Please Check Your Network',function( index ){},'Network Error','Ok');
+                        }
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
+

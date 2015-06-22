@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>xstok</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="xstok" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=medium-dpi,user-scalable=yes" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <script src='js/main_script.js'></script>
+        <!-- Custom Theme files -->
+        <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css" type='text/css'>
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <link rel="shortcut icon" href="favicon.ico">
+        <!-- Custom Theme files -->
+        <!----font-Awesome----->
+
+        <!----font-Awesome----->
+
+        <script type="text/javascript" src='js/jquery.min.js'></script>    
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script type="text/javascript">
+            //	The menu on the left
+            function onBackKeyDown() {// Handle the back button
+                navigator.notification.confirm(
+                        'Are you sure want to exit?', // message
+                        function (index) {
+                            if (index == 1) {//look at the docs for this part
+                                navigator.app.exitApp();
+                            }
+                        }, // callback to invoke with index of button pressed
+                        'Exit', // title
+                        'Yes,No' // buttonLabels
+                        );
+            }
+
+            function onDeviceReady() {
+                //FastClick.attach(document.body);
+                if (device.platform == "Android") {
+                    document.addEventListener("backbutton", onBackKeyDown, false);
+                }
+
+            }  
+            
+            function onBodyLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+            function retype_pass () {
+                $('#password').fadeIn();
+            }
+            function close_pass () {
+               window.location.href = "logout.html";
+            }
+            function submit_pass (retype) {
+                var pass = $('#re-pass').val();
+                if(typeof retype != 'undefined'){
+                    if(pass == ''){
+                        x_alert('Please enter the password');
+                    } else { 
+                        $('#password').fadeOut();
+                        localStorage.p = pass;
+                    }
+                }
+                
+                $.ajax({url: localStorage.host + '../classes/common.class.php?action=check_login_details&user_name='+rc4_er(localStorage.u_)+'&password='+rc4_er(localStorage.p), data: {}, type: 'get', success: function (data) {                       
+                        var info = JSON.parse(data);
+                        if(info['status'] == 'Y') {
+                            //$.ajax({url: localStorage.host + '../classes/common.class.php?action=login_session_payment&user_name='+rc4_er(localStorage.u_)+'&password='+rc4_er(localStorage.p) +'&url='+rc4_er(localStorage.url), data: {}, type: 'get', success: function (data) {  
+                                    $('.iframe').attr('src',localStorage.host + '../classes/common.class.php?action=login_session_payment&user_name='+rc4_er(localStorage.u_)+'&password='+rc4_er(localStorage.p) +'&url='+rc4_er(localStorage.url));
+                          //   //   } 
+                          ///  });
+                        } else {
+                            retype_pass();
+                        }                       
+                  }
+              });
+            }
+            $(function () {
+                submit_pass ();
+              
+                setTimeout(function() {
+                    $('.iframe').height($(window).height() - 60);
+                    $('.iframe').width($(window).width());
+                },1000);
+                var paycheck = setInterval(function () {
+                  //   localStorage.notification_emd = rc4_er(logininfo['notification_emd']);
+                  //                          localStorage.inserted_id = (logininfo['inserted_id']);
+                    $.ajax({url: localStorage.host + '../classes/common.class.php?action=check_emd_payment&type='+localStorage.notification_emd+'&pay_id='+localStorage.inserted_id, data: {}, type: 'get', success: function (data) {
+                           var info = JSON.parse(data); 
+                           //info['status'] = 'Y'
+                           if(info['status'] == 'P' || info['status'] == 'C' || info['status'] == 'U') {
+                               clearInterval(paycheck);
+                               setTimeout(function() {
+                                   window.location.href = "dashboard.html#buyer_emd_details";
+                               },5000);
+                           }
+                           
+                    }
+                });
+                },1000);
+                //var ref = window.open(localStorage.url, '_top', 'location=no');
+                //show_loader();localStorage.u_
+                console.log(localStorage.host + '../login/autologin/' + localStorage.u_ + '/' + localStorage.p_);
+                //window.location.href = localStorage.host+'../login/autologin/'+localStorage.u_+'/'+localStorage.p_;
+                /*$(window).scroll(function () {
+                    var window_top = $(window).scrollTop();    
+                    var div_top = $('.our-story').height();
+                    console.log(window_top);
+                    console.log(div_top);
+                    if(window_top>div_top) {
+                        $('.header-story ').css('background','#3F4751');
+                    } else {
+                         $('.header-story ').css('background','transparent');
+                    }
+                });*/
+            });
+
+        </script>
+    </head>
+    <body>
+        <div class="header-story x-white-background" style="height: 60px;">
+            <a onclick="back()" style="text-align: left;padding-top: 17px;float: left;padding-left: 20px;"><i class="fa fa-angle-left fa-lg fa-2x x-grey"></i></a>
+             <a style="text-align: right;padding-top: 17px;padding-right: 20px;float: right;"><img src="images/logo_y.png" style="height: 28px;"></a>
+        </div>
+        <div class="InAppBrowser">
+            <iframe class="iframe" src="loader.html"><i class="fa fa-refresh fa-spin"></i></iframe>
+        </div>
+       <div id="password" style="display: none">
+           <div class="more-detail-body">
+               <div class="auction-history row row-cancel-margin">
+                   <div class="col-xs-12 padding-lr-10  padding-tb-10 font-size-1-2-em">
+                       <label class="padding-bottom-5-p">Please enter your login password<br><br><span class="font-14">Note: Selecting close will log you out.</span></label>
+                       <input type="password" class="form-control display-inline input-sm " id="re-pass" placeholder="Enter Password">                           
+                   </div>
+               </div>
+               <div class="text-align-center bid_close width-49-5p x-orange-background x-white sub" style="" onClick="submit_pass('1')">Submit</div>
+               <div class="text-align-center bid_close width-49-5p cal" style="" onClick="close_pass()">Close</div>
+            </div>
+        </div>
+        
+        <script type="text/javascript" src="cordova.js"></script>
+        <script  type="text/javascript" src='js/main_script.js'></script>   
+        <script type="text/javascript" src="js/fastclick.js"></script>
+    </body>
+</html>

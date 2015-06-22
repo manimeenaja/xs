@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>XSTOK</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="XSTOK" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <!-- Custom Theme files -->
+        <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <!-- Custom Theme files -->
+        <!----font-Awesome----->
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+        <!----font-Awesome----->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <script type="text/javascript" src="js/PushNotification.js"></script>
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=device-dpi,user-scalable=yes" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script>            
+            $(document).ready(function () {
+                $('.container').fadeIn(800).show();
+            });
+        </script>
+    </head>
+    <body onload="get_noti ()">
+        <div class="iso_blur background-image background-blur"></div>
+        <!-----container----->
+        <div class="container black_wrapper" style="display: none">
+
+
+            <!------ content ----->
+            <div class="content">
+                <div class="3-cols">
+                    
+                    <div class="col-1 col-md-3">                       
+                        <div class="menu"><a href="home.html"><i class="fa fa-fw fa-angle-left x-white fa-2x"></i></a></span></div>
+                        <!---- user-profile ---->
+                        <!-- //user-profile ---->
+                        <!---- sign-in-box ---->
+                        <div class="sign-in-box" style=" margin: 0.5em 0; color:#fff">
+                            <h2><img src="images/logo_y.png" height="40"></h2>
+                             <h3 class="heading-text x-white">Notification <hr/> </h3>
+                            <div style="background: rgba(0,0,0,0.9); padding: 15px;" id="msg_list">                          
+                                <div class="no_message"><i class="fa fa-cog fa-spin x-orange fa-2x"></i></div>
+                            </div>
+                        </div>
+                        <!----//sign-in-box ---->
+                        <!----up-load-stats---->
+                        <!--//up-load-stats---->
+                        <!----social-tags---->
+
+                        <!--//social-tags---->
+                    </div><!----//End-col-1 ----->
+                    <!---- col-2 ----->                    
+                    <!---- col-3 ----->                    
+                    <!---- col-3 ----->
+                    <div class="clear"> </div>
+                </div>
+
+            </div>
+
+            <!---- //content ----->
+
+        </div>       
+        
+        <script type="text/javascript" src="js/fastclick.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <!---//container----->
+        <script type="text/javascript">
+            function onBodyLoad(){ 
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+            
+            function onDeviceReady(){
+                FastClick.attach(document.body);
+            }
+            function get_noti () {
+                $.ajax({url: localStorage.host + 'get_message_all.php', data: {}, type: 'get', success: function (data) {
+                       
+                        //$('.message').show();
+                    var logininfo = JSON.parse(data);
+                    var there = 0;
+                   // console.log(logininfo[0]);
+                    if(typeof logininfo != 'undefined') {
+                         $('.no_message').hide();
+                    for(var i = 0 ; i < logininfo.length; i++ ) {
+                       // console.log(date_change(logininfo[i]['date']));
+                    if($('#'+logininfo[i]['id']).length <= 0 ){
+                        there = 1;
+                       var msg = '<div class="message" id="'+logininfo[i]['id']+'"><div class="msg_head"><div class="msg_icon"><img src="images/xs.png"></div><div class=""><div class="msg_tile truncate_note" style="width:'+((($('.sign-in-box').width() - $('.msg_icon').width()) / 100) * 73)+'px">'+capitalizeFirstLetter(logininfo[i]['message_head'])+'</div><div class="msg_time">( ' +date_change(logininfo[i]['date']) + ' )</div></div></div><br/><div class="msg_body">'+capitalizeFirstLetter(logininfo[i]['message'])+'</div></div><hr/>';
+                       //$('#'+logininfo[i]['id'] + ' .msg_tile').width((($('.sign-in-box').width() - $('.msg_icon').width()) / 100) * 80 );
+                       // if(there == 0) { 
+                            $('#msg_list').prepend(msg);               
+                       // } else {
+                          // $('#msg_list').prepend(msg);
+                      // }
+                   }
+                      // $('.msg_tile').width((($('.sign-in-box').width() - $('.msg_icon').width()) / 100) * 80 );
+                        
+                }
+            } else {
+                $('.no_message').html('No notification available!');
+            }
+                   // console.log(logininfo);                    
+                }
+            });
+            }
+           
+            setInterval(function(){
+                 get_noti ();
+            }, 5000);
+            function capitalizeFirstLetter(string) {
+                return string.charAt(0).toUpperCase() + string.slice(1);
+            }
+            
+            function heading (string) {
+                //$('.msg_icon').width()
+                console.log((($('.sign-in-box').width() - $('.msg_icon').width()) / 100) * 90 );
+            }
+            
+            function noficationPanel() {
+                 window.location.href = "notification.html";
+            }
+            
+            function date_change (date) {
+                var startDate = new Date(date);
+                var MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+                var timeString = startDate.getHours()+":"+startDate.getMinutes();
+var H = +timeString.substr(0, 2);
+var h = H % 12 || 12;
+var ampm = H < 12 ? " AM" : " PM";
+timeString = h + timeString.substr(2, 3) + ampm;
+                return MONTHS[startDate.getMonth()] +' '+ startDate.getDate() + ' ' + startDate.getFullYear()+', '+  timeString;
+            }
+        </script>
+    </body>
+</html>
+

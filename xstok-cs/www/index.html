@@ -1,0 +1,300 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>XSTOK</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="XSTOK" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <!-- Custom Theme files -->
+        <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <!-- Custom Theme files -->
+        <!----font-Awesome----->
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+        <!----font-Awesome----->
+        <script type="text/javascript" src="js/PushNotification.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=device-dpi,user-scalable=yes" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script>
+            /* if (typeof localStorage.host == 'undefined') {
+                localStorage.host = 'http://www.xstok.com/webservices/';
+            }*/
+    localStorage.host = 'http://www.xstok.com/webservices/';
+            //localStorage.host = 'http://www.xstok.com/webservices/';
+            if(localStorage.login == 1 ) {
+                if (localStorage.logged_in == 1) {
+                    window.location.href = "form1.html";
+                } else if (localStorage.logged_in == 2) {
+                    window.location.href = "form2.html";
+                } else if (localStorage.logged_in == 3) {
+                    window.location.href = "home.html";
+                }
+            }
+            
+            function onBackKeyDown() {// Handle the back button
+                navigator.notification.confirm(
+                        'Are you certain you want to close the app?', // message
+                        function (index) {
+                            if (index == 1) {//look at the docs for this part
+                                navigator.app.exitApp();
+                            }
+                        }, // callback to invoke with index of button pressed
+                        'Exit', // title
+                        'Yes,No' // buttonLabels
+                        );
+            }
+            
+            function onBodyLoad(){ 
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+             document.addEventListener("deviceready", onDeviceReady, false);
+            var pushNotification;
+            var regid;
+            function onDeviceReady() {
+                 FastClick.attach(document.body);
+                //$("#app-status-ul").append('<li>deviceready event received</li>');
+                if (device.platform == "Android") {
+                    document.addEventListener("backbutton", onBackKeyDown, false);
+                }
+
+               /* document.addEventListener("backbutton", function (e)
+                {
+                    //$("#app-status-ul").append('<li>backbutton event received</li>');
+
+                    if ($("#home").length > 0)
+                    {
+                        // call this to get a new token each time. don't call it to reuse existing token.
+                        //pushNotification.unregister(successHandler, errorHandler);
+                        e.preventDefault();
+                        navigator.app.exitApp();
+                    }
+                    else
+                    {
+                        navigator.app.backHistory();
+                    }
+                }, false);*/
+
+                try
+                {
+                    pushNotification = window.plugins.pushNotification;
+                    if (device.platform == 'android' || device.platform == 'Android') {
+                       // $("#app-status-ul").append('<li>registering android</li>');
+                        pushNotification.register(successHandler, errorHandler, {"senderID": "613170519629", "ecb": "onNotificationGCM"});		// required!
+                    } else {
+                      //  $("#app-status-ul").append('<li>registering iOS</li>');
+                        pushNotification.register(tokenHandler, errorHandler, {"badge": "true", "sound": "true", "alert": "true", "ecb": "onNotificationAPN"});	// required!
+                    }
+                }
+                catch (err)
+                {
+                    txt = "There was an error on this page.\n\n";
+                    txt += "Error description: " + err.message + "\n\n";
+                    //alert(txt);
+                }
+            }
+
+            // handle APNS notifications for iOS
+            function onNotificationAPN(e) {
+                if (e.alert) {
+                    //$("#app-status-ul").append('<li>push-notification: ' + e.alert + '</li>');
+                    navigator.notification.alert(e.alert);
+                }
+
+                if (e.sound) {
+                    var snd = new Media(e.sound);
+                    snd.play();
+                }
+
+                if (e.badge) {
+                    pushNotification.setApplicationIconBadgeNumber(successHandler, e.badge);
+                }
+            }
+
+            // handle GCM notifications for Android
+            function onNotificationGCM(e) {
+                //$("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
+
+                switch (e.event)
+                {
+                    case 'registered':
+                        if (e.regid.length > 0)
+                        {
+                            localStorage.regid = e.regid;
+                            //$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
+                            // Your GCM push server needs to know the regID before it can push to this device
+                            // here is where you might want to send it the regID for later use.
+                           // console.log("regID = " + e.regid);
+                        }
+                        break;
+
+                    case 'message':
+                        // if this flag is set, this notification happened while we were in the foreground.
+                        // you might want to play a sound to get the user's attention, throw up a dialog, etc.
+                        if (e.foreground)
+                        {
+                         //   $("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
+
+                            // if the notification contains a soundname, play it.
+                            var my_media = new Media("/android_asset/www/" + e.soundname);
+                            my_media.play();
+                        }
+                        else
+                        {	// otherwise we were launched because the user touched a notification in the notification tray.
+                            if (e.coldstart) {
+                             //   $("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
+                         } else {
+                              //  $("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
+                          }
+                        }
+
+                       // $("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
+                       // $("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
+                        break;
+
+                    case 'error':
+                     //   $("#app-status-ul").append('<li>ERROR -> MSG:' + e.msg + '</li>');
+                        break;
+
+                    default:
+                       // $("#app-status-ul").append('<li>EVENT -> Unknown, an event was received and we do not know what it is</li>');
+                        break;
+                }
+            }
+
+            function tokenHandler(result) {
+              //  $("#app-status-ul").append('<li>token: ' + result + '</li>');
+                // Your iOS push server needs to know the token before it can push to this device
+                // here is where you might want to send it the token for later use.
+            }
+
+            function successHandler(result) {
+             //   $("#app-status-ul").append('<li>success:' + result + '</li>');
+            }
+
+            function errorHandler(error) {
+              //  $("#app-status-ul").append('<li>error:' + error + '</li>');
+            }
+
+            document.addEventListener('deviceready', onDeviceReady, true);
+            $(document).ready(function () {
+                $('.container').fadeIn(800).show();
+            });
+           
+        </script>
+    </head>
+    <body>
+        
+        <div class="iso_blur background-image background-blur"></div>
+        <!-----container----->
+        <div class="container black_wrapper" style="display: none"> 
+            <!------ content ----->
+            <div class="content">
+                <div class="3-cols">
+                   
+                    <div class="col-1 col-md-3">
+                        <div><a href="form2_s.html" class="btn btn-xstok x-orange font-20 " style="float: right;   margin-top: -7em;">Seller?</a></div>
+                        <!---- user-profile ---->
+                        <!-- //user-profile ---->
+                        <!---- sign-in-box ---->
+                        
+                        <div class="sign-in-box" style="  margin: 10em 0 0 0;">
+                            <h2><img src="images/logo_y.png"></h2>
+                            <h3 class="heading-text x-white" style="font-size:17px" >Your marketplace for overstock apparels, home textiles, fabrics and yarns! </h3>
+                            <form id="login" action="">
+                                <div class="text-boxs">
+                                    <span class="text-box">                                        
+                                        <input type="email" placeholder="Email address" required class="text-align-center background-black" name="email"/> 
+                                    </span>                                    
+                                </div>
+                                <input type="submit" value="Get early access" />
+                            </form>
+                            <br/>
+                        </div>
+                        <!----//sign-in-box ---->
+                        <!----up-load-stats---->
+                        <!--//up-load-stats---->
+                        <!----social-tags---->
+
+                        <!--//social-tags---->
+                    </div><!----//End-col-1 ----->
+                    <!---- col-2 ----->                    
+                    <!---- col-3 ----->                    
+                    <!---- col-3 ----->
+                    <div class="clear"> </div>
+                </div>
+
+            </div>
+
+            <!---- //content ----->
+
+        </div>       
+        
+        <script type="text/javascript" src="js/fastclick.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <!---//container----->
+        <script type="text/javascript">
+                            function IsEmail(email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return regex.test(email);
+}
+            function reg_device () {
+                 $.ajax({url: localStorage.host + 'reg_device.php', data: {e: $('input[name="email"]').val() ,r : localStorage.regid } , type: 'get', success: function (data) {
+                         
+                 }
+             });
+            }
+            
+            $("#login").submit(function (e) {
+                if(IsEmail($('input[name="email"]').val())) {
+                e.preventDefault();
+                var self = this;
+                localStorage['office_line_login'] = $('input[name="email"]').val();
+                $.ajax({url: localStorage.host + 'access.php', data: {e: $('input[name="email"]').val()}, type: 'get', success: function (data) {
+
+                        var logininfo = JSON.parse(data);
+                        //console.log(logininfo);
+                        if(logininfo['name'] != '' && logininfo['seller_name'] != '' ) {
+                            localStorage.type = 1;
+                        } else if(logininfo['seller_name'] != '') {
+                             localStorage.type = 2;
+                        } else if(logininfo['name'] != '') {
+                            localStorage.type = 3;
+                        }
+                        if (logininfo == 0) {
+                            reg_device ();
+                            localStorage.email = $('input[name="email"]').val();
+                            localStorage.login = 1;
+                            window.location.href = "form1.html";
+                            
+                        } else if (logininfo == 1) {
+                            reg_device ();
+                            localStorage.email = $('input[name="email"]').val();
+                            localStorage.login = 1;
+                            window.location.href = "form1.html";
+                            
+                        } else {
+                            reg_device ();
+                            localStorage.email = $('input[name="email"]').val();
+                            localStorage.login = 1;
+                            window.location.href = "home.html";
+                            localStorage.id = logininfo['id'];
+                        }                        
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        if (textStatus === "timeout") {
+                            navigator.notification.alert('Please Check Your Network',function( index ){},'Network Error','Ok');
+                        }
+                    }
+                });
+            } else {
+                 navigator.notification.alert('Please Check Email',function( index ){},'Incorrect Email','Ok');
+            }
+            });
+        </script>
+    </body>
+</html>
+
