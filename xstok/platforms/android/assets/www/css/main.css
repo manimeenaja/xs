@@ -3399,4 +3399,15 @@ div.callout {
     .bid-now-withdraw-btn a {
         font-size: 10px; 
     }
+    .grid-list {
+        width: 42%;
+    }
+}
+@media only screen and (min-width: 768px) { 
+    .grid-image {
+          height: 200px;
+    }
+    .grid-list {
+        width: 46%;
+    }
 }

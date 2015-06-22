@@ -1,8 +1,8 @@
 /*----------------DEFINED START-------------------*/
 
-//localStorage.host = "http://192.168.0.13/webservices/";
+localStorage.host = "http://192.168.0.13/webservices/";
 //localStorage.host = "http://beta.xstok.com/webservices/";
-localStorage.host = "http://www.xstok.com/webservices/";
+//localStorage.host = "http://www.xstok.com/webservices/";
 localStorage.device = 'Android';
 localStorage.vr = 'new';
 localStorage.key_code = 'euhe68vjdr1aX4F091c7aCggSMBf0A7M';
@@ -1881,3 +1881,12 @@ function allnumeric(inputtxt){
         
     }  
 }  
+
+function date_fution (date) {
+    var dateStr=date; //returned from mysql timestamp/datetime field
+    var a=dateStr.split(" ");
+    var d=a[0].split("-");
+    var t=a[1].split(":");
+    var start_date = new Date(d[0],(d[1]-1),d[2],t[0],t[1],t[2]);
+    return start_date;
+}
