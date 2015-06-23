@@ -11,6 +11,7 @@
         <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
         <link type="text/css" rel="stylesheet" href="css/jquery.mmenu.all.css" />
         <link href="css/flat-ui.min.css" rel="stylesheet">
+         <link rel="stylesheet" href="css/intlTelInput.css">
         <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
         <link href="css/style.css" rel='stylesheet' type='text/css' />
         <link href="css/main.css" rel='stylesheet' type='text/css' />
@@ -107,7 +108,7 @@
                                     </span>
                                     <span class="text-box">  
                                         <span class="x-required">*</span>
-                                        <input type="text" placeholder="Mobile Number" required class=" form-control  background-black input-sm" name="mobile_no" maxlength="10"/> 
+                                        <input type="text"  pattern="^[0-9+/ /]*$" id="mobile_no" placeholder="Mobile Number" required class=" form-control  background-black input-sm" name="mobile_no"  maxlength="16"/> 
                                     </span>
                                     <!--<span class="text-box">                                         
                                         <input type="text" placeholder="Phone Number" class=" form-control  background-black input-sm" name="phone_no" maxlength="10"/> 
@@ -178,6 +179,8 @@
         <script type="text/javascript" src="js/flat-ui.min.js"></script>
         <script type="text/javascript" src="js/jquery.mmenu.js"></script>
         <script type="text/javascript" src="js/jquery.md5.js"></script>
+         <script type="text/javascript" src="js/intlTelInput.js"></script>
+        <script type="text/javascript" src="js/utils.js"></script>
         <script type="text/javascript" src="js/parsley.min.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
 
@@ -198,6 +201,13 @@
                 $('.password').attr('type', 'password');
                 $('.show').addClass('fa-eye');
                 $('.show').removeClass('fa-eye-slash');
+            });
+            $("#mobile_no").intlTelInput({
+                autoFormat: true,
+                //autoHideDialCode: true,
+                //nationalMode: true,
+               // responsiveDropdown: true,
+                utilsScript: "js/utils.js"
             });
             $("#login").submit(function (e) {
                  if($( '#login' ).parsley( 'isValid' )) {

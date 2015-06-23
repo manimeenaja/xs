@@ -14,6 +14,7 @@
         <!-- Custom Theme files -->
         <!----font-Awesome----->
         <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/intlTelInput.css">
         <!----font-Awesome----->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
@@ -78,7 +79,7 @@
                                         <input type="text" placeholder="Company Name" required class=" form-control  background-black input-sm" name="company_name"/> 
                                     </span>
                                     <span class="text-box">                                        
-                                        <input type="text" placeholder="Mobile Number" required class=" form-control  background-black input-sm" name="mobile_no" maxlength="10"/> 
+                                        <input id="mobile_no" pattern="^[0-9+/ /]*$" type="text" placeholder="Mobile Number" required class=" form-control  background-black input-sm" name="mobile_no" maxlength="16"/> 
                                     </span>
                                     <span class="text-box">
                                         <span id="email_avail_result"></span>
@@ -112,6 +113,8 @@
         </div>        
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/jquery.md5.js"></script>
+        <script type="text/javascript" src="js/intlTelInput.js"></script>
+        <script type="text/javascript" src="js/utils.js"></script>
         <script type="text/javascript" src="js/parsley.min.js"></script>
         <!---//container----->
         <script type="text/javascript">
@@ -124,7 +127,13 @@
                 $('.show').addClass('fa-eye');
                 $('.show').removeClass('fa-eye-slash');
             });
-            
+            $("#mobile_no").intlTelInput({
+                autoFormat: true,
+                //autoHideDialCode: true,
+                //nationalMode: true,
+               // responsiveDropdown: true,
+                utilsScript: "js/utils.js"
+            });
             
             $('#email_id').bind('click blur',function(){ // Keyup function for check the user action in input
             var EmailID = $(this).val(); // Get the username textbox using $(this) or you can use directly $('#username')
@@ -178,8 +187,8 @@
                 localStorage.mobile_no = $("input[name=\"mobile_no\"]").val();
                 localStorage.company_name = $("input[name=\"company_name\"]").val();
                 localStorage.p = $("input[name=\"password\"]").val();
-                var json = '{"id":null,"admin_id":null,"name":"' + $("input[name=\"name\"]").val() + '","company_name":"' + $("input[name=\"company_name\"]").val() + '","mobile_no":"' + $("input[name=\"mobile_no\"]").val() + '","email_id":"' + $("input[name=\"email_id\"]").val() + '","password":"' + md5 + '","active":"Y","address":null,"role_id":"3","comment":null,"pass":"' + md5 + '","now":"","action":"insert","form_type":"front_end"}';
-                $.ajax({url: localStorage.host + 'buyer_registration.php', data: {json: json}, type: 'get', success: function (data) {
+                var json = '{"id":null,"admin_id":null,"name":"' + $("input[name=\"name\"]").val() + '","company_name":"' + $("input[name=\"company_name\"]").val() + '","mobile_no":"' + $("input[name=\"mobile_no\"]").val() + '","email_id":"' + $("input[name=\"email_id\"]").val() + '","password":"' + md5 + '","active":"Y","address":null,"role_id":"3","comment":null,"pass":"' + md5 + '","now":"","action":"insert","form_type":"front_end"}';               
+              $.ajax({url: localStorage.host + 'buyer_registration.php', data: {json: json}, type: 'get', success: function (data) {
                     //console.log(data);                   
                         $('button[type="submit"]').html('Done   <i class="fa fa-check"></i>');
                          $('button[type="submit"]').removeClass('disable');
