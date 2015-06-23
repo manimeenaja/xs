@@ -122,6 +122,7 @@ E:\xstok\xstok\platforms\android\assets\www\css\flat \
 E:\xstok\xstok\platforms\android\assets\www\css\flat-ui.min.css \
 E:\xstok\xstok\platforms\android\assets\www\css\font-awesome.min.css \
 E:\xstok\xstok\platforms\android\assets\www\css\fullexpandcollapse.css \
+E:\xstok\xstok\platforms\android\assets\www\css\intlTelInput.css \
 E:\xstok\xstok\platforms\android\assets\www\css\jquery.mmenu.all.css \
 E:\xstok\xstok\platforms\android\assets\www\css\jquery.multilevelpushmenu.css \
 E:\xstok\xstok\platforms\android\assets\www\css\main.css \
@@ -219,6 +220,7 @@ E:\xstok\xstok\platforms\android\assets\www\images\fabrics.jpg \
 E:\xstok\xstok\platforms\android\assets\www\images\facebook.png \
 E:\xstok\xstok\platforms\android\assets\www\images\filter.png \
 E:\xstok\xstok\platforms\android\assets\www\images\filter_old.png \
+E:\xstok\xstok\platforms\android\assets\www\images\flags.png \
 E:\xstok\xstok\platforms\android\assets\www\images\highlight.png \
 E:\xstok\xstok\platforms\android\assets\www\images\hot.png \
 E:\xstok\xstok\platforms\android\assets\www\images\linkedin.png \
@@ -258,6 +260,7 @@ E:\xstok\xstok\platforms\android\assets\www\js\filter.js \
 E:\xstok\xstok\platforms\android\assets\www\js\flat-ui.min.js \
 E:\xstok\xstok\platforms\android\assets\www\js\fullexpandcollapse.js \
 E:\xstok\xstok\platforms\android\assets\www\js\icheck.min.js \
+E:\xstok\xstok\platforms\android\assets\www\js\intlTelInput.js \
 E:\xstok\xstok\platforms\android\assets\www\js\iscroll.js \
 E:\xstok\xstok\platforms\android\assets\www\js\jquery-1.7.2.min.js \
 E:\xstok\xstok\platforms\android\assets\www\js\jquery-ui.min.js \
@@ -284,6 +287,7 @@ E:\xstok\xstok\platforms\android\assets\www\js\responsive.js \
 E:\xstok\xstok\platforms\android\assets\www\js\scroll.js \
 E:\xstok\xstok\platforms\android\assets\www\js\slick.min.js \
 E:\xstok\xstok\platforms\android\assets\www\js\slidetounlock.js \
+E:\xstok\xstok\platforms\android\assets\www\js\utils.js \
 E:\xstok\xstok\platforms\android\assets\www\plugins\com.phonegap.plugin.mobile-accessibility \
 E:\xstok\xstok\platforms\android\assets\www\plugins\com.phonegap.plugins.PushPlugin \
 E:\xstok\xstok\platforms\android\assets\www\plugins\cordova-plugin-device \
