@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>xstok</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="xstok" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=medium-dpi,user-scalable=yes" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <script src='js/main_script.js'></script>
+        <!-- Custom Theme files -->
+        <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css" type='text/css'>
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <link rel="shortcut icon" href="favicon.ico">
+        <!-- Custom Theme files -->
+        <!----font-Awesome----->
+
+        <!----font-Awesome----->
+
+        <script type="text/javascript" src='js/jquery.min.js'></script>    
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script type="text/javascript">
+            function onBackKeyDown() {// Handle the back button
+                navigator.notification.confirm(
+                        'Are you sure want to exit?', // message
+                        function (index) {
+                            if (index == 1) {//look at the docs for this part
+                                navigator.app.exitApp();
+                            }
+                        }, // callback to invoke with index of button pressed
+                        'Exit', // title
+                        'Yes,No' // buttonLabels
+                        );
+            }
+
+            function onDeviceReady() {
+                //FastClick.attach(document.body);
+                if (device.platform == "Android") {
+                    document.addEventListener("backbutton", onBackKeyDown, false);
+                }
+
+            }  
+            
+            function onBodyLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+            //	The menu on the left
+            $(function () {
+                //show_loader();localStorage.u_
+                //console.log(localStorage.host + '../login/autologin/' + localStorage.u_ + '/' + localStorage.p_);
+                //window.location.href = localStorage.host+'../login/autologin/'+localStorage.u_+'/'+localStorage.p_;
+                $(window).scroll(function () {
+                    var window_top = $(window).scrollTop();    
+                    var div_top = $('.work-with-us').height();
+                    if(window_top>div_top) {
+                        $('.header-story ').css('background','#3F4751');
+                    } else {
+                         $('.header-story ').css('background','transparent');
+                    }
+                });
+            });
+
+        </script>
+    </head>
+    <body>
+        <div class="header-story ">
+            <a onclick="back()" style="text-align: left;padding-top: 17px;float: left;padding-left: 20px;"><i class="fa fa-angle-left fa-lg fa-2x x-white"></i></a>
+            <a style="text-align: right;padding-top: 10px;padding-right: 20px;padding-bottom: 10px;float: right;"><img src="images/logo_y.png" style="height: 35px;"></a>
+        </div>
+        <div class="row work-with-us row-cancel-margin">
+            <div class="font-family_roboto work-with-us-text ">Join the XSTOK family!</div>
+        </div>
+        <div class="sign-in-box ">
+           
+                <div class="row row-cancel-margin">
+                    <div class="col-xs-12 font-18 font-family-helvetica padding-lr-10">
+                        <br>
+                        Life at XSTOK is not a job; it’s a holistic journey that sketches the arc of your career. We reflect our core values of ownership, transparency and commitment through execution. Our work culture is fostered through the strengths of our team. <br><br>
+
+                       If you think you’ve got what it takes, we have a place for you. We’re growing fast and need resources for key roles, ranging from engineers in technology development and testing to seasoned marketing and business development executives with textile background. <br><br>
+
+                        Unleash your full potential, fulfill your aspirations, and commit yourself to success – Work with Us at XSTOK!<br><br>
+
+                       <a class="link-orange x-orange text-align-center center-block" style="font-size:28px !important;" href="mailto:careers@xstok.com?subject=XSTOK - Job Application">Apply Now</a>
+                    </div>
+                </div>
+
+
+            </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script  type="text/javascript" src='js/main_script.js'></script>   
+        <script type="text/javascript" src="js/fastclick.js"></script>
+    </body>
+</html>

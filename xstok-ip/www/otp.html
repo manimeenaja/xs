@@ -1,0 +1,285 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>xstok</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="xstok" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <script src='js/main_script.js'></script>
+        <!-- Custom Theme files -->
+        <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <link type="text/css" rel="stylesheet" href="css/jquery.mmenu.all.css" />
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <link rel="shortcut icon" href="favicon.ico">
+        <!-- Custom Theme files -->
+        <!----font-Awesome----->
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+        <!----font-Awesome----->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=medium-dpi,user-scalable=yes" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script>
+            function onBackKeyDown() {// Handle the back button
+                navigator.notification.confirm(
+                        'Are you sure want to exit?', // message
+                        function (index) {
+                            if (index == 1) {//look at the docs for this part
+                                navigator.app.exitApp();
+                            }
+                        }, // callback to invoke with index of button pressed
+                        'Exit', // title
+                        'Yes,No' // buttonLabels
+                        );
+            }
+
+            function onDeviceReady() {
+                //FastClick.attach(document.body);
+                if (device.platform == "Android") {
+                    document.addEventListener("backbutton", onBackKeyDown, false);
+                }
+
+            }  
+            
+            function onBodyLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+            if (localStorage.otp == 1) {
+                window.location.href = "signin.html";
+            }
+
+            $(document).ready(function () {                
+                $('.container').fadeIn(1000).show();               
+                $('#email_id_en').val(rc4_er(localStorage.email_id));
+                $('input[name="email_id"]').val(localStorage.email_id);
+                $('#mobile_no').val(localStorage.mobile_no);
+                $.ajax({url: localStorage.host + 'login.php', data: {email_id: localStorage.email_id, password: localStorage.p}, type: 'get', success: function (data) {
+                    localStorage.user_id = rc4_er(data['login'][0]['user_id']);
+                    localStorage.logged_in = 1;
+                    localStorage.name = data['login'][0]['name'];
+                    if(data['login'][0]['otp_use'] == 'Y') {
+                       localStorage.otp = 1;
+                    }
+                    localStorage.company_id = data['login'][0]['company_id'];
+                    localStorage.email_id = data['login'][0]['email_id'];
+                    localStorage.mobile_no = data['login'][0]['mobile_no'];
+                   add_menu ();     
+                }
+            });
+            });
+           
+  
+        </script>
+        <style>.alert{padding:15px;  margin: 10px 1.6em;border:1px solid transparent;border-radius:4px} .alert-success{color:#3c763d;background-color:#dff0d8;border-color:#d6e9c6}</style>
+    </head>
+    <body>
+        <div class="iso_blur background-image background-blur"></div>
+        <!-----container----->
+        <div class="container black_wrapper" style="display: none">
+
+
+            <!------ content ----->
+            <div class="content">
+                <div class="3-cols">
+                    <div class="col-1 col-md-3">
+                        <!---- user-profile ---->
+                        <!-- //user-profile ---->
+                        <!---- sign-in-box ---->
+                        <div id="page" class="kyc-menu opt-menu"></div>
+                        <div class="sign-in-box">
+                            <h2><img src="images/logo_y.png" style="padding-top: 40px;"></h2>
+                            <h3 class="heading-text" id="page_title" style="padding-top: 47px;">OTP verification</h3>
+                            <div class='alert alert-success' style='margin-top:10px; display: none;' id="change_mobile_success"></div>
+                           
+                            <form id="login" action="kyc.html"  data-parsley-validate novalidate>
+                                 <div class="text-boxs"> We have sent an OTP (One time password) to your registered mobile no.<br><br>Please enter the OTP below</div>
+                                <div class="text-boxs">
+                                    <span class="text-box">                                        
+                                        <input type="text" placeholder="OTP" required class="background-black" name="otp"/> 
+                                    </span>                                    
+                                </div>
+                                <button type="submit" class="sign-up-button btn btn-xstok width-100p font-20 font-family-helvetica font-weight-normal" />Verify</button>                               
+                                <a class="x-grey footer_forgot footer_forgot_button" onclick="change_mobile('mobile')">Change Mobile</a>
+                                <a class="x-grey footer_forgot footer_forgot_button" onclick="resend_otp()" style="float: right;    padding-right: 0;">Resend OTP</a>
+                                <a class="x-grey footer_forgot footer_forgot_button" id="loading_icon" style="display: none;padding: 19px 0px;float: right;"><i class="fa fa-refresh fa-spin"></i></a>
+                                <input type="hidden" name="email_id" value=""/>
+                    <input type="hidden" name="action" value="save"/>
+                    <input type="hidden" name="timer" id="timer" value="0"/>
+                            </form>
+                            <div id="change_mobile_form"  class="form-horizontal row-border form-signup" style="display: none;">
+                                <div class='alert alert-danger' style='margin-top:10px; display: none;' id="change_mobile_err" ></div>
+                                
+                                <div class="text-boxs">
+                                    <span class="text-box">                                        
+                                        <input type="text" name="mobile_no" id="mobile_no" value="" class="background-black" placeholder="Mobile No.">
+                                    </span>                                    
+                                </div>
+                                <button class="sign-up-button btn btn-xstok width-100p font-20 font-family-helvetica font-weight-normal" type="button" id="change_btn_mobile" onclick="change_mobile_ajax()">Change</button>                                
+                                <a class="x-grey footer_forgot footer_forgot_button" onclick="change_mobile('otp')">Verify OTP</a>
+                                
+                                <input type="hidden" name="email_id_en" id="email_id_en" value=""/>
+
+                            </div>
+                        </div>
+                        <!----//sign-in-box ---->
+                        <!----up-load-stats---->
+                        <!--//up-load-stats---->
+                        <!----social-tags---->
+
+                        <!--//social-tags---->
+                    </div><!----//End-col-1 ----->
+                    <!---- col-2 ----->                    
+                    <!---- col-3 ----->                    
+                    <!---- col-3 ----->
+                    <div class="clear"> </div>
+                </div>
+
+            </div>
+
+            <!---- //content ----->
+
+        </div>        
+         <script type="text/javascript" src="js/bootstrap.min.js"></script>
+          <script type="text/javascript" src="js/jquery.mobile.custom.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mmenu.js"></script>
+        <script type="text/javascript" src="js/parsley.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <!---//container----->
+        <script>
+        $("body").swiperight(function() { 
+                $("#header a").click();
+            });  
+  
+
+        </script>
+        <script type="text/javascript">
+                                    $(document).ready(function () {
+                                        setInterval('change_timer()', 1000);
+
+                                    });
+                                    function change_mobile(x) {
+                                        if (x == "mobile") {
+                                            $('#login').hide();
+                                            $('#page_title').html('Change Mobile No.');
+                                            $('#change_mobile_form').show();
+                                        } else if (x == "otp") {
+                                            $('#change_mobile_form').hide();
+                                            $('#page_title').html('OTP Verification');
+                                            $('#login').show();
+
+                                        }
+                                    }
+                                    function change_mobile_ajax() {
+                                        var mobile = $('#mobile_no').val();
+                                        localStorage.mobile_no = mobile;
+                                        var email_id_en = $('#email_id_en').val();
+                                        var err = 0;
+                                        if (mobile == "" || email_id_en == "") {
+                                            $('#change_mobile_err').html('Error!');
+                                            $('#change_mobile_err').show();
+                                        } else {
+                                            var phoneno = /^\d{10}$/;
+                                            if ((mobile.match(phoneno))) {
+                                                $('#change_mobile_err').hide();
+                                            } else {
+                                                $('#change_mobile_err').html('Enter valid mobile no.');
+                                                $('#change_mobile_err').show();
+                                                err = 1;
+                                            }
+                                            if (err == 0) {
+                                                $('#change_btn_mobile').attr('disabled', 'disabled');
+                                                 if($( '#login' ).parsley( 'isValid' )) {
+                                                $.getJSON(localStorage.host + "../ajax.php?action=change_mobile_no&mobile_no=" + mobile + "&email_id_en=" + email_id_en, function (data) {
+                                                    if (data['msg'] == 'success') {
+                                                        $('#change_btn_mobile').removeAttr('disabled', 'disabled');
+                                                        $('#change_mobile_form').hide();
+                                                        $('#change_mobile_success').html('Mobile no. changed successfully<br>OTP has been sent to your new mobile no.');
+                                                        $('#change_mobile_success').show();
+                                                        $('#page_title').html('OTP Verification');
+
+                                                        $('#login').show();
+                                                    } else if (data['msg'] == 'error') {
+                                                        $('#change_btn_mobile').removeAttr('disabled', 'disabled');
+                                                        $('#change_mobile_err').html('Error!');
+                                                        $('#change_mobile_err').show();
+
+                                                    }
+                                                });
+                                            }
+
+                                            }
+                                        }
+                                    }
+
+                                    function change_timer() {
+                                        var tim = $('#timer').val();
+                                        if (tim != 0) {
+                                            tim = parseInt(tim) - parseInt(1);
+                                            var tim_s = tim % 60;
+                                            var tim_m = (tim - tim_s) / 60;
+                                            if (tim == 0) {
+                                                $('#resend_otp_timer').hide();
+                                                $('#change_mobile_success').hide();
+                                            }
+                                            $('#resend_otp_timer').html(tim_m + ':' + tim_s);
+                                            $('#timer').val(tim);
+                                        }
+                                    }
+
+                                    function resend_otp() {
+                                        var email_id_en = $('#email_id_en').val();
+                                        if (email_id_en != "") {
+                                            if ($('#timer').val() == 0) {
+                                                $('#resend_otp_timer').show();
+                                                $('#loading_icon').show();
+                                                $('#resend_otp_timer').html('1:00');
+                                                $('#timer').val('60');
+                                                $.getJSON(localStorage.host + "../ajax.php?action=resend_otp&email_id_en=" + email_id_en, function (data) {
+                                                    if (data['msg'] == 'success') {
+                                                        $('#change_mobile_success').html('We have resent the OTP to your registered mobile no. Please wait for <span id="resend_otp_timer"></span> min before requesting again');
+                                                        $('#change_mobile_success').show();
+                                                        $('#loading_icon').hide();
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    }
+                                    $("#login").submit(function (e) {
+                                        $('button[type="submit"]').addClass('disable');
+                                        $('button[type="submit"]').html('Processing   <i class="fa fa-refresh fa-spin"></i>');
+                                        e.preventDefault();
+                                        var self = this;
+                                        var json = '{"email_id":"' + localStorage.email_id + '","otp":"' + $('input[name="otp"]').val() + '","action":"Save"}';
+                                        $.ajax({url: localStorage.host + 'otp.php', data: {json: json}, type: 'get', success: function (data) {
+                                                //console.log(logininfo);
+                                                var logininfo = JSON.parse(data);
+                                                if (logininfo.status == "Error") {
+                                                    $('button[type="submit"]').html('Verify');
+                                                    $('button[type="submit"]').removeClass('disable');
+                                                    x_alert(logininfo.msg);
+                                                } else if (logininfo.status == "Invalid") {
+                                                     $('button[type="submit"]').html('Verify');
+                                                    $('button[type="submit"]').removeClass('disable');
+                                                    x_alert(logininfo.msg);
+                                                } else {
+                                                    $('button[type="submit"]').html('Done   <i class="fa fa-check"></i>');
+                                                    $('button[type="submit"]').removeClass('disable');
+                                                    setTimeout(function () {
+                                                        self.submit();
+                                                        return false;
+                                                    }, 700);
+                                                }
+                                            },
+                                            error: function (jqXHR, textStatus, errorThrown) {
+                                              //  if (textStatus === "timeout") {
+                                                    x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                                              //  }
+                                            }
+                                        });
+                                    });
+        </script>
+    </body>
+</html>
+

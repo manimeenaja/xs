@@ -219,8 +219,11 @@ and open the template in the editor.
 
                 $('.toggle-view').on('click', function () {
                      if($('.search').hasClass('expanded')) {
-                         $('.src_icon').click();
-                         $('.search').val('');
+                        $('.src_icon').click();
+                        $('.search').val('');
+                        $('.src_icon').html('<i class="fa fa-search fa-lg x-white"></i>');
+                     } else {
+                        $('.src_icon').html('<i class="fa  fa-times fa-lg x-white"></i>');
                      }
                     
                     if ($('.toggle-view').attr('view') == 'list') {
@@ -259,10 +262,12 @@ and open the template in the editor.
                         if($('.search').hasClass('expanded')) {
                             $('.search').toggleClass('expanded');
                             $('.search').blur();
+                            $('.src_icon').html('<i class="fa fa-search fa-lg x-white"></i>');
                             $('.logo').css('visibility','visible');
                         } else {
                             $('.search').toggleClass('expanded');
                             $('.search').focus();
+                            $('.src_icon').html('<i class="fa  fa-times fa-lg x-white"></i>');
                             $('.logo').css('visibility','hidden');                            
                         }                        
                     });

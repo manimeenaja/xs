@@ -149,11 +149,13 @@ and open the template in the editor.
                                 $('.head-percentage-text').addClass('curr_per_bid_' + hash);
                                 $('.head-list-discount-text').html(reserve_price);
                                 $('.curr_per_bid_' + hash).html(reserve_price);
-                                $('.head-list-price-text').html(numberWithCommas(actual_price));
+                                $('.head-list-price-text').html(numberWithCommas(actual_price)); 
                                 if((actual_price / parseFloat(localStorage.limit_val)) < parseFloat(localStorage.emd_list_price_limit)) {
+                                    $('#emd_req').html(numberWithCommas(Math.round(actual_price / parseFloat(localStorage.limit_val))));
                                     $('#list_price_actual').html(numberWithCommas(actual_price));
                                 } else {
-                                     $('#list_price_actual').html(numberWithCommas(parseFloat(localStorage.emd_list_price_limit)*parseFloat(localStorage.limit_val)));
+                                    $('#emd_req').html(numberWithCommas(localStorage.emd_list_price_limit));
+                                    $('#list_price_actual').html(numberWithCommas(parseFloat(localStorage.emd_list_price_limit)*parseFloat(localStorage.limit_val)));
                                 } 
                                 $('.head-starting-value-text').html(discount_value);
                                 if (Math.abs(time - end_date) <= apply_golden_time) { //apply golden time checking
@@ -688,6 +690,11 @@ and open the template in the editor.
                                List Price : <i class="fa fa-inr"></i> <div class="head-list-price-text"  id="list_price_actual"></div> 
                             </div>
                         </div>                       
+                        <div class="auction-history row row-cancel-margin padding-top-5-p">
+                            <div class="col-xs-12 padding-left-10-p font-size-1-2-em">
+                              EMD Required : <i class="fa fa-inr"></i> <div class="head-list-price-text"  id="emd_req"></div> 
+                            </div>
+                        </div>                       
                         <div class="auction-history row row-cancel-margin padding-bottom-5-p padding-top-5-p ">
                             <div class="col-xs-12 padding-left-10-p  font-size-1-2-em ">
                                 Per <span class="unit">My Bid</span> : <i class="fa fa-inr head-bid-value-text-sys"></i> <div class="head-per-value-text"></div> 
@@ -776,6 +783,7 @@ and open the template in the editor.
                             $('.bid_now_button').click(function () {
                                 var first_bid = '';
                                 var bid_type = '';
+                                var dynamic_lot = $('#dd_' + $(this).attr('dynamic_lot')).attr('dynamic_lot');
                                 if ($(this).attr('bid_type') == localStorage.closed_bid_auction) {
                                     first_bid = $('#first_bid').val();
                                     bid_type = localStorage.closed_bid_auction;
@@ -784,14 +792,17 @@ and open the template in the editor.
                                     bid_type = 'All';
                                 } else {
                                     first_bid = $('.bid-now-select option:selected').attr('cal_val');
-                                    if (first_bid.indexOf(",") >= 0) {
-                                        first_bid = first_bid.replace(/,/g, "");
+                                    if(typeof first_bid != 'undefined') {
+                                        if (first_bid.indexOf(",") >= 0) {
+                                            first_bid = first_bid.replace(/,/g, "");
+                                        }
+                                        first_bid = parseFloat(first_bid);
+                                        bid_type = 'All';
+                                    } else {
+                                        $('.msg_' + dynamic_lot).hide().html(localStorage.bid_select_error__).fadeIn().delay(2000).fadeOut('slow');
                                     }
-                                    first_bid = parseFloat(first_bid);
-                                    bid_type = 'All';
                                 }
-
-                                var dynamic_lot = $('#dd_' + $(this).attr('dynamic_lot')).attr('dynamic_lot');
+                                
                                 var dynamic_room = $('#dd_' + $(this).attr('dynamic_lot')).attr('dynamic_room');
                                 var dynamic_min_user = $('#dd_' + $(this).attr('dynamic_lot')).attr('dynamic_min_user');
                                 var dynamic_r_price = $('#dd_' + $(this).attr('dynamic_lot')).attr('dynamic_r_price');

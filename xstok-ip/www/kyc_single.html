@@ -1,0 +1,277 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>xstok</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="xstok" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <script src='js/main_script.js'></script>
+        <!-- Custom Theme files -->
+        <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+         <link rel="stylesheet" href="css/intlTelInput.css">
+        <link type="text/css" rel="stylesheet" href="css/jquery.mmenu.all.css" />
+        <link href="css/flat-ui.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <link rel="shortcut icon" href="favicon.ico">
+        <!-- Custom Theme files -->
+        <!----font-Awesome----->
+
+        <!----font-Awesome----->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=medium-dpi,user-scalable=yes" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script>
+            if (localStorage.logged_in == 1) {
+                // window.location.href = "search_result.html";
+            }
+            $(document).ready(function () {
+                $('.container').fadeIn(1000).show();
+                add_menu ();
+                console.log(localStorage.user_id);
+                $.ajax({url: localStorage.host + 'buyer_profile_select.php?id=' + rc4_dr(localStorage.user_id), data: {}, type: 'get', success: function (data) {
+                        console.log(data['msg']);
+                        $('input[name="company_name"]').val(localStorage.company_name);
+                        $('input[name="name"]').val(data['msg'][0]['name']);
+                        $('input[name="mobile_no"]').val(data['msg'][0]['mobile_no']);
+                        $('input[name="email_id"]').val(data['msg'][0]['email_id']);
+                        $('input[name="job_title"]').val(data['msg'][0]['title']);
+                        $('input[name="department"]').val(data['msg'][0]['department']);
+                        $('#business_type option[value="' + data['msg'][0]['business_type'] + '"]').prop('selected', true);
+                        $('#nature_business_type option[value="' + data['msg'][0]['nature_business_type'] + '"]').prop('selected', true);
+                        $('#company_address').html(data['msg'][0]['company_address']);
+                        $('input[name="pan_no"]').val(data['msg'][0]['pan_no']);
+                        $('input[name="cst_no"]').val(data['msg'][0]['cst_no']);
+                        var type = data['msg'][0]['dealing_product'].split(',');
+                        localStorage.interested_category = data['msg'][0]['dealing_product'];
+                        $.each(type,function(i,item) {
+                            $('.checkbox'+item).prop('checked',true);
+                        }); 
+                         $('[data-toggle="checkbox"]').radiocheck();
+                        $('[data-toggle="radio"]').radiocheck();
+                        $("input[type='checkbox']").change(function () {
+                            var interested_category = [];
+                            $('input[type="checkbox"]').each(function () {
+                                if ($(this).is(":checked")) {
+                                    interested_category.push($(this).attr('value'));
+                                }
+                            });
+                            localStorage.interested_category = interested_category;
+                        });
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                     //   if (textStatus === "timeout") {
+                            x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                      //  }
+                    }
+                });
+            });
+          
+  
+        </script>
+    </head>
+    <body>
+        <div class="iso_blur background-image background-blur"></div>
+        <!-----container----->
+        <div class="container black_wrapper " style="display: none">
+
+
+            <!------ content ----->
+            <div class="content">
+                <div class="3-cols">
+                    <div class="col-1 col-md-3">
+                        <!---- user-profile ---->
+                        <!-- //user-profile ---->
+                        <!---- sign-in-box ----> 
+                        <div id="page" class="kyc-menu"></div>
+                        <div class="sign-in-box kyc-form">
+                            <h2><img src="images/logo_y.png"></h2>
+                            <div class="row row-cancel-margin">
+                                <nav>
+                                    <ul class="pager">
+                                        <li class="mobile-tab-title"><i class="fa fa-pencil"></i>  Buyer Profile</li>
+                                    </ul>
+                                </nav>
+                            </div>                           
+                            <form id="login" action="kyc_c.html"  data-parsley-validate novalidate>
+                                <div class="text-boxs">
+                                    <span class="text-box">
+                                        <span class="x-required">*</span>
+                                        <input type="text" placeholder="Name" required="required" class="form-control  background-black input-sm" name="name"/> 
+                                    </span>
+                                    <span class="text-box">
+                                        <span class="x-required">*</span>
+                                        <input type="text" placeholder="Company/Firm Name" required class="form-control  background-black input-sm" name="company_name"/> 
+                                    </span>
+                                    <span class="text-box">  
+                                        <span class="x-required">*</span>
+                                        <input type="text"  pattern="^[0-9+/ /]*$" id="mobile_no" placeholder="Mobile Number" required class=" form-control  background-black input-sm" name="mobile_no"  maxlength="16"/>
+                                    </span>
+                                    <!--<span class="text-box">                                         
+                                        <input type="text" placeholder="Phone Number" class=" form-control  background-black input-sm" name="phone_no" maxlength="10"/> 
+                                    </span>-->
+                                    <span class="text-box"> 
+                                        <span class="x-required">*</span>
+                                        <input type="email" readonly="" placeholder="Email" required class=" form-control  background-black input-sm" name="email_id"/> 
+                                    </span> 
+                                     <span class="text-box">    
+                                        <span class="x-required" style="">*</span>
+                                        <select class="form-control parsley-validated" required="" id="business_type" name="business_type" style="width: 100%;" >
+                                            <option value="">Select Business Type</option>
+                                            <option value="1">Company</option>
+                                            <option value="2">Partnership</option>
+                                            <option value="3">Proprietary</option> 
+                                        </select> 
+                                    </span>
+                                    <span class="text-box">
+                                        <span class="x-required" style="">*</span>
+                                        <select class="form-control parsley-validated" required="" id="nature_business_type" name="nature_business_type" style="width: 100%;" >
+                                            <option value="">Select Nature of Business</option>
+                                            <option value="1">Dealer/Distributor</option>
+                                            <option value="2">Manufacturer</option>
+                                            <option value="3">Retailer</option>
+                                            <option value="4">Trader</option>
+                                            <option value="5">Others</option>
+                                        </select>
+                                    </span>                                   
+                                    <span class="text-box" style="border: none;">                                        
+                                        <textarea id="company_address" placeholder="Company Address" class=" form-control  background-black input-sm" name="company_address" style="width: 100%;" /></textarea> 
+                                    </span>
+                                    <span class="text-box">
+                                        <span class="x-required" style="">*</span>
+                                        <input type="text" placeholder="PAN" class="form-control  background-black input-sm" name="pan_no" pattern="([A-Za-z]{5}[0-9]{4}[A-Za-z]{1})$" /> 
+                                    </span>
+                                    <span class="text-box">                                        
+                                        <input type="text" placeholder="CST/VAT No" class=" form-control  background-black input-sm" name="cst_no"/> 
+                                    </span>
+                                    <span class="x-black font-18">Dealing in which category</span> 
+                                    <label class="checkbox" for="home_textiles"><input type="checkbox" name="dealing_product[]" id="home_textiles" value="1" class="checkbox1"  data-toggle="checkbox">Home Textiles</label>
+                                    <label class="checkbox" for="apparels"><input type="checkbox" name="dealing_product[]" id="apparels"  class="checkbox3" value="3" data-toggle="checkbox">Apparels</label>
+                                    <label class="checkbox" for="yarns"><input type="checkbox" name="dealing_product[]" id="yarns"  value="4" class="checkbox4"  data-toggle="checkbox">Yarns</label>
+                                    <label class="checkbox" for="fabrics"><input type="checkbox" name="dealing_product[]" id="fabrics" value="7" class="checkbox7" data-toggle="checkbox">Fabrics</label>                                  
+                                </div>
+                                <button type="submit" class="btn btn-xstok width-100p font-20 font-family-helvetica font-weight-normal" />Finish</button>
+                            </form>                            
+                        </div>
+                        <!----//sign-in-box ---->
+                        <!----up-load-stats---->
+                        <!--//up-load-stats---->
+                        <!----social-tags---->
+
+                        <!--//social-tags---->
+                    </div><!----//End-col-1 ----->
+                    <!---- col-2 ----->                    
+                    <!---- col-3 ----->                    
+                    <!---- col-3 ----->
+                    <div class="clear"> </div>
+                </div>
+
+            </div>
+
+            <!---- //content ----->
+
+        </div>        
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+         <script type="text/javascript" src="js/jquery.mobile.custom.min.js"></script>         
+        <script type="text/javascript" src="js/flat-ui.min.js"></script>
+        <script type="text/javascript" src="js/intlTelInput.js"></script>
+     <script type="text/javascript" src="js/utils.js"></script>
+        <script type="text/javascript" src="js/jquery.mmenu.js"></script>
+        <script type="text/javascript" src="js/jquery.md5.js"></script>
+        <script type="text/javascript" src="js/parsley.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+
+        <!---//container----->
+        <script>
+        $("body").swiperight(function() { 
+                $("#header a").click();
+            });  
+  
+
+        </script>
+        <script type="text/javascript">
+            $("#mobile_no").intlTelInput({                autoFormat: true,
+                //autoHideDialCode: true,
+               //nationalMode: true,
+              // responsiveDropdown: true,
+               utilsScript: "js/utils.js"
+           });
+            $('.icon').hover(function () {
+                $('.password').attr('type', 'text');
+                $('.show').removeClass('fa-eye');
+                $('.show').addClass('fa-eye-slash');
+            }, function () {
+                $('.password').attr('type', 'password');
+                $('.show').addClass('fa-eye');
+                $('.show').removeClass('fa-eye-slash');
+            });
+            $("#login").submit(function (e) {
+                 if($( '#login' ).parsley( 'isValid' )) {
+                $('button[type="submit"]').addClass('disable');
+                $('button[type="submit"]').html('Processing   <i class="fa fa-refresh fa-spin"></i>');
+                e.preventDefault();
+                var self = this;
+               // var json = '{"id":"' + rc4_dr(localStorage.user_id) + '","email_id":"' + $('input[name="email_id"]').val() + '","admin_id":"' + rc4_dr(localStorage.user_id) + '","name":"' + $('input[name="name"]').val() + '","mobile_no":"' + $('input[name="mobile_no"]').val() + '","phone_no":"' + $('input[name="phone_no"]').val() + '","title":"' + $('input[name="job_title"]').val() + '","department":"' + $('input[name="department"]').val() + '","active":"Y","role_id":"3","action":"update","form_type":"FrontEnd"}';
+                
+               //http://192.168.0.13/webservices/buyer_profile_update.php?json={"id":"7","company_id":"6","name":"Satish Navik","company_name":"ABC","mobile_no":"9833328589","email_id":"satish@centerac.com","company_address":"testing","business_type":"1","nature_business_type":"2","pan_no":"ACCPP8878R","cst_no":"ERT001","dealing_product":"3,7","now":"2015-06-04 12:29:59","action":"update","registration_type":"Buyer"}
+               //var date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+               var date;
+               date = new Date();
+               date = date.getFullYear() + '-' +
+                       ('00' + (date.getMonth()+1)).slice(-2) + '-' +
+                       ('00' + date.getDate()).slice(-2) + ' ' + 
+                       ('00' + date.getHours()).slice(-2) + ':' + 
+                       ('00' + date.getMinutes()).slice(-2) + ':' + 
+                       ('00' + date.getSeconds()).slice(-2);
+                var json = '{"id":"' + rc4_dr(localStorage.user_id) + '","company_id":"'+localStorage.company_id+'","email_id":"' + $('input[name="email_id"]').val() + '","company_name":"' + $('input[name="company_name"]').val() + '","admin_id":"' + rc4_dr(localStorage.user_id) + '","name":"' + $('input[name="name"]').val() + '","pan_no":"' + $('input[name="pan_no"]').val() + '","mobile_no":"' + $('input[name="mobile_no"]').val() + '","company_address":"' + $('#company_address').val() + '","business_type":"' + $('#business_type :selected').val() + '","nature_business_type":"' + $('#nature_business_type :selected').val() + '","cst_no":"' + $('input[name="cst_no"]').val() + '","dealing_product":"'+localStorage.interested_category+'","now":"'+date+'","action":"update","registration_type":"Buyer"}';
+                console.log(json);
+               $.ajax({url: localStorage.host + 'buyer_profile_update.php', data: {json: json}, type: 'get', success: function (data) {
+                        $('button[type="submit"]').html('Done   <i class="fa fa-check"></i>');
+                        $('button[type="submit"]').removeClass('disable');
+                        setTimeout(function () {
+                           self.submit();
+                           return false;
+                        }, 700);
+                        //console.log(data);                   
+                        // self.submit();
+                        //  return false;                    
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                      //  if (textStatus === "timeout") {
+                            x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                       // }
+                    }
+                });
+            }
+            });
+            function onBackKeyDown() {// Handle the back button
+                navigator.notification.confirm(
+                        'Are you sure want to exit?', // message
+                        function (index) {
+                            if (index == 1) {//look at the docs for this part
+                                navigator.app.exitApp();
+                            }
+                        }, // callback to invoke with index of button pressed
+                        'Exit', // title
+                        'Yes,No' // buttonLabels
+                        );
+            }
+
+            function onDeviceReady() {
+                //FastClick.attach(document.body);
+                if (device.platform == "Android") {
+                    document.addEventListener("backbutton", onBackKeyDown, false);
+                }
+
+            }  
+            
+            function onBodyLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+        </script>
+    </body>
+</html>
+

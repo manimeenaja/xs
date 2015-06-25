@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>XSTOK</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=medium-dpi,user-scalable=yes" />
+        <link type="text/css" rel="stylesheet" href="css/jquery.mmenu.all.css" />
+        <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/eventCalendar.css">
+        <link rel="stylesheet" href="css/eventCalendar_theme_responsive.css">
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+<link rel="shortcut icon" href="favicon.ico">
+        <script src='js/jquery.min.js'></script>        
+        <script src='js/jquery-ui.min.js'></script>   
+        <script type="text/javascript">
+            //	The menu on the left
+            function onBackKeyDown() {// Handle the back button
+                navigator.notification.confirm(
+                        'Are you sure want to exit?', // message
+                        function (index) {
+                            if (index == 1) {//look at the docs for this part
+                                navigator.app.exitApp();
+                            }
+                        }, // callback to invoke with index of button pressed
+                        'Exit', // title
+                        'Yes,No' // buttonLabels
+                        );
+            }
+
+            function onDeviceReady() {
+                //FastClick.attach(document.body);
+                if (device.platform == "Android") {
+                    document.addEventListener("backbutton", onBackKeyDown, false);
+                }
+
+            }  
+            
+            function onBodyLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+            $(function () {
+                $('.container').fadeIn(1000).show();
+            });</script>
+        <style type="text/css">
+            .btn-twitter {
+                padding-left: 30px;
+                background: rgba(0, 0, 0, 0) url(https://platform.twitter.com/widgets/images/btn.27237bab4db188ca749164efd38861b0.png) -20px 9px no-repeat;
+            }
+            .btn-twitter:hover {
+                background-position:  -21px -16px;
+            }
+        </style>
+    </head>
+    <body class="">
+
+
+        <div class="container" >
+            <div class="top-header x-orange-background">
+                <!----script-for-sidepanle-nav----> 
+                <!--//script-for-sidepanle-nav---->
+                <div id="page">
+
+                </div>
+                <div class="logo line-height-1-8">Calendar</div>
+                <!---usernotifications---->
+                <div class="usernotifications">
+
+                </div>
+                <div class="clear"> </div>
+                <!--//usernotifications---->
+            </div>
+
+            <div class="calendar-body">
+                <div id="auction_calendar"></div>
+            </div>
+
+
+        </div>        
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile.custom.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mmenu.js"></script>
+        <script type="text/javascript" src="js/classie.js"></script>
+        <script type="text/javascript" src="js/jquery.eventCalendar.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" src='js/main_script.js'></script>     
+        <script type="text/javascript" src="js/fastclick.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script>
+            $("body").swiperight(function() { 
+                $("#header a").click();
+            });  
+  
+            //x_alert(localStorage.search_category_name);
+            function onBodyLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+
+            function onDeviceReady() {
+                FastClick.attach(document.body);
+            }
+            $(document).ready(function () {
+                var windowHeight = $(window).height();
+                var windowWidth = $(window).width();
+                /*$('.list-row').height($('.list-image').innerWidth());
+                 $('.list-image-body').height($('.list-image-body').innerWidth());
+                 $('.list-body').height($('.list-image-body').innerWidth());*/
+                $('.calendar-body').height(windowHeight - $('.top-header').height() - 56);
+
+                add_menu('calendar');
+                $("#auction_calendar").eventCalendar({
+                    eventsjson: localStorage.host + '../classes/buyer_dashboard.class.php?action=buyer_auction_calendar_event&user_id=' + localStorage.user_id + '&type=html', // link to events json
+                    showDescription: true,
+                    eventsLimit:50
+                });
+                $('time').remove();
+
+
+            });
+
+        </script>
+
+    </body>
+</html>

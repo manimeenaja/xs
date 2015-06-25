@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>XSTOK</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=medium-dpi,user-scalable=yes" />
+        <link type="text/css" rel="stylesheet" href="css/jquery.mmenu.all.css" />
+        <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <link href="css/flat-ui.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+        <!-- <link href="css/slick.css" rel='stylesheet' type='text/css' />
+         <link href="css/slick-theme.css" rel='stylesheet' type='text/css' />-->
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <link rel="shortcut icon" href="favicon.ico">
+
+
+
+        <script type="text/javascript">
+            //	The menu on the left
+
+        </script>
+    </head>
+    <body onload="loaded()">
+
+
+        <div class="container" >
+            <div class="top-header x-orange-background" style="position: fixed;">
+                <!----script-for-sidepanle-nav----> 
+                <!--//script-for-sidepanle-nav---->
+                <div id="page">
+
+                </div>
+                <div class="logo line-height-1-8">
+                    My Account
+                </div>
+                <!---usernotifications---->
+                <div class="usernotifications">
+                    <ul class="user-profile list-unstyled">
+                        <li style="padding: 11px;margin-right: 10px;display: none;">
+                            Bid Limit ₹ <span class="bid-limit">-</span>
+                        </li>                       
+                    </ul>
+                </div>
+                <div class="clear"> </div>
+                <!--//usernotifications---->
+            </div>
+            <div class="overlay-loader" style="display: none "><div class="loader">Loading...</div></div>
+            <div class="overlay" style="display: none "></div>
+            <div class="main-div">
+                <div class="dashborad-header " >
+                    <div class="dashborad-image" style="display: none "></div>
+                    <div class="dashborad-about" style="display: none ">
+                        <div class="dashborad-display-image" >
+                            <img class="img-circle profile-image-img" alt="Profile Picture" width="304" height="236">
+                        </div>
+                        <div class="dashborad-name"></div><a href="kyc_c.html" class="padding-lr-10 x-grey"><i class="fa fa-pencil"></i></a>
+                        <div class="dashborad-level hide">Level: <span class="rating-text">Premium</span> <span class="rating-star"></span></div>
+                    </div>
+                </div>
+                <div id='wrapper' class="slider slider-nav" style="visibility: hidden" >
+                    <div id="scroller">
+                        <ul id="thelist">                    
+                            <li class="menu-item-dashborad active-auc" value="dashboard" alt="active-auc"><h3>Active Auctions</h3></li>
+                            <li class="menu-item-dashborad auction" value="dashboard" alt="auction"><h3>Auctions Won</h3></li>
+                            <li class="menu-item-dashborad watchlist" value="dashboard" alt="watchlist-t"><h3>Watchlist</h3></li>
+                            <li class="menu-item-dashborad" value="buyer_dashboard"><h3>Auction History</h3></li>
+                            <li class="menu-item-dashborad" value="transactions"><h3>Transactions</h3></li>
+                            <li class="menu-item-dashborad buyer_emd_details"  value="buyer_emd_details"><h3>EMD Details</h3></li>
+                           
+                            <li class="menu-item-dashborad notification" value="notifications"><h3>Notifications</h3></li>
+                            <!-- <li class="menu-item-dashborad" value="buyer_manage_alerts"><h3>Manage Notifications</h3></li>-->
+                           
+                            <!--<li class="menu-item-dashborad" value="dashboard" alt="tickets"><h3>Tickets</h3></li>
+                            <li class="menu-item-dashborad" value="buyer_inspection"><h3>Trade Service</h3></li>
+                            <li class="menu-item-dashborad" value="feedback" ><h3>Feedback</h3></li>
+                            <li class="menu-item-dashborad" value="buyer_subscription"><h3>Subscription</h3></li>-->
+                        </ul>
+                    </div>
+                </div>
+                <div class="slider slider-for dashbody" style="visibility: hidden">
+                    <div class='swipe'></div>
+                    <div class="item-dashborad hidden active-auc">
+                        <div class="dashborad-text"><i class="fa fa-gavel"></i> Active Auctions <span class="active_auction-count"></span></div>
+                        <table class="table active_auction">
+                            <thead>
+                                <tr>
+                                    <th class="">ID</th>
+                                    <th class="">Title</th>
+                                    <th class="">Current Bid <i class="fa fa-inr"></i></th>
+                                    <th class="">Status</th>                                            
+                                    <th class="">Time Left</th>                                            
+                                </tr>
+                            </thead>
+                            <tbody class="active_auction_table"><tr><td colspan="3"><i class="fa fa-refresh fa-spin"></i></td></tr></tbody>
+                        </table>
+                    </div>
+                    <div class="item-dashborad hidden auction">
+                        <div class="dashborad-text"><i class="fa fa-trophy"></i> Auctions Won <span class="total_auction_won-count"></span></div>
+                        <table class="table active_auction">
+                            <thead>
+                                <tr>
+                                    <th class="">ID</th>
+                                    <th class="">Winning Price</th>
+                                    <th class="">VAT</th>
+                                    <th class="">Shipping Cost</th>
+                                    <th class="">Status</th>            
+                                </tr>
+                            </thead>
+                            <tbody class="total_auction_won"><tr><td colspan="3"><i class="fa fa-refresh fa-spin"></i></td></tr></tbody>
+                        </table>
+                    </div>
+                    <div class="item-dashborad hidden watchlist-t">
+                        <div class="dashborad-text"><i class="fa fa-heart"></i> Watchlist <span class="watchlist-count"></span></div>
+                        <table class="table active_auction">
+                            <thead>
+                                <tr>
+                                    <th class="">ID</th>
+                                    <th class="">Name</th>
+                                    <th class="">Current Bid <i class="fa fa-inr"></i></th>
+                                    <th class="">Status</th>                                            
+                                    <th class="">Time Left</th>                                            
+                                </tr>
+                            </thead>
+                            <tbody class="wishlist_auction_table"><tr><td colspan="3"><i class="fa fa-refresh fa-spin"></i></td></tr></tbody>
+                        </table>
+                    </div>
+
+                    <div class="item-dashborad hidden tickets">
+                        <div class="dashborad-text"><i class="fa fa-tag"></i> Tickets <span class="dispute_table-count"></span></div>
+                        <table class="table active_auction">
+                            <thead>
+                                <tr>
+                                    <th class="">ID</th>
+                                    <th class="">Order No</th>
+                                    <th class="">Order Date</th>
+                                    <th class="">Dispute Type</th>                                            
+                                    <th class="">Status</th>                                            
+                                </tr>
+                            </thead>
+                            <tbody class="dispute_table"><tr><td colspan="3"><i class="fa fa-refresh fa-spin"></i></td></tr></tbody>
+                        </table>
+                    </div>                
+                    <div class="item-dashborad hidden notifications">
+                        <div class="dashborad-text"><i class="fa fa-lightbulb-o"></i> Notifications <span class="notifications-count"></span><span class="keep-on-right" onclick="manage_noti()"><i class="fa fa-cogs"></i> <span class="font-10">Manage Notifications</span></span></div>
+                        <table class="table active_auction font-size-1-2-em">
+                            <thead>
+                                <tr>
+                                    <th class="" colspan="2">Notification</th>
+                                </tr>
+                            </thead>
+                            <tbody class="notification_table"><tr><td colspan="3"><i class="fa fa-refresh fa-spin"></i></td></tr></tbody>
+                        </table>
+                        <div class="row manage_noti menu-body" style="display: none">
+                            <div class="dashborad-text"><i class="fa fa-exclamation"></i> Manage Alerts <span class="buyer_emd_details-count"></span></div>
+                        <div class="category_list"></div>
+                        <div class="category_submt"><a class="btn btn-success margin-top-5" onclick="add_alerts()">Submit</a></div>
+                        </div>
+                    </div>
+                    <div class="item-dashborad hidden buyer_dashboard">
+                        <div class="dashborad-text"><i class="fa fa-history"></i> Auction History <span class="active_auction_table-count"></span></div>
+                        <table class="table active_auction">
+                            <thead>
+                                <tr>
+                                    <th class="">ID</th>
+                                    <th class="">Title</th>
+                                    <th class="">My Bid</th>
+                                    <th class="">Current Bid <i class="fa fa-inr"></i></th>
+                                    <th class="">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="buyer_dashboard_t"></tbody>
+                        </table>
+                    </div>
+                    <div class="item-dashborad hidden transactions">
+                        <div class="dashborad-text"><i class="fa fa-credit-card"></i> Transactions <span class="data_ary-count"></span></div>
+                        <table class="table active_auction">
+                            <thead>
+                                <tr>
+                                    <th class="">Order ID</th>
+                                    <th class="">Auction ID</th>
+                                    <th class="">Order Date</th>
+                                    <th class="">Total Amount</th>
+                                    <th class="">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="data_ary"><tr><td colspan="3"><i class="fa fa-refresh fa-spin"></i></td></tr></tbody>
+                        </table>
+                    </div>                
+                    <div class="item-dashborad hidden buyer_inspection">
+                        <div class="dashborad-text"><i class="fa fa-list-alt"></i> Inspection List <span class="inspection_listing-count"></span><span class="inspection_listing-lodge" onclick="show_lodge()">Lodge Inspection</span></div>
+                        <table class="table active_auction inspection_listing_table">
+                            <thead>
+                                <tr>
+                                    <th class="">Auction ID</th>
+                                    <th class="">Company Name</th>
+                                    <th class="">Date</th>
+                                    <th class="">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="inspection_listing"><tr><td colspan="3"><i class="fa fa-refresh fa-spin"></i></td></tr></tbody>
+                        </table>
+                        <div class="lodge" style="display: none;">
+                            <div class="row row-cancel-margin padding-tb-10">
+                                <div class="col-xs-4">Company Name</div>
+                                <div class="col-xs-8">
+                                    <select id="company-list" class="form-control input-sm"></select>
+                                </div>
+                            </div>
+                            <div class="row row-cancel-margin padding-tb-10">
+                                <div class="col-xs-4">Auction Id</div>
+                                <div class="col-xs-8"><input required="" type="text" value="" id="auction_id" name="auction_id" class="form-control input-sm"></div>
+                            </div>
+                            <div class="row row-cancel-margin padding-tb-10">
+                                <div class="col-xs-4">Description</div>
+                                <div class="col-xs-8"><textarea required="" id="description" name="description" class="form-control input-sm"></textarea></div>
+                            </div>
+                            <div class="row row-cancel-margin padding-tb-10 text-align-center">
+                                <div class="col-xs-6"><a onclick="send_lodge()" class="btn btn-primary"><i class="fa fa-envelope"></i> Submit</a></div>
+                                <div class="col-xs-6"><a onclick="hide_lodge()" class="btn btn-danger"><i class="fa fa-times"></i> Cancel</a></div>
+                            </div>
+                        </div>
+                        <div class="lodge_detail" style="display: none;">
+                            <div class="row row-cancel-margin padding-tb-10">
+                                <div class="col-xs-4">Company Name</div>
+                                <div class="col-xs-8 company-list"></div>
+                            </div>
+                            <div class="row row-cancel-margin padding-tb-10">
+                                <div class="col-xs-4">Auction Id</div>
+                                <div class="col-xs-8 auction_id"></div>
+                            </div>
+                            <div class="row row-cancel-margin padding-tb-10">
+                                <div class="col-xs-4">Description</div>
+                                <div class="col-xs-8 description"></div>
+                            </div>
+                            <div class="row row-cancel-margin padding-tb-10">
+                                <div class="col-xs-4">Inspection Status</div>
+                                <div class="col-xs-8 inspection_status"></div>
+                            </div>
+                            <div class="row row-cancel-margin padding-tb-10 text-align-center">
+                                <div class="col-xs-6"><a onclick="hide_lodge_detail()" class="btn btn-danger"><i class="fa fa-times"></i> Cancel</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-dashborad hidden buyer_emd_details">
+                        <div class="dashborad-text"><i class="fa fa-inr"></i> Earnest Money Deposit (EMD) <span class="buyer_emd_details-count"></span></div>
+                        <div class="row row-cancel-margin">All interested registered buyers shall be required to deposit in advance non-interest bearing EMD with XSTOK before participating in the e-Auction</div>
+                        <div class="row row-cancel-margin padding-tb-10"><a class="menu-click btn btn-info input-sm add-emd-button-menu btn-xstok" text="add-emd" style="width: 100%; font-size: 1em;"><i class="fa fa-plus"></i> Add EMD</a></div>
+                        <div class="balance-emd">Balance EMD: <i class="fa fa-inr"></i> <span class="emd-bal"></span></div>
+                        <div class="token-emd hide">Bid Limit: <span class="bid-limit">450000</span></div>                        
+                        <div class="buyer_emd_details-t" style="border: 1px solid #aaa;">
+                            <i class="fa fa-refresh fa-spin"></i>                         
+                        </div>                        
+                        <div class="row row-cancel-margin padding-tb-10" style="margin-bottom: 10px;">                            
+                            <div class="col-xs-6"><a class="menu-click btn btn-danger input-sm refund-emd-button-menu x-grey-background bottom-button" text="refund-emd" style=" width: 100%;"><i class="fa fa-money" ></i> Refund EMD</a></div>
+                            <div class="col-xs-6"><a onclick="buyer_emd_history_detail()" class="btn btn-sm btn-success input-sm refund-emd-button x-light-grey-background bottom-button x-grey" style=" width: 100%;"><i class="fa fa-download"></i> Excel Download</a></div>
+                        </div>
+
+                        <div class="row add-emd menu-body" style="display: none">
+                            <h2 class="emd-head ">Add EMD <span  class="close_emd_refund" style="float:right"><i class="fa fa-times"></i></span></h2>
+                            <div class="col-xs-offset-1 col-xs-6">
+                                <input type="text" class="form-control display-inline input-sm" maxlength="7" id="add-emd" placeholder="Enter EMD">
+                            </div>
+                            <div class="col-xs-offset-1 col-xs-4">
+                                <a class="btn btn-info input-sm add-emd-button x-grey-background"><i class="fa fa-plus"></i> Add EMD</a>
+                            </div>
+                        </div>
+                        <div class="row row-cancel-margin refund-emd menu-body" style="display: none">
+                            <h2 class="emd-head ">Refund EMD <span  class="close_emd_refund" style="float:right"><i class="fa fa-times"></i></span></h2>
+                            <div class="col-xs-offset-1 col-xs-6">
+                                <input type="text" class="form-control display-inline input-sm" maxlength="7" id="refund-emd" placeholder="Enter Refund EMD">
+                            </div>
+                            <div class="col-xs-offset-1 col-xs-4">
+                                <a class="btn btn-danger input-sm refund-emd-button x-red-background"><i class="fa fa-money"></i> Refund EMD</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-dashborad hidden buyer_manage_alerts">
+                        <div class="dashborad-text"><i class="fa fa-exclamation"></i> Manage Alerts <span class="buyer_emd_details-count"></span></div>
+                        <div class="category_list"></div>
+                        <div class="category_submt"><a class="btn btn-success margin-top-5" onclick="add_alerts()">Submit</a></div>
+                    </div>
+                    <div class="item-dashborad hidden feedback">
+                        <div class="dashborad-text"><i class="fa fa-thumbs-o-up"></i> Feedback</div>
+                        <form id="feedback">
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" class="form-control" id="subject" placeholder="Enter Subject">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea class="form-control" id="message" placeholder="Enter Your Messahe"></textarea>
+                            </div>    
+                            <button type="submit" class="btn btn-inverse" />Submit</button>
+                        </form>
+                    </div>
+                    <div class="item-dashborad hidden buyer_subscription">
+                        <div class="dashborad-text"><i class="fa fa-link"></i> Subscription</div>
+                        <table class="table active_auction">                        
+                            <tbody class="subscription">
+                                <tr><td>Annual Fee</td><td class="af"><i class="fa fa-refresh fa-spin"></i></td></tr>
+                                <tr><td>Start Date</td><td class="sd"><i class="fa fa-refresh fa-spin"></i></td></tr>
+                                <tr><td>End Date</td><td class="ed"><i class="fa fa-refresh fa-spin"></i></td></tr>
+                                <tr><td>Annual Free Type</td><td class="aft"><i class="fa fa-refresh fa-spin"></i></td></tr>
+                            </tbody>
+                        </table>
+                        <a class="btn btn-danger">Pay Subscription</a>
+
+                    </div>
+                </div>
+            </div>
+            
+        </div>        
+        <script type="text/javascript" src='js/jquery.min.js'></script>    
+        <script type="text/javascript" src="js/flat-ui.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile.custom.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mmenu.js"></script>
+        <script type="text/javascript" src="js/iscroll.js"></script>
+        <script type="text/javascript" src="js/classie.js"></script>
+        <script type="text/javascript" src='js/main_script.js'></script>
+        <script type="text/javascript" src="js/fastclick.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script>
+            
+            $('.close_emd_refund').click(function () {
+                 close_emd_refund ();
+            });
+                            $(".swipe").swiperight(function () {
+                                $("#header a").click();
+                            });
+                            $('.menu-item-dashborad').on('click', function () {
+                                $('.menu-item-dashborad').removeClass('active-auction');
+
+                                $(this).addClass('active-auction');
+
+                                var func = $(this).attr("value") + '()';
+                                $('.item-dashborad ').addClass('hidden');
+                                if ($(this).attr("value") != 'dashboard') {
+                                    $('.' + $(this).attr("value")).removeClass('hidden').fadeIn();
+                                } else {
+                                    $('.' + $(this).attr("alt")).removeClass('hidden').fadeIn();
+                                }
+                                $('#wrapper').scrollLeft($(this).width());
+                                //console.log(typeof myScroll.scrollToElement);
+                                if (typeof myScroll.scrollToElement == 'function') {
+                                  //  myScroll.scrollToElement(document.querySelector('#thelist li[value="' + $(this).attr("value") + '"'), 1000);
+                                }
+                                setTimeout(func, 0);
+                            });
+                            //x_alert(localStorage.search_category_name);
+                            function onBackKeyDown() {// Handle the back button
+                                navigator.notification.confirm(
+                                        'Are you sure want to exit?', // message
+                                        function (index) {
+                                            if (index == 1) {//look at the docs for this part
+                                                navigator.app.exitApp();
+                                            }
+                                        }, // callback to invoke with index of button pressed
+                                        'Exit', // title
+                                        'Yes,No' // buttonLabels
+                                        );
+                            }
+
+                            function onDeviceReady() {
+                                //FastClick.attach(document.body);
+                                if (device.platform == "Android") {
+                                    document.addEventListener("backbutton", onBackKeyDown, false);
+                                }
+
+                            }
+                            function feedback() {
+
+                            }
+
+                            function onBodyLoad() {
+                                document.addEventListener("deviceready", onDeviceReady, false);
+                            }
+                            add_menu('dashboard');
+                            function onBodyLoad() {
+                                document.addEventListener("deviceready", onDeviceReady, false);
+                            }
+
+                            function show_lodge() {
+                                $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'get_supplier_company_list', type: 'webservice'}, type: 'get', success: function (data) {
+
+                                        var logininfo = JSON.parse(data);
+                                        var list = '';
+                                        $.each(logininfo, function (index, name) {
+                                            list += '<option value="' + index + '">' + name + '</option>';
+                                        });
+                                        $('#company-list').html(list);
+                                        $('.lodge').innerWidth($('.item-dashborad').width()).fadeIn().show();
+                                        $('.inspection_listing_table').slideUp();
+                                        $('.inspection_listing-lodge').fadeOut();
+                                    }
+                                });
+
+                            }
+                            function show_lodge_detail(id, name) {
+                                //  http://192.168.0.13/classes/buyer_dashboard.class.php?action=inspection_form&inspection_id=1&type=webservice&user_id=d3d4
+                                $('.lodge_detail').innerWidth($('.item-dashborad').width()).fadeIn().show();
+                                $('.inspection_listing-lodge').fadeOut();
+                                $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'inspection_form', type: 'webservice', inspection_id: id, user_id: localStorage.user_id}, type: 'get', success: function (data) {
+                                        $('.lodge_detail').show();
+                                        var logininfo = JSON.parse(data);
+                                        console.log(logininfo);
+                                        var list = '';
+                                        $('.company-list').html(name);
+                                        $('.description').html(logininfo.description);
+                                        $('.auction_id').html(logininfo.lot_id);
+                                        $('.inspection_status').html(logininfo.inspection_status);
+                                        /* $.each(logininfo, function (index, name) {
+                                         list += '<option value="' + index + '">' + name + '</option>';
+                                         });
+                                         $('#company-list').html(list);
+                                         $('.lodge').innerWidth($('.item-dashborad').width()).fadeIn().show();
+                                         $('.inspection_listing_table').slideUp();
+                                         $('.inspection_listing-lodge').hide();*/
+                                    }
+                                });
+
+                            }
+                            function send_lodge() {
+                                if ($("#company_name option:selected").val() != '' && $('#user_id').val() != '' && $('#description').val() != '') {
+                                    $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'inspection_submit', type: 'webservice', company_name: $("#company-list option:selected").val(), auction_id: $('#auction_id').val(), description: $('#description').val(), user_id: localStorage.user_id}, type: 'get', success: function (data) {
+
+                                            var logininfo = JSON.parse(data);
+                                            console.log(logininfo);
+                                            if (logininfo.msg == 'invalid') {
+                                                x_alert('Company name and Auction id don`t match');
+                                            } else {
+                                                $('.inspection_listing-lodge').fadeIn();
+                                                $('.lodge').fadeOut();
+                                                $('.inspection_listing_table').slideDown();
+                                                buyer_inspection();
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    x_alert('Please fill the entire form');
+                                }
+
+                            }
+                            function hide_lodge() {
+                                $('.inspection_listing-lodge').fadeIn();
+                                $('.lodge').fadeOut();
+                                $('.inspection_listing_table').slideDown();
+                            }
+                            function hide_lodge_detail() {
+                                $('.inspection_listing-lodge').fadeIn();
+                                $('.lodge_detail').fadeOut();
+                                $('.inspection_listing_table').slideDown();
+                            }
+
+                            function onDeviceReady() {
+                                FastClick.attach(document.body);
+                            }
+
+                            var myScroll;
+
+                            function loaded() {
+                                var totalWidth = 0;
+                                //document.addEventListener('touchmove', function (e) {e.preventDefault();}, false);
+                                $('.menu-item-dashborad').each(function (index) {
+                                    totalWidth += Math.ceil(parseFloat($(this).outerWidth()));
+                                    //console.log(totalWidth + '  =>  ' + $(this).text());
+                                    $('#scroller').width(totalWidth);
+                                    // console.log(parseFloat($(this).outerWidth()));
+                                    myScroll = new IScroll('#wrapper', {scrollX: true, scrollY: false, mouseWheel: false, preventDefault: false, });
+                                });
+                                $('#scroller').width(totalWidth + 1);
+                                setTimeout(function () {
+                                    hide_loader();
+                                }, 1000);
+                            }
+
+
+                            $(document).ready(function () {
+
+                                $('.dashborad-header').css('margin-top', $('.top-header').innerHeight() - 2);
+                                var windowHeight = $(window).height();
+                                var windowWidth = $(window).width();
+                                $('.main-div').css('max-height', windowHeight);
+                                $('.item-dashborad').height(windowHeight - $('.top-header').innerHeight() - $('.menu-item-dashborad').innerHeight() - $('.dashborad-header').innerHeight());
+                                console.log(windowHeight - $('.top-header').innerHeight() - $('.menu-item-dashborad').innerHeight() - $('.dashborad-header').innerHeight());
+                                //  $('.slider-nav').iScroll();
+                                // myScroll = new IScroll('#wrapper');
+                                //  $(".slider-nav").niceScroll();
+                                /*$('.slider-for').slick({
+                                 slidesToShow: 1,
+                                 slidesToScroll: 1,
+                                 arrows: false,
+                                 fade: true,
+                                 speed: 300,
+                                 asNavFor: '.slider-nav'
+                                 });
+                                 $('.slider-nav').slick({
+                                 slidesToShow: 3,
+                                 slidesToScroll: 1,
+                                 asNavFor: '.slider-for',
+                                 dots: false,
+                                 centerMode: true,
+                                 focusOnSelect: true,
+                                 speed: 300,
+                                 variableWidth: true,
+                                 arrows: false
+                                 });*/
+
+                                /*$('.list-row').height($('.list-image').innerWidth());
+                                 $('.list-image-body').height($('.list-image-body').innerWidth());
+                                 $('.list-body').height($('.list-image-body').innerWidth());*/
+
+                                //  
+                                dashboard();
+                                $('#thelist li[value="dashboard"]').addClass('active-auction');
+                                /*  notifications();
+                                 buyer_dashboard();
+                                 transactions();
+                                 buyer_inspection();
+                                 buyer_emd_details();
+                                 buyer_manage_alerts()
+                                 buyer_subscription();*/
+                                $("#feedback").submit(function (e) {
+                                    e.preventDefault();
+                                    $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'buyer_feedback_submit', type: 'webservice', user_id: localStorage.user_id, subject: $('#subject').val(), message: $('#message').val()}, type: 'get', success: function (data) {
+                                            $('#subject').val('');
+                                            $('#message').val('');
+                                        }
+                                    });
+                                });
+
+                                $('.refund-emd-button').click(function () {
+                                    if(parseFloat($('#refund-emd').val()) < 0 ) {
+                                        x_alert('EMD amount should be greater than zero');
+                                    } else if($('#refund-emd').val() == '') {
+                                         x_alert('Please fill some EMD amount');
+                                    } else {
+                                    $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'refund_emd', type: 'webservice', user_id: localStorage.user_id, emd_amount: $('#refund-emd').val()}, type: 'get', success: function (data) {
+                                            $('#refund-emd').val('');
+
+                                        }
+                                    });
+                                }
+                                });
+                                /*$('.menu-click').click(function () {
+                                    var class_name = $(this).attr('text');
+                                    $('.menu-body').hide();
+                                    $('.' + class_name).fadeIn();
+                                });
+*/
+$('.add-emd-button-menu').click(function () {
+ add_emd_box ();   
+});
+$('.refund-emd-button-menu').click(function () {
+ refund_emd_box ();   
+});
+                                $('.add-emd-button').click(function () {
+                                    if($('#add-emd').val() == '') {
+                                         x_alert('Please fill a amount');
+                                    } else if(parseFloat($('#add-emd').val()) < 20000) {
+                                        x_alert('Amount should be greater than Rs. 20,000');
+                                    } else {
+                                    $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'add_emd', type: 'webservice', user_id: localStorage.user_id, emd_amount: $('#add-emd').val()}, type: 'get', success: function (data) {
+                                            var logininfo = JSON.parse(data);
+                                            console.log(logininfo);
+                                            $('#add-emd').val('');
+                                            localStorage.url = logininfo['url'];
+                                            localStorage.notification_emd = rc4_er(logininfo['notification_emd']);
+                                            localStorage.inserted_id = (logininfo['inserted_id']);
+                                            window.location.href = "payment.html";
+
+                                        }
+                                    });
+                                }
+                                });
+                                var hash = window.location.hash.split('#')[1];
+                                if (typeof hash !== 'undefined') {
+                                    setTimeout(function()  {
+                                        $('.' + hash).click();
+                                    },1000);
+                                }
+
+                                //$('.item-dashborad').height(windowHeight - 70 - $('.top-header').innerHeight() - 6 - $('.dashborad-header').innerHeight() - $('.slider-nav').innerHeight());
+                            });
+                           
+                            
+                            function buyer_emd_history_detail() {
+                                window.open(localStorage.host + "../ajax.php?action=buyer_emd_history_detail&type=html&user_id=" + localStorage.user_id, "_system");
+                            }
+                            function watchlist_update() {
+                                //   http://test.xstok.com/classes/buyer_dashboard.class.php?action=get_tym_ticker&lot_id=d4dc,d6d0,d5dd,d5dc,d4d5,d4dd,d3d5,d4dc,d4d3,d4d1,d6d5,d4dc&room_id=d7,d7,d7,d7,d7,d4,d7,d7,d7,d7,d7,d7&user_id=d0
+                                setInterval(function () {
+                                    $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'get_tym_ticker', lot_id: localStorage.lot_id_array, room_id: localStorage.room_id_array, user_id: localStorage.user_id}, type: 'get', success: function (data) {
+                                            var logininfo = JSON.parse(data);
+                                            // console.log(logininfo);
+
+                                            for (i in logininfo['active_status_ary']) {
+                                                $('.status' + i).html(logininfo['active_status_ary'][i]);
+                                                //  console.log('.status'+i);
+                                            }
+                                            for (i in logininfo['active_tym_ary']) {
+                                                $('.time' + i).html(logininfo['active_tym_ary'][i]);
+                                                //   console.log('.time'+i);
+                                            }
+                                            for (i in logininfo['active_current_bid_ary']) {
+                                                $('.bid_amount' + i).html(logininfo['active_current_bid_ary'][i].split('<span class="WebRupee">Rs.</span>')[1]);
+                                                //  console.log('.bid_amount'+i);
+                                            }
+
+                                        }
+                                    });
+                                }, 1000);
+
+                            }
+
+                            function notifications() {
+                                $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'buyer_notification_list', type: 'webservice', user_id: localStorage.user_id}, type: 'get', success: function (data) {
+                                        var logininfo = JSON.parse(data);
+                                        console.log(logininfo);
+                                        /*-------------------notification start-------------------------*/
+                                        var notification = "";
+                                         var id = 0;
+                                         var uid = 0;
+                                        for (var i = 0; i < logininfo['notification_list'].length; i++) {
+                                            id = rc4_er(logininfo['notification_list'][i]['id']);
+                                            uid = rc4_er(logininfo['notification_list'][i]['user_id']);
+                                            console.log('id -> '+logininfo['notification_list'][i]['id']+ ' uid-> '+logininfo['notification_list'][i]['user_id']);
+                                            notification += "<tr id='note"+id+uid+"' ><td>" + logininfo['notification_list'][i]['text'] + " </td><td class='x-red' onclick=\"remove_notification(\'"+id+"\',\'"+uid+"\')\"><i class='fa fa-times-circle'></i></td></tr>";
+                                        }
+                                        if (logininfo['notification_list'].length > 0) {
+                                            $('.notifications-count').html('(' + logininfo['notification_list'].length + ')');
+                                        }
+                                        if (notification == '') {
+                                            notification = "<tr><td>No Notication</td></tr>";
+                                        }
+                                        $('.notification_table').html(notification);
+
+                                        /*-------------------notification end-------------------------*/
+                                    },
+                                    error: function (jqXHR, textStatus, errorThrown) {
+                                        //if (textStatus === "timeout") {
+                                        x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                                        //  }
+                                    }
+                                });
+                            }
+                            function buyer_subscription() {
+                                $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'buyer_subscription', type: 'webservice', user_id: localStorage.user_id}, type: 'get', success: function (data) {
+                                        var logininfo = JSON.parse(data);
+                                        // console.log(logininfo);
+                                        /*-------------------notification start-------------------------*/
+                                        /*var notification = "";
+                                         for (var i = 0; i < logininfo['notification_list'].length; i++) {
+                                         notification += "<tr><td>" + logininfo['notification_list'][i]['text'] + "</td></tr>";
+                                         }
+                                         if (logininfo['notification_list'].length > 0) {
+                                         $('.notifications-count').html('(' + logininfo['notification_list'].length + ')');
+                                         }*/
+                                        $('.af').html(logininfo['subscription_details']['annual_fee']);
+                                        $('.sd').html(logininfo['subscription_details']['sub_start_date']);
+                                        $('.ed').html(logininfo['subscription_details']['sub_end_date']);
+                                        $('.aft').html(logininfo['subscription_details']['annual_free_type']);
+
+                                        /*-------------------notification end-------------------------*/
+                                        $('.main-div').removeClass('hidden');
+                                        setTimeout(function () {
+                                            hide_loader();
+                                        }, 1000);
+
+                                    },
+                                    error: function (jqXHR, textStatus, errorThrown) {
+                                        //   if (textStatus === "timeout") {
+                                        x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                                        //  }
+                                    }
+                                });
+                            }
+                            function buyer_dashboard() {
+                                $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'buyer_auction_history', type: 'webservice', user_id: localStorage.user_id}, type: 'get', success: function (data) {
+                                        var logininfo = JSON.parse(data);
+                                        //  console.log(logininfo);
+                                        /*-------------------notification start-------------------------*/
+                                        var active_auction_table = "";
+                                        for (var i = 0; i < logininfo['active_auction_table'].length; i++) {
+                                           // active_auction_table += "<tr onclick='auction_detail(\"" + rc4_er(logininfo['active_auction_table'][i]['lot_id']) + "\")'><td>" + logininfo['active_auction_table'][i]['lot_id'] + "</td><td>" + logininfo['active_auction_table'][i]['title'] + "</td><td>" + logininfo['active_auction_table'][i]['my_bid'] + "</td><td class='bid_amount"+rc4_er(logininfo['active_auction_table'][i]['lot_id'])+"'>" + logininfo['active_auction_table'][i]['current_bid'] + "</td><td class='status"+rc4_er(logininfo['active_auction_table'][i]['lot_id'])+"'>" + logininfo['active_auction_table'][i]['status'] + "</td></tr>";
+                                            active_auction_table += "<tr onclick='auction_detail(\"" + rc4_er(logininfo['active_auction_table'][i]['lot_id']) + "\")'><td>A" + rc4_er(logininfo['active_auction_table'][i]['lot_id']) + "</td><td>" + logininfo['active_auction_table'][i]['title'] + "</td><td>" + logininfo['active_auction_table'][i]['my_bid'] + "</td><td class='bid_amount"+rc4_er(logininfo['active_auction_table'][i]['lot_id'])+"'><i class='fa fa-refresh fa-spin'></i></td><td class='status"+rc4_er(logininfo['active_auction_table'][i]['lot_id'])+"'><i class='fa fa-refresh fa-spin'></i></td></tr>";
+                                        }
+                                        if (logininfo['active_auction_table'].length > 0) {
+                                            $('.active_auction_table-count').html('(' + logininfo['active_auction_table'].length + ')');
+                                        }
+                                        if (active_auction_table == '') {
+                                            active_auction_table += "<tr><td colspan='3'>No Auction History</td></tr>";
+                                        }
+                                        $('.buyer_dashboard_t').html(active_auction_table);
+
+                                        /*-------------------notification end-------------------------*/
+                                    },
+                                    error: function (jqXHR, textStatus, errorThrown) {
+                                        //  if (textStatus === "timeout") {
+                                        x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                                        // }
+                                    }
+                                });
+                            }
+
+                            function transactions() {
+                                $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'get_buyer_transaction', type: 'webservice', user_id: localStorage.user_id}, type: 'get', success: function (data) {
+                                        var logininfo = JSON.parse(data);
+                                        //console.log(logininfo);
+                                        /*-------------------notification start-------------------------*/
+                                        var data_ary = "";
+                                        for (var i = 0; i < logininfo['data_ary'].length; i++) {
+                                            data_ary += "<tr><td>" + logininfo['data_ary'][i]['order_id'] + "</td><td>" + rc4_er(logininfo['data_ary'][i]['lot_id']) + "</td><td>" + logininfo['data_ary'][i]['order_date'] + "</td><td>" + logininfo['data_ary'][i]['tax_amount'] + "</td><td>" + logininfo['data_ary'][i]['status'] + "</td></tr>";
+                                        }
+                                        if (logininfo['data_ary'].length > 0) {
+                                            $('.data_ary-count').html('(' + logininfo['data_ary'].length + ')');
+                                        }
+                                        if (data_ary == '') {
+                                            data_ary += "<tr><td colspan='3'>No Transaction</td></tr>";
+                                        }
+                                        $('.data_ary').html(data_ary);
+
+                                        /*-------------------notification end-------------------------*/
+                                    },
+                                    error: function (jqXHR, textStatus, errorThrown) {
+                                        //  if (textStatus === "timeout") {
+                                        x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                                        // }
+                                    }
+                                });
+                            }
+                            function buyer_inspection() {
+                                $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'buyer_inspection', type: 'webservice', user_id: localStorage.user_id}, type: 'get', success: function (data) {
+                                        var logininfo = JSON.parse(data);
+                                        //console.log(logininfo);
+                                        /*-------------------notification start-------------------------*/
+                                        var inspection_listing = "";
+                                        for (var i = 0; i < logininfo['inspection_listing'].length; i++) {
+                                            inspection_listing += "<tr onclick=\"show_lodge_detail('" + logininfo['inspection_listing'][i]['id'] + "','" + logininfo['inspection_listing'][i]['company_name'] + "')\"><td>" + logininfo['inspection_listing'][i]['auction_id'] + "</td><td>" + logininfo['inspection_listing'][i]['company_name'] + "</td><td>" + logininfo['inspection_listing'][i]['order_date'] + "</td><td>" + logininfo['inspection_listing'][i]['inspection_status'] + "</td></tr>";
+                                        }
+                                        if (logininfo['inspection_listing'].length > 0) {
+                                            $('.inspection_listing-count').html('(' + logininfo['inspection_listing'].length + ')');
+                                        }
+                                        if (inspection_listing == '') {
+                                            inspection_listing += "<tr><td colspan='3'>No Inspection raised</td></tr>";
+                                        }
+                                        $('.inspection_listing').html(inspection_listing);
+
+                                        /*-------------------notification end-------------------------*/
+                                    },
+                                    error: function (jqXHR, textStatus, errorThrown) {
+                                        //   if (textStatus === "timeout") {
+                                        x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                                        //   }
+                                    }
+                                });
+                            }
+
+                            function buyer_emd_details() {
+                                $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'buyer_emd_details', type: 'webservice', user_id: localStorage.user_id}, type: 'get', success: function (data) {
+                                        var logininfo = JSON.parse(data);
+                                        //  console.log(logininfo);
+                                        /*-------------------notification start-------------------------*/
+                                        var buyer_emd_details = "";
+                                        var today = new Date();
+                                        var dd = today.getDate();
+                                        var mm = today.getMonth() + 1; //January is 0!
+
+                                        var yyyy = today.getFullYear();
+                                        if (dd < 10) {
+                                            dd = '0' + dd;
+                                        }
+                                        if (mm < 10) {
+                                            mm = '0' + mm;
+                                        }
+                                        var today = dd + '/' + mm + '/' + yyyy;
+                                        //for (var i = 0; i < logininfo['buyer_emd_details'].length; i++) {
+                                        buyer_emd_details += '<div class="row row-cancel-margin"><div class="col-xs-6 emd-list-data">Date</div><div class="col-xs-6 emd-list-data-value">' + today + '</div></div><div class="row row-cancel-margin"><div class="col-xs-6 emd-list-data">Given</div><div class="col-xs-6 emd-list-data-value"><i class="fa fa-inr"></i> ' + numberWithCommas(logininfo['emd_total_amount']) + '</div></div><div class="row row-cancel-margin"><div class="col-xs-6 emd-list-data">Used</div><div class="col-xs-6 emd-list-data-value"><i class="fa fa-inr"></i> ' + numberWithCommas(logininfo['emd_used'] )+ '</div></div><div class="row row-cancel-margin"><div class="col-xs-6 emd-list-data">Redeemed</div><div class="col-xs-6 emd-list-data-value"> <i class="fa fa-inr"></i> ' + numberWithCommas(logininfo['emd_refund']) + '</div></div><div class="row row-cancel-margin"><div class="col-xs-6 emd-list-data">Current Blocked</div><div class="col-xs-6 emd-list-data-value"> <i class="fa fa-inr"></i> ' + numberWithCommas(logininfo['emd_block']) + '</div></div><div class="row row-cancel-margin"><div class="col-xs-6 emd-list-data">Current Balance</div><div class="col-xs-6 emd-list-data-value"> <i class="fa fa-inr"></i> ' + numberWithCommas(logininfo['emd_balance']) + '</div></div>';
+                                        $('.balance-emd-amount').html(logininfo['emd_balance']);
+                                        //}
+                                        /*if(logininfo['buyer_emd_details'].length > 0) {
+                                         $('.buyer_emd_details-count').html('('+logininfo['buyer_emd_details'].length+')');
+                                         }*/
+                                        $('.buyer_emd_details-t').html(buyer_emd_details);
+
+                                        /*-------------------notification end-------------------------*/
+                                    },
+                                    error: function (jqXHR, textStatus, errorThrown) {
+                                        // if (textStatus === "timeout") {
+                                        x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                                        //   }
+                                    }
+                                });
+                            }
+
+                            function buyer_manage_alerts() {
+                                $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'buyer_manage_alerts', type: 'webservice', user_id: localStorage.user_id}, type: 'get', success: function (data) {
+                                        var logininfo = JSON.parse(data);
+                                        // console.log(logininfo);
+                                        /*-------------------notification start-------------------------*/
+                                        var category_list = "";
+                                        if (localStorage.getItem("category_alert") === null) {
+                                            var category_alertarray = logininfo['checked_ary'];
+                                        } else {
+                                            var category_alertarray = localStorage.category_alert.split(',');
+                                        }
+                                        var category_alert = category_alertarray;
+                                        $.each(logininfo['category_list'], function (key, value) {
+                                            var checked = '';
+                                            for (var j = 0; j < category_alertarray.length; j++) {
+                                                if (key == category_alertarray[j]) {
+                                                    checked = 'checked';
+                                                    break;
+                                                } else {
+                                                    checked = '';
+                                                }
+                                            }
+
+
+                                            category_list += '<label class="checkbox" for="category_' + key + '"><input data-toggle="checkbox" type="checkbox" name="category_alert" ' + checked + ' id="category_' + key + '" class="chk_cat_alert" value="' + key + '">' + value + '</label>';
+                                        });
+                                        /* if (logininfo['category_list'].length > 0) {
+                                         $('.category_list-count').html('(' + logininfo['category_list'].length + ')');
+                                         }*/
+                                        $('.category_list').html(category_list);
+                                        $('[data-toggle="checkbox"]').radiocheck();
+                                        $("input[name='category_alert']").change(function () { 
+                                            if ($(this).is(":checked")) {
+                                                category_alert.push($(this).val());                                                    
+                                            } else {
+                                                var index = category_alert.indexOf($(this).val());
+                                                category_alert.splice(index, 1);
+                                                   
+                                            }
+                                            localStorage.category_alert = category_alert;
+                                            //  $('#textbox1').val($(this).is(':checked')); 
+                                        });
+
+                                        /*-------------------notification end-------------------------*/
+                                    },
+                                    error: function (jqXHR, textStatus, errorThrown) {
+                                        //   if (textStatus === "timeout") {
+                                        x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                                        //  }
+                                    }
+                                });
+                            }
+
+                            function add_alerts() {
+                                $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'add_alerts', type: 'webservice', user_id: localStorage.user_id, cat_val: localStorage.category_alert}, type: 'get', success: function (data) {
+                                        x_alert('Successfully add to notification list');
+                                        $('body').unbind('touchmove');
+                                        $('.manage_noti').fadeOut();
+                                        $('.overlay').fadeOut();
+                                    }});
+
+                            }
+
+                            function dashboard() {
+
+                                $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'buyer', days: '7', type: 'webservice', user_id: localStorage.user_id}, type: 'get', success: function (data) {
+                                        var logininfo = JSON.parse(data);
+                                        var lot_array = '';
+                                        var room_id_array = '';
+                                        console.log(logininfo);
+                                        $('.dashborad-name').html(logininfo['user_detail']['name']);
+                                        $('.dashborad-display-image img').attr('src', logininfo['user_detail']['profile_pic']);
+
+                                        $('.dashborad-image').css('background-image', 'url(' + logininfo['user_detail']['cover_pic_path'] + ')');
+                                        //console.log(logininfo);                        
+
+                                        $('.rating-text').html(logininfo['buyer_rating']['text']);
+                                        var star = "";
+                                        if (logininfo['buyer_rating']['count'] == 0) {
+                                            star = '<span class="rating-1"><i class="fa fa-star-o"></i></span> <span class="rating-2"><i class="fa fa-star-o"></i></span> <span class="rating-3"><i class="fa fa-star-o"></i></span> <span class="rating-4"><i class="fa fa-star-o"></i></span> <span class="rating-5"><i class="fa fa-star-o"></i></span>';
+                                        } else if (logininfo['buyer_rating']['count'] == 0.5) {
+                                            star = '<span class="rating-1"><i class="fa fa-star-half-o"></i></span> <span class="rating-2"><i class="fa fa-star-o"></i></span> <span class="rating-3"><i class="fa fa-star-o"></i></span> <span class="rating-4"><i class="fa fa-star-o"></i></span> <span class="rating-5"><i class="fa fa-star-o"></i></span>';
+                                        } else if (logininfo['buyer_rating']['count'] == 1) {
+                                            star = '<span class="rating-1"><i class="fa fa-star"></i></span> <span class="rating-2"><i class="fa fa-star-o"></i></span> <span class="rating-3"><i class="fa fa-star-o"></i></span> <span class="rating-4"><i class="fa fa-star-o"></i></span> <span class="rating-5"><i class="fa fa-star-o"></i></span>';
+                                        } else if (logininfo['buyer_rating']['count'] == 1.5) {
+                                            star = '<span class="rating-1"><i class="fa fa-star"></i></span> <span class="rating-2"><i class="fa fa-star-half-o"></i></span> <span class="rating-3"><i class="fa fa-star-o"></i></span> <span class="rating-4"><i class="fa fa-star-o"></i></span> <span class="rating-5"><i class="fa fa-star-o"></i></span>';
+                                        } else if (logininfo['buyer_rating']['count'] == 2) {
+                                            star = '<span class="rating-1"><i class="fa fa-star"></i></span> <span class="rating-2"><i class="fa fa-star"></i></span> <span class="rating-3"><i class="fa fa-star-o"></i></span> <span class="rating-4"><i class="fa fa-star-o"></i></span> <span class="rating-5"><i class="fa fa-star-o"></i></span>';
+                                        } else if (logininfo['buyer_rating']['count'] == 2.5) {
+                                            star = '<span class="rating-1"><i class="fa fa-star"></i></span> <span class="rating-2"><i class="fa fa-star"></i></span> <span class="rating-3"><i class="fa fa-star-half-o"></i></span> <span class="rating-4"><i class="fa fa-star-o"></i></span> <span class="rating-5"><i class="fa fa-star-o"></i></span>';
+                                        } else if (logininfo['buyer_rating']['count'] == 3) {
+                                            star = '<span class="rating-1"><i class="fa fa-star"></i></span> <span class="rating-2"><i class="fa fa-star"></i></span> <span class="rating-3"><i class="fa fa-star"></i></span> <span class="rating-4"><i class="fa fa-star-o"></i></span> <span class="rating-5"><i class="fa fa-star-o"></i></span>';
+                                        } else if (logininfo['buyer_rating']['count'] == 3.5) {
+                                            star = '<span class="rating-1"><i class="fa fa-star"></i></span> <span class="rating-2"><i class="fa fa-star"></i></span> <span class="rating-3"><i class="fa fa-star"></i></span> <span class="rating-4"><i class="fa fa-star-half-o"></i></span> <span class="rating-5"><i class="fa fa-star-o"></i></span>';
+                                        } else if (logininfo['buyer_rating']['count'] == 4) {
+                                            star = '<span class="rating-1"><i class="fa fa-star"></i></span> <span class="rating-2"><i class="fa fa-star"></i></span> <span class="rating-3"><i class="fa fa-star"></i></span> <span class="rating-4"><i class="fa fa-star"></i></span> <span class="rating-5"><i class="fa fa-star-o"></i></span>';
+                                        } else if (logininfo['buyer_rating']['count'] == 4.5) {
+                                            star = '<span class="rating-1"><i class="fa fa-star"></i></span> <span class="rating-2"><i class="fa fa-star"></i></span> <span class="rating-3"><i class="fa fa-star"></i></span> <span class="rating-4"><i class="fa fa-star"></i></span> <span class="rating-5"><i class="fa fa-star-half-o"></i></span>';
+                                        } else if (logininfo['buyer_rating']['count'] == 5) {
+                                            star = '<span class="rating-1"><i class="fa fa-star"></i></span> <span class="rating-2"><i class="fa fa-star"></i></span> <span class="rating-3"><i class="fa fa-star"></i></span> <span class="rating-4"><i class="fa fa-star"></i></span> <span class="rating-5"><i class="fa fa-star"></i></span>';
+                                        }
+                                        $('.rating-star').html(star);
+
+                                        /*-------------------Active auction start-------------------------*/
+                                        var active_auction_table = "";
+                                        for (var i = 0; i < logininfo['active_auction_table'].length; i++) {
+                                            console.log(logininfo['active_auction_table']);
+                                            lot_array += rc4_er(logininfo['active_auction_table'][i]['lot_id']) + ',';
+                                            room_id_array += rc4_er(logininfo['active_auction_table'][i]['room_id']) + ',';
+                                         //   active_auction_table += "<tr onclick='auction_detail(\"" + rc4_er(logininfo['active_auction_table'][i]['lot_id']) + "\")'><td>" + logininfo['active_auction_table'][i]['lot_id'] + "</td><td>" + logininfo['active_auction_table'][i]['name'] + "</td><td class='bid_amount"+rc4_er(logininfo['active_auction_table'][i]['lot_id'])+"'>" + logininfo['active_auction_table'][i]['bid_amount'] + "</td><td class='status"+rc4_er(logininfo['active_auction_table'][i]['lot_id'])+"'>" + logininfo['active_auction_table'][i]['status'] + "</td><td class='time"+rc4_er(logininfo['active_auction_table'][i]['lot_id'])+"'>1:12:45</td></tr>";
+                                            active_auction_table += "<tr onclick='auction_detail(\"" + rc4_er(logininfo['active_auction_table'][i]['lot_id']) + "\")'><td>A" + rc4_er(logininfo['active_auction_table'][i]['lot_id']) + "</td><td>" + logininfo['active_auction_table'][i]['name'] + "</td><td class='bid_amount"+rc4_er(logininfo['active_auction_table'][i]['lot_id'])+"'><i class='fa fa-refresh fa-spin'></i></td><td class='status"+rc4_er(logininfo['active_auction_table'][i]['lot_id'])+"'><i class='fa fa-refresh fa-spin'></i></td><td class='time"+rc4_er(logininfo['active_auction_table'][i]['lot_id'])+"'><i class='fa fa-refresh fa-spin'></i></td></tr>";
+                                        }
+                                        if (logininfo['active_auction_table'].length > 0) {
+                                            $('.active_auction-count').html('(' + logininfo['active_auction_table'].length + ')');
+                                        }
+                                        if (active_auction_table == '') {
+                                            active_auction_table += "<tr><td colspan='3'>No Active Auction</td></tr>";
+                                        }
+                                        $('.active_auction_table').html(active_auction_table);
+                                        /*-------------------Active auction end-------------------------*/
+                                        /*-------------------Watchlist start-------------------------*/
+                                        var wishlist_auction_table = "";
+                                        
+                                        for (var i = 0; i < logininfo['wishlist_auction_table'].length; i++) {
+                                            lot_array += rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + ',';
+                                            room_id_array += rc4_er(logininfo['wishlist_auction_table'][i]['room_id']) + ',';
+                                          //  wishlist_auction_table += "<tr onclick='auction_detail(\"" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "\")'><td>" + logininfo['wishlist_auction_table'][i]['lot_id'] + "</td><td>" + logininfo['wishlist_auction_table'][i]['name'] + "</td><td class='bid_amount" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'>" + logininfo['wishlist_auction_table'][i]['bid_amount'] + "</td><td class='status" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'>" + logininfo['wishlist_auction_table'][i]['status'] + "</td><td class='time" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'>-</td></tr>";
+                                            wishlist_auction_table += "<tr onclick='auction_detail(\"" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "\")'><td>A" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "</td><td>" + logininfo['wishlist_auction_table'][i]['name'] + "</td><td class='bid_amount" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'><i class='fa fa-refresh fa-spin'></i></td><td class='status" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'><i class='fa fa-refresh fa-spin'></i></td><td class='time" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'><i class='fa fa-refresh fa-spin'></i></td></tr>";
+                                        }                                        
+                                        if (logininfo['wishlist_auction_table'].length > 0) {
+                                            $('.watchlist-count').html('(' + logininfo['wishlist_auction_table'].length + ')');
+                                        }
+                                        if (wishlist_auction_table == '') {
+                                            wishlist_auction_table = '<tr><td colspan="3">Watchlist is empty</td></tr>'
+                                        }
+                                        $('.wishlist_auction_table').html(wishlist_auction_table);
+                                        /*-------------------Watchlist end-------------------------*/
+                                        /*-------------------Auction won start-------------------------*/
+                                        var total_auction_won = "";
+                                        for (var i = 0; i < logininfo['total_auction_won'].length; i++) {
+                                            lot_array += rc4_er(logininfo['total_auction_won'][i]['lot_id']) + ',';
+                                            room_id_array += rc4_er(logininfo['total_auction_won'][i]['room_id']) + ',';
+                                            if(logininfo['total_auction_won'][i]['order_id']=='1' ||logininfo['total_auction_won'][i]['order_id']== '2' || logininfo['total_auction_won'][i]['order_id']== '3') {
+                                                var function_name = "shipping_detail(\"" + rc4_er(logininfo['total_auction_won'][i]['lot_id']) + "\",\""+logininfo['total_auction_won'][i]['room_id']+"\")";
+                                            } else {
+                                                var function_name = "auction_detail(\"" + rc4_er(logininfo['total_auction_won'][i]['lot_id']) + "\")";
+                                            }
+                                            total_auction_won += "<tr onclick='"+function_name+"'><td>A" + rc4_er(logininfo['total_auction_won'][i]['lot_id']) + "</td><td>" + numberWithCommas(logininfo['total_auction_won'][i]['bid_amount']) + "</td><td>" + logininfo['total_auction_won'][i]['tax_amount'] + "</td><td>" + logininfo['total_auction_won'][i]['shipping_amt'] + "</td><td>" + logininfo['total_auction_won'][i]['status'] + "</td></tr>";
+                                        }
+                                        if (logininfo['total_auction_won'].length > 0) {
+                                            $('.total_auction_won-count').html('(' + logininfo['total_auction_won'].length + ')');
+                                        }
+                                        if (total_auction_won == '') {
+                                            total_auction_won = "<tr><td <td colspan='3'>No Auction Won</td></tr>";
+                                        }
+                                        $('.total_auction_won').html(total_auction_won);
+                                        /*-------------------Auction won end-------------------------*/
+                                        /*-------------------Auction won start-------------------------*/
+                                        var dispute_table = "";
+                                        for (var i = 0; i < logininfo['dispute_table'].length; i++) {
+                                            lot_array += rc4_er(logininfo['dispute_table'][i]['lot_id']) + ',';
+                                            room_id_array += rc4_er(logininfo['dispute_table'][i]['room_id']) + ',';
+                                            dispute_table += "<tr><td>A" + rc4_er(logininfo['dispute_table'][i]['id']) + "</td><td>" + logininfo['dispute_table'][i]['order_no'] + "</td><td>" + logininfo['dispute_table'][i]['order_date'] + "</td><td>" + logininfo['dispute_table'][i]['dispute_type'] + "</td><td class='status"+rc4_er(logininfo['dispute_table'][i]['lot_id'])+"'>" + logininfo['dispute_table'][i]['dispute_status'] + "</td></tr>";
+                                        }
+                                        if (logininfo['dispute_table'].length > 0) {
+                                            $('.dispute_table-count').html('(' + logininfo['dispute_table'].length + ')');
+                                        }
+                                        if (dispute_table == '') {
+                                            dispute_table = "<tr><td>No Tickets</td></tr>";
+                                        }
+                                        $('.dispute_table').html(dispute_table);
+                                        /*-------------------Auction won end-------------------------*/
+                                        lot_array = lot_array.substring(0, lot_array.length - 1);
+                                        room_id_array = room_id_array.substring(0, room_id_array.length - 1);
+                                        //console.log(lot_array);
+                                        localStorage.lot_id_array = lot_array;
+                                        localStorage.room_id_array = room_id_array;
+                                        watchlist_update();
+                                    },
+                                    error: function (jqXHR, textStatus, errorThrown) {
+                                        //  if (textStatus === "timeout") {
+                                        x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                                        //   }
+                                    }
+                                });
+                            }
+
+        </script>
+
+    </body>
+</html>

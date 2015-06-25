@@ -3367,6 +3367,12 @@ div.callout {
   background: none repeat scroll 0 0 #79AB79 !important;
 }
 
+.payment-dash {
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+}
+
 @media only screen and (max-width: 320px) {
     .list-discount {
         font-size: 12px;
@@ -3401,6 +3407,31 @@ div.callout {
     }
     .grid-list {
         width: 42%;
+    }
+    .list-discount-value {
+        font-size: 0.9em;
+    }
+    .list-head {
+        font-size: 0.9em;
+    }
+    .list-subhead {
+        font-size: 0.6em;
+    }
+    .list-bid-now-text {
+        font-size: 0.8em;
+    }
+    .logo select {
+        margin-left: 35px;
+    }
+    .discount-value-text  {
+        font-size: 0.5em !important;
+    }
+    
+    .profile-name {
+        font-size: 0.9em;
+    }
+    .profile-location {
+        font-size: 0.9em;
     }
 }
 @media only screen and (min-width: 768px) { 

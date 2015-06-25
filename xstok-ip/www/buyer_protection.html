@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>xstok</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="xstok" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=medium-dpi,user-scalable=yes" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <script src='js/main_script.js'></script>
+        <!-- Custom Theme files -->
+        <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css" type='text/css'>
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <link rel="shortcut icon" href="favicon.ico">
+        <!-- Custom Theme files -->
+        <!----font-Awesome----->
+
+        <!----font-Awesome----->
+
+        <script type="text/javascript" src='js/jquery.min.js'></script>    
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script type="text/javascript">function onBackKeyDown() {// Handle the back button
+                navigator.notification.confirm(
+                        'Are you sure want to exit?', // message
+                        function (index) {
+                            if (index == 1) {//look at the docs for this part
+                                navigator.app.exitApp();
+                            }
+                        }, // callback to invoke with index of button pressed
+                        'Exit', // title
+                        'Yes,No' // buttonLabels
+                        );
+            }
+
+            function onDeviceReady() {
+                //FastClick.attach(document.body);
+                if (device.platform == "Android") {
+                    document.addEventListener("backbutton", onBackKeyDown, false);
+                }
+
+            }  
+            
+            function onBodyLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+            //	The menu on the left
+            $(function () {
+                //show_loader();localStorage.u_
+                //console.log(localStorage.host + '../login/autologin/' + localStorage.u_ + '/' + localStorage.p_);
+                //window.location.href = localStorage.host+'../login/autologin/'+localStorage.u_+'/'+localStorage.p_;
+                $(window).scroll(function () {
+                    var window_top = $(window).scrollTop();    
+                    var div_top = $('.buyer-protection').height();
+                    if(window_top>div_top) {
+                        $('.header-story ').css('background','#3F4751');
+                    } else {
+                         $('.header-story ').css('background','transparent');
+                    }
+                });
+            });
+
+        </script>
+    </head>
+    <body>
+        <div class="header-story ">
+            <a onclick="back()" style="text-align: left;padding-top: 17px;float: left;padding-left: 20px;"><i class="fa fa-angle-left fa-lg fa-2x x-white"></i></a>
+            <a style="text-align: right;padding-top: 10px;padding-right: 20px;padding-bottom: 10px;float: right;"><img src="images/logo_y.png" style="height: 35px;"></a>
+        </div>
+        <div class="row buyer-protection row-cancel-margin">
+            <div class="font-family_roboto buyer-protection-text ">Safeguarding you is our priority at XSTOK</div>
+        </div>
+        <div class="sign-in-box ">
+           
+                <div class="row row-cancel-margin">
+                    <div class="col-xs-12 font-18 font-family-helvetica padding-lr-10">
+                        <br>
+                       Your needs come first and hence, our buyer protection program is designed to provide you with the trust and comfort required for online trading in the B2B marketplace. Keeping your requirements in mind, we have created a six fold protection plan, which will ensure you are 100% protected through your journey at XSTOK.<br><br>
+
+                       <div class="buyer-protection-head font-size-1-2-em">
+                           <i class="fa fa-check x-light-green"></i>
+                           Only Verified Suppliers
+                       </div>
+                       <ul type="disc" class="buyer-protection-list font-size-0-99-em">
+                           <li>XSTOK suppliers are thoroughly verified before being brought onboard.</li>
+                           <li>Each supplier goes through a Know Your Customer (KYC) process for added security and stability.</li>
+                       </ul>
+                       <div class="buyer-protection-head font-size-1-2-em">
+                           <i class="fa fa-check x-light-green"></i>
+                           Guaranteed Availability
+                       </div>
+                       <ul type="disc" class="buyer-protection-list font-size-0-99-em">
+                           <li>All products showcased for auctions come with guaranteed availability.</li>
+                           <li>Products, once listed on the auction platform, cannot be sold by the supplier till the duration of the auction is not complete.</li>
+                       </ul>
+                       
+                       <div class="buyer-protection-head font-size-1-2-em">
+                           <i class="fa fa-check x-light-green"></i>
+                           Payment Security
+                       </div>
+                       <ul type="disc" class="buyer-protection-list font-size-0-99-em">
+                           <li>Buyer deposits and payments will be done via an Escrow account managed by ICICI bank.</li>
+                           <li>Payment is released to the Supplier only after the Buyer confirms satisfactory receipt of the goods.</li>
+                       </ul>
+                       
+                       <div class="buyer-protection-head font-size-1-2-em">
+                           <i class="fa fa-check x-light-green"></i>
+                           QX Inspection
+                       </div>
+                       <ul type="disc" class="buyer-protection-list font-size-0-99-em">
+                           <li>A comprehensive inspection service that reliably verifies the goods and provides all the required information of the purchase to the Buyer.</li>
+                           <li>QX inspection is undertaken by experienced XSTOK members or a well known 3rd party vendor.</li>
+                           <li>QX logo will be clearly marked in the auctions verified by XSTOK.</li>
+                           <li>Suppliers requested inspection is shared with all the buyers.</li>
+                           <li>Buyer requested inspection is only shared with that particular buyer.</li>
+                       </ul>
+                       
+                       <div class="buyer-protection-head font-size-1-2-em">
+                           <i class="fa fa-check x-light-green"></i>
+                            Insured Shipping
+                       </div>
+                       <ul type="disc" class="buyer-protection-list font-size-0-99-em">
+                           <li>All shipments through XSTOK are insured by leading insurance companies, such as ICICI Lombard.</li>
+                           <li>All shipments are delivered to the buyers doorstep for easy accessibility.</li>
+                       </ul>
+                       
+                       <div class="buyer-protection-head font-size-1-2-em">
+                           <i class="fa fa-check x-light-green"></i>
+                           7 Days Dispute Resolution
+                       </div>
+                       <ul type="disc" class="buyer-protection-list font-size-0-99-em">
+                           <li>In rare occasions, when there are disputes, we offer a definite resolution within a week to all our buyers.</li>
+                       </ul>                       
+                    </div>
+                </div>
+
+
+            </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script  type="text/javascript" src='js/main_script.js'></script>   
+        <script type="text/javascript" src="js/fastclick.js"></script>
+    </body>
+</html>

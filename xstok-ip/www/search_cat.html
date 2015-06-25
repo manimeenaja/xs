@@ -1,0 +1,181 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>XSTOK</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="XSTOK" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <!-- Custom Theme files -->
+        <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <link type="text/css" rel="stylesheet" href="css/jquery.mmenu.all.css" />
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <!-- Custom Theme files -->
+        <!----font-Awesome----->
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+        <!----font-Awesome----->
+        <script src='js/main_script.js'></script>
+        <link rel="shortcut icon" href="favicon.ico">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=medium-dpi,user-scalable=yes" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                version_check();
+                add_menu('home');
+                $('body,html').css('background-color', '#000');
+                $('body').fadeIn(800).show();
+                $('.height').height($(window).height() + 1);
+            });
+        </script>
+    </head>
+    <body class="background-image-fab" style="display: none">
+        <div class="iso_blur background-image background-blur"></div>
+        <!-----container----->
+
+        <div class="container black_wrapper" >
+
+
+            <!------ content ----->
+            <div class="content">                
+                <div class="3-cols">
+                    <div class="col-1 col-md-3">                        
+                        <!---- user-profile ---->
+                        <!-- //user-profile ---->
+                        <!---- sign-in-box ---->
+                        <div class="row row-cancel-margin height">
+                            <div class="cat-head" style="display:none"></div> 
+                            <div id="page" class=""></div>
+                            <h2 class="logo-cat"><img src="images/logo_y.png"></h2>
+
+                            <div class="" id="button_list">
+
+
+                            </div>
+                        </div>
+                        <!----//sign-in-box ---->
+                        <!----up-load-stats---->
+                        <!--//up-load-stats---->
+                        <!----social-tags---->
+
+                        <!--//social-tags---->
+                    </div><!----//End-col-1 ----->
+                    <!---- col-2 ----->                    
+                    <!---- col-3 ----->                    
+                    <!---- col-3 ----->
+                    <div class="clear"> </div>
+                </div>
+
+            </div>
+
+            <!---- //content ----->
+
+        </div>     
+        <script type="text/javascript" src="js/jquery.mobile.custom.min.js"></script>
+        <script type="text/javascript" src="js/PushNotification.js"></script>
+        <script type="text/javascript" src="js/jquery.mmenu.js"></script>
+        <script type="text/javascript" src="js/fastclick.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <!---//container----->
+        <script type="text/javascript">
+
+            $("body").swiperight(function () {
+                $("#header a").click();
+            });
+
+
+            $.ajax({url: localStorage.host + 'search_category.php', data: {}, type: 'get', success: function (data) {
+                    var logininfo = JSON.parse(data);
+                    var body = "";
+                    for (var i = 0; i < logininfo['category'].length; i++) {
+                        console.log(logininfo['category'][i]);
+                        body += '<a href="javascript:void(0)" class="btn" onClick="category_select(\'' + logininfo['category'][i][0] + '\',\'' + logininfo['category'][i][1] + '\',\'' + logininfo['category'][i][2] + '\')" role="button">' + logininfo['category'][i][1] + ' <i class="fa fa-angle-right"></i></a><br>';
+                    }
+                    console.log(body);
+                    $('#button_list').append(body);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                }
+            });
+            $.ajax({url: localStorage.host + 'tagline.php', data: {}, type: 'get', success: function (data) {
+                    var logininfo = JSON.parse(data);
+                    var body = "";
+                    for (var i = 0; i < logininfo['tagline'].length; i++) {
+                        console.log(logininfo['tagline'][i][1]);
+                        localStorage.tagline = logininfo['tagline'][i][1];
+                        $('.cat-head').html(logininfo['tagline'][i][1]);
+                        $('.cat-head').fadeIn();
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+
+                }
+            });
+            var devicecheck = setInterval(function () {
+                onDeviceReady(devicecheck);
+            }, 1000);
+            function onBodyLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+            setTimeout(function () {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }, 1000);
+            function onBackKeyDown() {
+                navigator.notification.confirm(
+                        'Are you sure want to exit?',
+                        function (index) {
+                            if (index == 1) {
+                                navigator.app.exitApp();
+                            }
+                        },
+                        'Exit',
+                        'Yes,No'
+                        );
+            }
+
+            function onDeviceReady(devicecheck) {
+                FastClick.attach(document.body);
+                reg_function(devicecheck);
+
+
+            }
+            function category_select(search_category, search_category_name, search_table_name) {
+                if (localStorage.logged_in == '1') {
+                    localStorage.search_category = search_category;
+                    localStorage.search_table_name = search_table_name;
+                    localStorage.search_category_name = search_category_name;
+                    redirect('search_result');
+                } else {
+                    redirect('signin');
+                }
+            }
+
+
+
+            function capitalizeFirstLetter(string) {
+                return string.charAt(0).toUpperCase() + string.slice(1);
+            }
+            function heading(string) {
+                console.log((($('.panel-body').width() - $('.msg_icon').width()) / 100) * 90);
+            }
+            function noficationPanel() {
+                window.location.href = "notification.html";
+            }
+            function date_change(date) {
+                var startDate = new Date(date);
+                var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                var timeString = startDate.getHours() + ":" + startDate.getMinutes();
+                var H = +timeString.substr(0, 2);
+                var h = H % 12 || 12;
+                var ampm = H < 12 ? " AM" : " PM";
+                timeString = h + timeString.substr(2, 3) + ampm;
+                return MONTHS[startDate.getMonth()] + ' ' + startDate.getDate() + ' ' + startDate.getFullYear() + ', ' + timeString;
+            }
+        </script>
+    </body>
+</html>
+

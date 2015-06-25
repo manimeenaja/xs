@@ -538,11 +538,12 @@ and open the template in the editor.
 
                                 $('.refund-emd-button').click(function () {
                                     if(parseFloat($('#refund-emd').val()) < 0 ) {
-                                        x_alert('EMD amount should be greater than zero');
+                                        x_alert('EMD amount should be greater than 0');
                                     } else if($('#refund-emd').val() == '') {
                                          x_alert('Please fill some EMD amount');
                                     } else {
                                     $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'refund_emd', type: 'webservice', user_id: localStorage.user_id, emd_amount: $('#refund-emd').val()}, type: 'get', success: function (data) {
+                                            x_alert('EMD refund request submitted successfully');
                                             $('#refund-emd').val('');
 
                                         }
@@ -811,6 +812,7 @@ $('.refund-emd-button-menu').click(function () {
                                         } else {
                                             var category_alertarray = localStorage.category_alert.split(',');
                                         }
+                                         var category_alert = category_alertarray;
                                         $.each(logininfo['category_list'], function (key, value) {
                                             var checked = '';
                                             for (var j = 0; j < category_alertarray.length; j++) {
@@ -829,15 +831,17 @@ $('.refund-emd-button-menu').click(function () {
                                          $('.category_list-count').html('(' + logininfo['category_list'].length + ')');
                                          }*/
                                         $('.category_list').html(category_list);
-                                        $('[data-toggle="checkbox"]').radiocheck();
-                                        $("input[name='category_alert']").change(function () {
-                                            var category_alert = [];
-                                            $('input[name="category_alert"]').each(function () {
-                                                if ($(this).is(":checked")) {
-                                                    category_alert.push($(this).val());
-                                                    //console.log($(this).val());
-                                                }
-                                            });
+                                        $('[data-toggle="checkbox"]').radiocheck();                                        
+                                        $("input[name='category_alert']").change(function () { 
+                                            if ($(this).is(":checked")) {
+                                                 category_alert.push($(this).val());
+                                                    console.log('asd');
+                                                    console.log(category_alert);
+                                            } else {
+                                                 var index = category_alert.indexOf($(this).val());
+                                                    category_alert.splice(index, 1);
+                                                    console.log(category_alert);
+                                            }
                                             localStorage.category_alert = category_alert;
                                             //  $('#textbox1').val($(this).is(':checked')); 
                                         });
@@ -854,10 +858,13 @@ $('.refund-emd-button-menu').click(function () {
 
                             function add_alerts() {
                                 $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'add_alerts', type: 'webservice', user_id: localStorage.user_id, cat_val: localStorage.category_alert}, type: 'get', success: function (data) {
-                                        x_alert('Successfully add to notification list');
-                                        $('body').unbind('touchmove');
-                                        $('.manage_noti').fadeOut();
-                                        $('.overlay').fadeOut();
+                                        var info = JSON.parse(data);
+                                        if(info['msg'] == 'success') {
+                                            x_alert('Successfully updated your notification list');
+                                            $('body').unbind('touchmove');
+                                            $('.manage_noti').fadeOut();
+                                            $('.overlay').fadeOut();
+                                        }
                                     }});
 
                             }

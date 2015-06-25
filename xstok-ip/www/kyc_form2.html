@@ -1,0 +1,344 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>xstok</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="xstok" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <script src='js/main_script.js'></script>
+        <!-- Custom Theme files -->
+        <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <link href="css/datepicker3.css" rel='stylesheet' type='text/css' />
+         <link type="text/css" rel="stylesheet" href="css/jquery.mmenu.all.css" />
+        <link href="css/flat-ui.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <link rel="shortcut icon" href="favicon.ico">
+        <!-- Custom Theme files -->
+        <!----font-Awesome----->
+
+        <!----font-Awesome----->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=medium-dpi,user-scalable=yes" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script>
+            if (localStorage.logged_in == 1) {
+                // window.location.href = "search_result.html";
+            }
+            $(document).ready(function () {
+                setTimeout(initOverLabels(), 1000);
+                $('.container').fadeIn(1000).show();
+                 add_menu ();
+                $.ajax({url: localStorage.host + 'buyer_companydetails_select.php?id=' + localStorage.user_id, data: {}, type: 'get', success: function (data) {
+                        console.log(data['result'][0]);
+                        $('input[name="company_name"]').val(data['result'][0]['company_name']);
+                        $('input[name="company_website"]').val(data['result'][0]['company_website']);
+                        $('input[name="company_registration_no"]').val(data['result'][0]['company_registration_no']);
+                        if(data['result'][0]['dt_of_incorporation'] != '0000-00-00') {
+                            var doi = data['result'][0]['dt_of_incorporation'];
+                            /*var doi_array = doi.split('-');
+                            doi = doi_array[2]+'-'+doi_array[1]+'-'+doi_array[0];*/
+                            $('input[name="dt_of_incorporation"]').val(doi);
+                            $('.overlabel-apply').hide();
+                        }
+                        $('#shipping_address').html(data['result'][0]['shipping_address']);
+                        $('#company_address').html(data['result'][0]['company_address']);
+                        $('#billing_address').html(data['result'][0]['billing_address']);
+                        $('#nature_business_type option[value="' + data['result'][0]['nature_business_type'] + '"]').prop('selected', true);
+                        $('#business_type option[value="' + data['result'][0]['business_type'] + '"]').prop('selected', true);
+                        $('#login').height($(window).innerHeight() - parseFloat($('.header-image').innerHeight()) - parseFloat($('.row-menu').innerHeight()) - 37);
+                        localStorage.form_id = data['result'][0]['id'];
+                        $('[data-toggle="checkbox"]').radiocheck();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                     //   if (textStatus === "timeout") {
+                            x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                     //   }
+                    }
+                });
+            });
+           
+  
+        </script>
+    </head>
+    <body>
+        <div class="iso_blur background-image background-blur"></div>
+        <!-----container----->
+        <div class="container black_wrapper" style="display: none">
+
+
+            <!------ content ----->
+            <div class="content">
+                <div class="3-cols">
+                    <div class="col-1 col-md-3">
+                        <!---- user-profile ---->
+                        <!-- //user-profile ---->
+                        <!---- sign-in-box ---->
+                         <div id="page" class="kyc-menu"></div>
+                        <div class="sign-in-box kyc-form">
+                            <h2 class="header-image"><img src="images/logo_y.png"></h2>
+                            <div class="row row-cancel-margin row-menu">
+                                <nav>
+                                    <ul class="pager">
+                                        <li class="mtab-action-prev"><a href="kyc_form1.html"><i class="fa fa-chevron-left"></i></a></li>
+                                        <li class="mobile-tab-title"><i class="fa fa-building"></i> Company Details</li>
+                                        <li class="mtab-action-next"><a href="kyc_form3.html"><i class="fa fa-chevron-right"></i></a></li>
+                                    </ul>
+                                </nav>
+                            </div>                           
+                            <form id="login" action="kyc_form3.html" style="overflow-x: hidden;overflow-y: scroll;"  data-parsley-validate novalidate>
+                                <div class="text-boxs text-box-input">
+                                    <span class="text-box">
+                                        <span class="x-required" style="left: 7px;">*</span>
+                                        <input type="text" readonly="" placeholder="Company/Firm Name" required class="form-control  background-black input-sm" name="company_name"/> 
+                                    </span>
+                                    <span class="text-box">                                        
+                                        <input type="text" placeholder="Company Website" class=" form-control  background-black input-sm" name="company_website"/> 
+                                    </span>
+                                    <span class="text-box">                                        
+                                        <input type="text" placeholder="Company Registration No" class=" form-control  background-black input-sm" name="company_registration_no"/> 
+                                    </span>
+                                    <span class="text-box">  
+                                        <label for="dt_of_incorporation" class="overlabel" style="position: absolute;top: 9px;left: 22px;">Date of Incorporation</label>
+                                        <input type="date" placeholder="Date of Incorporation (MM/DD/YYYY)" class="form-control  background-black input-sm dt_of_incorporation" id="dt_of_incorporation" name="dt_of_incorporation" style="width: 86%;" onclick=""/> 
+                                    </span>
+                                    <span class="text-box">    
+                                        <span class="x-required" style="left: 7px;">*</span>
+                                        <select class="form-control parsley-validated" required="" id="business_type" name="business_type">
+                                            <option value="">Select Business Type</option>
+                                            <option value="1">Company</option>
+                                            <option value="2">Partnership</option>
+                                            <option value="3">Proprietary</option> 
+                                        </select> 
+                                    </span>                                   
+                                    <span class="text-box">
+                                        <span class="x-required" style="left: 7px;">*</span>
+                                        <select class="form-control parsley-validated" required="" id="nature_business_type" name="nature_business_type">
+                                            <option value="">Select Nature of Business</option>
+                                            <option value="1">Dealer/Distributor</option>
+                                            <option value="2">Manufacturer</option>
+                                            <option value="3">Retailer</option>
+                                            <option value="4">Trader</option>
+                                            <option value="5">Others</option>
+                                        </select>
+                                    </span>                                   
+                                    <span class="text-box">                                        
+                                        <textarea id="company_address" placeholder="Company Address" class=" form-control  background-black input-sm" name="company_address"/></textarea> 
+                                    </span> 
+                                    <label class="checkbox" for="shipping_same_as"><input type="checkbox" name="shipping_same_as" id="shipping_same_as" onclick="sameAsAbove()" data-toggle="checkbox">Same as above</label>
+                                    <span class="text-box">                                        
+                                        <textarea placeholder="Shipping Address" class=" form-control  background-black input-sm" name="shipping_address" id="shipping_address"/></textarea> 
+                                    </span>       
+                                    <label class="checkbox"  for="billing_same_as"><input type="checkbox" onclick="sameAsAbove1()" id="billing_same_as" name="billing_same_as" data-toggle="checkbox">Same as Company Address</label>
+                                    <span class="text-box">
+                                        <textarea id="billing_address" placeholder="Billing Address" name="billing_address" class="form-control"></textarea> 
+                                    </span>                                   
+                                </div>
+                                <button type="submit" class="btn btn-xstok width-100p font-20 font-family-helvetica font-weight-normal" />Save & Proceed</button>
+                            </form>                            
+                        </div>
+                        <!----//sign-in-box ---->
+                        <!----up-load-stats---->
+                        <!--//up-load-stats---->
+                        <!----social-tags---->
+
+                        <!--//social-tags---->
+                    </div><!----//End-col-1 ----->
+                    <!---- col-2 ----->                    
+                    <!---- col-3 ----->                    
+                    <!---- col-3 ----->
+                    <div class="clear"> </div>
+                </div>
+
+            </div>
+
+            <!---- //content ----->
+
+        </div>        
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+         <script type="text/javascript" src="js/jquery.mobile.custom.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mmenu.js"></script>
+        <script type="text/javascript" src="js/jquery.md5.js"></script>
+        <script type="text/javascript" src="js/flat-ui.min.js"></script>
+        <script type="text/javascript" src="js/parsley.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+<script>
+        $("body").swiperight(function() { 
+                $("#header a").click();
+            });  
+  
+
+        </script>
+        <!---//container----->
+        <script type="text/javascript">
+               /* $('.dt_of_incorporation').datepicker({
+    format: 'dd-mm-yyyy',
+    autoclose: true
+});*/
+    
+    function initOverLabels () {
+        console.log('asdasd');
+  if (!document.getElementById) return;      
+
+  var labels, id, field;
+
+  // Set focus and blur handlers to hide and show 
+  // LABELs with 'overlabel' class names.
+  labels = document.getElementsByTagName('label');
+  for (var i = 0; i < labels.length; i++) {
+    
+    if (labels[i].className == 'overlabel') {
+
+      // Skip labels that do not have a named association
+      // with another field.
+      id = labels[i].htmlFor || labels[i].getAttribute('for');
+      if (!id || !(field = document.getElementById(id))) {
+        continue;
+      }
+
+      // Change the applied class to hover the label 
+      // over the form field.
+      labels[i].className = 'overlabel-apply';
+
+      // Hide any fields having an initial value.
+      if (field.value !== '') {
+        hideLabel(field.getAttribute('id'), true);
+      }
+
+      // Set handlers to show and hide labels.
+      field.onfocus = function () {
+        hideLabel(this.getAttribute('id'), true);
+      };
+      field.onblur = function () {
+        if (this.value === '') {
+          hideLabel(this.getAttribute('id'), false);
+        }
+      };
+
+      // Handle clicks to LABEL elements (for Safari).
+      labels[i].onclick = function () {
+        var id, field;
+        id = this.getAttribute('for');
+        if (id && (field = document.getElementById(id))) {
+          field.focus();
+        }
+      };
+
+    }
+  }
+};
+
+function hideLabel (field_id, hide) {
+  var field_for;
+  var labels = document.getElementsByTagName('label');
+  for (var i = 0; i < labels.length; i++) {
+    field_for = labels[i].htmlFor || labels[i].getAttribute('for');
+    if (field_for == field_id) {
+      labels[i].style.textIndent = (hide) ? '-1000px' : '0px';
+      return true;
+    }
+  }
+}
+
+window.onload = function () {
+  
+};
+    function onBackKeyDown() {// Handle the back button
+                navigator.notification.confirm(
+                        'Are you sure want to exit?', // message
+                        function (index) {
+                            if (index == 1) {//look at the docs for this part
+                                navigator.app.exitApp();
+                            }
+                        }, // callback to invoke with index of button pressed
+                        'Exit', // title
+                        'Yes,No' // buttonLabels
+                        );
+            }
+
+            function onDeviceReady() {
+                //FastClick.attach(document.body);
+                if (device.platform == "Android") {
+                    document.addEventListener("backbutton", onBackKeyDown, false);
+                }
+
+            }  
+            
+            function onBodyLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+                $('.icon').hover(function () {
+                    $('.password').attr('type', 'text');
+                    $('.show').removeClass('fa-eye');
+                    $('.show').addClass('fa-eye-slash');
+                }, function () {
+                    $('.password').attr('type', 'password');
+                    $('.show').addClass('fa-eye');
+                    $('.show').removeClass('fa-eye-slash');
+                });
+                 $('#company_address').bind('click keyup blur',function(){
+            if($('#shipping_same_as').is(":checked")) {
+                $('#shipping_address').attr('readonly','readonly');
+                $("#shipping_address").val($("#company_address").val());
+            }
+            if($('#billing_same_as').is(":checked")) {
+                $('#billing_address').attr('readonly','readonly');
+                $("#billing_address").val($("#company_address").val());
+            }
+        });
+                function sameAsAbove() {
+                    if ($('#shipping_same_as').is(":checked")) {
+                        $('#shipping_address').attr('readonly', 'readonly');
+                        $("#shipping_address").html($("#company_address").val());
+                    } else {
+                        $('#shipping_address').removeAttr('readonly', 'readonly');
+
+                    }
+                }
+                function sameAsAbove1() {
+                    if ($('#billing_same_as').is(":checked")) {
+                        $('#billing_address').attr('readonly', 'readonly');
+                        $("#billing_address").html($("#company_address").val());
+                    } else {
+                        $('#billing_address').removeAttr('readonly', 'readonly');
+
+                    }
+                }
+                $("#login").submit(function (e) {
+                     if($( '#login' ).parsley( 'isValid' )) {
+                    $('button[type="submit"]').addClass('disable');
+                    $('button[type="submit"]').html('Processing   <i class="fa fa-refresh fa-spin"></i>');
+                    e.preventDefault();
+                    var self = this;
+                    var doi = $('input[name="dt_of_incorporation"]').val();
+                    /*console.log(doi);
+                    var doi_array = doi.split('-');
+                    doi = doi_array[2]+'-'+doi_array[0]+'-'+doi_array[1];*/
+                    var json = '{"id":"' + localStorage.form_id + '","user_id":"' + rc4_dr(localStorage.user_id) + '","company_name":"' + $('input[name="company_name"]').val() + '","company_website":"' + $('input[name="company_website"]').val() + '","company_registration_no":"' + $('input[name="company_registration_no"]').val() + '","dt_of_incorporation":"' + doi + '","business_type":"' + $('#business_type :selected').val() + '","nature_business_type":"' + $('#nature_business_type :selected').val() + '","company_address":"' + $('#company_address').val() + '","shipping_address":"' + $('#shipping_address').html() + '","billing_address":"' + $('#billing_address').html() + '","action":"update"}';
+                    console.log(json);
+                    $.ajax({url: localStorage.host + 'buyer_companydetails.php', data: {json: json}, type: 'get', success: function (data) {
+                            $('button[type="submit"]').html('Done   <i class="fa fa-check"></i>');
+                            $('button[type="submit"]').removeClass('disable');
+                            setTimeout(function () {
+                                 self.submit();
+                                return false;
+                            }, 700);
+                            //console.log(data);                   
+                            // self.submit();
+                            //  return false;                    
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                        //    if (textStatus === "timeout") {
+                                x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                         //   }
+                        }
+                    });
+                }
+                });
+        </script>
+    </body>
+</html>
+

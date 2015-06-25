@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>xstok</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="xstok" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=medium-dpi,user-scalable=yes" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <script src='js/main_script.js'></script>
+        <!-- Custom Theme files -->
+        <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css" type='text/css'>
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <link rel="shortcut icon" href="favicon.ico">
+        <!-- Custom Theme files -->
+        <!----font-Awesome----->
+
+        <!----font-Awesome----->
+
+        <script type="text/javascript" src='js/jquery.min.js'></script>    
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script type="text/javascript">
+            //	The menu on the left
+            $(function () {
+                //show_loader();localStorage.u_
+                console.log(localStorage.host + '../login/autologin/' + localStorage.u_ + '/' + localStorage.p_);
+                //window.location.href = localStorage.host+'../login/autologin/'+localStorage.u_+'/'+localStorage.p_;
+                $('body').height($(window).innerHeight());
+            });
+            function onBackKeyDown() {// Handle the back button
+                navigator.notification.confirm(
+                        'Are you sure want to exit?', // message
+                        function (index) {
+                            if (index == 1) {//look at the docs for this part
+                                navigator.app.exitApp();
+                            }
+                        }, // callback to invoke with index of button pressed
+                        'Exit', // title
+                        'Yes,No' // buttonLabels
+                        );
+            }
+
+            function onDeviceReady() {
+                //FastClick.attach(document.body);
+                if (device.platform == "Android") {
+                    document.addEventListener("backbutton", onBackKeyDown, false);
+                }
+
+            }  
+            
+            function onBodyLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+            
+            function add_contact() {
+                var contact = navigator.contacts.create();
+                contact.displayName = "XSTOK Support";
+                contact.nickname = "XSTOK";       //specify both to support all devices
+
+
+                var phoneNumbers = [];
+                phoneNumbers[0] = new ContactField('mobile', '+919833273172', true);
+                contact.phoneNumbers = phoneNumbers;
+                var emails = [];
+                emails[0] = new ContactField('work', 'info@xstok.com', true);
+                contact.emails = emails;
+                contact.name = "XSTOK";
+
+                // save to device
+                contact.save(onSuccess, onError);
+            }
+            
+            function onSuccess(contact) {
+                if (device.platform == "Android") {
+                    if (localStorage.contact == 1) {
+                        cordova.plugins.Whatsapp.send("9833273172");
+                    } else {
+                        setTimeout(function () {
+                            localStorage.contact = 1;
+                            cordova.plugins.Whatsapp.send("9833273172");
+                        }, 3000);
+                    }
+                }
+            }
+
+            function onError(contactError) {
+                // alert("Error = " + contactError.code);
+            }
+
+        </script>
+    </head>
+    <body class="background-contact">
+        <div class="header-story" style="background: transparent;">
+            <a onclick="back()" style="text-align: left;padding-top: 27px;float: left;padding-left: 20px;"><i class="fa fa-angle-left fa-lg fa-2x x-white"></i></a>
+            <a style="text-align: right;padding-top: 20px;padding-right: 20px;float: right;"><img src="images/logo_y.png" style="height: 35px;"></a>
+        </div>
+        <div class="" style="padding-top: 60px;color: #000;">            
+            <div class="row row-cancel-margin">
+                <div class="col-xs-12 text-align-center font-family_roboto font-size-1-6-em"  style="padding-top: 30px;" >Contact Us</div>
+            </div>
+            <div class="row row-cancel-margin">
+                <div class="col-xs-12 font-20 font-family-helvetica padding-lr-10 text-align-center">
+                    <br>
+                    Daulatram Mansion, 4th Floor,<br>St. Kittridge Road, Colaba,<br> Mumbai 400005, India.
+                </div>
+            </div>
+            <div class="row row-cancel-margin"  style="padding-top: 30px;">
+               
+                <div class="col-xs-6 center-block text-align-center"><i class="fa fa-fw fa-mobile fa-2x"></i></div>
+               
+                <div class="col-xs-6 text-align-center"><i class="fa fa-fw fa-envelope fa-2x"></i></div>
+            </div>
+            <div class="row row-cancel-margin">
+                <div class="col-xs-6 text-align-center font-size-0-99-em font-family-helvetica"><a href="tel:+912266291133" class="x-grey">+ 91 2266291133</a></div>
+                <div class="col-xs-6 text-align-center font-size-0-99-em font-family-helvetica"><a  href="mailto:info@xstok.com"  class="x-grey">info@xstok.com</a></div>
+            </div>
+            <div class="row row-cancel-margin padding-tb-10" style="padding-top: 30px">
+                <div class="col-xs-2 x-white text-align-center"></div>
+                <div class="col-xs-2 x-white text-align-center"><a onClick="window.open('https://twitter.com/xstokIndia', '_system')" href="#"><img  height="33" src="images/twitter.png"></a></div>
+                <div class="col-xs-2 x-white text-align-center"><a onClick="window.open('https://www.linkedin.com/company/xstok?trk=tyah&trkInfo=idx%3A1-1-1,tarId%3A1423812100161,tas%3Axstok', '_system')" href="#"><img  height="33" src="images/linkedin.png"></a></div>
+                <div class="col-xs-2 x-white text-align-center"><a onClick="window.open('https://www.facebook.com/pages/XStok/798400676920131?ref=hl', '_system')" href="#"><img  height="33" src="images/facebook.png"></a></div>
+                <div class="col-xs-2 x-white text-align-center"><a onClick="add_contact()" href="#"><img  height="33" src="images/whatsapp.png"></a></div>
+                <div class="col-xs-2 x-white text-align-center"></div>
+            </div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script  type="text/javascript" src='js/main_script.js'></script>   
+        <script type="text/javascript" src="js/fastclick.js"></script>
+    </body>
+</html>

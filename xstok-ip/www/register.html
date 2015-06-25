@@ -1,0 +1,212 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>xstok</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="xstok" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <script src='js/main_script.js'></script>
+        <!-- Custom Theme files -->
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+        <link rel="shortcut icon" href="favicon.ico">
+        <!-- Custom Theme files -->
+        <!----font-Awesome----->
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/intlTelInput.css">
+        <!----font-Awesome----->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=medium-dpi,user-scalable=yes" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script>
+            function onBackKeyDown() {// Handle the back button
+                navigator.notification.confirm(
+                        'Are you sure want to exit?', // message
+                        function (index) {
+                            if (index == 1) {//look at the docs for this part
+                                navigator.app.exitApp();
+                            }
+                        }, // callback to invoke with index of button pressed
+                        'Exit', // title
+                        'Yes,No' // buttonLabels
+                        );
+            }
+
+            function onDeviceReady() {
+                //FastClick.attach(document.body);
+                if (device.platform == "Android") {
+                    document.addEventListener("backbutton", onBackKeyDown, false);
+                }
+
+            }  
+            
+            function onBodyLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+            if (localStorage.logged_in == 1) {
+               // window.location.href = "search_result.html"; //<-- remove
+            }
+            $(document).ready(function () {
+                $('.container').fadeIn(1000).show();
+            });
+        </script>
+    </head>
+    <body>
+        <div class="iso_blur background-image background-blur"></div>
+        <!-----container----->
+        <div class="container black_wrapper" style="display: none">
+
+
+            <!------ content ----->
+            <div class="content">
+                <div class="3-cols">
+                    <div class="col-1 col-md-3">
+                         <a onclick="back()" style="text-align: left;padding-top: 27px;float: left;padding-left: 20px;"><i class="fa fa-angle-left fa-lg fa-2x x-grey"></i></a>
+                        <!---- user-profile ---->
+                        <!-- //user-profile ---->
+                        <!---- sign-in-box ---->
+                        <div class="sign-in-box">
+                            <h2><img src="images/logo_y.png"></h2>
+                            <h3 class="heading-text" style="padding-top: 20px;">Registration</h3>
+                            <form id="login" action="otp.html" data-parsley-validate novalidate>
+                                <div class="text-boxs">
+                                    <span class="text-box">                                        
+                                        <input type="text" placeholder="Name" required class="form-control  background-black input-sm" name="name"/> 
+                                    </span>
+                                    <span class="text-box">                                        
+                                        <input type="text" placeholder="Company Name" required class=" form-control  background-black input-sm" name="company_name"/> 
+                                    </span>
+                                    <span class="text-box">                                        
+                                        <input id="mobile_no" pattern="^[0-9+/ /]*$" type="text" placeholder="Mobile Number" required class=" form-control  background-black input-sm" name="mobile_no" maxlength="16"/> 
+                                    </span>
+                                    <span class="text-box">
+                                        <span id="email_avail_result"></span>
+                                        <input type="email" placeholder="Email" required class=" form-control  background-black input-sm" id="email_id" name="email_id"/> 
+                                    </span>
+                                    <span class="text-box">                                        
+                                        <input type="password" placeholder="Password" required class=" form-control  background-black password input-sm" name="password"/><span class="icon"><i class="fa fa-lg fa-eye x-orange show"></i></span>
+                                    </span>
+                                </div>
+                                <button type="submit" class="sign-up-button btn btn-xstok width-100p font-20 font-family-helvetica font-weight-normal" />Sign Up</button>                               
+                                 <a class="x-grey footer_forgot footer_forgot_button" href="signin.html" style="float: right;font-size: 1em;">Already a user? <span class="x-orange"> Login</span></a>
+                            </form>                            
+                        </div>
+                        <!----//sign-in-box ---->
+                        <!----up-load-stats---->
+                        <!--//up-load-stats---->
+                        <!----social-tags---->
+
+                        <!--//social-tags---->
+                    </div><!----//End-col-1 ----->
+                    <!---- col-2 ----->                    
+                    <!---- col-3 ----->                    
+                    <!---- col-3 ----->
+                    <div class="clear"> </div>
+                </div>
+
+            </div>
+
+            <!---- //content ----->
+
+        </div>        
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/intlTelInput.js"></script>
+       <script type="text/javascript" src="js/utils.js"></script>
+        <script type="text/javascript" src="js/jquery.md5.js"></script>
+        <script type="text/javascript" src="js/parsley.min.js"></script>
+        <!---//container----->
+        <script type="text/javascript">
+            $('.icon').hover(function () {
+                $('.password').attr('type', 'text');
+                $('.show').removeClass('fa-eye');
+                $('.show').addClass('fa-eye-slash');
+            }, function () {
+                $('.password').attr('type', 'password');
+                $('.show').addClass('fa-eye');
+                $('.show').removeClass('fa-eye-slash');
+            });
+            $("#mobile_no").intlTelInput({
+              autoFormat: true,
+               //autoHideDialCode: true,
+                //nationalMode: true,
+              // responsiveDropdown: true,
+                utilsScript: "js/utils.js"
+           });
+            
+            $('#email_id').bind('click blur',function(){ // Keyup function for check the user action in input
+            var EmailID = $(this).val(); // Get the username textbox using $(this) or you can use directly $('#username')
+            var EmailIDAvailResult = $('#email_avail_result'); // Get the ID of the result where we gonna display the results
+            var EmailIDAvail = $('#email_avail');
+            $('button[type="submit"]').addClass('disable');
+            if (EmailID.length > 2) { // check if greater than 2 (minimum 3)
+                EmailIDAvailResult.html('<i class="fa fa-refresh fa-spin"></i>'); // Preloader, use can use loading animation here
+                var UrlToPass = 'action=email_availability&email_id=' + EmailID;
+                $.ajax({// Send the username val to another ajax.php using Ajax in POST menthod
+                    type: 'POST',
+                    data: UrlToPass,
+                    url: localStorage.host+'../ajax.php',
+                    success: function (responseText) { // Get the result and asign to each cases
+                        if (responseText == 0) {
+                            // EmailIDAvailResult.html('<span class="success">EmailID name available</span>');
+                            // EmailIDAvail.html('');
+                            EmailIDAvailResult.html('<i class="fa fa-check x-light-green"></i>');
+                            $('button[type="submit"]').removeClass('disable');
+                        }
+                        else if (responseText > 0) {
+
+                            EmailIDAvailResult.html('<i class="fa fa-times x-red"></i>');
+                            $('button[type="submit"]').addClass('disable');
+
+                        }
+                        else {
+                            x_alert('Problem with sql query');
+                        }
+                    }
+                });
+            } else {
+                EmailIDAvailResult.html('');
+            }
+            if (EmailID.length == 0) {
+                EmailIDAvailResult.html('');
+            }
+        });
+            
+            
+            $("#login").submit(function (e) {
+                 if($( '#login' ).parsley( 'isValid' )) {
+                 $('button[type="submit"]').addClass('disable');
+                 $('button[type="submit"]').html('Processing   <i class="fa fa-refresh fa-spin"></i>');
+                e.preventDefault();
+                var self = this;
+                var md5 = $.md5($("input[name=\"password\"]").val());
+                localStorage.u_ = $('input[type="email"]').val();
+                localStorage.p_ = md5;
+                localStorage.email_id = $("input[name=\"email_id\"]").val();
+                localStorage.mobile_no = $("input[name=\"mobile_no\"]").val();
+                localStorage.company_name = $("input[name=\"company_name\"]").val();
+                localStorage.p = $("input[name=\"password\"]").val();
+                var json = '{"id":null,"admin_id":null,"name":"' + $("input[name=\"name\"]").val() + '","company_name":"' + $("input[name=\"company_name\"]").val() + '","mobile_no":"' + $("input[name=\"mobile_no\"]").val() + '","email_id":"' + $("input[name=\"email_id\"]").val() + '","password":"' + md5 + '","active":"Y","address":null,"role_id":"3","comment":null,"pass":"' + md5 + '","now":"","action":"insert","form_type":"front_end"}';
+                $.ajax({url: localStorage.host + 'buyer_registration.php', data: {json: json}, type: 'get', success: function (data) {
+                    //console.log(data);                   
+                        $('button[type="submit"]').html('Done   <i class="fa fa-check"></i>');
+                         $('button[type="submit"]').removeClass('disable');
+                         localStorage.logged_in = 1;
+                            setTimeout(function () {
+                                 self.submit();
+                                return false;
+                            }, 700);                 
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                     //   if(textStatus==="timeout") {
+                           x_alert("You seem to have lost internet connection, please reconnect to get going");
+                      //  } 
+                    }
+                });
+            }
+            });
+        </script>
+    </body>
+</html>
+
