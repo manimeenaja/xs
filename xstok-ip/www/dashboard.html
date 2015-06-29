@@ -54,6 +54,14 @@ and open the template in the editor.
             </div>
             <div class="overlay-loader" style="display: none "><div class="loader">Loading...</div></div>
             <div class="overlay" style="display: none "></div>
+            <div class="callout-dash" style="display: none">
+                <div class="callout-profile"><span class="x-white font-18">Edit Profile</span><br><img src="images/round.png" width="45">                </div>
+                <div class="callout-won"><img src="images/arrow_up.png" style="height: 100px;" /><br><span class="x-white font-25">View all your active auctions here</span>
+                </div>
+                <div class="callout-auc-won"><img src="images/arrow_up.png" style="-webkit-transform: scale(-1,1) rotate(40deg);" /><br><span class="x-white font-25">View auctions you won and track further actions to be taken</span>
+                </div>
+            </div>
+            <div class="callout-overlay" style="display: none "></div>
             <div class="main-div">
                 <div class="dashborad-header " >
                     <div class="dashborad-image" style="display: none "></div>
@@ -312,7 +320,6 @@ and open the template in the editor.
                             </tbody>
                         </table>
                         <a class="btn btn-danger">Pay Subscription</a>
-
                     </div>
                 </div>
             </div>
@@ -479,12 +486,17 @@ and open the template in the editor.
                                 $('#scroller').width(totalWidth + 1);
                                 setTimeout(function () {
                                     hide_loader();
+                                    if(localStorage.callout_dash == 0 || localStorage.getItem("callout_dash") === null) { 
+                                        show_callout_dash();
+                                    }
                                 }, 1000);
                             }
 
 
                             $(document).ready(function () {
-
+                                $('.callout-auc-won').css('top',$('.top-header').outerHeight() + $('.dashborad-header').outerHeight() + $('#thelist').outerHeight()- 20);
+                                $('.callout-won').css('top',$('.top-header').outerHeight() + $('.dashborad-header').outerHeight() + $('#thelist').outerHeight() - 20);
+                                $('.callout-profile').css('top',$('.top-header').outerHeight() + $('.dashborad-header').outerHeight() - 70 );
                                 $('.dashborad-header').css('margin-top', $('.top-header').innerHeight() - 2);
                                 var windowHeight = $(window).height();
                                 var windowWidth = $(window).width();
@@ -614,7 +626,16 @@ $('.refund-emd-button-menu').click(function () {
                                                 $('.bid_amount' + i).html(logininfo['active_current_bid_ary'][i].split('<span class="WebRupee">Rs.</span>')[1]);
                                                 //  console.log('.bid_amount'+i);
                                             }
-
+                                            $('td[class*="bid_amount"').each(function () {
+                                                if($(this).text() == '') {
+                                                    $(this).html('-');
+                                                }
+                                            });
+                                            $('td[class*="status"').each(function () {
+                                                if($(this).text() == '') {
+                                                    $(this).html('-');
+                                                }
+                                            });                                            
                                         }
                                     });
                                 }, 1000);
@@ -678,7 +699,8 @@ $('.refund-emd-button-menu').click(function () {
                                     },
                                     error: function (jqXHR, textStatus, errorThrown) {
                                         //   if (textStatus === "timeout") {
-                                        x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                                        x_alert("You seem to have lost internet connection, please reconnect to get going");
+                                        window.location.href = "no_connection.html";
                                         //  }
                                     }
                                 });
@@ -705,7 +727,8 @@ $('.refund-emd-button-menu').click(function () {
                                     },
                                     error: function (jqXHR, textStatus, errorThrown) {
                                         //  if (textStatus === "timeout") {
-                                        x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                                        x_alert("You seem to have lost internet connection, please reconnect to get going");
+                                        window.location.href = "no_connection.html";
                                         // }
                                     }
                                 });
@@ -758,7 +781,8 @@ $('.refund-emd-button-menu').click(function () {
                                     },
                                     error: function (jqXHR, textStatus, errorThrown) {
                                         //   if (textStatus === "timeout") {
-                                        x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                                        x_alert("You seem to have lost internet connection, please reconnect to get going");
+                                        window.location.href = "no_connection.html";
                                         //   }
                                     }
                                 });
@@ -795,7 +819,8 @@ $('.refund-emd-button-menu').click(function () {
                                     },
                                     error: function (jqXHR, textStatus, errorThrown) {
                                         // if (textStatus === "timeout") {
-                                        x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                                        x_alert("You seem to have lost internet connection, please reconnect to get going");
+                                        window.location.href = "no_connection.html";
                                         //   }
                                     }
                                 });
@@ -848,7 +873,8 @@ $('.refund-emd-button-menu').click(function () {
                                     },
                                     error: function (jqXHR, textStatus, errorThrown) {
                                         //   if (textStatus === "timeout") {
-                                        x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                                        x_alert("You seem to have lost internet connection, please reconnect to get going");
+                                        window.location.href = "no_connection.html";
                                         //  }
                                     }
                                 });
@@ -982,7 +1008,8 @@ $('.refund-emd-button-menu').click(function () {
                                     },
                                     error: function (jqXHR, textStatus, errorThrown) {
                                         //  if (textStatus === "timeout") {
-                                        x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                                        x_alert("You seem to have lost internet connection, please reconnect to get going");
+                                        window.location.href = "no_connection.html";
                                         //   }
                                     }
                                 });

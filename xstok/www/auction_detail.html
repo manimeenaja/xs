@@ -51,6 +51,7 @@ and open the template in the editor.
                 $(window).scroll(function () {
                     sticky_relocate();
                 });
+                setInterval(function() { $('.callout-more').css('top',$('.more-otp').position().top);} , 0); 
                 $('#form').on('submit', insertIntoDb);
                 $('#form2').on('submit', insertIntoDb_shipping);
                 //;
@@ -189,7 +190,7 @@ and open the template in the editor.
                                 if (tender_period_date > time && time > start_date) {
                                     tender_period = 'Yes';
                                     $('.aut-type-1').html('I`m Interested');
-                                    tender_period_func(hash, dynamic_room, detail[0]['tender_period'], detail[0]['end_date'], actual_price);
+                                    tender_period_func(hash, dynamic_room, detail[0]['tender_period'], detail[0]['end_date'], actual_price,detail[0]['supplier_id']);
                                 }
                                 if (detail[0]['auc_type_id'] != localStorage.closed_bid_auction && tender_period == 'No') {
                                     $('#not_for_closed_bid').show();
@@ -321,9 +322,14 @@ and open the template in the editor.
                                 $('.download-excl').attr('onclick', 'download_exl("' + hash + '")');
                                 localStorage.tender_period = tender_period;
                                 get_unit(detail[0]['lot_unit']);
+                                if(localStorage.hide_list_p_percent && (localStorage.supp_id_list_array == detail[0]['supplier_id'])) {
+                                    $('.lp').hide();
+                                    $('.count-opt').html('+ 2');
+                                   // alert('a');
+                                }
                             }
                         }
-                        callout('bid_now_callout', 'Bid now', 'Click here to bid.', 0, 0);
+                        // callout('bid_now_callout', 'Bid now', 'Click here to bid.', 0, 0);
                         callout('bid_drop_callout', 'Bid now', 'Place your bid by choosing a value from the dropdown.', 2, 0);
                         callout('auto_bid_callout', 'Bid now', 'Autobid bids on your behalf ensuring you stay the winner. Place your highest bid here.', 3, 1);
                         callout('withdraw_callout', 'Bid now', 'Withdraw from this lot, if you are not the highest bidder. And release your proportanite EMD.', 0, 2);
@@ -331,10 +337,10 @@ and open the template in the editor.
                         setTimeout(function () {
                             if (localStorage.ttb == 0 || typeof localStorage.ttb == 'undefined') { 
                                 if($('.aut-type-1').text().toLowerCase() == 'bid now') {
-                                     localStorage.ttb = 1;
-                                    $('.bid_now_callout').fadeIn();
-                                    $('.bid_now_callout').css('bottom', $('.aut-type-1').outerHeight() + 'px');
-                                    $('.bid_now_callout').css('position', 'fixed');
+                                    localStorage.ttb = 1;
+                                    // $('.bid_now_callout').fadeIn();
+                                    //$('.bid_now_callout').css('bottom', $('.aut-type-1').outerHeight() + 'px');
+                                    //$('.bid_now_callout').css('position', 'fixed');
                                 }
                             }
                         }, 2000);
@@ -403,7 +409,7 @@ and open the template in the editor.
                     }
                 }, 400);
             });
-            function tender_period_func(lot_id, room_id, tender_period_date, end_date, actual_price) {
+            function tender_period_func(lot_id, room_id, tender_period_date, end_date, actual_price,supplier_id) {
                 $('.mybidvalue').css('visibility','hidden');
                 $('.callout').hide();
                 localStorage.tender_bid_detail = '';
@@ -441,10 +447,14 @@ and open the template in the editor.
                             var __end_date_text = formatAMPM(__end_date);
                             tender_msg = tender_msg.replace('__end_date', __end_date_text);
                             tender_msg = tender_msg.replace('__rs', temp_actual_price);
-                            if((parseFloat(actual_price)/ parseFloat(localStorage.limit_val))<parseFloat(localStorage.emd_list_price_limit)){
-                                tender_msg = tender_msg.replace('__x', Math.round(((parseFloat(actual_price) / parseFloat(localStorage.limit_val)) / parseFloat(actual_price)) * 100));
-                            } else {
+                            if(localStorage.hide_list_p_percent && (localStorage.supp_id_list_array == supplier_id)) {
                                 tender_msg = tender_msg.replace('(__x% of List Price)', '');
+                            } else {
+                                if((parseFloat(actual_price)/ parseFloat(localStorage.limit_val))<parseFloat(localStorage.emd_list_price_limit)){
+                                    tender_msg = tender_msg.replace('__x', Math.round(((parseFloat(actual_price) / parseFloat(localStorage.limit_val)) / parseFloat(actual_price)) * 100));
+                                } else {
+                                    tender_msg = tender_msg.replace('(__x% of List Price)', '');
+                                }
                             }
                             text = 'I`m Interested';
                         }
@@ -492,6 +502,14 @@ and open the template in the editor.
         <div class="container" style="padding-right: 0; padding-left: 0;" >
             <div class="overlay" style="display: none"></div>
             <div class="overlay-loader" style="display: none "><div class="loader">Loading...</div></div>
+            <div class="callout-dash" style="display: none">                                    
+                <div class="callout-bid"><span class="x-white font-25">Click here to bid</span><br><img class="roate-180" src="images/click.png" /></div>               
+                <div class="callout-swipe"><img class="" src="images/swipe.png" /><br><span class="x-white font-25">Swipe to see pics</span></div>               
+                <div class="callout-more">
+                    <img class="" src="images/round.png" style="width: 83px;" /><br><span class="x-white font-25">More Info</span> 
+                </div>
+        </div>
+        <div class="callout-overlay" style="display: none"></div>
             <span class="hide" id="list_price_actual"></span>
             <div class="panel-group" id="auction_detail" style="display: none " >
                 <div class="image-head">
@@ -521,11 +539,11 @@ and open the template in the editor.
                         <div class="qx">QX</div>
                     </div>
                 </div>                               
-                <div class="row row-cancel-margin padding-lr-10 font-black padding-tb-10">
+                <div class="row row-cancel-margin padding-lr-10 font-black padding-tb-10 more-otp">
                     <div class="col-xs-4 text-center col-4 font-size-0-9-em list-price-strike"><div class="head-value-text-cp"></div><br/><span class="">Current Price</span></div>
                     <div class="col-xs-3 text-center border-left-detail font-size-0-9-em col-4"><i class="fa fa-inr head-bid-value-text-sys"></i> <div class="head-bid-value-text"></div><br/>My Bid</div>
                     <div class="col-xs-3 text-center border-left-detail font-size-0-9-em col-4"><div class="timer" id="clock_"></div><div class="clock-text span_time_left">Time Left</div></div>     
-                    <div class="col-xs-2 text-center border-left-detail col-4" onclick="more_details()"><div class="width-100p font-size-1-em x-grey-background x-white"><b>+ 2</b><br><span class="font-size-0-9-em">more</span></div></div>
+                    <div class="col-xs-2 text-center border-left-detail col-4" onclick="more_details()"><div class="width-100p font-size-1-em x-grey-background x-white"><b><span class="count-opt">+ 3</span></b><br><span class="font-size-0-9-em">more</span></div></div>
                 </div>                
                 <div id="accordion" class="panel-group font-black">
                     <div class="panel panel-default">
@@ -601,7 +619,7 @@ and open the template in the editor.
                     <div class="bid-now-body">
                         <div id="not_for_closed_bid" style="" class="font-size-1-2-em">
                             <div class="current-price">
-                                <div class="row row-cancel-margin"><div class="col-xs-12 x-light-green font-size-1-6-em font-bold"><span class="curr_discount">Discount: </span><span class="head-percentage-text"></span></div></div>
+                                <div class="row row-cancel-margin lp"><div class="col-xs-12 x-light-green font-size-1-6-em font-bold"><span class="curr_discount">Discount: </span><span class="head-percentage-text"></span></div></div>
                                 <div class="row row-cancel-margin padding-top-5-p x-white font-20"><div class="col-xs-12">Current Price: <i class="fa fa-inr"></i> <span class="head-value-text font-bold"></span></div></div>
                             </div>               
                         </div>            
@@ -685,7 +703,7 @@ and open the template in the editor.
                             </div>                                
                         </div>
                         <hr>                       
-                        <div class="auction-history row row-cancel-margin ">
+                        <div class="auction-history row row-cancel-margin lp">
                             <div class="col-xs-12 padding-left-10-p font-size-1-2-em">
                                List Price : <i class="fa fa-inr"></i> <div class="head-list-price-text"  id="list_price_actual"></div> 
                             </div>

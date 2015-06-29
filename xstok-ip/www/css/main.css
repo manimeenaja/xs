@@ -8,6 +8,15 @@ and open the template in the editor.
     Author     : Shadab Shaikh
 */
 
+@font-face {
+  font-family: 'Casino Hand';
+  src: url('../fonts/casino_hand/casino_hand-webfont.eot');
+  src: url('../fonts/casino_hand/casino_hand-webfont?#iefix') format('embedded-opentype'),
+       url('../fonts/casino_hand/casino_hand-webfont.woff') format('woff'),
+       url('../fonts/casino_hand/casino_hand-webfont.ttf') format('truetype'),
+       url('../fonts/casino_hand/casino_hand-webfont.svg') format('svg');
+}
+
 body, html {
     background-color: #e7e7e7;
 /*    -webkit-overflow-scrolling: touch;*/
@@ -81,9 +90,10 @@ body, html {
 }
 
 #header a, .header a {
-    background: none;
-    top:29px;
-    z-index: 9;
+    background: none;    
+    z-index: 10;
+    padding: 10px 20px;
+    left: 0;
 }
 
 .margin-top-2 {
@@ -3373,6 +3383,129 @@ div.callout {
     right: 10px;
 }
 
+.x-yellow {
+    color: #ffff00;
+}
+.callout-dash {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 10;
+}
+.callout-overlay {
+    background: #000;
+    opacity: 0.69;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 9;
+}
+
+.callout-profile {
+    font-family: 'Casino Hand';
+    position: absolute;
+    right: 12%;
+    top:200px;
+}
+.callout-auc-won {
+     font-family: 'Casino Hand';
+    position: absolute;
+    left: 170px;
+    top: 200px;
+    width: 50%;
+}
+
+.callout-auc-won i {
+    font-size: 4em;
+    -webkit-transform: scale(0.5,1);
+}
+
+.callout-swipe {
+    font-family: 'Casino Hand';
+    position: absolute;
+    left: 50px;
+    top: 100px;
+    width: 45%;
+    text-align: center;
+}
+.callout-swipe i {
+    font-size: 4em;
+    -webkit-transform: scale(0.5,1);
+}
+.callout-won {
+    font-family: 'Casino Hand';
+    position: absolute;
+/*    left: 50px;*/
+    top: 100px;
+    width: 45%;
+    text-align: center;
+}
+.callout-won i {
+    font-size: 4em;
+    -webkit-transform: scale(0.5,1);
+}
+.callout-filter {   
+    font-family: 'Casino Hand';
+    position: absolute;
+    bottom: 26px;
+    right: 69px;
+}
+.callout-sort {  
+     font-family: 'Casino Hand';
+    position: absolute;
+    top: 100px;
+    width: 98%;
+    text-align: center;
+
+}
+.callout-sort i {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.callout-cat {
+     font-family: 'Casino Hand';
+    position: absolute;
+    top: 60px;
+    width: 55%;
+    text-align: center;
+}
+
+.callout-search-type {
+     font-family: 'Casino Hand';
+    position: absolute;
+    top: 60px;
+    width: 30%;
+    right: 0px;
+    text-align: center;
+}
+
+.callout-search-type i{
+     -webkit-transform: scale(0.5,1);
+}
+.callout-search-type span {
+    display: block;
+}
+
+.callout-bid {
+     font-family: 'Casino Hand';
+  position: absolute;
+  bottom: 35px;
+  left: 30px;
+  width: 80%;
+}
+.callout-more {
+     font-family: 'Casino Hand';
+  position: absolute;
+  top: 35px;
+  right: 0;
+  text-align: center;
+/*  width: 30%;*/
+}
+
+.font-25 {
+    font-size: 25px;
+}
 @media only screen and (max-width: 320px) {
     .list-discount {
         font-size: 12px;

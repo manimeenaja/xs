@@ -53,6 +53,14 @@ and open the template in the editor.
                 <!--//usernotifications---->
             </div>
             <div class="overlay-loader" style="display: none "><div class="loader">Loading...</div></div>
+            <div class="callout-dash" style="display: none">
+                <div class="callout-profile"><span class="x-white font-18">Edit Profile</span><br><img src="images/round.png" width="45">                </div>
+                <div class="callout-won"><img src="images/arrow_up.png" style="height: 100px;" /><br><span class="x-white font-25">View all your active auctions here</span>
+                </div>
+                <div class="callout-auc-won"><img src="images/arrow_up.png" style="-webkit-transform: scale(-1,1) rotate(40deg);" /><br><span class="x-white font-25">View auctions you won and track further actions to be taken</span>
+                </div>
+            </div>
+            <div class="callout-overlay" style="display: none "></div>
             <div class="overlay" style="display: none "></div>
             <div class="main-div">
                 <div class="dashborad-header " >
@@ -312,7 +320,6 @@ and open the template in the editor.
                             </tbody>
                         </table>
                         <a class="btn btn-danger">Pay Subscription</a>
-
                     </div>
                 </div>
             </div>
@@ -478,12 +485,17 @@ and open the template in the editor.
                                 });
                                 setTimeout(function () {
                                     hide_loader();
+                                    if(localStorage.callout_dash == 0 || localStorage.getItem("callout_dash") === null) { 
+                                        show_callout_dash();
+                                   }
                                 }, 1000);
                             }
 
 
                             $(document).ready(function () {
-
+                                $('.callout-auc-won').css('top',$('.top-header').outerHeight() + $('.dashborad-header').outerHeight() + $('#thelist').outerHeight()- 20);
+                                $('.callout-won').css('top',$('.top-header').outerHeight() + $('.dashborad-header').outerHeight() + $('#thelist').outerHeight() - 20);
+                                $('.callout-profile').css('top',$('.top-header').outerHeight() + $('.dashborad-header').outerHeight() - 70 );
                                 $('.dashborad-header').css('margin-top', $('.top-header').innerHeight() - 2);
                                 var windowHeight = $(window).height();
                                 var windowWidth = $(window).width();
@@ -538,11 +550,12 @@ and open the template in the editor.
 
                                 $('.refund-emd-button').click(function () {
                                     if(parseFloat($('#refund-emd').val()) < 0 ) {
-                                        x_alert('EMD amount should be greater than zero');
+                                        x_alert('EMD amount should be greater than 0');
                                     } else if($('#refund-emd').val() == '') {
                                          x_alert('Please fill some EMD amount');
                                     } else {
                                     $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'refund_emd', type: 'webservice', user_id: localStorage.user_id, emd_amount: $('#refund-emd').val()}, type: 'get', success: function (data) {
+                                            x_alert('EMD refund request submitted successfully');
                                             $('#refund-emd').val('');
 
                                         }
@@ -608,11 +621,24 @@ $('.refund-emd-button-menu').click(function () {
                                             for (i in logininfo['active_tym_ary']) {
                                                 $('.time' + i).html(logininfo['active_tym_ary'][i]);
                                                 //   console.log('.time'+i);
-                                            }
+                                            }                                            
                                             for (i in logininfo['active_current_bid_ary']) {
                                                 $('.bid_amount' + i).html(logininfo['active_current_bid_ary'][i].split('<span class="WebRupee">Rs.</span>')[1]);
                                                 //  console.log('.bid_amount'+i);
                                             }
+                                            $('td[class*="bid_amount"').each(function () {
+                                                if($(this).text() == '') {
+                                                    $(this).html('-');
+                                                }
+                                            });
+                                            $('td[class*="status"').each(function () {
+                                                if($(this).text() == '') {
+                                                    $(this).html('-');
+                                                }
+                                            });
+                                            //if($('td[class*="bid_amount"').text() == '') {
+                                                
+                                            //}
 
                                         }
                                     });
@@ -671,7 +697,7 @@ $('.refund-emd-button-menu').click(function () {
                                         /*-------------------notification end-------------------------*/
                                         $('.main-div').removeClass('hidden');
                                         setTimeout(function () {
-                                            hide_loader();
+                                            hide_loader();                                             
                                         }, 1000);
 
                                     },
@@ -811,6 +837,7 @@ $('.refund-emd-button-menu').click(function () {
                                         } else {
                                             var category_alertarray = localStorage.category_alert.split(',');
                                         }
+                                         var category_alert = category_alertarray;
                                         $.each(logininfo['category_list'], function (key, value) {
                                             var checked = '';
                                             for (var j = 0; j < category_alertarray.length; j++) {
@@ -829,15 +856,17 @@ $('.refund-emd-button-menu').click(function () {
                                          $('.category_list-count').html('(' + logininfo['category_list'].length + ')');
                                          }*/
                                         $('.category_list').html(category_list);
-                                        $('[data-toggle="checkbox"]').radiocheck();
-                                        $("input[name='category_alert']").change(function () {
-                                            var category_alert = [];
-                                            $('input[name="category_alert"]').each(function () {
-                                                if ($(this).is(":checked")) {
-                                                    category_alert.push($(this).val());
-                                                    //console.log($(this).val());
-                                                }
-                                            });
+                                        $('[data-toggle="checkbox"]').radiocheck();                                        
+                                        $("input[name='category_alert']").change(function () { 
+                                            if ($(this).is(":checked")) {
+                                                 category_alert.push($(this).val());
+                                                    console.log('asd');
+                                                    console.log(category_alert);
+                                            } else {
+                                                 var index = category_alert.indexOf($(this).val());
+                                                    category_alert.splice(index, 1);
+                                                    console.log(category_alert);
+                                            }
                                             localStorage.category_alert = category_alert;
                                             //  $('#textbox1').val($(this).is(':checked')); 
                                         });
@@ -854,10 +883,13 @@ $('.refund-emd-button-menu').click(function () {
 
                             function add_alerts() {
                                 $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'add_alerts', type: 'webservice', user_id: localStorage.user_id, cat_val: localStorage.category_alert}, type: 'get', success: function (data) {
-                                        x_alert('Successfully add to notification list');
-                                        $('body').unbind('touchmove');
-                                        $('.manage_noti').fadeOut();
-                                        $('.overlay').fadeOut();
+                                        var info = JSON.parse(data);
+                                        if(info['msg'] == 'success') {
+                                            x_alert('Successfully updated your notification list');
+                                            $('body').unbind('touchmove');
+                                            $('.manage_noti').fadeOut();
+                                            $('.overlay').fadeOut();
+                                        }
                                     }});
 
                             }
@@ -980,7 +1012,8 @@ $('.refund-emd-button-menu').click(function () {
                                     },
                                     error: function (jqXHR, textStatus, errorThrown) {
                                         //  if (textStatus === "timeout") {
-                                        x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                                        x_alert("You seem to have lost internet connection, please reconnect to get going");
+                                        window.location.href = "no_connection.html";
                                         //   }
                                     }
                                 });

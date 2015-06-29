@@ -50,13 +50,21 @@ and open the template in the editor.
 
             $(function () {
                 $('.container').fadeIn(1000).show();
-                
-  
             });</script>
     </head>
     <body class="">
         
         <div class="overlay" style="display: none"></div>
+        <div class="callout-dash" style="display: none">
+            <div class="callout-cat"><img src="images/arrow_up.png" height="100" /><br><span class="x-white font-25">Select category here</span>
+                </div> 
+                <!--<div class="callout-sort"><i class="fa fa-arrow-up x-yellow"></i><i class="fa fa-arrow-up x-yellow"></i><br><span class="x-white font-18">Sort auctions by the discount value or time left</span>
+                </div>     -->           
+                <div class="callout-search-type"><img src="images/arrow_up.png" height="70" style="-webkit-transform: scale(-1,1);float: right;"/><span class="x-white font-25">Switch to list view</span></div>
+                <div class="callout-filter"><span class="x-white font-25">Filter your search</span><br><img src="images/down.png" height="100" style="float: right;"/>
+                </div>
+        </div>
+        <div class="callout-overlay" style="display: none"></div>
         <div class="container"  >
             <div class="top-header x-orange-background">
                 <!----script-for-sidepanle-nav----> 
@@ -227,9 +235,7 @@ and open the template in the editor.
                         $('.src_icon').click();
                         $('.search').val('');
                         $('.src_icon').html('<i class="fa fa-search fa-lg x-white"></i>');
-                     } else {
-                        $('.src_icon').html('<i class="fa  fa-times fa-lg x-white"></i>');
-                     }
+                     } 
                     
                     if ($('.toggle-view').attr('view') == 'list') {
                         localStorage.toggle = 'grid';
@@ -254,7 +260,10 @@ and open the template in the editor.
                     $('.search').width(windowWidth - $('.usernotifications').width() - 66);
                     $('.search').css("maxWidth", (windowWidth - $('.usernotifications').width() - 55) + 'px');
                 });
-                $(document).ready(function () {
+                 $(document).ready(function () {    
+                     if(localStorage.callout_search == 0 || localStorage.getItem("callout_search") === null) { 
+                         show_callout_search();
+                     }
                     var windowHeight = $(window).height();
                     var windowWidth = $(window).width();
                     $('.list').height(windowHeight - $('.top-header').innerHeight() - 2 - $('.order-by').innerHeight() + 2);
@@ -271,8 +280,10 @@ and open the template in the editor.
                             $('.logo').css('visibility','visible');
                         } else {
                             $('.search').toggleClass('expanded');
-                            $('.search').focus();
                             $('.src_icon').html('<i class="fa  fa-times fa-lg x-white"></i>');
+                            $('.search').val('');
+                            $('.search').keyup();
+                            $('.search').focus();
                             $('.logo').css('visibility','hidden');                            
                         }                        
                     });
@@ -332,13 +343,33 @@ and open the template in the editor.
                                 if (text.indexOf(serch) > -1) {
                                     $(this).show();
                                 } else {
-                                    $(this).hide();
+                                    if(!$(this).hasClass('no-result')) {
+                                        $(this).hide();
+                                    }
                                 }
                             } else {
                                 $(this).show();
                             }
                         });
                     });
+                    setInterval(function ()  {
+                        var count = 0;
+                        $('.list li').each (function (index) {
+                            if(!$(this).hasClass('no-result')) {
+                                if($(this).is(':visible')) {
+                                    count++;
+                                }  
+                            }                  
+                        });
+                        if(count == 0 ){  
+                            if(!$('.list i').hasClass('fa-refresh')) {
+                                no_result('i');
+                            }
+                        }
+                        if(count > 0 ){
+                            $('.no-result').hide();
+                        }
+                    },0);
                     //  console.log(( localStorage.conditioncount) + (localStorage.locationcount) + (localStorage.sort_by_count) + (localStorage.discountcount) + (localStorage.suppliercount));
                     if (localStorage.getItem("conditioncount") < 0 || localStorage.getItem("conditioncount") === null) {
                         localStorage.conditioncount = 0;

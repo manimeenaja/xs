@@ -84,6 +84,7 @@ E:\xstok\xstok\platforms\android\assets\www\fonts \
 E:\xstok\xstok\platforms\android\assets\www\forgot_password.html \
 E:\xstok\xstok\platforms\android\assets\www\images \
 E:\xstok\xstok\platforms\android\assets\www\index.html \
+E:\xstok\xstok\platforms\android\assets\www\iphone.html \
 E:\xstok\xstok\platforms\android\assets\www\js \
 E:\xstok\xstok\platforms\android\assets\www\kyc.html \
 E:\xstok\xstok\platforms\android\assets\www\kyc_c.html \
@@ -139,6 +140,7 @@ E:\xstok\xstok\platforms\android\assets\www\css\flat\orange@2x.png \
 E:\xstok\xstok\platforms\android\assets\www\css\flat\orange@2x1.png \
 E:\xstok\xstok\platforms\android\assets\www\css\flat\_all.css \
 E:\xstok\xstok\platforms\android\assets\www\fonts\bold \
+E:\xstok\xstok\platforms\android\assets\www\fonts\casino_hand \
 E:\xstok\xstok\platforms\android\assets\www\fonts\css \
 E:\xstok\xstok\platforms\android\assets\www\fonts\fonts \
 E:\xstok\xstok\platforms\android\assets\www\fonts\glyphicons \
@@ -154,6 +156,10 @@ E:\xstok\xstok\platforms\android\assets\www\fonts\bold\Raleway-SemiBold.svg \
 E:\xstok\xstok\platforms\android\assets\www\fonts\bold\Raleway-SemiBold.ttf \
 E:\xstok\xstok\platforms\android\assets\www\fonts\bold\Raleway-SemiBold.woff \
 E:\xstok\xstok\platforms\android\assets\www\fonts\bold\stylesheet.css \
+E:\xstok\xstok\platforms\android\assets\www\fonts\casino_hand\casino_hand-webfont.eot \
+E:\xstok\xstok\platforms\android\assets\www\fonts\casino_hand\casino_hand-webfont.svg \
+E:\xstok\xstok\platforms\android\assets\www\fonts\casino_hand\casino_hand-webfont.ttf \
+E:\xstok\xstok\platforms\android\assets\www\fonts\casino_hand\casino_hand-webfont.woff \
 E:\xstok\xstok\platforms\android\assets\www\fonts\css\font-awesome.css \
 E:\xstok\xstok\platforms\android\assets\www\fonts\css\font-awesome.min.css \
 E:\xstok\xstok\platforms\android\assets\www\fonts\fonts\fontawesome-webfont.eot \
@@ -212,9 +218,12 @@ E:\xstok\xstok\platforms\android\assets\www\fonts\slick\slick.eot \
 E:\xstok\xstok\platforms\android\assets\www\fonts\slick\slick.svg \
 E:\xstok\xstok\platforms\android\assets\www\fonts\slick\slick.ttf \
 E:\xstok\xstok\platforms\android\assets\www\fonts\slick\slick.woff \
+E:\xstok\xstok\platforms\android\assets\www\images\arrow_up.png \
 E:\xstok\xstok\platforms\android\assets\www\images\buyer-protection.jpg \
 E:\xstok\xstok\platforms\android\assets\www\images\chat-arrow-l.png \
+E:\xstok\xstok\platforms\android\assets\www\images\click.png \
 E:\xstok\xstok\platforms\android\assets\www\images\contact.jpg \
+E:\xstok\xstok\platforms\android\assets\www\images\down.png \
 E:\xstok\xstok\platforms\android\assets\www\images\eye.png \
 E:\xstok\xstok\platforms\android\assets\www\images\fabrics.jpg \
 E:\xstok\xstok\platforms\android\assets\www\images\facebook.png \
@@ -237,8 +246,10 @@ E:\xstok\xstok\platforms\android\assets\www\images\no_image.jpg \
 E:\xstok\xstok\platforms\android\assets\www\images\oops.png \
 E:\xstok\xstok\platforms\android\assets\www\images\our-story.jpg \
 E:\xstok\xstok\platforms\android\assets\www\images\outbid.png \
+E:\xstok\xstok\platforms\android\assets\www\images\round.png \
 E:\xstok\xstok\platforms\android\assets\www\images\s-icons.png \
 E:\xstok\xstok\platforms\android\assets\www\images\seen.png \
+E:\xstok\xstok\platforms\android\assets\www\images\swipe.png \
 E:\xstok\xstok\platforms\android\assets\www\images\twitter-icon.png \
 E:\xstok\xstok\platforms\android\assets\www\images\twitter.png \
 E:\xstok\xstok\platforms\android\assets\www\images\video-img.jpg \

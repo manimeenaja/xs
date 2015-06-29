@@ -124,6 +124,8 @@ localStorage.presale = 'Presale Review';
 localStorage.pay_emd = 'Pay EMD';
 localStorage.emd_list_price_limit= 200000;
 localStorage.not_participating__ = 'You are not participating in this auction';
+localStorage.hide_list_p_percent = 1;
+localStorage.supp_id_list_array = 1470;
 /*----------------DEFINED END-------------------*/
 
 function auction_detail(id) {
@@ -155,6 +157,43 @@ function bid_now() {
         e.preventDefault();
     });
 }
+
+function show_callout_search () {
+    $('.callout-dash').fadeIn();
+    $('.callout-overlay').fadeIn();
+    $('body').bind('touchmove', function (e) {
+        e.preventDefault();
+    });
+    localStorage.callout_search = 1;
+}
+
+function show_callout_dash () {
+    $('.callout-dash').fadeIn();
+    $('.callout-overlay').fadeIn();
+    $('body').bind('touchmove', function (e) {
+        e.preventDefault();
+    });
+    localStorage.callout_dash = 1;
+}
+$('.callout-dash').click(function () {
+    $('.callout-dash').fadeOut();
+    $('.callout-overlay').fadeOut();
+    $('body').unbind('touchmove');
+});
+
+function show_callout_auc () {
+    $('.callout-dash').fadeIn();
+    $('.callout-overlay').fadeIn();
+    $('body').bind('touchmove', function (e) {
+        e.preventDefault();
+    });
+    localStorage.callout_auc = 1;
+}
+$('.callout-dash').click(function () {
+    $('.callout-dash').fadeOut();
+    $('.callout-overlay').fadeOut();
+    $('body').unbind('touchmove');
+});
 function more_detail() {
     $('.overlay').fadeIn();
     $("body").scrollTop(0);
@@ -172,6 +211,8 @@ $('.overlay').click(function () {
     $('.manage_noti').fadeOut();
     $('.add-emd').fadeOut();
     $('.refund-emd').fadeOut();
+    $('#search_feedback').fadeOut();
+    
 });
 
 
@@ -1299,7 +1340,13 @@ function supplier_detail(id) {
             }
 
             $('.rating-star').html(star);
-            setTimeout('hide_loader()', 1000);
+            setTimeout(function() {
+                hide_loader();
+                if(localStorage.callout_auc == 0 || localStorage.getItem("callout_auc") === null) { 
+                    show_callout_auc ();
+                }
+            }, 1000);
+            
         },
         error: function (jqXHR, textStatus, errorThrown) {
             /*  if (textStatus === "timeout") {
@@ -1309,9 +1356,20 @@ function supplier_detail(id) {
     });
 }
 
-function no_result() {
+function no_result(data) {
+    if(data == 'undefined') {
+        data = '';
+    }
     var body = '<li class="no-result"><div class="oops-image"><img src="images/oops.png"/></div><div class=" oops-subtext-main">Sorry your search had no results</div><div class="oops-subtext">We don`t seem to have what you are looking for,<br><a onclick="search_feedback()" class="x-orange">click here</a> and we try to get it for you.</div></li>';
-    $('.list').html(body);
+    if(data != '') {
+        //console.log('no-result = > '+$('.no-result').length);
+        if($('.no-result').length == 0) {
+            $('.list').append(body);
+        }
+        $('.no-result').show();
+    } else {
+         $('.list').html(body);
+    }   
 }
 
 function search_feedback() {
