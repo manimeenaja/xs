@@ -451,7 +451,7 @@ and open the template in the editor.
                                 tender_msg = tender_msg.replace('(__x% of List Price)', '');
                             } else {
                                 if((parseFloat(actual_price)/ parseFloat(localStorage.limit_val))<parseFloat(localStorage.emd_list_price_limit)){
-                                    tender_msg = tender_msg.replace('__x', Math.round(((parseFloat(actual_price) / parseFloat(localStorage.limit_val)) / parseFloat(actual_price)) * 100));
+                                    tender_msg = tender_msg.replace('__x',round(((parseFloat(actual_price) / parseFloat(localStorage.limit_val)) / parseFloat(actual_price)) * 100,2));
                                 } else {
                                     tender_msg = tender_msg.replace('(__x% of List Price)', '');
                                 }
@@ -721,7 +721,7 @@ and open the template in the editor.
                         <div class="text-align-center bid_close" style="" onClick="more_detail_close()">Close</div>
                     </div>
                 </div>
-                <div id="shipping_qoute"  style="max-width:44em;display: none">
+                <div id="shipping_qoute"  style="display: none">
                     <!--<h4><span class="other_close btn btn-default">X</span></h4>-->
                     <form id="form2" class="form-horizontal group-border-dashed well" action="#" accept-charset='UTF-8' enctype="multipart/form-data" data-parsley-validate novalidate>
                         <div class="padding-bottom-5-p"><i class="fa fa-truck "></i> Request Shipping Quote</div>
@@ -742,7 +742,7 @@ and open the template in the editor.
                         </div>                        
                     </form>
                 </div>
-                <div id="other" class="" style="max-width:44em;display: none" >
+                <div id="other" class="" style="display: none" >
                     <form id="form" class="form-horizontal group-border-dashed well" action="#" accept-charset='UTF-8' enctype="multipart/form-data"  data-parsley-validate novalidate>
                         <input type="hidden" name = 'auc_title' value = ''>
                         <input type="hidden" name = 'auc_url' value = ''>
@@ -766,6 +766,16 @@ and open the template in the editor.
                         </div>
                     </form>
 
+                </div>
+                <div id="autobid" class="" style="display: none;" >
+                    <div class="x-white-background padding-lr-10 padding-tb-10" style="border-radius: 3px;">
+                    <input type="hidden" name="confirm_lot_id" id="confirm_lot_id" value="">
+                    <input type="hidden" name="first_option" id="first_option" value="">
+                    <input type="hidden" name="sec_option" id="sec_option" value="">
+                    <div id="confirm_msg_" class="padding-bottom-5-p"></div>
+                    <div class=""><button class="btn btn-xstok" onclick="confirm_ajax_call(this.value)" id="confirm_button_" >Confrim</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="other_close btn btn-danger" onclick="auto_close()">Cancel</button>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>        
@@ -850,7 +860,7 @@ and open the template in the editor.
                                             showEmdConfrim(confirmtitle,confirmbutton,confirmlink);
                                         } else {
                                             if (localStorage.my_bid_val.replace(/,/g, '') < 1 || $('.bid_cal_' + dynamic_lot).html() == localStorage.winner__) {
-                                                var og_emd__ = numberWithCommas(Math.round(parseFloat($('#list_price_actual').html().replace(/,/g, '')) / parseFloat(localStorage.limit_val)));
+                                                var og_emd__ = numberWithCommas(round(parseFloat($('#list_price_actual').html().replace(/,/g, '')) / parseFloat(localStorage.limit_val)));
                                                 var list_actual_price__ = $('#list_price_actual').html();
                                                 var confirm_bid__ = numberWithCommas(first_bid);
 
@@ -929,8 +939,7 @@ and open the template in the editor.
                                         }, 5500);
                                     } else {
                                         var og_emd__ = Math.round(parseFloat($('#list_price_actual').html().replace(/,/g, '')) / parseFloat(localStorage.limit_val));
-                                        if (parseFloat(localStorage.my_bid_val.replace(/,/g, '')) < parseFloat(og_emd__) && localStorage.my_bid_val.replace(/,/g, '') < 1) {
-                                            //$('.msg_' + dynamic_lot).html('<?php echo EMD_over__ ?>').fadeIn('slow').delay(3000).fadeOut('slow');                                            
+                                        if (parseFloat(localStorage.my_bid_val.replace(/,/g, '')) < parseFloat(og_emd__) && localStorage.my_bid_val.replace(/,/g, '') < 1) {                                                             
                                             var confirmtitle = localStorage.pay_emd;
                                             var confirmbutton = 'Top up,Cancel';
                                             var confirmlink = 'dashboard.html#buyer_emd_details';
@@ -941,17 +950,56 @@ and open the template in the editor.
                                                 var list_actual_price__ = $('#list_price_actual').html();
                                                 var confirm_bid__ = numberWithCommas(first_bid);
                                                 if (tender_bid_detail != 'Yes') {
-                                                    var confirm_msg = localStorage.first_bid_msg__.replace("og_emd__", og_emd__).replace("list_actual_price__", list_actual_price__).replace("confirm_bid__", confirm_bid__);
+                                                    var amount = (parseFloat(first_bid) - parseFloat(discount_value));
+                                                    var rem = (parseFloat(amount)%parseFloat(sel_inc_value));
+                                                    if(rem > 0) {
+                                                        var lowest = (( parseFloat(amount)-parseFloat(rem))/parseFloat(sel_inc_value));
+                                                        var first_option = parseFloat((parseFloat((sel_inc_value*lowest))+parseFloat(discount_value)));
+                                                        if(curr_val==first_option){
+                                                            var lowest = (lowest+1);
+                                                            var higest = (lowest+1);
+                                                        } else {
+                                                            var higest = (lowest+1);
+                                                        }
+                                                        var first_option = parseFloat((parseFloat((sel_inc_value*lowest))+parseFloat(discount_value)));
+                                                        var sec_option = parseFloat((parseFloat((sel_inc_value*higest))+parseFloat(discount_value)));
+                                                        $('#confirm_msg_').html(localStorage.confirm_auto_choose_val_+" <br /> <input type=radio name='opt_auto_bid' value=1 id='opt_auto_bid1' checked /><label for='opt_auto_bid1'><span></span></label> <i class='fa fa-inr'></i> "+numberWithCommas(first_option)+" <input type=radio name='opt_auto_bid' value=2 id='opt_auto_bid2' /><label for='opt_auto_bid2'><span></span></label> <i class='fa fa-inr'></i> " + numberWithCommas(sec_option) + " <br /><br />Note: this will block EMD of <i class='fa fa-inr'></i>" + og_emd__);
+                                                        $('#first_option').val(localStorage.host+'../classes/service_manage_auction.class.php?action=manage_auto_bid&user_id='+localStorage.user_id+'&admin_id='+localStorage.user_id+'&lot_id=' + dynamic_lot + '&room_id=' + dynamic_room + '&golden_time=' + golden_time + '&golden_time_value=' + golden_time_value + '&first_bid=' + first_option + '&auction_on=' + auction_on + '&reserve_price=' + reserve_price + '&discount_value=' + discount_value + '&actual_price=' + actual_price + '&dynamic_min_user=' + dynamic_min_user + '&sel_inc_value=' + sel_inc_value + '&auc_end_date=' + auc_end_date + '');
+                                                        $('#sec_option').val(localStorage.host+'../classes/service_manage_auction.class.php?action=manage_auto_bid&user_id='+localStorage.user_id+'&admin_id='+localStorage.user_id+'&lot_id=' + dynamic_lot + '&room_id=' + dynamic_room + '&golden_time=' + golden_time + '&golden_time_value=' + golden_time_value + '&first_bid=' + sec_option + '&auction_on=' + auction_on + '&reserve_price=' + reserve_price + '&discount_value=' + discount_value + '&actual_price=' + actual_price + '&dynamic_min_user=' + dynamic_min_user + '&sel_inc_value=' + sel_inc_value + '&auc_end_date=' + auc_end_date + '');
+                                                    } else {
+                                                        $('#confirm_msg_').html(localStorage.confirm_place_auto_bid + " <i class='fa fa-inr'></i> " + numberWithCommas(first_bid) + "  <br /><br />Note: this will block EMD of <i class='fa fa-inr'></i>" + og_emd__);
+                                                    }  
                                                 } else {
-                                                    var confirm_msg = localStorage.confirm_place_auto_bid + " Rs. " + numberWithCommas(first_bid) + "";
+                                                    $('#confirm_msg_').html(localStorage.confirm_place_auto_bid + " <i class='fa fa-inr'></i> " + numberWithCommas(first_bid) + " ");
                                                 }
                                             } else {
-                                                var confirm_msg = localStorage.confirm_place_auto_bid + " Rs. " + numberWithCommas(first_bid) + "";
+                                                var amount = (parseFloat(first_bid) - parseFloat(discount_value));
+                                                var rem = (parseFloat(amount)%parseFloat(sel_inc_value));
+                                                if(rem > 0) {
+                                                    var lowest = (( parseFloat(amount)-parseFloat(rem))/parseFloat(sel_inc_value));
+                                                    var first_option = parseFloat((parseFloat((sel_inc_value*lowest))+parseFloat(discount_value)));
+                                                    if(curr_val==first_option){
+                                                        var lowest = (lowest+1);
+                                                        var higest = (lowest+1);
+                                                    } else {
+                                                        var higest = (lowest+1);
+                                                    }
+                                                    var first_option = parseFloat((parseFloat((sel_inc_value*lowest))+parseFloat(discount_value)));
+                                                    var sec_option = parseFloat((parseFloat((sel_inc_value*higest))+parseFloat(discount_value)));
+                                                    $('#confirm_msg_').html(localStorage.confirm_auto_choose_val_ + " <br /> <input type=radio name='opt_auto_bid' value=1 id='opt_auto_bid1' checked /><label for='opt_auto_bid1'><span></span></label> <i class='fa fa-inr'></i> "+numberWithCommas(first_option)+" <input type=radio name='opt_auto_bid' value=2 id='opt_auto_bid2' /><label for='opt_auto_bid2'><span></span></label> <i class='fa fa-inr'></i> " + numberWithCommas(sec_option) + " ");
+                                                    $('#first_option').val(localStorage.host+'../classes/service_manage_auction.class.php?action=manage_auto_bid&user_id='+localStorage.user_id+'&admin_id='+localStorage.user_id+'&lot_id=' + dynamic_lot + '&room_id=' + dynamic_room + '&golden_time=' + golden_time + '&golden_time_value=' + golden_time_value + '&first_bid=' + first_option + '&auction_on=' + auction_on + '&reserve_price=' + reserve_price + '&discount_value=' + discount_value + '&actual_price=' + actual_price + '&dynamic_min_user=' + dynamic_min_user + '&sel_inc_value=' + sel_inc_value + '&auc_end_date=' + auc_end_date + '');
+                                                    $('#sec_option').val(localStorage.host+'../classes/service_manage_auction.class.php?action=manage_auto_bid&user_id='+localStorage.user_id+'&admin_id='+localStorage.user_id+'&lot_id=' + dynamic_lot + '&room_id=' + dynamic_room + '&golden_time=' + golden_time + '&golden_time_value=' + golden_time_value + '&first_bid=' + sec_option + '&auction_on=' + auction_on + '&reserve_price=' + reserve_price + '&discount_value=' + discount_value + '&actual_price=' + actual_price + '&dynamic_min_user=' + dynamic_min_user + '&sel_inc_value=' + sel_inc_value + '&auc_end_date=' + auc_end_date + '');
+                                                } else {
+                                                    $('#confirm_msg_').html(localStorage.confirm_place_auto_bid + " <i class='fa fa-inr'></i> " + numberWithCommas(first_bid) + " ");
+                                                }
                                             }
-                                            var confirmtitle = localStorage.auto_bid_now;
-                                            var confirmbutton = 'Yes,Cancel';
-                                            var confirmlink = localStorage.host + '../classes/service_manage_auction.class.php?action=manage_auto_bid&user_id=' + localStorage.user_id + '&admin_id=' + localStorage.user_id + '&lot_id=' + dynamic_lot + '&room_id=' + dynamic_room + '&golden_time=' + golden_time + '&golden_time_value=' + golden_time_value + '&first_bid=' + first_bid + '&auction_on=' + auction_on + '&reserve_price=' + reserve_price + '&discount_value=' + discount_value + '&actual_price=' + actual_price + '&dynamic_min_user=' + dynamic_min_user + '&sel_inc_value=' + sel_inc_value + '&auc_end_date=' + auc_end_date + '';
-                                            showConfirm(confirm_msg, confirmtitle, confirmbutton, confirmlink, dynamic_lot);
+                                            $('#confirmtitle').html(localStorage.auto_bid_now);
+                                            $('#confirm_lot_id').val(dynamic_lot);
+                                            $('#confirm_button_').val(localStorage.host + '../classes/service_manage_auction.class.php?action=manage_auto_bid&user_id=' + localStorage.user_id + '&admin_id=' + localStorage.user_id + '&lot_id=' + dynamic_lot + '&room_id=' + dynamic_room + '&golden_time=' + golden_time + '&golden_time_value=' + golden_time_value + '&first_bid=' + first_bid + '&auction_on=' + auction_on + '&reserve_price=' + reserve_price + '&discount_value=' + discount_value + '&actual_price=' + actual_price + '&dynamic_min_user=' + dynamic_min_user + '&sel_inc_value=' + sel_inc_value + '&auc_end_date=' + auc_end_date + '');  
+                                            $('.overlay').css('z-index','12');
+                                            $('.overlay').unbind('click');
+                                            $('#autobid').fadeIn();
+                                            //showConfirm(confirm_msg, confirmtitle, confirmbutton, confirmlink, dynamic_lot);
                                         }
                                     }
                                     $('#first_bid_' + dynamic_lot).val('');
