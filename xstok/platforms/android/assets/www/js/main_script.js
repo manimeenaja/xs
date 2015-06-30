@@ -1,8 +1,9 @@
 /*----------------DEFINED START-------------------*/
 
 //localStorage.host = "http://192.168.0.13/webservices/";
-localStorage.host = "http://beta.xstok.com/webservices/";
-//localStorage.host = "http://www.xstok.com/webservices/";
+//localStorage.host = "http://beta.xstok.com/webservices/";
+//localStorage.host = "http://fa.xstok.com/webservices/";
+localStorage.host = "http://www.xstok.com/webservices/";
 localStorage.device = 'Android';
 localStorage.vr = 'new';
 localStorage.key_code = 'euhe68vjdr1aX4F091c7aCggSMBf0A7M';
@@ -118,6 +119,7 @@ localStorage.your_result__ = 'This auction is under Presale Review period. The b
 localStorage.your_interest__ = 'This auction is under Presale Review period. The bidding will start on __st_date to __end_date. <br /><br /> <b>You need to pay EMD of <i class="fa fa-inr"></i> __rs (__x% of List Price) to participate in this auction. </b><br /><br />If you are a first time buyer, it may take up to 24 hours to create your escrow account.<br /><br />Pay EMD now and be ready for bidding by clicking below.<br /><br />';
 localStorage.first_bid_msg__ = 'Confirm your bid of Rs. confirm_bid__  Note: this will block EMD of Rs. og_emd__.';
 localStorage.emd_bid_msg__ = 'You are registering interest in this auction. Your EMD of <i class="fa fa-inr"></i> og_emd__ will be blocked. <br /><br /> You will receive a reminder email and sms one day before the start of the bidding period and again 3 hours before closing.';
+localStorage.confirm_auto_choose_val_ = 'Your auto bid value doesn\'t match auction minimum increment value <br /> <br />Choose from one of the values below';
 localStorage.time_left__ = 'Time Left';
 localStorage.presale_time_left = 'Review time left';
 localStorage.presale = 'Presale Review';
@@ -215,6 +217,19 @@ $('.overlay').click(function () {
     
 });
 
+function overlay_click () {
+    $('.overlay').click(function () {
+    bid_close();
+    more_detail_close();
+    shipping_qoute_close();
+    other_close();
+    $('.manage_noti').fadeOut();
+    $('.add-emd').fadeOut();
+    $('.refund-emd').fadeOut();
+    $('#search_feedback').fadeOut();
+    });
+}
+
 
 function more_details() {
     $('.overlay').fadeIn();
@@ -294,6 +309,11 @@ function other_close() {
     $('body').unbind('touchmove');
     $('#other').fadeOut();
     $('.overlay').fadeOut();
+}
+
+function auto_close() {   
+    $('#autobid').fadeOut();
+    $('.overlay').css('z-index','9');
 }
 
 function show_loader() {
@@ -616,8 +636,8 @@ function show_data(auc_type_id, reserve_price, lot_id, auction_on, min_incr_valu
                 $(".span_emd").html(obj.emd_left);
                 localStorage.final_status = obj.status;
                 $('.head-value-text-cp').html($('.curr_bid_' + dynamic_lot[idx]).text());
-                $('.head-per-value-text').html('<i class="fa fa-inr"></i> '+numberWithCommas(Math.round($('.curr_bid_' + dynamic_lot[idx]).text().replace(/,/g, '') / unit_price )));
-                $('#cal_span_per_nit').html(numberWithCommas(round($('.curr_bid_' + dynamic_lot[idx]).text().replace(/,/g, '')/unit_price)));
+                $('.head-per-value-text').html('<i class="fa fa-inr"></i> '+numberWithCommas(RoundTo($('.curr_bid_' + dynamic_lot[idx]).text().replace(/,/g, '') / unit_price ,0.5  )));
+                $('#cal_span_per_nit').html(numberWithCommas(RoundTo($('.curr_bid_' + dynamic_lot[idx]).text().replace(/,/g, '')/unit_price, 0.5 )));
                 if (obj.tender_period == 'No') {
                     localStorage.tender_local_var = 'N';
                     $('.tender-period').hide();
@@ -638,7 +658,7 @@ function show_data(auc_type_id, reserve_price, lot_id, auction_on, min_incr_valu
                         $('.aut-type-1').html('Sold Out');
                     } else {
                         $('.aut-type-1').html(localStorage.bid_now);
-                        console.log($('.cal_bid_cal_'+dynamic_lot).text());
+                        //console.log($('.cal_bid_cal_'+dynamic_lot).text());
                         if($('.cal_bid_cal_'+dynamic_lot).text() != '--') {
                             $('.mybidvalue').css('visibility','visible');
                         } else {
@@ -677,7 +697,7 @@ function show_data(auc_type_id, reserve_price, lot_id, auction_on, min_incr_valu
                         if ($('.curr_bid_' + lot_id + '').text() != curr_value_dropdown)
                         {
                             if (auc_type_id != localStorage.closed_bid_auction) {
-                                $.post(localStorage.host + '../classes/common.class.php?action=load_dynamic_drop_down_mobile&curr_val=' + $('.curr_bid_' + lot_id + '').text() + '&min_inc=' + min_incr_value + '&actual_p=' + actual_price + '&auc_on=' + auction_on + '&user_id=' + localStorage.userid, {id: 1},
+                                $.post(localStorage.host + '../classes/common.class.php?action=load_dynamic_drop_down_mobile&curr_val=' + $('.curr_bid_' + lot_id + '').text() + '&min_inc=' + min_incr_value + '&actual_p=' + actual_price + '&auc_on=' + auction_on + '&user_id=' + localStorage.userid+'&total_bid='+obj.total_bid+'', {id: 1},
                                 function (data) {
                                     var items = [];
 
@@ -1695,9 +1715,25 @@ function showConfirm(msg, title, buttonlabels, link, dynamic_lot) {
      
 }
 
-function onConfirm(link, dynamic_lot) {
+function confirm_ajax_call(val) {
+    var dynamic_lot = $('#confirm_lot_id').val();
+    if($('input[name=opt_auto_bid]:radio:checked').val()==1){
+        var link = $('#first_option').val();
+       // $('.msg_' + $('#confirm_lot_id').val()).load($('#first_option').val()).fadeIn('slow').delay(3000).fadeOut('slow');
+    }else if($('input[name=opt_auto_bid]:radio:checked').val()==2){
+        var link = $('#sec_option').val();
+       // $('.msg_' + $('#confirm_lot_id').val()).load($('#sec_option').val()).fadeIn('slow').delay(3000).fadeOut('slow');
+    }else{
+        var link = val;
+       // $('.msg_' + $('#confirm_lot_id').val()).load(val).fadeIn('slow').delay(3000).fadeOut('slow');
+    }
+    onConfirm(link, dynamic_lot);
+} 
+
+function onConfirm(link, dynamic_lot) { 
     $.ajax({url: link, data: {}, type: 'get', success: function (data) {
             $('.current_value').html(''); 
+            auto_close();
             $('.msg_' + dynamic_lot).html(data).fadeIn('slow').delay(1000).show('slow');
             if(localStorage.tender_period == 'Yes') {   
                
@@ -1826,19 +1862,19 @@ function insertIntoDb(event) {
 
 
 function numberWithCommas(x){
-        x=x.toString();
-        var afterPoint = '';
-        if(x.indexOf('.') > 0)
-            afterPoint = x.substring(x.indexOf('.'),x.length);
-        x = Math.floor(x);
-        x=x.toString();
-        var lastThree = x.substring(x.length-3);
-        var otherNumbers = x.substring(0,x.length-3);
-        if(otherNumbers != '')
-            lastThree = ',' + lastThree;
-        var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
-        return res;
-    }
+    x=x.toString();
+    var afterPoint = '';
+    if(x.indexOf('.') > 0)
+        afterPoint = x.substring(x.indexOf('.'),x.length);
+    x = Math.floor(x);
+    x=x.toString();
+    var lastThree = x.substring(x.length-3);
+    var otherNumbers = x.substring(0,x.length-3);
+    if(otherNumbers != '')
+        lastThree = ',' + lastThree;
+    var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+    return res;
+}
 
 function deviceRegistered(id) {
     if (localStorage.logged_in == '1') {
@@ -1956,3 +1992,7 @@ function date_fution (date) {
     var start_date = new Date(d[0],(d[1]-1),d[2],t[0],t[1],t[2]);
     return start_date;
 }
+
+ function RoundTo(number, roundto){
+    return roundto * Math.round(number/roundto);
+ }

@@ -621,24 +621,21 @@ $('.refund-emd-button-menu').click(function () {
                                             for (i in logininfo['active_tym_ary']) {
                                                 $('.time' + i).html(logininfo['active_tym_ary'][i]);
                                                 //   console.log('.time'+i);
-                                            }                                            
+                                            }
                                             for (i in logininfo['active_current_bid_ary']) {
                                                 $('.bid_amount' + i).html(logininfo['active_current_bid_ary'][i].split('<span class="WebRupee">Rs.</span>')[1]);
                                                 //  console.log('.bid_amount'+i);
                                             }
-                                            $('td[class*="bid_amount"').each(function () {
+                                            $('td[class*="bid_amount"]').each(function () {
                                                 if($(this).text() == '') {
                                                     $(this).html('-');
                                                 }
                                             });
-                                            $('td[class*="status"').each(function () {
+                                            $('td[class*="status"]').each(function () {
                                                 if($(this).text() == '') {
                                                     $(this).html('-');
                                                 }
-                                            });
-                                            //if($('td[class*="bid_amount"').text() == '') {
-                                                
-                                            //}
+                                            });                                          
 
                                         }
                                     });
@@ -697,7 +694,7 @@ $('.refund-emd-button-menu').click(function () {
                                         /*-------------------notification end-------------------------*/
                                         $('.main-div').removeClass('hidden');
                                         setTimeout(function () {
-                                            hide_loader();                                             
+                                            hide_loader();
                                         }, 1000);
 
                                     },

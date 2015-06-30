@@ -84,7 +84,6 @@ E:\xstok\xstok\platforms\android\assets\www\fonts \
 E:\xstok\xstok\platforms\android\assets\www\forgot_password.html \
 E:\xstok\xstok\platforms\android\assets\www\images \
 E:\xstok\xstok\platforms\android\assets\www\index.html \
-E:\xstok\xstok\platforms\android\assets\www\iphone.html \
 E:\xstok\xstok\platforms\android\assets\www\js \
 E:\xstok\xstok\platforms\android\assets\www\kyc.html \
 E:\xstok\xstok\platforms\android\assets\www\kyc_c.html \
