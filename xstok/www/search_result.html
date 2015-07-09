@@ -202,15 +202,12 @@ and open the template in the editor.
                         if($(this).attr('time') != '-') { 
                             array[$(this).attr('id')] = parseFloat($(this).attr('time'));
                         }
-                    }); 
-                    console.log(array);
-                    console.log(sort);
+                    });
                     if(sort == 1 ) {
                          array.sort(function(a, b){return a-b});       
                     } else {
                          array.sort(function(a, b){return b-a});       
                     }
-                          console.log(array);       
                     $.each(array, function(key, value) {
                         $('.li-list').each(function (i,v){
                             if( $(this).attr('time') == value) {
@@ -592,11 +589,9 @@ and open the template in the editor.
                 function update_discount () {
                  //   192.168.0.13/webservices/lot_discount.php?room_lot_id=d6|d7,d5|d7,d4|d7
                   $.ajax({url: localStorage.host + 'lot_discount.php', data: {room_lot_id : localStorage.room_lot_id_dis }, type: 'get', success: function (data) {
-                          console.log(data['result']);
                           for(var i = 0; i < data['result'].length; i++ ) {
                               if(data['result'][i] != ',,') {
                                   var info = data['result'][i].split(',');
-                                  console.log();
                                   if(parseFloat(info[2]) < 0) {
                                         $('.discount-value-'+info[0]+'-'+info[1]).html((parseFloat(info[2]) * -1 )+'%');
                                         $('.discount-text-'+info[0]+'-'+info[1]).html('PREMIUM');
@@ -631,8 +626,6 @@ and open the template in the editor.
                                 for (i in data['result']) {
                                    
                                     if(data['result'][i].toLowerCase() == 'ready for bidding' || data['result'][i].toLowerCase() ==  'increase bid') { } else {
-                                        console.log(data['result']);
-                                        console.log('.tag'+i+'.seen img');
                                         var src = data['result'][i].toLowerCase();
                                         if(data['result'][i].toLowerCase() == 'losing') {
                                             src = 'outbid';
@@ -666,7 +659,7 @@ and open the template in the editor.
                                         hot = 'hidden';
                                     }
                                     var y2k = new Date(data.result[i]['end_date']);
-                                    // console.log(y2k);  if(y2k.getTime() < today.getTime()) {
+                                    var tend = new Date(data.result[i]['tender_period']);
                                     var Jan1st2010 = new Date(y2k.getFullYear() + 10, y2k.getMonth(), y2k.getDate());
                                     var today = new Date();
                                     var auction_detail_over = 'auction-detail-over';
@@ -674,9 +667,11 @@ and open the template in the editor.
                                     var display_sold = '';
                                     var discount = data.result[i]['discount_per_val'];
                                     var day = Date.daysBetween(y2k, today);
+                                    var tendday = Date.daysBetween(tend, today) - 1;                                   
                                     var lable = 'Days';
                                     var dateshow = '';
-                                    var closedshow = 'hidden';
+                                    var closedshow = 'hidden';                                  
+                                    var text = 'Time Left';
                                     if (day > 0) {
                                         auction_detail_over = '';
                                         display_dis = '';
@@ -716,7 +711,7 @@ and open the template in the editor.
                                     if(lable == 'Hrs' ) {
                                         day_time = parseFloat(day)/10;
                                     } else if (lable == 'Mins') {
-                                         day_time = parseFloat(day)/1000;
+                                        day_time = parseFloat(day)/1000;
                                     }
                                     var seen = 'hidden';
                                     var img = '';
@@ -741,7 +736,6 @@ and open the template in the editor.
                                     }
                                     var er_id = rc4_er(data.result[i]['id']);
                                     var description = data.result[i]['short_lot_desc'];
-                                    console.log(description);
                                    /* if (description.length > 49) {
                                         description = description.substring(0, 50) + '...';
                                     }*/
@@ -750,13 +744,12 @@ and open the template in the editor.
                                     var tender_date = date_fution(data.result[i]['start_date']);
                                     var tender_date_text_strt = tender_date.getDate() + ' ' + mL[tender_date.getMonth()] + ' ' + tender_date.getFullYear() + ', ' + tender_date.getHours() + ':' + tender_date.getMinutes();
                                     var tender_date = date_fution(data.result[i]['end_date']);
-                                    console.log(data.result[0]['end_date'] +' -> '+tender_date);
                                     var tender_date_text_end = tender_date.getDate() + ' ' + mL[tender_date.getMonth()] + ' ' + tender_date.getFullYear() + ', ' + tender_date.getHours() + ':' + tender_date.getMinutes();
                                     
                                     //$('.head-tender-start-text').html(tender_date_text);
                                     // body += '<li id="' + i + '" class="li-list" onClick="auction_detail(\'' + er_id + '\')" discount="' + discount + '" time="' + day + '" ><div class="seen ' + seen + '"><img src="images/seen.png"></div><div class="seen ' + new_list + '"><img src="images/new.png"></div><div class="row list-row ' + auction_detail_over + '"><div class="col-xs-3 list-image"><div class="heart" auc-type-id="' + data.result[i]['auc_type_id'] + '" lot-id="' + data.result[i]['id'] + '" room-id="' + data.result[i]['room_id'] + '">' + wish_list + '</div><div class="list-image-body"><img class="list-image-photo" src="' + data.result[i]['image'] + '"><div class="list-image-overlay"></div></div></div><div class="col-xs-5 list-body"><div class="list-head">' + data.result[i]['short_lot_name'] + '</div> <div class="list-subhead">' + description + '</div><div class="list-icon"><div class="day-left ' + dateshow + '"><i class="fa fa-clock-o"></i> ' + day + ' ' + lable + '</div><div class="qx ' + qx + '">QX</div><div class="hot_auction ' + hot + '"><i class="fa fa-trophy x-white"></i></div></div></div><div class="col-xs-4 list-sold ' + display_sold + '"><div class="list-sold-text">Closed</div></div><div class="col-xs-2 list-discount ' + display_dis + ' "><div class="list-discount-value">' + discount + '%</div><div class="list-discount-text">DISCOUNT</div></div><div class="col-xs-2 list-bid-now ' + display_dis + ' "><div class="list-bid-now-text">BID<br/>NOW</div></div></div></li>';
                                    
-                                    body += '<li id="' + i + '" class="li-list grid-list" onclick="auction_detail(\'' + er_id + '\')" discount="' + discount + '" time="' + day_time + '"><div class="seen grid-seen ' + seen +' tag' +er_id+ '"><img src="images/'+img+'.png"></div><div class="seen  grid-seen ' + new_list + '"><img src="images/new.png"></div><div class="grid-white"><div class="grid-head-left"><div class="grid-head">' + data.result[i]['short_lot_name'] + '</div><div class="grid-cat">' + data.result[i]['category_name'] + '</div></div></div><div class="grid-image" style=background-image:url("' + data.result[i]['image'] + '")><div class="heart gird-heart" auc-type-id="' + data.result[i]['auc_type_id'] + '" lot-id="' + data.result[i]['id'] + '" room-id="' + data.result[i]['room_id'] + '">' + wish_list + '</div></div><div class="grid-detail"><div class="grid-body-sup">' + data.result[i]['company_name'] + '</div><div class="grid-body-city"><i class="fa  fa-map-marker"></i> ' + data.result[i]['origin_city'] + '</div></div><div class="grid-body ' + dateshow + '"><span class="font-bold font-14 x-light-green discount-value-'+data.result[i]['id']+'-'+data.result[i]['room_id']+'">'+discount+'%</span><span class="font-bold font-14 x-light-green"> DISCOUNT</span></div><div class="grid-body ' + closedshow + ' "><span class="font-bold font-14 x-red">Closed</span></div><div class="grid-body-foot"><span class="font-bold">Time Left</span><br><b> ' + day + ' ' + lable + '</b></div></li>';
+                                    body += '<li id="' + i + '" class="li-list grid-list" onclick="auction_detail(\'' + er_id + '\')" discount="' + discount + '" time="' + day_time + '"><div class="seen grid-seen ' + seen +' tag' +er_id+ '"><img src="images/'+img+'.png"></div><div class="seen  grid-seen ' + new_list + '"><img src="images/new.png"></div><div class="grid-white"><div class="grid-head-left"><div class="grid-head">' + data.result[i]['short_lot_name'] + '</div><div class="grid-cat">' + data.result[i]['category_name'] + '</div></div></div><div class="grid-image" style=background-image:url("' + data.result[i]['image'] + '")><div class="heart gird-heart" auc-type-id="' + data.result[i]['auc_type_id'] + '" lot-id="' + data.result[i]['id'] + '" room-id="' + data.result[i]['room_id'] + '">' + wish_list + '</div></div><div class="grid-detail"><div class="grid-body-sup">' + data.result[i]['company_name'] + '</div><div class="grid-body-city"><i class="fa  fa-map-marker"></i> ' + data.result[i]['origin_city'] + '</div></div><div class="grid-body ' + dateshow + '"><span class="font-bold font-14 x-light-green discount-value-'+data.result[i]['id']+'-'+data.result[i]['room_id']+'">'+discount+'%</span><span class="font-bold font-14 x-light-green"> DISCOUNT</span></div><div class="grid-body ' + closedshow + ' "><span class="font-bold font-14 x-red">Closed</span></div><div class="grid-body-foot time'+er_id+'"><span class="font-bold">'+text+'</span><br><b> ' + day + ' ' + lable + '</b></div></li>';
                                     lot_array += rc4_er(data.result[i]['id']) + ',';
                                     room_id_array += rc4_er(data.result[i]['room_id']) + ',';
                                     localStorage.enc_id = rc4_er(data.result[i]['id']);
@@ -823,6 +816,18 @@ and open the template in the editor.
                         }
                     });
                 }
+                setInterval(function () {
+                    $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'get_tym_ticker', lot_id: localStorage.lot_id_array, room_id: localStorage.room_id_array, user_id: localStorage.user_id}, type: 'get', success: function (data) {
+                            var logininfo = JSON.parse(data);
+                            //console.log(data);
+                            for (i in logininfo['active_tym_ary_mobile']) {
+                                $('.time' + i).html(logininfo['active_tym_ary_mobile'][i]);
+                                console.log('.time'+i);
+                                
+                            }                           
+                        }
+                    });
+                }, 1000);
         </script>
         <script>
         $("body").swiperight(function() { 

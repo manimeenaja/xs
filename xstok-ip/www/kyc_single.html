@@ -31,7 +31,24 @@
             $(document).ready(function () {
                 $('.container').fadeIn(1000).show();
                 add_menu ();
-                console.log(localStorage.user_id);
+                $.ajax({url: localStorage.host + 'buyer_business_type_select.php', data: {}, type: 'get', success: function (data) {
+                        var body_se = '<option value="">Select Business Type</option>';
+                        console.log(data['result']);
+                        for(var i = 0; i < data['result'].length; i++) {
+                            body_se += '<option value="'+data['result'][i]['id']+'">'+ data['result'][i]['business_type_name']+'</option>';
+                        }
+                        $('#business_type').html(body_se);
+                    }  
+                });
+                $.ajax({url: localStorage.host + 'nature_business_type_select.php', data: {}, type: 'get', success: function (data) {
+                        var body_na = '<option value="">Select Nature of Business</option>';
+                        console.log(data['result']);
+                        for(var i = 0; i < data['result'].length; i++) {
+                            body_na += '<option value="'+data['result'][i]['id']+'">'+ data['result'][i]['nature_business_name']+'</option>';
+                        }
+                        $('#nature_business_type').html(body_na);
+                    }
+                }); 
                 $.ajax({url: localStorage.host + 'buyer_profile_select.php?id=' + rc4_dr(localStorage.user_id), data: {}, type: 'get', success: function (data) {
                         console.log(data['msg']);
                         $('input[name="company_name"]').val(localStorage.company_name);
@@ -120,11 +137,6 @@
                                      <span class="text-box">    
                                         <span class="x-required" style="">*</span>
                                         <select class="form-control parsley-validated" required="" id="business_type" name="business_type" style="width: 100%;" >
-                                            <option value="">Select Business Type</option>
-                                            <option value="1">Company</option>
-                                            <option value="2">Partnership</option>
-                                            <option value="3">Proprietary</option> 
-                                        </select> 
                                     </span>
                                     <span class="text-box">
                                         <span class="x-required" style="">*</span>
@@ -209,44 +221,43 @@
                 $('.show').removeClass('fa-eye-slash');
             });
             $("#login").submit(function (e) {
-                 if($( '#login' ).parsley( 'isValid' )) {
-                $('button[type="submit"]').addClass('disable');
-                $('button[type="submit"]').html('Processing   <i class="fa fa-refresh fa-spin"></i>');
-                e.preventDefault();
-                var self = this;
-               // var json = '{"id":"' + rc4_dr(localStorage.user_id) + '","email_id":"' + $('input[name="email_id"]').val() + '","admin_id":"' + rc4_dr(localStorage.user_id) + '","name":"' + $('input[name="name"]').val() + '","mobile_no":"' + $('input[name="mobile_no"]').val() + '","phone_no":"' + $('input[name="phone_no"]').val() + '","title":"' + $('input[name="job_title"]').val() + '","department":"' + $('input[name="department"]').val() + '","active":"Y","role_id":"3","action":"update","form_type":"FrontEnd"}';
-                
-               //http://192.168.0.13/webservices/buyer_profile_update.php?json={"id":"7","company_id":"6","name":"Satish Navik","company_name":"ABC","mobile_no":"9833328589","email_id":"satish@centerac.com","company_address":"testing","business_type":"1","nature_business_type":"2","pan_no":"ACCPP8878R","cst_no":"ERT001","dealing_product":"3,7","now":"2015-06-04 12:29:59","action":"update","registration_type":"Buyer"}
+                if($( '#login' ).parsley( 'isValid' )) {
+                    if(localStorage.interested_category != '') {
+                        $('button[type="submit"]').addClass('disable');
+                        $('button[type="submit"]').html('Processing   <i class="fa fa-refresh fa-spin"></i>');
+                        e.preventDefault();
+                        var self = this;
+                        // var json = '{"id":"' + rc4_dr(localStorage.user_id) + '","email_id":"' + $('input[name="email_id"]').val() + '","admin_id":"' + rc4_dr(localStorage.user_id) + '","name":"' + $('input[name="name"]').val() + '","mobile_no":"' + $('input[name="mobile_no"]').val() + '","phone_no":"' + $('input[name="phone_no"]').val() + '","title":"' + $('input[name="job_title"]').val() + '","department":"' + $('input[name="department"]').val() + '","active":"Y","role_id":"3","action":"update","form_type":"FrontEnd"}';
+                        //http://192.168.0.13/webservices/buyer_profile_update.php?json={"id":"7","company_id":"6","name":"Satish Navik","company_name":"ABC","mobile_no":"9833328589","email_id":"satish@centerac.com","company_address":"testing","business_type":"1","nature_business_type":"2","pan_no":"ACCPP8878R","cst_no":"ERT001","dealing_product":"3,7","now":"2015-06-04 12:29:59","action":"update","registration_type":"Buyer"}
                //var date = new Date().toISOString().slice(0, 19).replace('T', ' ');
-               var date;
-               date = new Date();
-               date = date.getFullYear() + '-' +
-                       ('00' + (date.getMonth()+1)).slice(-2) + '-' +
-                       ('00' + date.getDate()).slice(-2) + ' ' + 
-                       ('00' + date.getHours()).slice(-2) + ':' + 
-                       ('00' + date.getMinutes()).slice(-2) + ':' + 
-                       ('00' + date.getSeconds()).slice(-2);
-                var json = '{"id":"' + rc4_dr(localStorage.user_id) + '","company_id":"'+localStorage.company_id+'","email_id":"' + $('input[name="email_id"]').val() + '","company_name":"' + $('input[name="company_name"]').val() + '","admin_id":"' + rc4_dr(localStorage.user_id) + '","name":"' + $('input[name="name"]').val() + '","pan_no":"' + $('input[name="pan_no"]').val() + '","mobile_no":"' + $('input[name="mobile_no"]').val() + '","company_address":"' + $('#company_address').val() + '","business_type":"' + $('#business_type :selected').val() + '","nature_business_type":"' + $('#nature_business_type :selected').val() + '","cst_no":"' + $('input[name="cst_no"]').val() + '","dealing_product":"'+localStorage.interested_category+'","now":"'+date+'","action":"update","registration_type":"Buyer"}';
-                console.log(json);
-               $.ajax({url: localStorage.host + 'buyer_profile_update.php', data: {json: json}, type: 'get', success: function (data) {
-                        $('button[type="submit"]').html('Done   <i class="fa fa-check"></i>');
-                        $('button[type="submit"]').removeClass('disable');
-                        setTimeout(function () {
-                           self.submit();
-                           return false;
-                        }, 700);
-                        //console.log(data);                   
-                        // self.submit();
-                        //  return false;                    
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                      //  if (textStatus === "timeout") {
-                            x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
-                       // }
+                        var date;
+                        date = new Date();
+                        date = date.getFullYear() + '-' +
+                                ('00' + (date.getMonth()+1)).slice(-2) + '-' +
+                                ('00' + date.getDate()).slice(-2) + ' ' + 
+                                ('00' + date.getHours()).slice(-2) + ':' + 
+                                ('00' + date.getMinutes()).slice(-2) + ':' + 
+                                ('00' + date.getSeconds()).slice(-2);
+                        var json = '{"id":"' + rc4_dr(localStorage.user_id) + '","company_id":"'+localStorage.company_id+'","email_id":"' + $('input[name="email_id"]').val() + '","company_name":"' + $('input[name="company_name"]').val() + '","admin_id":"' + rc4_dr(localStorage.user_id) + '","name":"' + $('input[name="name"]').val() + '","pan_no":"' + $('input[name="pan_no"]').val() + '","mobile_no":"' + $('input[name="mobile_no"]').val() + '","company_address":"' + $('#company_address').val() + '","business_type":"' + $('#business_type :selected').val() + '","nature_business_type":"' + $('#nature_business_type :selected').val() + '","cst_no":"' + $('input[name="cst_no"]').val() + '","dealing_product":"'+localStorage.interested_category+'","now":"'+date+'","action":"update","registration_type":"Buyer"}';
+                        $.ajax({url: localStorage.host + 'buyer_profile_update.php', data: {json: json}, type: 'get', success: function (data) {
+                                $('button[type="submit"]').html('Done   <i class="fa fa-check"></i>');
+                                $('button[type="submit"]').removeClass('disable');
+                                setTimeout(function () {
+                                    self.submit();
+                                    return false;
+                                }, 700); 
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                //  if (textStatus === "timeout") {
+                                x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                                // }
+                                }
+                            });
+                        } else {
+                            x_alert('Please select dealing in which category');
+                        }
                     }
                 });
-            }
-            });
             function onBackKeyDown() {// Handle the back button
                 navigator.notification.confirm(
                         'Are you sure want to exit?', // message

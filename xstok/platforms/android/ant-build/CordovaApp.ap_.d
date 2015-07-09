@@ -282,6 +282,7 @@ E:\xstok\xstok\platforms\android\assets\www\js\jquery.mmenu.js \
 E:\xstok\xstok\platforms\android\assets\www\js\jquery.mobile.custom.min.js \
 E:\xstok\xstok\platforms\android\assets\www\js\jquery.multilevelpushmenu.min.js \
 E:\xstok\xstok\platforms\android\assets\www\js\jquery.nicescroll.min.js \
+E:\xstok\xstok\platforms\android\assets\www\js\jquery.panzoom.js \
 E:\xstok\xstok\platforms\android\assets\www\js\main_script.js \
 E:\xstok\xstok\platforms\android\assets\www\js\md5.js \
 E:\xstok\xstok\platforms\android\assets\www\js\moment.min.js \

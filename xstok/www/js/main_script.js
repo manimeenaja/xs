@@ -2,8 +2,8 @@
 
 //localStorage.host = "http://192.168.0.13/webservices/";
 //localStorage.host = "http://beta.xstok.com/webservices/";
-//localStorage.host = "http://fa.xstok.com/webservices/";
-localStorage.host = "http://www.xstok.com/webservices/";
+localStorage.host = "http://fa.xstok.com/webservices/";
+//localStorage.host = "http://www.xstok.com/webservices/";
 localStorage.device = 'Android';
 localStorage.vr = 'new';
 localStorage.key_code = 'euhe68vjdr1aX4F091c7aCggSMBf0A7M';
@@ -31,7 +31,7 @@ localStorage.bid_winner__ = "You can't bid again, you are the highest bidder";
 localStorage.bid_select_error__ = 'Select/Enter Bid First';
 localStorage.shipment_info_success__ = 'Shipment Detail Has been Saved';
 localStorage.shipment_info_error__ = 'Shipment Detail has error';
-localStorage.auction_expired__ = 'Expired!';
+localStorage.auction_expired__ = 'Offer Expired!';
 localStorage.winner__ = 'You are Winning';
 localStorage.winning__ = 'Winning';
 localStorage.live__ = 'Ready for Bidding';
@@ -52,6 +52,7 @@ localStorage.bid_auto_place_succ__ = 'Your Autobid is placed and its active';
 localStorage.bid_numeric_error = 'Please enter numeric characters only';
 localStorage.bid_place_error = 'Place Higher Bid';
 localStorage.auto_bid_place_error = 'Auto bid lower than the min. increment amount';
+localStorage.auto_bid_place_error_unit_price = 'Auto bid should be higher than the per unit price';
 localStorage.auto_bid_out_error = 'You have been out bid from this lot';
 localStorage.buy_now_admin_approval = 'You have the highest bid. The supplier is considering your bid as the reserve price has not been met';
 localStorage.email_auction_msg = 'Hi! I found this on XSTOK and thought you might like it! Check it out now!';
@@ -119,6 +120,8 @@ localStorage.your_result__ = 'This auction is under Presale Review period. The b
 localStorage.your_interest__ = 'This auction is under Presale Review period. The bidding will start on __st_date to __end_date. <br /><br /> <b>You need to pay EMD of <i class="fa fa-inr"></i> __rs (__x% of List Price) to participate in this auction. </b><br /><br />If you are a first time buyer, it may take up to 24 hours to create your escrow account.<br /><br />Pay EMD now and be ready for bidding by clicking below.<br /><br />';
 localStorage.first_bid_msg__ = 'Confirm your bid of Rs. confirm_bid__  Note: this will block EMD of Rs. og_emd__.';
 localStorage.emd_bid_msg__ = 'You are registering interest in this auction. Your EMD of <i class="fa fa-inr"></i> og_emd__ will be blocked. <br /><br /> You will receive a reminder email and sms one day before the start of the bidding period and again 3 hours before closing.';
+localStorage.direct_buy_now_popup_txt  = 'Confirm direct Buy option.';
+localStorage.block_emd_buy_now = 'Confirm direct Buy option. This will deduct the EMD of Rs.';
 localStorage.confirm_auto_choose_val_ = 'Your auto bid value doesn\'t match auction minimum increment value <br /> <br />Choose from one of the values below';
 localStorage.time_left__ = 'Time Left';
 localStorage.presale_time_left = 'Review time left';
@@ -337,9 +340,59 @@ function show_menu() {
     $('.dashbody').css('visibility', 'visible').fadeIn();
 }
 
-function buy_now(lot_id, room_id, d) {
-    window.location.href = 'auction_buy_now.html#' + lot_id + '-' + room_id + '-' + d;
+function buy_now(lot_id, room_id, total_bid,buy_now,discount_value,actual_price) {
+   // window.location.href = 'auction_buy_now.html#' + lot_id + '-' + room_id + '-' + d;
+    var title = 'Buy Now';
+    var buttonlabels = 'Confirm,Cancel';
+    if((actual_price / parseFloat(localStorage.limit_val)) < parseFloat(localStorage.emd_list_price_limit)) {
+        var temp_actual_price = numberWithCommas(Math.round(parseFloat(actual_price) / parseFloat(localStorage.limit_val))); 
+    } else {
+        var temp_actual_price = numberWithCommas(Math.round(localStorage.emd_list_price_limit));
+    } 
+    
+   /* if (confirm(localStorage.block_emd_buy_now + ' ' +temp_actual_price) == true) {
+        buy_now_submit (lot_id, room_id, total_bid,buy_now,discount_value,actual_price);
+    }*/
+
+    navigator.notification.confirm(
+        localStorage.block_emd_buy_now + ' ' +temp_actual_price,  // message
+        function(index) {
+            if (index == 1) {
+                buy_now_submit (lot_id, room_id, total_bid,buy_now,discount_value,actual_price);
+            }
+        },
+        title,
+        buttonlabels
+    );
+    // navigator.app.exitApp();
 }
+
+
+
+function buy_now_submit (lot_id, room_id, total_bid,buy_now,discount_value,actual_price) {
+    if (buy_now > 0) {
+        $.post(localStorage.host+'../classes/service_manage_auction.class.php?action=save_buy_now_details&total_bids=' + total_bid + '&dn_r='+room_id+'&dn_l='+lot_id+'&user_id='+localStorage.user_id+'&direct_pay_p='+buy_now+'&r_price='+discount_value+'&actual_price='+actual_price, {id: ''},
+        function (data) {
+            if (data) { 
+                if(data == localStorage.EMD_over__){
+                    x_alert(localStorage.EMD_over__);
+                }else{
+                    //console.log(data);
+                    //console.log(data.split('/'));
+                    //alert(data);
+                    var lot_id = data.split('/')[2];
+                    var room_id = data.split('/')[3];
+                    //console.log('shipping_detail.html?#' + lot_id + '-' + room_id);
+                    window.location.href = 'shipping_detail.html?#' + lot_id + '-' + room_id;
+                }
+            }
+        }
+                );
+    }
+}
+//function buy_now(lot_id, room_id, d) {
+   // window.location.href = 'auction_buy_now.html#' + lot_id + '-' + room_id + '-' + d;
+//}
 
 function bid_close() {
     $('body').unbind('touchmove');
@@ -376,8 +429,8 @@ function bid_counter(hash) {
 function auction_assort_close_allow_buy(lot_id, room_id) {
     $.ajax({url: localStorage.host + '../classes/service_manage_auction.class.php?action=auction_assort_close_admin_approve_status&l_=' + lot_id + '&r_=' + room_id + '&u_=' + localStorage.user_id, data: {}, type: 'get', success: function (data) {
             if (data) {
-                console.log(data);
-                console.log('auction_assort_close_allow_buy');
+                //console.log(data);
+                //console.log('auction_assort_close_allow_buy');
                 localStorage.auction_assort_close_allow_buy = data;
             }
 
@@ -396,7 +449,7 @@ function supplier_circle() {
             if (data) {
                 var supplier_circle = JSON.parse(data);
                 localStorage.buyer_user_id = supplier_circle[0]['buyer_user_id'];
-                console.log(supplier_circle);
+                //console.log(supplier_circle);
             }
 
         },
@@ -603,7 +656,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 localStorage.my_bid_val = '';
 
-function show_data(auc_type_id, reserve_price, lot_id, auction_on, min_incr_value, discount_value, actual_price,unit_price) {
+function show_data(auc_type_id, reserve_price, lot_id, auction_on, min_incr_value, discount_value, actual_price,unit_price,unit_price_auction) {
     
     var curr_value_dropdown = '';
     localStorage.tender_local_var = 'Y';
@@ -672,7 +725,7 @@ function show_data(auc_type_id, reserve_price, lot_id, auction_on, min_incr_valu
                         if ($('.timer').html() != localStorage.auction_expired__)
                             $('.bid_cal_' + dynamic_lot[idx]).html(obj.status).show();
                         $('#withdraw_' + dynamic_lot[idx]).removeClass('hide');
-                        $('.auto_bid').removeClass('hide')
+                        $('.auto_bid').removeClass('hide');
                     }
                     
                     /**********/
@@ -684,7 +737,7 @@ function show_data(auc_type_id, reserve_price, lot_id, auction_on, min_incr_valu
                     }
                     /**********/
 //console.log(obj.total_bid );
-                    if (obj.total_bid != 0) {//obj.discount_value != 0 &&                         
+                    if (obj.total_bid != 0) {
                         if (auction_on == 'price') {
                             $('.curr_per_bid_' + dynamic_lot[idx]).text(Math.abs(round(obj.discount_value, 2)));
                         } else {
@@ -697,7 +750,7 @@ function show_data(auc_type_id, reserve_price, lot_id, auction_on, min_incr_valu
                         if ($('.curr_bid_' + lot_id + '').text() != curr_value_dropdown)
                         {
                             if (auc_type_id != localStorage.closed_bid_auction) {
-                                $.post(localStorage.host + '../classes/common.class.php?action=load_dynamic_drop_down_mobile&curr_val=' + $('.curr_bid_' + lot_id + '').text() + '&min_inc=' + min_incr_value + '&actual_p=' + actual_price + '&auc_on=' + auction_on + '&user_id=' + localStorage.userid+'&total_bid='+obj.total_bid+'', {id: 1},
+                                $.post(localStorage.host + '../classes/common.class.php?action=load_dynamic_drop_down_mobile&curr_val=' + $('.curr_bid_' + lot_id + '').text() + '&min_inc=' + min_incr_value + '&actual_p=' + actual_price + '&auc_on=' + auction_on + '&user_id=' + localStorage.userid+'&total_bid='+obj.total_bid+'&unit_price_auction='+unit_price_auction+'&unit_price='+unit_price, {id: 1},
                                 function (data) {
                                     var items = [];
 
@@ -705,8 +758,8 @@ function show_data(auc_type_id, reserve_price, lot_id, auction_on, min_incr_valu
 
                                         //alert($('.curr_bid_'+lot_id+'').text() +"|"+curr_value_dropdown +"|"+data);
                                         curr_value_dropdown = $('.curr_bid_' + lot_id + '').text();
-                                        $(".dropdown#dd_" + lot_id).empty().append('<option value="Bid"> Bid </option>');
-                                        $(".dropdown#dd_" + lot_id).append(data);
+                                        $("select[id='dd_" + lot_id+"']").empty().append('<option value="Bid"> Bid </option>');
+                                        $("select[id='dd_" + lot_id+"']").append(data);
 
                                         //console.log(data);
                                         //  var dd = new DropDown($('#dd_' + lot_id + ''));
@@ -720,13 +773,13 @@ function show_data(auc_type_id, reserve_price, lot_id, auction_on, min_incr_valu
                     } else {
                         if (discount_value != curr_value_dropdown) {
                         //    if (auc_type_id != localStorage.closed_bid_auction) {
-                                $.post(localStorage.host + '../classes/common.class.php?action=load_dynamic_drop_down_mobile&curr_val=' + discount_value + '&min_inc=' + min_incr_value + '&actual_p=' + actual_price + '&auc_on=' + auction_on + '&user_id=' + localStorage.userid, {id: 1},
+                                $.post(localStorage.host + '../classes/common.class.php?action=load_dynamic_drop_down_mobile&curr_val=' + discount_value + '&min_inc=' + min_incr_value + '&actual_p=' + actual_price + '&auc_on=' + auction_on + '&user_id=' + localStorage.userid+'&total_bid='+obj.total_bid+'&unit_price_auction='+unit_price_auction+'&unit_price='+unit_price, {id: 1},
                                 function (data) {
                                     var items = [];
                                     if (data && !$("#dd_" + lot_id).is(':focus')) {
                                         curr_value_dropdown = discount_value;
-                                        $("#dd_" + lot_id).empty().append('<option value="Bid"> Bid </option>');
-                                        $("#dd_" + lot_id).append(data);
+                                        $("select[id='dd_" + lot_id+"']").empty().append('<option value="Bid"> Bid </option>');
+                                        $("select[id='dd_" + lot_id+"']").append(data);
                                         // var dd = new DropDown($('#dd_' + lot_id + ''));
                                         // dd.initEvents();
                                         //dropdown_obj.initEvents();
@@ -751,7 +804,7 @@ function show_data(auc_type_id, reserve_price, lot_id, auction_on, min_incr_valu
 
                     if (auc_type_id == localStorage.assorted_auction) {
                         //alert(parseFloat(obj.curr_bid.replace(/,/g,'')) +"|"+ <?php echo reserve_price ?>);
-                        if (parseFloat(obj.curr_bid.replace(/,/g, '')) >= reserve_price)
+                        if (parseFloat(obj.curr_bid.replace(/,/g, '')) >= parseFloat(localStorage.ass_auc_buy_now_price) )
                         {
                             $('.assorted_hide').hide();
                             $('.buy-now-panel').hide();
@@ -912,7 +965,7 @@ function show_time(auc_type_id, reserve_price) {
             $.each($.parseJSON(data), function (idx, obj) {
                 if (dynamic_lot == obj.dynamic_lot) { //alert(obj.countdown_date + "|" + obj.dynamic_lot); 
                     $('#dd_' + dynamic_lot).attr('golden_time', obj.golden_time);
-                    if (obj.countdown_date != 'F') {
+                    if (obj.countdown_date != 'F') {                       
                         var tempday = obj.countdown_date.split('<ul><li><h2>');
                         var tempday1 = tempday[1].split(' </h2>');
                         if (tempday1[0] == '0') {
@@ -935,6 +988,7 @@ function show_time(auc_type_id, reserve_price) {
                     }
                     if (obj.countdown_date == 'F') {
                         // }else {
+                        $('.span_current_text').html('Final');
                         $('.timer').html(localStorage.auction_expired__);
                         $('.timer').addClass('x-red');
                         $('.clock-text').hide();
@@ -950,7 +1004,7 @@ function show_time(auc_type_id, reserve_price) {
                             if (auc_type_id == localStorage.assorted_auction || auc_type_id == localStorage.closed_bid_auction) {
 
                                 //alert(parseFloat(my_bid_val) +"|"+ reserve_price +"|"+ localStorage.auction_assort_close_allow_buy);
-                                if (parseFloat(localStorage.my_bid_val) < reserve_price && localStorage.auction_assort_close_allow_buy == 0)
+                                if (parseFloat(localStorage.my_bid_val) < parseFloat(localStorage.ass_auc_buy_now_price) && localStorage.auction_assort_close_allow_buy == 0)
                                 {                                   
                                     $('.buy_' + dynamic_lot).addClass('hide');
                                     $('.msg_' + dynamic_lot).hide().html(localStorage.buy_now_admin_approval).fadeIn('slow');
@@ -979,7 +1033,7 @@ function show_time(auc_type_id, reserve_price) {
                         } else if (localStorage.my_bid_val > 0) {
                             $('.bid_cal_' + dynamic_lot).text(localStorage.lost__);
                             $('.direct_buy_' + dynamic_lot).addClass('hide');
-                            $('.aut-type-1').html(ocalStorage.lost__);
+                            //$('.aut-type-1').html(localStorage.lost__);
                             $('#withdraw_' + dynamic_lot).addClass('hide');
                         } else {
                             $('.bid_cal_' + dynamic_lot).html(localStorage.sold_out_);
@@ -987,14 +1041,13 @@ function show_time(auc_type_id, reserve_price) {
                             $('#withdraw_' + dynamic_lot).addClass('hide');
                             $('.aut-type-1').html('Sold Out');
                         }
-
-
                         update_winner(dynamic_lot, dynamic_room, $('#dd_' + dynamic_lot).attr('reserve_price'));
-
-                    }
-
+                    } else {
+                        if($('.total_bid_' + dynamic_lot).text() != 0){
+                            $('.span_current_text').html('Current');
+                        }
+                    }                    
                 }
-
             });
         }
     });
@@ -1033,7 +1086,7 @@ function round(value, exp) {
     value = +value;
     exp = +exp;
     if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0))
-        return NaN;
+        return 'NaN';
     // Shift
     value = value.toString().split('e');
     value = Math.round(+(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp)));
@@ -1178,7 +1231,12 @@ function menu_body(home, dashboard, calendar, show_less, show_profile) {
     user_info();
     var body = '<script type="text/javascript">$(function () { $(\'nav#menu-left\').mmenu();});</script><div id="header"><a href="#menu-left"><i class="fa fa-bars fa-lg x-white"></i></a></div> <nav id="menu-left" class=""><div class="menu-block">' + xstok + ' <div class="row row-cancel-margin profile-main ' + show_profile + '"><div class="profile-details">  <div class="profile-image"><img src="' + localStorage.profile_pic + '" class="img-circle profile-image-img" alt="Profile Picture" width="304" height="236"> </div>  <div class="profile-name" onclick="user_profile()">' + localStorage.name + '</div><div class="profile-location xs-grey"><i class="fa fa-building"></i> ' + localStorage.company_name + '</div></div><div class="emd_bid_limt">  <div class="' + show_less + ' emd-name xs-grey padding-tb-10">EMD balance : <span class="font-family-helvetica-bold emd-text" style="display: inline-block;"><i class="fa fa-inr"></i> <span class="emd-bal">-</span></span></div>  <div class="' + show_less + ' bid-limt-name xs-grey padding-tb-10 hide">Bid Limit<br><span class="font-family-helvetica-bold bid-limt-text"><i class="fa fa-inr" style="display: inline-block;"></i> <span class="bid-limit">-</span></span></div></div></div> <div class="' + show_less + ' row  menu-item menu-item-first-child ' + home + '" onclick="redirect(\'search_cat\')"><i class="fa fa-university"></i> Home </div> <div class="' + show_less + ' row  menu-item  ' + show_profile + '" onclick="all_auctions()"><i class="fa fa-globe"></i> Ongoing Auctions </div> <div class="' + show_less + ' row  menu-item ' + dashboard + ' ' + show_profile + '" onclick="redirect(\'dashboard\',\'active-auc\')"><i class="fa fa-paper-plane-o"></i> Dashboard </div> <div class="' + show_less + ' row  menu-item ' + calendar + ' ' + show_profile + '" onclick="redirect(\'calendar\')"><i class="fa fa-calendar-o"></i></i> Calendar </div> <div class="' + show_less + ' ' + show_profile + ' row  menu-item" onclick="redirect(\'dashboard\',\'watchlist\')"><i class="fa fa-heart-o"></i> Watchlist <span class="wishlist-count">' + localStorage.wishlist_auction_table + '</span></div><div class=" ' + show_less + ' ' + show_profile + ' row  menu-item" onclick="redirect(\'dashboard\',\'notification\')"><i class="fa fa-bell-o"></i> Notifications <span class="notication-count">' + localStorage.notification + '</span></div><div style="padding: 1px;" class="' + show_less + ' row x-orange-background"></div><div class="' + show_less + ' ' + show_profile + ' row  menu-item hide" onclick="redirect(\'dashboard\')"><i class="fa fa-question-circle"></i> How it works? </div> <div class="row  menu-item" onclick="redirect(\'our_story\')"><i class="fa fa-book"></i> Our Story </div> <div class="row  menu-item" onclick="redirect(\'buyer_protection\')"><i class="fa fa-shield"></i> Buyer Protection </div> <div class="row  menu-item" onclick="redirect(\'coming_soon_auctions\')"><i class="fa fa-gavel"></i> Coming Soon Auctions </div> <div class="row  menu-item" onclick="redirect(\'work_with_us\')"><i class="fa fa-briefcase"></i> Work With Us </div> <div class="row  menu-item" onclick="redirect(\'contact\')"><i class="fa fa-phone"></i> Contact Us </div><div style="padding: 1px;" class="row x-orange-background"></div><div class="' + show_profile + ' row  menu-item" onclick="redirect(\'change_password\')"><i class="fa fa-key"></i> Change Password </div> <div class="' + show_profile + ' row  menu-item" onclick="redirect(\'logout\')"><i class="fa fa-power-off"></i> Sign Out </div>  ' + signup + '</div> </nav>';
     $('#page').html(body);
-
+    if(localStorage.wishlist_auction_table == '0') {
+        $('.wishlist-count').hide();
+    }
+    if(localStorage.notification == '0') {
+        $('.notication-count').hide();
+    }
 }
 
 function user_profile() {
@@ -1245,6 +1303,7 @@ function get_product_with_lot_name(lot_id) {
                         }
                         $('.head-image').append('<div><img  alt="xstok" class="head-image-img" src="' + src + '"></div>');
                         localStorage.image_count = parseInt(localStorage.image_count) + 1;
+                        localStorage.image_slide += '|'+src;
                     }                  
                     table_body += '<div class="product_detail_list"><div class="product_images"><img src=" ' +  image[0] + '" ></div><div class="product_details_text"><div class="product_titles_list"><b>Title</b> : '+ bid[i]['title'] +'</div><div class="product_quantity_list"><b>Quantity</b> : '+bid[i]['unit']+'</div><div class="product_price_list"><b>Price/<span class="unit"></span></b> : <i class="fa fa-inr"></i> '+ numberWithCommas(bid[i]['price']) +'</div><div class="product_condition_list"><b>Condition</b> : '+ bid[i]['condition']+'</div></div></div>';
                 } else {
@@ -1255,7 +1314,8 @@ function get_product_with_lot_name(lot_id) {
                     table_body += '<div class="product_detail_list"><div class="product_images"><img src=" ' + src + '" ></div><div class="product_details_text"><div class="product_titles_list"><b>Title</b> : '+ bid[i]['title'] +'</div><div class="product_quality_list"><b>Quantity</b> : '+bid[i]['unit']+'</div><div class="product_price_list"><b>Price/<span class="unit"></span></b> : <i class="fa fa-inr"></i> '+ numberWithCommas(bid[i]['price']) +'</div><div class="product_condition_list"><b>Condition</b> : '+ bid[i]['condition']+'</div></div></div>';
                     
                     
-                    $('.head-image').append('<div><img alt="xstok" class="head-image-img" src="' + bid[i]['image'] + '"></div>');
+                    $('.head-image').append('<div><img alt="xstok" class="head-image-img" src="' + bid[i]['image'] + '"></div>');                   
+                    localStorage.image_slide += '|'+bid[i]['image'];
                     localStorage.image_count = parseInt(localStorage.image_count) + 1;
                 }
 
@@ -1270,8 +1330,46 @@ function get_product_with_lot_name(lot_id) {
                     dots: false
                 });
             }, 1100);
-
+            
             $('.product_details').html(table_body);
+            $('.head-image-img').click(function () {
+                var back = $(this).parent().prev().find('img').attr('src');
+                $('#image').height($(window).outerHeight());
+                $(".panzoom-elements").html('<img src="'+$(this).attr('src')+'">');
+                $(".next_image").attr('onclick','next_image("'+$(this).attr('src')+'")');
+                $(".back_image").attr('onclick','back_image("'+back+'")');
+                $(".panzoom-elements").panzoom({
+                    contain: 'invert'
+//                    $reset: $('.image-close')
+                   // maxScale: $(this).naturalWidth / $(this).clientWidth
+                });
+                $('.panzoom-elements').on("panzoomend", function( e, panzoom ) {
+                    var array = panzoom.getMatrix(); 
+                    if(array[0] <= 1 && array[3] <= 1 ) {
+                        $('.panzoom-elements').css('transform','none');  
+                         $(".panzoom-elements").on('swipeleft', function () {
+                    $(".next_image").click();
+                });
+                $(".panzoom-elements").on('swiperight', function () {
+                    $(".back_image").click();
+                });
+                    } else {
+                        $(".panzoom-elements").unbind('swipeleft'); 
+                        $(".panzoom-elements").unbind('swiperight'); 
+                    }
+                });
+                $('.panzoom-elements').css('margin-top',($(window).height() - $('.panzoom-elements').height()) / 2);
+                $('#image').css('visibility','visible');
+                $('body').bind('touchmove', function (e) {
+                    e.preventDefault();
+                });
+                $(".panzoom-elements").on('swipeleft', function () {
+                    $(".next_image").click();
+                });
+                $(".panzoom-elements").on('swiperight', function () {
+                    $(".back_image").click();
+                });
+            });
         },
         error: function (jqXHR, textStatus, errorThrown) {
             /* if (textStatus === "timeout") {
@@ -1279,6 +1377,50 @@ function get_product_with_lot_name(lot_id) {
              }*/
         }
     });
+}
+
+function next_image (src) {
+    $('.panzoom-elements').panzoom("resetZoom");
+    var list = localStorage.image_slide.split('|');    
+    var place = list.indexOf(src);
+    if(place >=0) {
+        if(place <  (list.length - 1)) {                  
+            $('.panzoom-elements').html("<img src='"+list[place+1]+"'>");
+            $(".next_image").attr('onclick','next_image("'+list[place+1]+'")');
+            return list[place+1]; 
+        } else {            
+            $('.panzoom-elements').html("<img src='"+list[0]+"'>");
+            $(".next_image").attr('onclick','next_image("'+list[0]+'")');
+            return list[0]; 
+        }        
+    }
+}
+
+function back_image (src) {
+    $('.panzoom-elements').panzoom("resetZoom");
+    var list = localStorage.image_slide.split('|');    
+    var place = list.indexOf(src);
+    if(place >=0) {
+        console.log(place+' asdasd '+ (list.length - 1));
+        if(place <  (list.length - 1)) {
+            console.log(place);
+            console.log(list);
+            console.log(localStorage.image_slide);
+            console.log('up'); 
+            console.log(list[place+1]);             
+            $('.panzoom-elements').html("<img src='"+list[place+1]+"'>");
+            $(".back_image").attr('onclick','back_image("'+list[place+1]+'")');
+            return list[place+1]; 
+        } else {
+            console.log(place);
+            console.log(localStorage.image_slide);
+            console.log('down'); 
+            console.log(list[0]); 
+            $('.panzoom-elements').html("<img src='"+list[0]+"'>");
+            $(".back_image").attr('onclick','back_image("'+list[0]+'")');
+            return list[0]; 
+        }        
+    }
 }
 
 function heart(lot_id, room_id, auc_type_id) {
@@ -1872,7 +2014,7 @@ function numberWithCommas(x){
     var otherNumbers = x.substring(0,x.length-3);
     if(otherNumbers != '')
         lastThree = ',' + lastThree;
-    var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+    var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree  + afterPoint;;
     return res;
 }
 
