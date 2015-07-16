@@ -14,9 +14,46 @@
     <script src='js/jquery-ui.min.js'></script>
     <link rel="shortcut icon" href="favicon.ico">
     <script src='js/main_script.js'></script>
+    <script type="text/javascript" src="cordova.js"></script>
     <script>
-        window.location.href = "search_cat.html";
+         document.addEventListener("deviceready", onDeviceReady, false);
+
+        function onDeviceReady() {
+                var options = new ContactFindOptions();
+                options.filter = "XSTOK Support";
+                var fields = ["displayName", "name"];
+                navigator.contacts.find(fields, onSuccess, onError, options); 
+            }
+            
+            function onSuccess(contact) {
+                if(contact.length < 1) {
+                    var contact = navigator.contacts.create();
+                    contact.displayName = "XSTOK Support";
+                    contact.nickname = "XSTOK";       //specify both to support all devices
+                    var phoneNumbers = [];
+                    phoneNumbers[0] = new ContactField('mobile', '+919833273172', true);
+                    contact.phoneNumbers = phoneNumbers;
+                    var emails = [];
+                    emails[0] = new ContactField('work', 'info@xstok.com', true);
+                    contact.emails = emails;
+                    contact.name = "XSTOK";
+                    contact.save(onSuccess1, onError);
+                }
+                window.location.href = "search_cat.html";
+            }
+
+            function onSuccess1(contact) {
+                // alert("Error = " + contactError.code);
+                 window.location.href = "search_cat.html";
+            }
+            function onError(contactError) {
+                // alert("Error = " + contactError.code);
+            }
+         
         $(function () {
+            setTimeout(function () {
+                onDeviceReady();
+            },1000);           
             // window.location.href = "search_cat.html"; <-imp
             $('html').addClass('x-grey-background');
             // $('body').height($(window).height());
@@ -24,7 +61,7 @@
     </script>
 </head>
 
-<body class="x-grey-background">
+<body class="hide">
     <div id="top">
         <div>
             <h2 class="padding-bottom-15-p">

@@ -76,13 +76,12 @@ and open the template in the editor.
                 <div id='wrapper' class="slider slider-nav" style="visibility: hidden" >
                     <div id="scroller">
                         <ul id="thelist">                    
-                            <li class="menu-item-dashborad active-auc" value="dashboard" alt="active-auc"><h3>Active Auctions</h3></li>
+                            <li class="menu-item-dashborad active-auc" value="dashboard" alt="active-auc"><h3>My Auctions</h3></li>
                             <li class="menu-item-dashborad auction" value="dashboard" alt="auction"><h3>Auctions Won</h3></li>
                             <li class="menu-item-dashborad watchlist" value="dashboard" alt="watchlist-t"><h3>Watchlist</h3></li>
                             <li class="menu-item-dashborad" value="buyer_dashboard"><h3>Auction History</h3></li>
                             <li class="menu-item-dashborad" value="transactions"><h3>Transactions</h3></li>
                             <li class="menu-item-dashborad buyer_emd_details"  value="buyer_emd_details"><h3>EMD Details</h3></li>
-                           
                             <li class="menu-item-dashborad notification" value="notifications"><h3>Notifications</h3></li>
                             <!-- <li class="menu-item-dashborad" value="buyer_manage_alerts"><h3>Manage Notifications</h3></li>-->
                            
@@ -96,7 +95,7 @@ and open the template in the editor.
                 <div class="slider slider-for dashbody" style="visibility: hidden">
                     <div class='swipe'></div>
                     <div class="item-dashborad hidden active-auc">
-                        <div class="dashborad-text"><i class="fa fa-gavel"></i> Active Auctions <span class="active_auction-count"></span></div>
+                        <div class="dashborad-text"><i class="fa fa-gavel"></i> My Auctions <span class="active_auction-count"></span></div>
                         <table class="table active_auction">
                             <thead>
                                 <tr>
@@ -119,7 +118,7 @@ and open the template in the editor.
                                     <th class="">Winning Price</th>
                                     <th class="">VAT</th>
                                     <th class="">Shipping Cost</th>
-                                    <th class="">Status</th>            
+                                    <th class="">Status</th> 
                                 </tr>
                             </thead>
                             <tbody class="total_auction_won"><tr><td colspan="3"><i class="fa fa-refresh fa-spin"></i></td></tr></tbody>
@@ -133,8 +132,9 @@ and open the template in the editor.
                                     <th class="">ID</th>
                                     <th class="">Name</th>
                                     <th class="">Current Bid <i class="fa fa-inr"></i></th>
-                                    <th class="">Status</th>                                            
-                                    <th class="">Time Left</th>                                            
+                                    <th class="">Status</th> 
+                                    <th class="">Time Left</th>
+                                    <th class=""></th>
                                 </tr>
                             </thead>
                             <tbody class="wishlist_auction_table"><tr><td colspan="3"><i class="fa fa-refresh fa-spin"></i></td></tr></tbody>
@@ -479,7 +479,7 @@ and open the template in the editor.
                                 $('.menu-item-dashborad').each(function (index) {
                                     totalWidth += Math.ceil(parseFloat($(this).outerWidth()));
                                     //console.log(totalWidth + '  =>  ' + $(this).text());
-                                    $('#scroller').width(totalWidth);
+                                    $('#scroller').width(totalWidth+6);
                                     // console.log(parseFloat($(this).outerWidth()));
                                     myScroll = new IScroll('#wrapper', {scrollX: true, scrollY: false, mouseWheel: false, preventDefault: false, });
                                 });
@@ -955,7 +955,7 @@ $('.refund-emd-button-menu').click(function () {
                                             lot_array += rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + ',';
                                             room_id_array += rc4_er(logininfo['wishlist_auction_table'][i]['room_id']) + ',';
                                           //  wishlist_auction_table += "<tr onclick='auction_detail(\"" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "\")'><td>" + logininfo['wishlist_auction_table'][i]['lot_id'] + "</td><td>" + logininfo['wishlist_auction_table'][i]['name'] + "</td><td class='bid_amount" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'>" + logininfo['wishlist_auction_table'][i]['bid_amount'] + "</td><td class='status" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'>" + logininfo['wishlist_auction_table'][i]['status'] + "</td><td class='time" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'>-</td></tr>";
-                                            wishlist_auction_table += "<tr onclick='auction_detail(\"" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "\")'><td>A" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "</td><td>" + logininfo['wishlist_auction_table'][i]['name'] + "</td><td class='bid_amount" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'><i class='fa fa-refresh fa-spin'></i></td><td class='status" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'><i class='fa fa-refresh fa-spin'></i></td><td class='time" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'><i class='fa fa-refresh fa-spin'></i></td></tr>";
+                                            wishlist_auction_table += "<tr class='watchlist_" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "' onclick='auction_detail(\"" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "\")'><td>A" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "</td><td>" + logininfo['wishlist_auction_table'][i]['name'] + "</td><td class='bid_amount" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'><i class='fa fa-refresh fa-spin'></i></td><td class='status" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'><i class='fa fa-refresh fa-spin'></i></td><td class='time" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'><i class='fa fa-refresh fa-spin'></i></td><td onclick='remove_watchlist(\"" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "\")'><a> X</a></td></tr>";
                                         }                                        
                                         if (logininfo['wishlist_auction_table'].length > 0) {
                                             $('.watchlist-count').html('(' + logininfo['wishlist_auction_table'].length + ')');

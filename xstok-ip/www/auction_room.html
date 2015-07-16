@@ -117,7 +117,7 @@ and open the template in the editor.
                     $('.room-des-main').attr('onclick', 'show_less()');
                 }
                 function show_less() {
-                    $('.room-des-main').height(90);
+                    $('.room-des-main').height(34);
                     $('.room-des-main').attr('onclick', 'show_more()');
                     $('.heading-arrow').html('<i class="fa fa-angle-down"></i>');
                      //$('.room-des').addClass('room-shawdow');
@@ -161,6 +161,9 @@ and open the template in the editor.
                     //supplier_circle =  supplier_circle();                   
 
                 });
+                setInterval(function() {
+                    $('.room-des-main').css('margin-top', $('.top-header').outerHeight());
+                } , 1000);
                 /*(function (window) {
                  
                  // get vars
@@ -258,6 +261,7 @@ and open the template in the editor.
                                         var min_user_er = rc4_er(detail[i]['min_user']);
                                         var golden_time_er = rc4_er(detail[i]['golden_time']);
                                         var actual_price = (parseFloat(detail[i]['reserve_price']) + parseFloat(detail[i]['discount_value']));
+                                        var discount_value = parseFloat(detail[i]['discount_value']);
                                         /* if (detail[i]['hot_auction'] == 'N') {
                                          hot = 'hidden';
                                          }*/
@@ -271,20 +275,20 @@ and open the template in the editor.
                                         var discount = detail[i]['discount_per_val'];
                                         var day = Date.daysBetween(y2k, today);
                                         var lable = 'Days';
-                                        if (day > 0) {
-                                            auction_detail_over = '';
-                                            display_dis = '';
-                                            display_sold = 'hidden';
+                                        if( parseInt($('.room-timer li:first-child .tik-tak').text()) >= 1) {
                                         } else {
-                                            discount = '-';
-                                            if (day < 0) {
-                                                day = '-';
-                                                lable = '-';
-                                            } else {
-                                                day = 0;
-                                                lable = 'Mins';
+                                            if( parseInt($('.room-timer li:nth-child(2) .tik-tak').text()) >= 1) {
+                                            }else{
+                                                if( parseInt($('.room-timer li:nth-child(3) .tik-tak').text()) >= 1) {
+                                                }else{
+                                                    if( parseInt($('.room-timer li:nth-child(4) .tik-tak').text()) >= 1) {
+                                                    }else{
+                                                        auction_detail_over = '';
+                                                        display_dis = '';
+                                                        display_sold = 'hidden';
+                                                    }
+                                                }
                                             }
-
                                         }
                                         var seen = 'hidden';
                                         if (detail[i]['seen'] = 'Y') {
@@ -346,9 +350,8 @@ and open the template in the editor.
                                     }
                                 });
                             });
-                            show_data_room();
-                            setInterval('show_data_room()', 1000);
-
+                           show_data_room(discount_value);
+                            setInterval(function() {show_data_room(discount_value);}, 1000);
                             setTimeout('hide_loader()', 1000);
 
                         },
@@ -359,6 +362,45 @@ and open the template in the editor.
                         }
                     });
                 }
+                setInterval(function() {
+                    if( parseInt($('.room-timer li:first-child .tik-tak').text()) >= 1) {
+                        $('.list-row').removeClass('auction-detail-over');
+                        $('.list-discount').removeClass('hidden');
+                        $('.list-bid-now').removeClass('hidden');
+                        $('.list-bid-now').removeClass('hidden');
+                        $('.list-sold').addClass('hidden');
+                    } else {
+                        if( parseInt($('.room-timer li:nth-child(2) .tik-tak').text()) >= 1) {
+                            $('.list-row').removeClass('auction-detail-over');
+                            $('.list-discount').removeClass('hidden');
+                            $('.list-bid-now').removeClass('hidden');
+                            $('.list-bid-now').removeClass('hidden');
+                            $('.list-sold').addClass('hidden');
+                        }else{
+                            if( parseInt($('.room-timer li:nth-child(3) .tik-tak').text()) >= 1) {
+                                $('.list-row').removeClass('auction-detail-over');
+                                $('.list-discount').removeClass('hidden');
+                                $('.list-bid-now').removeClass('hidden');
+                                $('.list-bid-now').removeClass('hidden');
+                                $('.list-sold').addClass('hidden');
+                            }else{
+                                if( parseInt($('.room-timer li:nth-child(4) .tik-tak').text()) >= 1) {
+                                    $('.list-row').removeClass('auction-detail-over');
+                                    $('.list-discount').removeClass('hidden');
+                                    $('.list-bid-now').removeClass('hidden');
+                                    $('.list-bid-now').removeClass('hidden');
+                                    $('.list-sold').addClass('hidden');
+                                }else{
+                                    $('.list-row').addClass('auction-detail-over');
+                                    $('.list-discount').addClass('hidden');
+                                    $('.list-bid-now').addClass('hidden');
+                                    $('.list-bid-now').addClass('hidden');
+                                    $('.list-sold').removeClass('hidden');
+                                }
+                            }
+                        }
+                    }                    
+                },1000);
         </script>
 
     </body>

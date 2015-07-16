@@ -20,6 +20,7 @@ and open the template in the editor.
 body, html {
     background-color: #e7e7e7;
     -webkit-overflow-scrolling: touch;
+    -webkit-user-select: none;
 }
 
 *
@@ -1952,16 +1953,27 @@ li.eventsCalendar-day.current a:hover {
 }
 
 .room-des-main {
-    height: 90px;
-    min-height: 90px;
+    height: 34px;
+    min-height: 34px;
     overflow: hidden;
     -webkit-transition: 0.5s all;
     background: #fff;
 }
 
+.room-des-main li {
+    margin-left: 5px;
+}
+
 .room-des-show {
     background:#fff;
 }
+
+.assorted_hide {
+    color:red;
+    text-align: center;
+    display: none;
+}
+
 .room-des {
     padding: 10px;
 }
@@ -3535,6 +3547,9 @@ strong {
     color: #fff;
 }
 
+.tik-tak-small {
+    font-size: 0.7em;
+}
 @media only screen and (max-width: 320px) {
     .list-discount {
         font-size: 12px;

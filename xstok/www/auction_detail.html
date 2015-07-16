@@ -109,7 +109,8 @@ and open the template in the editor.
                 var hash = window.location.hash.split('#')[1];
                 supplier_circle();
                 $.ajax({url: localStorage.host + '../classes/service_manage_auction.class.php', data: {action: 'get_auction_details', lot_id: hash}, type: 'get', success: function (data) {
-                        if (data) {
+                        if (data) {                            
+                            var supp_id_list_array = localStorage.supp_id_list_array.split(',').map(Number);
                             var detail = JSON.parse(data);
                             var actual_price = 0;
                             var reserve_price = 0;
@@ -244,7 +245,10 @@ and open the template in the editor.
                                 if (tender_period_date > time && time > start_date) {
                                     tender_period = 'Yes';
                                     $('.aut-type-1').html('I`m Interested');
-                                    tender_period_func(hash, dynamic_room, detail[0]['tender_period'], detail[0]['end_date'], actual_price,detail[0]['supplier_id']);
+                                    tender_period_func(hash, dynamic_room, detail[0]['tender_period'], detail[0]['end_date'], actual_price,detail[0]['supplier_id'],supp_id_list_array);
+                                }
+                                if (detail[0]['auc_type_id'] == localStorage.closed_bid_auction && tender_period_date < time) {
+                                        $('.assorted_hide').show();
                                 }
                                 if (detail[0]['auc_type_id'] != localStorage.closed_bid_auction && tender_period == 'No') {
                                     $('#not_for_closed_bid').show();
@@ -254,12 +258,14 @@ and open the template in the editor.
                                     select_body += '<select class="form-control bid-now-select input-sm select_tab dropdown" id="dd_' + hash + '" golden_time="' + golden_time + '" golden_time_value ="' + rc4_er(golden_time_value) + '" dynamic_min_user="' + rc4_er(dynamic_min_user) + '" dynamic_lot="' + hash + '" dynamic_room="' + dynamic_room + '" actual_price="' + actual_price + '" discount_value="' + discount_value + '" reserve_price="' + reserve_price + '" auction_on="' + detail[0]['auction_on'] + '" min_incr_value="' + detail[0]['min_incr_value'] + '" auc_end_date = "' + rc4_er(detail[0]['end_date']) + '" og_dynamic_min_user="' + detail[0]['min_user'] + '" unit_price_auction="'+unit_price_auction+'"><option value="Bid"> Bid </option>';
                                     var min_incr_value = 0;
                                     select_body += "</select>";
+                                    $('.bid-now-function').removeClass('col-xs-7').addClass('col-xs-9');
                                     $('.head-bid-value-text').addClass('cal_bid_cal_' + hash);
                                 } else {
                                     if (detail[0]['auc_type_id'] == localStorage.closed_bid_auction && tender_period == 'No') {
                                         $('.head-bid-value-text').addClass('my_bid_' + hash);
                                     }
-                                    select_body = '<div id="dd_' + hash + '" class="" tabindex="1"  golden_time="' + golden_time + '" golden_time_value ="' + rc4_er(golden_time_value) + '" auc_end_date = "' + rc4_er(detail[0]['end_date']) + '" dynamic_min_user="' + rc4_er(dynamic_min_user) + '" dynamic_lot="' + hash + '" dynamic_room="' + dynamic_room + '" actual_price="' + actual_price + '" discount_value="' + discount_value + '" reserve_price="' + reserve_price + '" auction_on="' + detail[0]['auction_on'] + '" min_incr_value="' + detail[0]['min_incr_value'] + '" unit_price_auction="'+unit_price_auction+'" ><input type="text" name="first_bid" id="first_bid" class="form-control input-sm select_tab" placeholder="Value in ₹"></div>';
+                                    select_body = '<div id="dd_' + hash + '" class="" tabindex="1"  golden_time="' + golden_time + '" golden_time_value ="' + rc4_er(golden_time_value) + '" auc_end_date = "' + rc4_er(detail[0]['end_date']) + '" dynamic_min_user="' + rc4_er(dynamic_min_user) + '" dynamic_lot="' + hash + '" dynamic_room="' + dynamic_room + '" actual_price="' + actual_price + '" discount_value="' + discount_value + '" reserve_price="' + reserve_price + '" auction_on="' + detail[0]['auction_on'] + '" min_incr_value="' + detail[0]['min_incr_value'] + '" unit_price_auction="'+unit_price_auction+'" ><input type="text" name="first_bid" id="first_bid" class="form-control input-sm select_tab first_bid" placeholder="Value in ₹" onkeyup="allnumeric(\'first_bid\')"></div>';
+                                    $('.bid-now-function').removeClass('col-xs-9').addClass('col-xs-7');
                                 }
                                 $('.bid-now-function').html(select_body);
                                 $('.div_tendor').addClass('hide');
@@ -336,6 +342,9 @@ and open the template in the editor.
                                     $('.buy_now_button').addClass('direct_buy_'+hash+'');
                                 }
                                 localStorage.ass_auc_buy_now_price = detail[0]['buy_now'];
+                                if (detail[0]['auc_type_id'] == localStorage.closed_bid_auction){
+                                    localStorage.ass_auc_buy_now_price = ass_reserve_price;
+                                }
                                 $('.buy-now-panel').html(buy_now);
                                 var buy_now_btn = '<a id="buy_' + hash + '" class="btn btn-xstok buy_' + hash + ' hide" href="shipping_detail.html?#' + hash + '-' + detail[0]['room_id'] + '" role="button">Proceed to Payment</a>';
                                 $('.bid-now-buy-now-btn').html(buy_now_btn);
@@ -385,12 +394,20 @@ and open the template in the editor.
                                 $('.download-excl').attr('onclick', 'download_exl("' + hash + '")');
                                 localStorage.tender_period = tender_period;
                                 get_unit(detail[0]['lot_unit']);
-                                if(localStorage.hide_list_p_percent && (localStorage.supp_id_list_array == detail[0]['supplier_id'])) {
+                                if(localStorage.hide_list_p_percent && supp_id_list_array.indexOf(parseFloat(detail[0]['supplier_id'])) > -1) {
                                     $('.lp').hide();
                                     $('.count-opt').html('+ 1');
                                     $('.emd_req').addClass('padding-bottom-5-p');
                                    // alert('a');
                                 }
+                                if(parseInt(detail[0]['room_id']) < 1 ) {
+                                    $('.gotoroom').hide();
+                                } else {
+                                     $('.gotoroom').attr('href','auction_room.html#'+hash+'-'+rc4_er(detail[0]['room_id']));
+                                }                               
+                            }
+                            if (detail[0]['auc_type_id'] != localStorage.closed_bid_auction) {
+                                $('.assorted_hide').remove();
                             }
                         }
                         // callout('bid_now_callout', 'Bid now', 'Click here to bid.', 0, 0);
@@ -473,7 +490,7 @@ and open the template in the editor.
                     }
                 }, 400);
             });
-            function tender_period_func(lot_id, room_id, tender_period_date, end_date, actual_price,supplier_id) {
+            function tender_period_func(lot_id, room_id, tender_period_date, end_date, actual_price,supplier_id,supp_id_list_array) {
                 $('.mybidvalue').css('visibility','hidden');
                 $('.callout').hide();
                 localStorage.tender_bid_detail = '';
@@ -511,7 +528,7 @@ and open the template in the editor.
                             var __end_date_text = formatAMPM(__end_date);
                             tender_msg = tender_msg.replace('__end_date', __end_date_text);
                             tender_msg = tender_msg.replace('__rs', temp_actual_price);
-                            if(localStorage.hide_list_p_percent && (localStorage.supp_id_list_array == supplier_id)) {
+                            if(localStorage.hide_list_p_percent &&(supp_id_list_array.indexOf(parseFloat(supplier_id)) > -1)) {
                                 tender_msg = tender_msg.replace('(__x% of List Price)', '');
                             } else {
                                 if((parseFloat(actual_price)/ parseFloat(localStorage.limit_val))<parseFloat(localStorage.emd_list_price_limit)){
@@ -525,7 +542,7 @@ and open the template in the editor.
                         localStorage.tender_msg = tender_msg;
                         $('.span_show_text').html(tender_msg);
                         $('.aut-type-1').html(text);
-                        $('#bid').css('top', '10%');
+                        $('#bid').css('top', '5%');
                         if (disable_tender != '') {
                             $('.bid_now_button.btn-xstok.btn-buy-action').attr('disabled', true);
                             $('.bid_now_button.btn-xstok.btn-buy-action').hide();
@@ -621,7 +638,6 @@ and open the template in the editor.
                         <div id="collapseTwo" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <div class="tender-period-main">
-
                                     <div class="tender-period font-14 font-family-helvetica-bold margin-top-5 padding-tb-5 padding-lr-5 x-light-grey-background">Presale Review</div>
                                     <div class="font-13 tender-period head-tender-start-text padding-lr-10 row row-cancel-margin"></div>
                                     <div class="font-13 tender-period head-tender-end-text padding-lr-10 row row-cancel-margin"></div>
@@ -629,7 +645,8 @@ and open the template in the editor.
                                     <div class="font-13 head-bid-start-text padding-lr-10 row row-cancel-margin"></div>
                                     <div class="font-13 head-tender-period-text padding-lr-10 row row-cancel-margin"></div>
                                 </div>
-                                <div class="product_description-text font-18 font-family-helvetica-bold">Description<span class="float-rt font-13 x-black download-excl" style="padding-top: 4px;"><a><i class="fa fa-file-excel-o"></i> Download </a></span></div>
+                                <span><a class="gotoroom">View room</a></span>
+                                <div class="product_description-text font-18 font-family-helvetica-bold">Description <span class="float-rt font-13 x-black download-excl" style="padding-top: 4px;"><a><i class="fa fa-file-excel-o"></i> Download </a></span></div>
                                 <div class="product_description font-size-0-9-em"></div>
                                 <br>
                                 Winning buyer will have the option to arrange for his own transportation or use XSTOK logistics services.
@@ -693,6 +710,7 @@ and open the template in the editor.
                         </div>            
                         <div class="bid-now">
                             <div class="mybidvalue padding-lr-10" style=""><h4> My last bid : <i class="fa fa-inr head-bid-value-text-sys"></i> <div class="head-bid-value-text"></div></h4></div>
+                            <div class="assorted_hide">Reserve price not met</div>
                             <div class="auctions-status-text"></div>
                             <div class="auction-status" style="display: none"><div></div></div>
                             <div class="row row-cancel-margin padding-lr-10">
@@ -923,7 +941,7 @@ and open the template in the editor.
                                 var actual_price = $('#dd_' + $(this).attr('dynamic_lot')).attr('actual_price');
                                 var tender_bid_detail = $('#dd_' + $(this).attr('dynamic_lot')).attr('tender_bid_detail');
                                 var unit_price_auction = $('#dd_' + $(this).attr('dynamic_lot')).attr('unit_price_auction');
-                                if (first_bid != 'Bid' && first_bid > 0 && $('#dd_' + $(this).attr('dynamic_lot')).find('span').html() != 'Bid') {
+                                if (first_bid != 'Bid' && first_bid > 0 && $('#dd_' + $(this).attr('dynamic_lot')+ ' option:selected').val() != 'Bid') {                                   
                                     if ($(this).attr('bid_type') != localStorage.closed_bid_auction) {
                                     }
                                     var z = first_bid;
@@ -940,7 +958,7 @@ and open the template in the editor.
                                             var confirmbutton = 'Top up,Cancel';
                                             var confirmlink = 'dashboard.html#buyer_emd_details';
                                             showEmdConfrim(confirmtitle,confirmbutton,confirmlink);
-                                        } else {                                            
+                                        } else {
                                             var temp_unit_price_ = ($('.unit_price_auction_val').text()=='Y')?" (Per "+$('.span_unit_db').text()+" of <i class='fa fa-inr'></i> "+dis_value+")":'';
                                             if (localStorage.my_bid_val.replace(/,/g, '') < 1 || $('.bid_cal_' + dynamic_lot).html() == localStorage.winner__) {
                                                 var og_emd__ = numberWithCommas(round(parseFloat($('#list_price_actual').html().replace(/,/g, '')) / parseFloat(localStorage.limit_val)));
@@ -980,7 +998,7 @@ and open the template in the editor.
                                 } else if ($(this).attr('interest_val') != '' && typeof $(this).attr('interest_val') != 'undefined') {
                                     $.ajax({url: localStorage.host+'../classes/service_manage_auction.class.php?action=save_tender_click&user_id='+localStorage.user_id+'&lot_id=' + dynamic_lot + '&room_id=' + dynamic_room + '', success: function(result){}});
                                     var og_emd__ = numberWithCommas(parseFloat($('#list_price_actual').html().replace(/,/g, '')) / parseFloat(localStorage.limit_val));
-                                    if (parseFloat(localStorage.emd_bal.replace(/,/g, '')) < parseFloat(og_emd__)) {
+                                    if (parseFloat(localStorage.emd_bal.replace(/,/g, '')) < parseFloat(og_emd__.replace(/,/g, ''))) {
                                         localStorage.EMD_over__ = localStorage.EMD_over__.replace('/buyer_dashboard?action=emd_details', 'dashboard.html#buyer_emd_details');
                                         $('.msg_' + dynamic_lot).html(localStorage.EMD_over__).fadeIn('slow');
                                     } else {
@@ -988,7 +1006,7 @@ and open the template in the editor.
                                         var confirm_bid__ = numberWithCommas(first_bid);
                                         var confirmtitle = localStorage.bid_now;
                                         var confirmbutton = 'Yes,Cancel';
-                                        var confirm_msg = localStorage.emd_bid_msg__.replace("og_emd__", og_emd__);
+                                        var confirm_msg = localStorage.emd_bid_msg__.replace("og_emd__", round(parseFloat(og_emd__.replace(/,/g, '')),2));
                                         var confirmlink = localStorage.host + '../classes/service_manage_auction.class.php?action=save_intial_bid_auction&user_id=' + localStorage.user_id + '&admin_id=' + localStorage.user_id + '&lot_id=' + dynamic_lot + '&room_id=' + dynamic_room + '&golden_time=' + golden_time + '&golden_time_value=' + golden_time_value + '&first_bid=' + first_bid + '&auction_on=' + auction_on + '&reserve_price=' + reserve_price + '&discount_value=' + discount_value + '&actual_price=' + actual_price + '&dynamic_min_user=' + dynamic_min_user + '&bid_type=' + bid_type + '&tender_local_var=' + localStorage.tender_local_var + '';
                                         showConfirm(confirm_msg, confirmtitle, confirmbutton, confirmlink, dynamic_lot, localStorage.tender_msg);
                                     }

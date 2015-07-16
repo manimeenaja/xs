@@ -20,6 +20,7 @@ and open the template in the editor.
 body, html {
     background-color: #e7e7e7;
 /*    -webkit-overflow-scrolling: touch;*/
+-webkit-user-select: none;
 }
 
 *
@@ -1953,16 +1954,27 @@ li.eventsCalendar-day.current a:hover {
 }
 
 .room-des-main {
-    height: 90px;
-    min-height: 90px;
+    height: 34px;
+    min-height: 34px;
     overflow: hidden;
     -webkit-transition: 0.5s all;
     background: #fff;
 }
 
+.room-des-main li {
+    margin-left: 5px;
+}
+
 .room-des-show {
     background:#fff;
 }
+
+.assorted_hide {
+    color:red;
+    text-align: center;
+    display: none;
+}
+
 .room-des {
     padding: 10px;
 }
@@ -3535,6 +3547,66 @@ strong {
     right: 10px;
     z-index: 13;
     color: #fff;
+}
+
+.tik-tak-small {
+    font-size: 0.7em;
+}
+
+.room-list {
+    width: 100%;
+    padding: 0 10px;
+    border-bottom: 0px solid #d1d1d1 !important;
+}
+
+.room-list-body {
+    background-color: #fff;
+    box-shadow: 0px 1px 1px #555;
+    border-radius: 3px;
+}
+
+.room-list-head {
+    text-align: center;
+    font-size: 1.3em;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.room-list-detail {
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.room-list-info {
+    width: 68%;
+    display: inline-block;
+    font-size: 0.85em;
+    padding: 0 5px 5px;
+}
+
+.room-list-time {
+   padding: 5px; 
+}
+
+.room-list-image {
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.room-list-image img {
+    border-radius: 3px;
+}
+
+.room-list-time {
+    font-size: 0.7em;
+}
+
+.room-all:first-child {
+    margin-top: 15px;
+}
+.room-all li {
+    margin-bottom: 10px;
 }
 
 @media only screen and (max-width: 320px) {

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>XSTOK</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=medium-dpi,user-scalable=yes" />
+        <link type="text/css" rel="stylesheet" href="css/jquery.mmenu.all.css" />
+        <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/main.css" rel='stylesheet' type='text/css' />
+
+        <script src='js/jquery.min.js'></script>        
+        <script src='js/jquery-ui.min.js'></script>   
+        <link rel="shortcut icon" href="favicon.ico">
+        <script type="text/javascript">
+            //	The menu on the left
+        
+          
+            if (localStorage.logged_in == '1') {                
+                if (localStorage.otp == '1') {                      
+                    if (localStorage.verified == '1') {
+                        //window.location.href = "search_result.html";
+                    } else {
+                        if (localStorage.kyc_status == '1') {
+                            window.location.href = "kyc_c.html";
+                        } else {
+                            window.location.href = "kyc.html";
+                        }
+                    }
+                } else {
+                    window.location.href = "otp.html";
+                }
+            } else {
+                window.location.href = "signin.html";
+            }
+
+
+            $(function () {
+                $('.container').fadeIn(1000).show();
+            });</script>
+    </head>
+    <body class="">
+        
+        <div class="overlay" style="display: none"></div>
+        <div class="callout-dash" style="display: none">
+            <div class="callout-cat"><img src="images/arrow_up.png" height="100" /><br><span class="x-white font-25">Select category here</span>
+                </div> 
+                <!--<div class="callout-sort"><i class="fa fa-arrow-up x-yellow"></i><i class="fa fa-arrow-up x-yellow"></i><br><span class="x-white font-18">Sort auctions by the discount value or time left</span>
+                </div>     -->           
+                <div class="callout-search-type"><img src="images/arrow_up.png" height="70" style="-webkit-transform: scale(-1,1);float: right;"/><span class="x-white font-25">Switch to list view</span></div>
+                <div class="callout-filter"><span class="x-white font-25">Filter your search</span><br><img src="images/down.png" height="100" style="float: right;"/>
+                </div>
+        </div>
+        <div class="callout-overlay" style="display: none"></div>
+        <div class="container"  >
+            <div class="top-header x-orange-background">
+                <!----script-for-sidepanle-nav----> 
+                <!--//script-for-sidepanle-nav---->
+                <div id="page">
+
+                </div>
+                <div class="logo" style="height: 27px;text-align: right;font-size: 1.3em;">Auction Rooms</div>
+                <!---usernotifications---->
+                <div class="usernotifications">
+                    <ul class="user-profile list-unstyled">
+                        <li style="padding: 11px;margin-right: 10px;">
+                            <input class="search" type="search" placeholder="Search" />
+                            <div class="src_icon hidden"><i class="fa fa-search fa-lg x-white"></i></div>
+                        </li>                        
+                    </ul>
+                </div>
+                <div class="clear"> </div>
+                <!--//usernotifications---->
+            </div>
+            <ul class="list room-all">
+                <i class="fa fa-refresh  fa-spin middle load" style="font-size: 3em;color: #888;"></i>                
+            </ul>
+        </div>
+        
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile.custom.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mmenu.js"></script>
+        <script type="text/javascript" src="js/classie.js"></script>
+        <script type="text/javascript" src="js/PushNotification.js"></script>
+        <script  type="text/javascript" src='js/main_script.js'></script>   
+        <script type="text/javascript" src="js/fastclick.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        
+        <script>
+                //x_alert(localStorage.search_category_name);
+                 var devicecheck = setInterval(function () {
+                     onDeviceReady(devicecheck);
+                 }, 1000);
+                 function onDeviceReady(devicecheck) {
+                     FastClick.attach(document.body);
+                     reg_function(devicecheck);
+                 }
+                 $(window).resize(function () {
+                    var windowWidth = $(window).width();
+                    $('.list-row').height($('.list-image').innerWidth());
+                    $('.list-body').height($('.list-image-body').innerWidth());
+                    $('.list-image-body').height($('.list-image-body').innerWidth());
+                    $('.search').width(windowWidth - $('.usernotifications').width() - 66);
+                    $('.search').css("maxWidth", (windowWidth - $('.usernotifications').width() - 55) + 'px');
+                });
+                $(document).ready(function () {
+                    if(localStorage.callout_search == 0 || localStorage.getItem("callout_search") === null) { 
+                        show_callout_search();
+                    }
+                    var windowHeight = $(window).height();
+                    var windowWidth = $(window).width();
+                    $('.list').height(windowHeight - $('.top-header').innerHeight() - 2 - $('.order-by').innerHeight() + 2);
+                    $('.search').width(windowWidth - $('.usernotifications').width() - 64);
+                    $('.search').css("maxWidth", (windowWidth - $('.usernotifications').width() - 55) + 'px');
+                    /*$('.list-row').height($('.list-image').innerWidth());
+                     $('.list-image-body').height($('.list-image-body').innerWidth());
+                     $('.list-body').height($('.list-image-body').innerWidth());*/
+                    $('.src_icon').click(function () {
+                        if($('.search').hasClass('expanded')) {
+                            $('.search').toggleClass('expanded');
+                            $('.search').blur();
+                            $('.src_icon').html('<i class="fa fa-search fa-lg x-white"></i>');
+                            $('.logo').css('visibility','visible');
+                        } else {
+                            $('.search').toggleClass('expanded');
+                           
+                            $('.src_icon').html('<i class="fa  fa-times fa-lg x-white"></i>');
+                            $('.search').val('');
+                            $('.search').keyup();
+                             $('.search').focus();
+                            $('.logo').css('visibility','hidden');                            
+                        }                        
+                    });
+
+                    add_menu('room');
+                    $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php?action=room_detail_all&type=html&user_id=d0', data: {}, type: 'get', success: function (data) {
+                            var body = '';
+                            var logininfo = JSON.parse(data);
+                            console.log(logininfo);
+                            if(parseInt(logininfo['room_count']) <= 1 ) {
+                                $.each(logininfo['room_auction'], function( index, value ) {
+                                    console.log( index + ": " + value );
+                                    body += '<li id="'+index+'" class="room-list" onclick="auction_room(\''+rc4_er(logininfo['room_auction'][index]['lot_id'])+'\',\''+rc4_er(logininfo['room_auction'][index]['room_id'])+'\')"><div class="room-list-body"><div class="room-list-head">'+logininfo['room_auction'][index]['title']+'</div><div class="room-list-detail"><div class="room-list-image"><img src="'+logininfo['room_auction'][index]['img']+'"></div><div class="room-list-info">'+logininfo['room_auction'][index]['description']+'</div></div><div class="room-list-time"><div class="keep-on-left"><span class="font-bold">Start Date : </span><span>'+logininfo['room_auction'][index]['start_date']+'</span></div><div class="keep-on-right"><span class="font-bold">End Date : </span><span>'+logininfo['room_auction'][index]['end_date']+'</span></div></div></div></li>';
+                                });
+                            } else {
+                                body += '<li class="text-center font-bold" style="border-bottom: none !important;padding: 30px;">No rooms present at the moment<li>';
+                            }
+                            $('.list').html(body);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                           // if (textStatus === "timeout") {
+                                x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                           // }
+                        }
+                    });
+                    
+                    $('.search').keyup(function () {
+                        $(".list li").each(function (index) {
+                            var serch = $('.search').val().toLowerCase();
+                            if (serch != '') {
+                                var text = $(this).find(".room-list-head").text().toLowerCase();
+                                if (text.indexOf(serch) > -1) {
+                                    $(this).show();
+                                } else {
+                                    if(!$(this).hasClass('no-result')) {
+                                        $(this).hide();
+                                    }
+                                }
+                            } else {
+                                $(this).show();
+                            }
+                        });
+                    });
+                });
+        </script>
+        <script>
+        $("body").swiperight(function() {
+            $("#header a").click();
+        }); 
+        </script>
+
+    </body>
+</html>

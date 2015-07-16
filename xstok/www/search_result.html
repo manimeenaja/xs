@@ -821,10 +821,8 @@ and open the template in the editor.
                             var logininfo = JSON.parse(data);
                             //console.log(data);
                             for (i in logininfo['active_tym_ary_mobile']) {
-                                $('.time' + i).html(logininfo['active_tym_ary_mobile'][i]);
-                                console.log('.time'+i);
-                                
-                            }                           
+                                $('.time' + i).html(logininfo['active_tym_ary_mobile'][i]);                                
+                            }
                         }
                     });
                 }, 1000);
