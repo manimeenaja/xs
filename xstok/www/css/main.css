@@ -2066,7 +2066,7 @@ b {
     background-size: cover;
 }
 .list-status-text {
-    font-size: 0.8em;
+    font-size: 0.7em;
 }
 
 #sticky.stick {
@@ -3605,6 +3605,13 @@ strong {
 }
 .room-all li {
     margin-bottom: 10px;
+}
+.no-room {
+    border: none !important;
+    text-align: center;
+    font-size: 1.5em;
+    padding-top: 40px;
+    font-weight: bold;
 }
 @media only screen and (max-width: 320px) {
     .list-discount {

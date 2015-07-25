@@ -3,8 +3,8 @@
 //localStorage.host = "http://192.168.0.13/webservices/";
 //localStorage.host = "http://192.168.0.12/webservices/";
 //localStorage.host = "http://beta.xstok.com/webservices/";
-localStorage.host = "http://fa.xstok.com/webservices/";
-//localStorage.host = "http://www.xstok.com/webservices/";
+//localStorage.host = "http://fa.xstok.com/webservices/";
+localStorage.host = "http://www.xstok.com/webservices/";
 localStorage.device = 'Android';
 localStorage.vr = 'new';
 localStorage.key_code = 'euhe68vjdr1aX4F091c7aCggSMBf0A7M';
@@ -133,6 +133,7 @@ localStorage.not_participating__ = 'You are not participating in this auction';
 localStorage.increase_bid__ = 'Make New Offer';
 localStorage.s_winner__  =  'Winner';
 localStorage.ext_time = 'Extended time 2 mins';
+localStorage.final_my_bid__ = 'Final Price';
 localStorage.hide_list_p_percent = 1;
 localStorage.supp_id_list_array = [1470,1868];
 /*----------------DEFINED END-------------------*/
@@ -696,12 +697,15 @@ function show_data(auc_type_id, reserve_price, lot_id, auction_on, min_incr_valu
                 $(".span_emd").html(numberWithCommas(round(emd_left_tmp)));
                 $(".span_emd").html(obj.emd_left);
                 localStorage.final_status = obj.status;
+                $('.head-value-text-cp').html($('.curr_bid_' + dynamic_lot[idx]).text());
                 if (auc_type_id != localStorage.closed_bid_auction) {
                     $('.head-value-text-cp').html($('.curr_bid_' + dynamic_lot[idx]).text());
                     $('.head-per-value-text').html('<i class="fa fa-inr"></i> '+numberWithCommas(RoundTo($('.curr_bid_' + dynamic_lot[idx]).text().replace(/,/g, '') / unit_price ,0.5  )));
                     $('#cal_span_per_nit').html(numberWithCommas(RoundTo($('.curr_bid_' + dynamic_lot[idx]).text().replace(/,/g, '')/unit_price, 0.5 )));
                 } else {
-                    $('.head-value-text-cp').html('~');
+                    if($('.aut-type-1').text() == localStorage.bid_now) {
+                        $('.head-value-text-cp').html('~');
+                    }
                     $('.head-per-value-text').html('~');
                     $('#cal_span_per_nit').html('~');
                 }
@@ -825,7 +829,17 @@ function show_data(auc_type_id, reserve_price, lot_id, auction_on, min_incr_valu
                         $('#div_auto_bid_active').addClass('hide');
                     }
                     $('.my_bid_' + dynamic_lot[idx]).text(obj.my_bid);
-                    if (auc_type_id == localStorage.closed_bid_auction) { 
+                    if (auc_type_id == localStorage.closed_bid_auction) {
+                        if (parseFloat(obj.curr_bid.replace(/,/g, '')) >= parseFloat(localStorage.ass_auc_buy_now_price) && $('.my_bid_' + dynamic_lot[idx]).text().replace(/,/g, '') >= parseFloat(localStorage.ass_auc_buy_now_price)){
+                            $('.assorted_hide').hide();
+                            if ($('#clock_').html() != localStorage.auction_expired__ ){
+                                $('.bid_cal_' + dynamic_lot[idx]).html(obj.status).show();
+                            }
+                            $('#withdraw_' + dynamic_lot[idx]).removeClass('hide');
+                        } else {
+                            $('.assorted_hide').show();
+                            $('#withdraw_' + dynamic_lot[idx]).addClass('hide');
+                        }
                         if (parseFloat($('.my_bid_' + dynamic_lot[idx]).text().replace(/,/g, '')) > 0) {
                             $('#bid_now_button_' + dynamic_lot[idx]).val(localStorage.increase_bid__ );
                         }
@@ -1175,6 +1189,7 @@ function add_menu(active) {
     var dashboard = '';
     var home = '';
     var calendar = '';
+    var room = '';
     var show_less = '';
     var show_less = '';
     var show_profile = '';
@@ -1184,6 +1199,8 @@ function add_menu(active) {
         home = 'menu-item-active';
     } else if (active == 'calendar') {
         calendar = 'menu-item-active';
+    } else if (active == 'room') {
+        room = 'menu-item-active';
     } else if (typeof active == 'undefined') {
         show_less = 'hidden';
         if (localStorage.verified == '1') {
@@ -1214,7 +1231,7 @@ function add_menu(active) {
                 localStorage.buyer_rating_count = detail.buyer_rating['count'];
                 localStorage.buyer_rating_text = detail.buyer_rating['text'];
                 //localStorage.user_id = rc4_er(detail.user_detail['id']);
-                menu_body(home, dashboard, calendar, show_less, show_profile);
+                menu_body(home, dashboard, calendar, show_less, show_profile,room);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 /* if (textStatus === "timeout" || textStatus === 'error') {
@@ -1223,7 +1240,7 @@ function add_menu(active) {
             }
         });
     } else {
-        menu_body(home, dashboard, calendar, show_less, show_profile);
+        menu_body(home, dashboard, calendar, show_less, show_profile,room);
     }
 }
 
@@ -1252,7 +1269,7 @@ function user_info() {
     });
 }
 
-function menu_body(home, dashboard, calendar, show_less, show_profile) {
+function menu_body(home, dashboard, calendar, show_less, show_profile,room) {
     if (localStorage.name == 'null' && show_profile == '' || localStorage.company_name == '' && show_profile == '') {
         var info = setInterval(function () {
             user_info();
@@ -1261,7 +1278,7 @@ function menu_body(home, dashboard, calendar, show_less, show_profile) {
                 clearInterval(info);
             }
             // alert(localStorage.logged_in );
-            menu_body(home, dashboard, calendar, show_less, show_profile);
+            menu_body(home, dashboard, calendar, show_less, show_profile,room);
         }, 500);
     }
 
@@ -1272,7 +1289,7 @@ function menu_body(home, dashboard, calendar, show_less, show_profile) {
         xstok = '<div class="row row-cancel-margin profile-main" style=" padding: 10px 10px 20px 10px;"><img src="images/logo_y.png"></div>';
     }
     user_info();
-    var body = '<script type="text/javascript">$(function () { $(\'nav#menu-left\').mmenu();});</script><div id="header"><a href="#menu-left"><i class="fa fa-bars fa-lg x-white"></i></a></div> <nav id="menu-left" class=""><div class="menu-block">' + xstok + ' <div class="row row-cancel-margin profile-main ' + show_profile + '"><div class="profile-details">  <div class="profile-image"><img src="' + localStorage.profile_pic + '" class="img-circle profile-image-img" alt="Profile Picture" width="304" height="236"> </div>  <div class="profile-name" onclick="user_profile()">' + localStorage.name + '</div><div class="profile-location xs-grey"><i class="fa fa-building"></i> ' + localStorage.company_name + '</div></div><div class="emd_bid_limt">  <div class="' + show_less + ' emd-name xs-grey padding-tb-10">EMD balance : <span class="font-family-helvetica-bold emd-text" style="display: inline-block;"><i class="fa fa-inr"></i> <span class="emd-bal">-</span></span></div>  <div class="' + show_less + ' bid-limt-name xs-grey padding-tb-10 hide">Bid Limit<br><span class="font-family-helvetica-bold bid-limt-text"><i class="fa fa-inr" style="display: inline-block;"></i> <span class="bid-limit">-</span></span></div></div></div> <div class="' + show_less + ' row  menu-item menu-item-first-child ' + home + '" onclick="redirect(\'search_cat\')"><i class="fa fa-university"></i> Home </div> <div class="' + show_less + ' row  menu-item  ' + show_profile + '" onclick="all_auctions()"><i class="fa fa-globe"></i> Ongoing Auctions </div> <div class="' + show_less + ' row  menu-item ' + dashboard + ' ' + show_profile + '" onclick="redirect(\'dashboard\',\'active-auc\')"><i class="fa fa-paper-plane-o"></i> Dashboard </div> <div class="' + show_less + ' row  menu-item ' + calendar + ' ' + show_profile + '" onclick="redirect(\'calendar\')"><i class="fa fa-calendar-o"></i></i> Calendar </div> <div class="' + show_less + ' ' + show_profile + ' row  menu-item" onclick="redirect(\'dashboard\',\'watchlist\')"><i class="fa fa-heart-o"></i> Watchlist <span class="wishlist-count">' + localStorage.wishlist_auction_table + '</span></div><div class=" ' + show_less + ' ' + show_profile + ' row  menu-item" onclick="redirect(\'dashboard\',\'notification\')"><i class="fa fa-bell-o"></i> Notifications <span class="notication-count">' + localStorage.notification + '</span></div><div style="padding: 1px;" class="' + show_less + ' row x-orange-background"></div><div class="' + show_less + ' ' + show_profile + ' row  menu-item hide" onclick="redirect(\'dashboard\')"><i class="fa fa-question-circle"></i> How it works? </div> <div class="row  menu-item" onclick="redirect(\'our_story\')"><i class="fa fa-book"></i> Our Story </div> <div class="row  menu-item" onclick="redirect(\'buyer_protection\')"><i class="fa fa-shield"></i> Buyer Protection </div> <div class="row  menu-item hide" onclick="redirect(\'coming_soon_auctions\')"><i class="fa fa-gavel"></i> Coming Soon Auctions </div> <div class="row  menu-item" onclick="redirect(\'work_with_us\')"><i class="fa fa-briefcase"></i> Work With Us </div> <div class="row  menu-item" onclick="redirect(\'contact\')"><i class="fa fa-phone"></i> Contact Us </div><div style="padding: 1px;" class="row x-orange-background"></div><div class="' + show_profile + ' row  menu-item" onclick="redirect(\'change_password\')"><i class="fa fa-key"></i> Change Password </div> <div class="' + show_profile + ' row  menu-item" onclick="redirect(\'logout\')"><i class="fa fa-power-off"></i> Sign Out </div>  ' + signup + '</div> </nav>';
+    var body = '<script type="text/javascript">$(function () { $(\'nav#menu-left\').mmenu();});</script><div id="header"><a href="#menu-left"><i class="fa fa-bars fa-lg x-white"></i></a></div> <nav id="menu-left" class=""><div class="menu-block">' + xstok + ' <div class="row row-cancel-margin profile-main ' + show_profile + '"><div class="profile-details">  <div class="profile-image"><img src="' + localStorage.profile_pic + '" class="img-circle profile-image-img" alt="Profile Picture" width="304" height="236"> </div>  <div class="profile-name" onclick="user_profile()">' + localStorage.name + '</div><div class="profile-location xs-grey"><i class="fa fa-building"></i> ' + localStorage.company_name + '</div></div><div class="emd_bid_limt">  <div class="' + show_less + ' emd-name xs-grey padding-tb-10">EMD balance : <span class="font-family-helvetica-bold emd-text" style="display: inline-block;"><i class="fa fa-inr"></i> <span class="emd-bal">-</span></span></div>  <div class="' + show_less + ' bid-limt-name xs-grey padding-tb-10 hide">Bid Limit<br><span class="font-family-helvetica-bold bid-limt-text"><i class="fa fa-inr" style="display: inline-block;"></i> <span class="bid-limit">-</span></span></div></div></div> <div class="' + show_less + ' row  menu-item menu-item-first-child ' + home + '" onclick="redirect(\'search_cat\')"><i class="fa fa-university"></i> Home </div> <div class="' + show_less + ' row  menu-item  ' + show_profile + '" onclick="all_auctions()"><i class="fa fa-globe"></i> Ongoing Auctions </div> <div class="' + show_less + ' row  menu-item  ' + show_profile + ' '+room+'" onclick="all_room()"><i class="fa fa-flag"></i> All Rooms </div> <div class="' + show_less + ' row  menu-item ' + dashboard + ' ' + show_profile + '" onclick="redirect(\'dashboard\',\'active-auc\')"><i class="fa fa-paper-plane-o"></i> Dashboard </div> <div class="' + show_less + ' row  menu-item ' + calendar + ' ' + show_profile + '" onclick="redirect(\'calendar\')"><i class="fa fa-calendar-o"></i></i> Calendar </div> <div class="' + show_less + ' ' + show_profile + ' row  menu-item" onclick="redirect(\'dashboard\',\'watchlist\')"><i class="fa fa-heart-o"></i> Watchlist <span class="wishlist-count">' + localStorage.wishlist_auction_table + '</span></div><div class=" ' + show_less + ' ' + show_profile + ' row  menu-item" onclick="redirect(\'dashboard\',\'notification\')"><i class="fa fa-bell-o"></i> Notifications <span class="notication-count">' + localStorage.notification + '</span></div><div style="padding: 1px;" class="' + show_less + ' row x-orange-background"></div><div class="' + show_less + ' ' + show_profile + ' row  menu-item hide" onclick="redirect(\'dashboard\')"><i class="fa fa-question-circle"></i> How it works? </div> <div class="row  menu-item" onclick="redirect(\'our_story\')"><i class="fa fa-book"></i> Our Story </div> <div class="row  menu-item" onclick="redirect(\'buyer_protection\')"><i class="fa fa-shield"></i> Buyer Protection </div> <div class="row  menu-item hide" onclick="redirect(\'coming_soon_auctions\')"><i class="fa fa-gavel"></i> Coming Soon Auctions </div> <div class="row  menu-item" onclick="redirect(\'work_with_us\')"><i class="fa fa-briefcase"></i> Work With Us </div> <div class="row  menu-item" onclick="redirect(\'contact\')"><i class="fa fa-phone"></i> Contact Us </div><div style="padding: 1px;" class="row x-orange-background"></div><div class="' + show_profile + ' row  menu-item" onclick="redirect(\'change_password\')"><i class="fa fa-key"></i> Change Password </div> <div class="' + show_profile + ' row  menu-item" onclick="redirect(\'logout\')"><i class="fa fa-power-off"></i> Sign Out </div>  ' + signup + '</div> </nav>';
     $('#page').html(body);
     if(localStorage.wishlist_auction_table == '0') {
         $('.wishlist-count').hide();
@@ -1291,7 +1308,10 @@ function all_auctions() {
     localStorage.search_category_name = 'All Category';
     localStorage.search_table_name = '';
     window.location.href = "search_result.html";
-    
+}
+
+function all_room() {
+    window.location.href = "all_room.html";
 }
 
 

@@ -66,6 +66,7 @@ E:\xstok\xstok\platforms\android\ant-build\res\drawable-xxhdpi\ic_action_remove.
 E:\xstok\xstok\platforms\android\ant-build\res\drawable-xxxhdpi\icon.png \
 E:\xstok\xstok\platforms\android\assets\www \
 E:\xstok\xstok\platforms\android\assets\_where-is-www.txt \
+E:\xstok\xstok\platforms\android\assets\www\all_room.html \
 E:\xstok\xstok\platforms\android\assets\www\auction_buy_now.html \
 E:\xstok\xstok\platforms\android\assets\www\auction_detail.html \
 E:\xstok\xstok\platforms\android\assets\www\auction_room.html \

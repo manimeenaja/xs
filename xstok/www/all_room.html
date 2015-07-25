@@ -146,7 +146,7 @@ and open the template in the editor.
                             var body = '';
                             var logininfo = JSON.parse(data);
                             console.log(logininfo);
-                            if(parseInt(logininfo['room_count']) <= 1 ) {
+                            if(parseInt(logininfo['room_count']) >= 1 ) {
                                 $.each(logininfo['room_auction'], function( index, value ) {
                                     console.log( index + ": " + value );
                                     body += '<li id="'+index+'" class="room-list" onclick="auction_room(\''+rc4_er(logininfo['room_auction'][index]['lot_id'])+'\',\''+rc4_er(logininfo['room_auction'][index]['room_id'])+'\')"><div class="room-list-body"><div class="room-list-head">'+logininfo['room_auction'][index]['title']+'</div><div class="room-list-detail"><div class="room-list-image"><img src="'+logininfo['room_auction'][index]['img']+'"></div><div class="room-list-info">'+logininfo['room_auction'][index]['description']+'</div></div><div class="room-list-time"><div class="keep-on-left"><span class="font-bold">Start Date : </span><span>'+logininfo['room_auction'][index]['start_date']+'</span></div><div class="keep-on-right"><span class="font-bold">End Date : </span><span>'+logininfo['room_auction'][index]['end_date']+'</span></div></div></div></li>';
@@ -154,7 +154,11 @@ and open the template in the editor.
                             } else {
                                 body += '<li class="text-center font-bold" style="border-bottom: none !important;padding: 30px;">No rooms present at the moment<li>';
                             }
-                            $('.list').html(body);
+                            if(body != '') {
+                                $('.list').html(body);
+                            } else {
+                                $('.list').html('<li class="no-room">No rooms present at the moment</li>');
+                            }
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
                            // if (textStatus === "timeout") {

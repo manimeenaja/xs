@@ -821,11 +821,18 @@ and open the template in the editor.
                             var logininfo = JSON.parse(data);
                             //console.log(data);
                             for (i in logininfo['active_tym_ary_mobile']) {
-                                $('.time' + i).html(logininfo['active_tym_ary_mobile'][i]);                                
+                                if(logininfo['active_tym_ary_mobile'][i] == '<strong>Coming Soon</strong>') {
+                                    $('.list li[onclick="auction_detail(\'' + i+'\')"]').attr('onclick','coming_soon()');
+                                }
+                                $('.time' + i).html(logininfo['active_tym_ary_mobile'][i]);
                             }
                         }
                     });
                 }, 1000);
+                
+                function coming_soon () {
+                    x_alert('This auction will become live soon. We will notify you when it becomes live.');
+                }
         </script>
         <script>
         $("body").swiperight(function() { 

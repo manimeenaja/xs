@@ -143,6 +143,7 @@ and open the template in the editor.
                             var dynamic_room = rc4_er(detail[0]['room_id']);
                             insert_update_emd_temp_table(hash, rc4_er(detail[0]['room_id']));
                             var flg = 'Y';
+                            $('#auc_type_id_val').val(detail[0]['auc_type_id']);
                             if (detail[0]['auc_type_id'] == localStorage.private_auction) {
                                 if (localStorage.buyer_user_id == localStorage.user_id) {
                                     flg = 'Y';
@@ -306,11 +307,16 @@ and open the template in the editor.
                                         }
                                     }
                                 });
-                                var withdraw_btn = '';
-                                if (detail[0]['auc_type_id'] != localStorage.closed_bid_auction) {
-                                    withdraw_btn = '<a class="withdraw btn btn-sm" id="withdraw_' + hash + '" onclick="showWithdrawDialog(\'' + dynamic_room + '\',\'' + hash + '\',\'' + (localStorage.user_id) + '\',\'' + localStorage.user_id + '\')"><i class="fa fa-sign-out fa-lg"></i> Withdraw</a>';
-                                }
+                                var withdraw_btn = '<a class="withdraw btn btn-sm" id="withdraw_' + hash + '" onclick="showWithdrawDialog(\'' + dynamic_room + '\',\'' + hash + '\',\'' + (localStorage.user_id) + '\',\'' + localStorage.user_id + '\')"><i class="fa fa-sign-out fa-lg"></i> Withdraw</a>';
                                 $('.bid-now-withdraw-btn').html(withdraw_btn);
+                                if (detail[0]['auc_type_id'] != localStorage.closed_bid_auction) {
+                                    $('.bid-now-withdraw-btn').addClass('hide');
+                                }
+                                if(detail[0]['auc_type_id'] == localStorage.closed_bid_auction){
+                                    $('.bid_now_button').val('Make offer');
+                                    $('.sealed-bid-value-text').html('My Offer');
+                                }
+                                
                                 $('.set-auto-bid').attr("id", "first_bid_" + hash);
                                 $('.set-bid-button').attr("id", "bid_now_button_" + hash);
                                 $('.set-bid-button').attr("dynamic_lot", hash);
@@ -624,7 +630,7 @@ and open the template in the editor.
                 </div>                               
                 <div class="row row-cancel-margin padding-lr-10 font-black padding-tb-10 more-otp">
                     <div class="col-xs-4 text-center col-4 font-size-0-9-em list-price-strike"><div class="head-value-text-cp"></div><br/><span class=""><span class="span_current_text">Start</span> Price</span></div>
-                    <div class="col-xs-3 text-center border-left-detail font-size-0-9-em col-4"><i class="fa fa-inr head-bid-value-text-sys"></i> <div class="head-bid-value-text"></div><br/>My Bid</div>
+                    <div class="col-xs-3 text-center border-left-detail font-size-0-9-em col-4"><i class="fa fa-inr head-bid-value-text-sys"></i> <div class="head-bid-value-text"></div><br/><span class="sealed-bid-value-text">My Bid</span></div>
                     <div class="col-xs-3 text-center border-left-detail font-size-0-9-em col-4"><div class="timer" id="clock_"></div><div class="clock-text span_time_left">Time Left</div></div>     
                     <div class="col-xs-2 text-center border-left-detail col-4" onclick="more_details()"><div class="width-100p font-size-1-em x-grey-background x-white"><b><span class="count-opt">+ 3</span></b><br><span class="font-size-0-9-em">more</span></div></div>
                 </div>                
@@ -812,7 +818,8 @@ and open the template in the editor.
                     <form id="form2" class="form-horizontal group-border-dashed well" action="#" accept-charset='UTF-8' enctype="multipart/form-data" data-parsley-validate novalidate>
                         <div class="padding-bottom-5-p"><i class="fa fa-truck "></i> Request Shipping Quote</div>
                         <input type="hidden" name = 'auc_title' value = ''>
-                        <input type="hidden" name = 'auc_url' value = ''>                        
+                        <input type="hidden" name = 'auc_url' value = ''>  \
+                        <input type="hidden" name='auc_type_id_val' id='auc_type_id_val'/>
                         <div class="padding-bottom-5-p">
                             <label>Name:</label> 
                             <input type="text" class="form-control" required parsley-minlength="4" placeholder="" name="ship_name" id="ship_name" value=""/>
@@ -906,6 +913,7 @@ and open the template in the editor.
                             });
                             
                             $('.bid_now_button').click(function () {
+                                var seal_bid_deduct_emd = 1;
                                 var first_bid = '';
                                 var dis_value = '';
                                 var bid_type = '';
@@ -941,7 +949,7 @@ and open the template in the editor.
                                 var actual_price = $('#dd_' + $(this).attr('dynamic_lot')).attr('actual_price');
                                 var tender_bid_detail = $('#dd_' + $(this).attr('dynamic_lot')).attr('tender_bid_detail');
                                 var unit_price_auction = $('#dd_' + $(this).attr('dynamic_lot')).attr('unit_price_auction');
-                                if (first_bid != 'Bid' && first_bid > 0 && $('#dd_' + $(this).attr('dynamic_lot')+ ' option:selected').val() != 'Bid') {                                   
+                                if (first_bid != 'Bid' && first_bid > 0 && $('#dd_' + $(this).attr('dynamic_lot')+ ' option:selected').val() != 'Bid') {
                                     if ($(this).attr('bid_type') != localStorage.closed_bid_auction) {
                                     }
                                     var z = first_bid;
@@ -958,20 +966,29 @@ and open the template in the editor.
                                             var confirmbutton = 'Top up,Cancel';
                                             var confirmlink = 'dashboard.html#buyer_emd_details';
                                             showEmdConfrim(confirmtitle,confirmbutton,confirmlink);
+                                        } else if (parseFloat(localStorage.emd_bal.replace(/,/g, '')) < parseFloat(og_emd__) && $('#auc_type_id_val').val()==localStorage.closed_bid_auction) {
+                                            var confirmtitle = localStorage.pay_emd;
+                                            var confirmbutton = 'Top up,Cancel';
+                                            var confirmlink = 'dashboard.html#buyer_emd_details';
+                                            showEmdConfrim(confirmtitle,confirmbutton,confirmlink);
                                         } else {
-                                            var temp_unit_price_ = ($('.unit_price_auction_val').text()=='Y')?" (Per "+$('.span_unit_db').text()+" of <i class='fa fa-inr'></i> "+dis_value+")":'';
+                                            var temp_unit_price_ = ($('.unit_price_auction_val').text()=='Y')?" (Per "+$('.span_unit_db').text()+" of <i class='fa fa-inr'></i> "+dis_value+")":"";
                                             if (localStorage.my_bid_val.replace(/,/g, '') < 1 || $('.bid_cal_' + dynamic_lot).html() == localStorage.winner__) {
                                                 var og_emd__ = numberWithCommas(round(parseFloat($('#list_price_actual').html().replace(/,/g, '')) / parseFloat(localStorage.limit_val)));
                                                 var list_actual_price__ = $('#list_price_actual').html();
                                                 var confirm_bid__ = numberWithCommas(first_bid);
 
                                                 if (tender_bid_detail != 'Yes') {
-                                                    var confirm_msg = localStorage.first_bid_msg__.replace("og_emd__", og_emd__).replace("list_actual_price__", list_actual_price__);
-                                                    if(unit_price_auction == 'Y') {
-                                                        confirm_msg = confirm_msg.replace('confirm_bid__','confirm_bid__ ( Price per __unit : unit_price_value )' );
-                                                        confirm_msg = confirm_msg.replace("confirm_bid__", confirm_bid__).replace("__unit", $('#unit').text()).replace('unit_price_value',localStorage.lot_unit__);
+                                                    if (first_bid < discount_value) {
+                                                        var confirm_msg = localStorage.confirm_place_bid + " Rs. "+numberWithCommas(first_bid);
                                                     } else {
-                                                        confirm_msg = confirm_msg.replace("confirm_bid__", confirm_bid__);
+                                                        var confirm_msg = localStorage.first_bid_msg__.replace("og_emd__", og_emd__).replace("list_actual_price__", list_actual_price__);
+                                                        if(unit_price_auction == 'Y') {
+                                                            confirm_msg = confirm_msg.replace('confirm_bid__','confirm_bid__ ( Price per __unit : unit_price_value )' );
+                                                            confirm_msg = confirm_msg.replace("confirm_bid__", confirm_bid__).replace("__unit", $('#unit').text()).replace('unit_price_value',localStorage.lot_unit__);
+                                                        } else {
+                                                            confirm_msg = confirm_msg.replace("confirm_bid__", confirm_bid__);
+                                                        }
                                                     }
                                                 } else {
                                                     if(unit_price_auction == 'Y') {
@@ -980,11 +997,14 @@ and open the template in the editor.
                                                         var confirm_msg = localStorage.confirm_place_bid + " Rs. " + numberWithCommas(first_bid) + "";
                                                     }
                                                 }
+                                            } else if (first_bid < discount_value) {
+                                                var confirm_msg = localStorage.confirm_place_bid + " Rs. "+numberWithCommas(first_bid) + " " + temp_unit_price_;
                                             } else {
-                                                if(unit_price_auction == 'Y') {
-                                                    var confirm_msg = localStorage.confirm_place_bid + " Rs. " + numberWithCommas(first_bid) + " ( Price per "+$('#unit').text()+" : "+$('.head-per-value-text').text()+" ) ";
+                                                if ($('#auc_type_id_val').val() == localStorage.closed_bid_auction && $('.bid_cal_' + dynamic_lot).text() == '')  {
+                                                    seal_bid_deduct_emd = 2;
+                                                    var confirm_msg = localStorage.confirm_place_bid+" Rs " + numberWithCommas(first_bid) + " " + temp_unit_price_ + " Note: this will block EMD of Rs." + og_emd__;
                                                 } else {
-                                                    var confirm_msg = localStorage.confirm_place_bid + " Rs. " + numberWithCommas(first_bid) + " ( Price per "+$('#unit').text()+" : "+$('.head-per-value-text').text()+" ) ";
+                                                    var confirm_msg = localStorage.confirm_place_bid+" Rs " + numberWithCommas(first_bid) + " " + temp_unit_price_;
                                                 }
                                             }
                                             var confirmtitle = localStorage.bid_now;
