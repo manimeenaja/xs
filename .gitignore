@@ -1,3 +1,5 @@
 xstok/platforms/
 xstok-cs/platforms/
 xstok-ip/platforms/
+xstok/platforms/android/ant-build/classes.dex
+xstok/platforms/android/ant-build/classes/com/centerac/xstok/BuildConfig.class

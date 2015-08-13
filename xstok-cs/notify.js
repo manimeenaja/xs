@@ -6,8 +6,8 @@ var sender = new gcm.Sender('AIzaSyCJZ7b2qgxB3ALz9aWrcrXe_UU6wcyvG9w');
 var registrationIds = [];
  
 // Value the payload data to send...
-message.addData('message',"Arvind Good Cuts and Fents auctions today from 12pm to 3pm. If you haven't paid EMD yet call +912266291133 for help. Good luck to all participating.");
-message.addData('title','Arvind Good Cuts and Fents' );
+message.addData('message',"Get great deals from XSTOK on your WhatsApp by adding +919833273172 to your contacts. Say Hi from Whatsapp once you add. www.XSTOK.com");
+message.addData('title','XSTOK on Whatsapp' );
 //message.addData('msgcnt','1'); // Shows up in the notification in the status bar
 message.addData('soundname','beep.wav'); //Sound to play upon notification receipt - put in the www folder in app
 //message.collapseKey = 'more';

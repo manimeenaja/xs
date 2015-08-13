@@ -120,20 +120,27 @@ localStorage.timeleft = 'Time Left';
 localStorage.your_result__ = 'This auction is under Presale Review period. The bidding will take place on __st_date to __end_date.<br /><br /> Thank you for paying your EMD. You are all set to bid. Good luck!';
 localStorage.your_interest__ = 'This auction is under Presale Review period. The bidding will start on __st_date to __end_date. <br /><br /> <b>You need to pay EMD of <i class="fa fa-inr"></i> __rs (__x% of List Price) to participate in this auction. </b><br /><br />If you are a first time buyer, it may take up to 24 hours to create your escrow account.<br /><br />Pay EMD now and be ready for bidding by clicking below.<br /><br />';
 localStorage.first_bid_msg__ = 'Confirm your bid of Rs. confirm_bid__  Note: this will block EMD of Rs. og_emd__.';
-localStorage.emd_bid_msg__ = 'You are registering interest in this auction. Your EMD of Rs. og_emd__ will be blocked.  You will receive a reminder email and sms one day before the start of the bidding period and again 3 hours before closing.';
+localStorage.emd_bid_msg__ = 'You are registering interest in this auction. Your EMD of Rs. og_emd__ will be blocked.';
 localStorage.confirm_auto_choose_val_ = 'Your auto bid value doesn\'t match auction minimum increment value <br /> <br />Choose from one of the values below';
 localStorage.auto_bid_place_error_unit_price = 'Auto bid should be higher than the per unit price';
 localStorage.direct_buy_now_popup_txt  = 'Confirm direct Buy option.';
-localStorage.block_emd_buy_now = 'Confirm direct Buy option. This will deduct the EMD of Rs.';
+localStorage.block_emd_buy_now = 'Confirm Buy Now!  EMD of Rs. amount___ will be blocked';
 localStorage.time_left__ = 'Time Left';
 localStorage.presale_time_left = 'Review time left';
 localStorage.presale = 'Presale Review';
 localStorage.pay_emd = 'Pay EMD';
 localStorage.emd_list_price_limit= 200000;
 localStorage.not_participating__ = 'You are not participating in this auction';
-localStorage.increase_bid__ = 'Make New Offer';
+localStorage.increase_bid__ = 'Increase Offer';
 localStorage.s_winner__  =  'Winner';
 localStorage.ext_time = 'Extended time 2 mins';
+localStorage.final_my_bid__ = 'Final Price';
+localStorage.your_offer_high = 'Your offer is highest';
+localStorage.your_offer_not_high = 'Your offer is not highest';
+localStorage.reserve_price_not_met_= 'Reserve price not met';
+localStorage.reserve_price_met_= 'Reserve price met';
+localStorage.confirm_auto_choose_val_ = "Your auto bid value doesn't match auction minimum increment value <br /> <br />Choose from one of the values below";
+localStorage.confirm_100_per_auto_bid = "You have entered price of more than 100% of the start value. Do you wish to continue?";
 localStorage.hide_list_p_percent = 1;
 localStorage.supp_id_list_array = [1470,1868];
 /*----------------DEFINED END-------------------*/
@@ -219,6 +226,7 @@ $('.overlay').click(function () {
     more_detail_close();
     shipping_qoute_close();
     other_close();
+    sealed_bid_close();
     $('.manage_noti').fadeOut();
     $('.add-emd').fadeOut();
     $('.refund-emd').fadeOut();
@@ -231,6 +239,7 @@ function overlay_click () {
     more_detail_close();
     shipping_qoute_close();
     other_close();
+    sealed_bid_close();
     $('.manage_noti').fadeOut();
     $('.add-emd').fadeOut();
     $('.refund-emd').fadeOut();
@@ -242,6 +251,15 @@ function more_details() {
     $('.overlay').fadeIn();
     $("body").scrollTop(0);
     $('#more_details').fadeIn();
+    $('body').bind('touchmove', function (e) {
+        e.preventDefault();
+    });
+}
+
+function sealed_bid() {
+    $('.overlay').fadeIn();
+    $("body").scrollTop(0);
+    $('#sealed_bid').fadeIn();
     $('body').bind('touchmove', function (e) {
         e.preventDefault();
     });
@@ -284,6 +302,7 @@ function refund_emd_box() {
 }
 function shipping_qoute() {
     more_detail_close();
+    sealed_bid_close();
     $('.overlay').fadeIn();
     $("body").scrollTop(0);
     $('#shipping_qoute').fadeIn();
@@ -293,6 +312,7 @@ function shipping_qoute() {
 }
 function other() {
     more_detail_close();
+    sealed_bid_close();
     $('.overlay').fadeIn();
     $("body").scrollTop(0);
     $('#other').fadeIn();
@@ -301,6 +321,11 @@ function other() {
     });
 }
 
+function sealed_bid_close() {
+    $('body').unbind('touchmove');
+    $('#sealed_bid').fadeOut();
+    $('.overlay').fadeOut();
+}
 function more_detail_close() {
     $('body').unbind('touchmove');
     $('#more_detail').fadeOut();
@@ -358,10 +383,10 @@ function buy_now(lot_id, room_id, total_bid,buy_now,discount_value,actual_price)
    /* if (confirm(localStorage.block_emd_buy_now + ' ' +temp_actual_price) == true) {
         buy_now_submit (lot_id, room_id, total_bid,buy_now,discount_value,actual_price);
     }*/
-    if(parseFloat($('.my_bid_' + dynamic_lot).html().replace(/,/g, '')) > 0) {
+    if(parseFloat($('.head-bid-value-text').html().replace(/,/g, '')) > 0) {
         var msg = localStorage.direct_buy_now_popup_txt;
     } else {
-        var msg = localStorage.block_emd_buy_now + ' ' +temp_actual_price;  // message
+        var msg = localStorage.block_emd_buy_now.replace('amount___',temp_actual_price);  // message
     }
     navigator.notification.confirm(
         msg,
@@ -693,24 +718,29 @@ function show_data(auc_type_id, reserve_price, lot_id, auction_on, min_incr_valu
                 var limit_emd=localStorage.limit_val;
                 var emd_left_tmp=(obj.emd_left/limit_emd);
                 $(".span_emd").html(numberWithCommas(round(emd_left_tmp)));
-                $(".span_emd").html(obj.emd_left);
                 localStorage.final_status = obj.status;
+                $('.head-value-text-cp').html($('.curr_bid_' + dynamic_lot[idx]).text());
                 if (auc_type_id != localStorage.closed_bid_auction) {
                     $('.head-value-text-cp').html($('.curr_bid_' + dynamic_lot[idx]).text());
                     $('.head-per-value-text').html('<i class="fa fa-inr"></i> '+numberWithCommas(RoundTo($('.curr_bid_' + dynamic_lot[idx]).text().replace(/,/g, '') / unit_price ,0.5  )));
                     $('#cal_span_per_nit').html(numberWithCommas(RoundTo($('.curr_bid_' + dynamic_lot[idx]).text().replace(/,/g, '')/unit_price, 0.5 )));
                 } else {
-                    $('.head-value-text-cp').html('~');
+                    if($('.aut-type-1').text() == localStorage.bid_now || $('.aut-type-1').text() == localStorage.increase_bid__  ) {
+                        $('.head-value-text-cp').html('~');
+                    }
                     $('.head-per-value-text').html('~');
                     $('#cal_span_per_nit').html('~');
                 }
                 if (obj.tender_period == 'No') {
                     localStorage.tender_local_var = 'N';
                     localStorage.tender_period = 'No';
+                    if (localStorage.final_status != localStorage.winner__) {
+                        $('.buy-now-panel').show();                        
+                    }
+                    $('.bid_now_button').show();
                     $('.tender-period').hide();
                     $('#not_for_closed_bid').show();
                     $('.assorted_hide').show();
-                    $('.buy-now-panel').show();
                     $('#div_no_tendor').removeClass('hide');
                     $('.div_tendor').addClass('hide');
                     $('.total_bids_li').removeClass('hide');
@@ -728,7 +758,8 @@ function show_data(auc_type_id, reserve_price, lot_id, auction_on, min_incr_valu
                         $('.aut-type-2').hide();
                     } else if($('.msg_' + dynamic_lot).text() == localStorage.buy_now_admin_approval) {
                         $('.aut-type-1').html('Admin Approval');
-                    } else {
+                    } else if($('.msg_' + dynamic_lot).text() ==localStorage.lost__+localStorage.lost__) {
+                        $('.aut-type-1').html('Sorry, you didnt Win'); } else {
                         $('.aut-type-1').html(localStorage.bid_now);
                         if($('.cal_bid_cal_'+dynamic_lot).text() != '--') {
                             $('.mybidvalue').css('visibility','visible');
@@ -751,14 +782,23 @@ function show_data(auc_type_id, reserve_price, lot_id, auction_on, min_incr_valu
                         $('.current-price').hide();
                         $('.bidvalue').hide();
                         $('.auto_bid_button').hide();
-                        if (parseFloat(obj.curr_bid.replace(/,/g, '')) >= localStorage.ass_auc_buy_now_price){
-                            $('.assorted_hide').hide();
+                        if (parseFloat(obj.curr_bid.replace(/,/g, '')) >= parseFloat(localStorage.ass_auc_buy_now_price)){
+                            //$('.assorted_hide').hide();
+                            $('.bid-now-withdraw-btn').removeClass('hide');
                         }else{
                             $('.assorted_hide').show();
                         }
-                        if (parseFloat($('.my_bid_' + dynamic_lot[idx]).text().replace(/,/g, '')) > 0) {
+                        if (parseFloat($('.my_bid_' + dynamic_lot[idx]).first().text().replace(/,/g, '')) > 0) {
+                            if($('.bid_cal_' + dynamic_lot[idx]).text() == localStorage.lost__+localStorage.lost__) {
+                                $('.aut-type-1').html('Sorry, you didnt Win');
+                            } else {
+                                $('.aut-type-1').html(localStorage.increase_bid__);
+                            }
                             $('.bid_now_button').val(localStorage.increase_bid__);
+                            
                         }                       
+                    } else {
+                        $('.bid-now-withdraw-btn').removeClass('hide');
                     }
                     /**********/
 //console.log(obj.total_bid );
@@ -774,7 +814,7 @@ function show_data(auc_type_id, reserve_price, lot_id, auction_on, min_incr_valu
 
                         if ($('.curr_bid_' + lot_id + '').text() != curr_value_dropdown)
                         {
-                            if (auc_type_id != localStorage.closed_bid_auction) {
+                           // if (auc_type_id != localStorage.closed_bid_auction) {
                                 $.post(localStorage.host + '../classes/common.class.php?action=load_dynamic_drop_down_mobile&curr_val=' + $('.curr_bid_' + lot_id + '').text() + '&min_inc=' + min_incr_value + '&actual_p=' + actual_price + '&auc_on=' + auction_on + '&user_id=' + localStorage.userid+'&total_bid='+obj.total_bid+'&unit_price_auction='+unit_price_auction+'&unit_price='+unit_price, {id: 1},
                                 function (data) {
                                     var items = [];
@@ -792,7 +832,7 @@ function show_data(auc_type_id, reserve_price, lot_id, auction_on, min_incr_valu
                                         //dropdown_obj.initEvents();
                                     }
                                 });
-                            }
+                          //  }
                         }
 
                     } else {
@@ -818,33 +858,61 @@ function show_data(auc_type_id, reserve_price, lot_id, auction_on, min_incr_valu
 
                     if (parseFloat(obj.total_auto_bid.replace(/,/g, '')) > 0 && obj.total_auto_bid != '' && parseFloat(obj.curr_bid.replace(/,/g, '')) <= parseFloat(obj.total_auto_bid.replace(/,/g, ''))) {
                         $('#div_auto_bid_active').removeClass('hide');
-                        $('#div_auto_bid_active_value').html(obj.total_auto_bid);
+                        ($('.unit_price_auction_val').text()=='Y')?$('#div_auto_bid_active_value').html( RoundTo(obj.total_auto_bid.replace(/,/g, '')/parseFloat($('.unit_price_val').text()),0.5) ):$('#div_auto_bid_active_value').html(obj.total_auto_bid);
                     } else {
                         $('#div_auto_bid_active').addClass('hide');
                     }
                     $('.my_bid_' + dynamic_lot[idx]).text(obj.my_bid);
-                    if (auc_type_id == localStorage.closed_bid_auction) { 
-                        if (parseFloat($('.my_bid_' + dynamic_lot[idx]).text().replace(/,/g, '')) > 0) {
+                    if (auc_type_id == localStorage.closed_bid_auction) {                        
+                        if (parseFloat($('.my_bid_' + dynamic_lot[idx]).first().text().replace(/,/g, '')) >= parseFloat(localStorage.ass_auc_buy_now_price)){
+                            $('.assorted_hide').text(localStorage.reserve_price_met_).css('color','green');
+                        }
+                        if (parseFloat(obj.curr_bid.replace(/,/g, '')) >= parseFloat(localStorage.ass_auc_buy_now_price) && parseFloat($('.my_bid_' + dynamic_lot[idx]).first().text().replace(/,/g, '')) >= parseFloat(localStorage.ass_auc_buy_now_price)){
+                            if ($('#clock_').html() != localStorage.auction_expired__ ){
+                                if(obj.status==localStorage.winner__){
+                                    $('.bid_cal_' + dynamic_lot[idx]).html(localStorage.your_offer_high).show();
+                                    $('#withdraw_' + dynamic_lot[idx]).addClass('hide');
+                                }else if(obj.status== localStorage.out_bid_){
+                                    $('.bid_cal_' + dynamic_lot[idx]).html(localStorage.your_offer_not_high).show();
+                                    $('#withdraw_' + dynamic_lot[idx]).removeClass('hide');
+                                }else{
+                                    $('.bid_cal_' + dynamic_lot[idx]).html(obj.status).show();
+                                }
+                                $('.final_my_bid_' + dynamic_lot[idx]).text(obj.curr_bid);
+                            }
+                           // $('#withdraw_' + dynamic_lot[idx]).removeClass('hide');
+                        } else if (parseFloat(obj.curr_bid.replace(/,/g, '')) < localStorage.ass_auc_buy_now_price){
+                            $('.assorted_hide').show();
+                            $('#withdraw_' + dynamic_lot[idx]).addClass('hide');
+                        }
+                        if (parseFloat($('.my_bid_' + dynamic_lot[idx]).first().text().replace(/,/g, '')) > 0) { 
+                            if($('.bid_cal_' + dynamic_lot[idx]).text() == localStorage.lost__+localStorage.lost__) {
+                                $('.aut-type-1').html('Sorry, you didnt Win');  
+                            } else {                               
+                                $('.aut-type-1').html(localStorage.increase_bid__);
+                            }                            
                             $('#bid_now_button_' + dynamic_lot[idx]).val(localStorage.increase_bid__ );
                         }
                     }
+                    localStorage.my_bid_val = obj.my_bid.replace(/,/g, '');
                     //alert(obj.my_bid);                    
                     //if(parseFloat(obj.curr_bid) > parseFloat(obj.total_auto_bid) && $('.bid_cal_'+dynamic_lot[idx]).html()!=localStorage.winner__ )
                     //$('.auto_bid_cal_'+dynamic_lot[idx]).html("<?php echo auto_bid_out_error ?>");
 
                     if (auc_type_id == localStorage.assorted_auction) {
                         //alert(parseFloat(obj.curr_bid.replace(/,/g,'')) +"|"+ <?php echo reserve_price ?>);
-                        if (parseFloat(obj.curr_bid.replace(/,/g, '')) >= parseFloat(localStorage.ass_auc_buy_now_price))
-                        {
+                        if (parseFloat(obj.curr_bid.replace(/,/g, '')) >= parseFloat(localStorage.ass_auc_buy_now_price)){
                             $('.assorted_hide').hide();
-                            $('.buy-now-panel').hide();
+                            $('.buy-now-panel').addClass('hide'); 
                             $('.footer-2').hide();
                             $('.bid_now').show();
                             $('.col-4').show();
                             $('.col-3').hide();
+                        } else if($('#clock_').text() != localStorage.auction_expired__ && $('#clock_').text()!=''){
+                            $('.assorted_hide').show();
+                            $('.buy-now-panel').removeClass('hide');
                         }
-                    }
-                    localStorage.my_bid_val = obj.my_bid.replace(/,/g, '');
+                    }                   
                     if (auc_type_id == localStorage.assorted_auction) {
                         if (parseFloat(obj.curr_bid.replace(/,/g, '')) >= parseFloat(localStorage.ass_auc_buy_now_price)){
                             $('.assorted_hide').hide();
@@ -869,7 +937,7 @@ function show_data(auc_type_id, reserve_price, lot_id, auction_on, min_incr_valu
                     $('.withdraw-sml-dis').addClass('hide');
                     //$('#not_for_closed_bid').hide();
                     $('.assorted_hide').hide();
-                    $('.buy-now-panel').hide();
+                    //$('.buy-now-panel').hide();
                     $('.auto_bid').addClass('hide');
                     $('#withdraw_' + dynamic_lot[idx]).addClass('hide');
                     $('.auctions-status-text').show();
@@ -881,6 +949,48 @@ function show_data(auc_type_id, reserve_price, lot_id, auction_on, min_incr_valu
             });
         }
     });    
+}
+
+function empty_watchlist(x){
+    var button = 'Yes,No';
+    button = button.split(',');
+    event.stopPropagation();
+    
+    /*if (confirm('Remove auction from watchlist?') == true) {
+         confirm_watchlist(lot_id);
+    } else {
+        
+    }*/ 
+  
+    navigator.notification.confirm(
+    'Remove all auctions from Watchlist?',  // message
+    function(index) {
+        if (index == 1) {
+            confirm_empty_watchlist(x);
+        }
+    }, 
+    'Clear watchlist',
+    button
+            );
+           
+}
+
+function confirm_empty_watchlist(lot_id) { 
+    var user_id = localStorage.user_id;
+    $.getJSON(localStorage.host + "../classes/buyer_dashboard_inc.class.php?action=delete_wishlist&type=" + lot_id + "&user_id=" + user_id, function (data) {
+        if(data['status']=="success"){           
+            $.each(data['lot_id'],function(key,val){
+                $('.watchlist_'+val).each(function(){
+                    $(this).remove();
+                });
+            });
+            x_alert("All auctions removed successfully from the Watchlist");
+        }
+    });
+}
+
+function coming_soon () {
+    x_alert('This auction will become live soon. We will notify you when it becomes live.');
 }
 
 function insert_update_emd_temp_table(lot_id, room_id) {
@@ -1272,7 +1382,7 @@ function menu_body(home, dashboard, calendar, show_less, show_profile,room) {
         xstok = '<div class="row row-cancel-margin profile-main" style=" padding: 10px 10px 20px 10px;"><img src="images/logo_y.png"></div>';
     }
     user_info();
-    var body = '<script type="text/javascript">$(function () { $(\'nav#menu-left\').mmenu();});</script><div id="header"><a href="#menu-left"><i class="fa fa-bars fa-lg x-white"></i></a></div> <nav id="menu-left" class=""><div class="menu-block">' + xstok + ' <div class="row row-cancel-margin profile-main ' + show_profile + '"><div class="profile-details">  <div class="profile-image"><img src="' + localStorage.profile_pic + '" class="img-circle profile-image-img" alt="Profile Picture" width="304" height="236"> </div>  <div class="profile-name" onclick="user_profile()">' + localStorage.name + '</div><div class="profile-location xs-grey"><i class="fa fa-building"></i> ' + localStorage.company_name + '</div></div><div class="emd_bid_limt">  <div class="' + show_less + ' emd-name xs-grey padding-tb-10">EMD balance : <span class="font-family-helvetica-bold emd-text" style="display: inline-block;"><i class="fa fa-inr"></i> <span class="emd-bal">-</span></span></div>  <div class="' + show_less + ' bid-limt-name xs-grey padding-tb-10 hide">Bid Limit<br><span class="font-family-helvetica-bold bid-limt-text"><i class="fa fa-inr" style="display: inline-block;"></i> <span class="bid-limit">-</span></span></div></div></div> <div class="' + show_less + ' row  menu-item menu-item-first-child ' + home + '" onclick="redirect(\'search_cat\')"><i class="fa fa-university"></i> Home </div> <div class="' + show_less + ' row  menu-item  ' + show_profile + '" onclick="all_auctions()"><i class="fa fa-globe"></i> Ongoing Auctions </div> <div class="' + show_less + ' row  menu-item  ' + show_profile + ' '+room+'" onclick="all_room()"><i class="fa fa-flag"></i> All Rooms </div> <div class="' + show_less + ' row  menu-item ' + dashboard + ' ' + show_profile + '" onclick="redirect(\'dashboard\',\'active-auc\')"><i class="fa fa-paper-plane-o"></i> Dashboard </div> <div class="' + show_less + ' row  menu-item ' + calendar + ' ' + show_profile + '" onclick="redirect(\'calendar\')"><i class="fa fa-calendar-o"></i></i> Calendar </div> <div class="' + show_less + ' ' + show_profile + ' row  menu-item" onclick="redirect(\'dashboard\',\'watchlist\')"><i class="fa fa-heart-o"></i> Watchlist <span class="wishlist-count">' + localStorage.wishlist_auction_table + '</span></div><div class=" ' + show_less + ' ' + show_profile + ' row  menu-item" onclick="redirect(\'dashboard\',\'notification\')"><i class="fa fa-bell-o"></i> Notifications <span class="notication-count">' + localStorage.notification + '</span></div><div style="padding: 1px;" class="' + show_less + ' row x-orange-background"></div><div class="' + show_less + ' ' + show_profile + ' row  menu-item hide" onclick="redirect(\'dashboard\')"><i class="fa fa-question-circle"></i> How it works? </div> <div class="row  menu-item" onclick="redirect(\'our_story\')"><i class="fa fa-book"></i> Our Story </div> <div class="row  menu-item" onclick="redirect(\'buyer_protection\')"><i class="fa fa-shield"></i> Buyer Protection </div> <div class="row  menu-item hide" onclick="redirect(\'coming_soon_auctions\')"><i class="fa fa-gavel"></i> Coming Soon Auctions </div> <div class="row  menu-item" onclick="redirect(\'work_with_us\')"><i class="fa fa-briefcase"></i> Work With Us </div> <div class="row  menu-item" onclick="redirect(\'contact\')"><i class="fa fa-phone"></i> Contact Us </div><div style="padding: 1px;" class="row x-orange-background"></div><div class="' + show_profile + ' row  menu-item" onclick="redirect(\'change_password\')"><i class="fa fa-key"></i> Change Password </div> <div class="' + show_profile + ' row  menu-item" onclick="redirect(\'logout\')"><i class="fa fa-power-off"></i> Sign Out </div>  ' + signup + '</div> </nav>';
+    var body = '<script type="text/javascript">$(function () { $(\'nav#menu-left\').mmenu();});</script><div id="header"><a href="#menu-left"><i class="fa fa-bars fa-lg x-white"></i></a></div> <nav id="menu-left" class=""><div class="menu-block">' + xstok + ' <div class="row row-cancel-margin profile-main ' + show_profile + '"><div class="profile-details">  <div class="profile-image"><img src="' + localStorage.profile_pic + '" class="img-circle profile-image-img" alt="Profile Picture" width="304" height="236"> </div>  <div class="profile-name" onclick="user_profile()">' + localStorage.name + '</div><div class="profile-location xs-grey"><i class="fa fa-building"></i> ' + localStorage.company_name + '</div></div><div class="emd_bid_limt">  <div class="' + show_less + ' emd-name xs-grey padding-tb-10">EMD balance : <span class="font-family-helvetica-bold emd-text" style="display: inline-block;"><i class="fa fa-inr"></i> <span class="emd-bal">-</span></span></div>  <div class="' + show_less + ' bid-limt-name xs-grey padding-tb-10 hide">Bid Limit<br><span class="font-family-helvetica-bold bid-limt-text"><i class="fa fa-inr" style="display: inline-block;"></i> <span class="bid-limit">-</span></span></div></div></div> <div class="' + show_less + ' row  menu-item menu-item-first-child ' + home + '" onclick="redirect(\'search_cat\')"><i class="fa fa-university"></i> Home </div> <div class="' + show_less + ' row  menu-item  ' + show_profile + '" onclick="all_auctions()"><i class="fa fa-globe"></i> Ongoing Auctions </div> <div class="' + show_less + ' row  menu-item  ' + show_profile + ' '+room+'" onclick="all_room()"><i class="fa fa-flag"></i> All Events </div> <div class="' + show_less + ' row  menu-item ' + dashboard + ' ' + show_profile + '" onclick="redirect(\'dashboard\',\'active-auc\')"><i class="fa fa-paper-plane-o"></i> Dashboard </div> <div class="' + show_less + ' row  menu-item ' + calendar + ' ' + show_profile + '" onclick="redirect(\'calendar\')"><i class="fa fa-calendar-o"></i></i> Calendar </div> <div class="' + show_less + ' ' + show_profile + ' row  menu-item" onclick="redirect(\'dashboard\',\'watchlist\')"><i class="fa fa-heart-o"></i> Watchlist <span class="wishlist-count">' + localStorage.wishlist_auction_table + '</span></div><div class=" ' + show_less + ' ' + show_profile + ' row  menu-item" onclick="redirect(\'dashboard\',\'notification\')"><i class="fa fa-bell-o"></i> Notifications <span class="notication-count">' + localStorage.notification + '</span></div><div style="padding: 1px;" class="' + show_less + ' row x-orange-background"></div><div class="' + show_less + ' ' + show_profile + ' row  menu-item hide" onclick="redirect(\'dashboard\')"><i class="fa fa-question-circle"></i> How it works? </div> <div class="row  menu-item" onclick="redirect(\'our_story\')"><i class="fa fa-book"></i> Our Story </div> <div class="row  menu-item" onclick="redirect(\'buyer_protection\')"><i class="fa fa-shield"></i> Buyer Protection </div> <div class="row  menu-item hide" onclick="redirect(\'coming_soon_auctions\')"><i class="fa fa-gavel"></i> Coming Soon Auctions </div> <div class="row  menu-item" onclick="redirect(\'work_with_us\')"><i class="fa fa-briefcase"></i> Work With Us </div> <div class="row  menu-item" onclick="redirect(\'contact\')"><i class="fa fa-phone"></i> Contact Us </div><div style="padding: 1px;" class="row x-orange-background"></div><div class="' + show_profile + ' row  menu-item" onclick="redirect(\'change_password\')"><i class="fa fa-key"></i> Change Password </div> <div class="' + show_profile + ' row  menu-item" onclick="redirect(\'logout\')"><i class="fa fa-power-off"></i> Sign Out </div>  ' + signup + '</div> </nav>';
     $('#page').html(body);
 	if(localStorage.wishlist_auction_table == '0') {
         $('.wishlist-count').hide();
@@ -1886,7 +1996,7 @@ function onConfirm_ver() {
 
 
 
-function showEmdConfrim(confirmtitle,confirmbutton,confirmlink) {
+function showEmdConfirm(confirmtitle,confirmbutton,confirmlink) {
 /*  if (confirm(localStorage.EMD_over__) == true) {
         window.location.href = confirmlink;
     } else {

@@ -3031,6 +3031,15 @@ overlabel {
     padding: 0 20px;
     font-family: "Roboto",sans-serif;
 }
+#sealed_bid {
+    position: fixed;
+    width: 100%;
+    top: 15%;
+    z-index: 11;
+    color: #000;
+    padding: 0 20px;
+    font-family: "Roboto",sans-serif;
+}
 #autobid {
     position: fixed;
     width: 100%;

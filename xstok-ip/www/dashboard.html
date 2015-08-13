@@ -125,7 +125,7 @@ and open the template in the editor.
                         </table>
                     </div>
                     <div class="item-dashborad hidden watchlist-t">
-                        <div class="dashborad-text"><i class="fa fa-heart"></i> Watchlist <span class="watchlist-count"></span></div>
+                        <div class="dashborad-text"><i class="fa fa-heart"></i> Watchlist <span class="watchlist-count"></span><span class="keep-on-right"><a class="font-10 x-red" onclick="empty_watchlist('all')">Clear All <i class="fa fa-trash-o"></i> </a></span></div>
                         <table class="table active_auction">
                             <thead>
                                 <tr>
@@ -615,6 +615,9 @@ $('.refund-emd-button-menu').click(function () {
                                             // console.log(logininfo);
 
                                             for (i in logininfo['active_status_ary']) {
+                                                if(logininfo['active_status_ary'][i] == "<span class='normal_status_lot'>Coming Soon</span>") {
+                                                    $('.watchlist_' + i).attr('onclick','coming_soon()');
+                                                }
                                                 $('.status' + i).html(logininfo['active_status_ary'][i]);
                                                 //  console.log('.status'+i);
                                             }
@@ -954,7 +957,7 @@ $('.refund-emd-button-menu').click(function () {
                                             lot_array += rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + ',';
                                             room_id_array += rc4_er(logininfo['wishlist_auction_table'][i]['room_id']) + ',';
                                           //  wishlist_auction_table += "<tr onclick='auction_detail(\"" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "\")'><td>" + logininfo['wishlist_auction_table'][i]['lot_id'] + "</td><td>" + logininfo['wishlist_auction_table'][i]['name'] + "</td><td class='bid_amount" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'>" + logininfo['wishlist_auction_table'][i]['bid_amount'] + "</td><td class='status" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'>" + logininfo['wishlist_auction_table'][i]['status'] + "</td><td class='time" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'>-</td></tr>";
-                                            wishlist_auction_table += "<tr class='watchlist_" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "' onclick='auction_detail(\"" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "\")'><td>A" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "</td><td>" + logininfo['wishlist_auction_table'][i]['name'] + "</td><td class='bid_amount" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'><i class='fa fa-refresh fa-spin'></i></td><td class='status" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'><i class='fa fa-refresh fa-spin'></i></td><td class='time" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'><i class='fa fa-refresh fa-spin'></i></td><td onclick='remove_watchlist(\"" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "\")'><a> X</a></td></tr>";
+                                            wishlist_auction_table += "<tr class='watchlist_" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "' onclick='auction_detail(\"" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "\")'><td>A" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "</td><td>" + logininfo['wishlist_auction_table'][i]['name'] + "</td><td class='bid_amount" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'><i class='fa fa-refresh fa-spin'></i></td><td class='status" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'><i class='fa fa-refresh fa-spin'></i></td><td class='time" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "'><i class='fa fa-refresh fa-spin'></i></td><td onclick='remove_watchlist(\"" + rc4_er(logininfo['wishlist_auction_table'][i]['lot_id']) + "\")'><a class='x-red'><i class='fa fa-times-circle'></i></a></td></tr>";
                                         }                                        
                                         if (logininfo['wishlist_auction_table'].length > 0) {
                                             $('.watchlist-count').html('(' + logininfo['wishlist_auction_table'].length + ')');

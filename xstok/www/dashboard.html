@@ -125,7 +125,7 @@ and open the template in the editor.
                         </table>
                     </div>
                     <div class="item-dashborad hidden watchlist-t">
-                        <div class="dashborad-text"><i class="fa fa-heart"></i> Watchlist <span class="watchlist-count"></span></div>
+                        <div class="dashborad-text"><i class="fa fa-heart"></i> Watchlist <span class="watchlist-count"></span><span class="keep-on-right"><a class="font-10 x-red" onclick="empty_watchlist('all')">Clear All <i class="fa fa-trash-o"></i> </a></span></div>
                         <table class="table active_auction">
                             <thead>
                                 <tr>
@@ -615,6 +615,9 @@ $('.refund-emd-button-menu').click(function () {
                                             // console.log(logininfo);
 
                                             for (i in logininfo['active_status_ary']) {
+                                                if(logininfo['active_status_ary'][i] == "<span class='normal_status_lot'>Coming Soon</span>") {
+                                                    $('.watchlist_' + i).attr('onclick','coming_soon()');
+                                                }
                                                 $('.status' + i).html(logininfo['active_status_ary'][i]);
                                                 //  console.log('.status'+i);
                                             }

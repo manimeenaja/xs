@@ -3031,6 +3031,15 @@ overlabel {
     padding: 0 20px;
     font-family: "Roboto",sans-serif;
 }
+#sealed_bid {
+    position: fixed;
+    width: 100%;
+    top: 15%;
+    z-index: 11;
+    color: #000;
+    padding: 0 20px;
+    font-family: "Roboto",sans-serif;
+}
 #autobid {
     position: fixed;
     width: 100%;
@@ -3612,6 +3621,15 @@ strong {
     font-size: 1.5em;
     padding-top: 40px;
     font-weight: bold;
+}
+.grid-cat {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product_description table {
+    width: 100%;
 }
 @media only screen and (max-width: 320px) {
     .list-discount {
