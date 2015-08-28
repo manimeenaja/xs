@@ -162,7 +162,7 @@
                                     self.submit();
                                     return false;
                                 } else {
-                                    if (data['login'][0]['buyer_kyc_status'] == 'Y') {
+                                    //if (data['login'][0]['buyer_kyc_status'] == 'Y') {
                                         localStorage.kyc_status = 1;
                                         console.log(data['login'][0]);
                                         localStorage.name = data['login'][0]['name'];
@@ -174,18 +174,20 @@
                                         localStorage.buyer = data['login'][0]['buyer'];
                                         localStorage.authorize_status = data['login'][0]['authorize_status'];
                                         localStorage.logged_in = 1;
-                                        localStorage.verified = 1;
+                                        localStorage.verified = 0;
                                         localStorage.otp = 1;
                                         localStorage.toggle = 'grid';
                                         var devicecheck = setInterval(function () {
                                             onDeviceReady(devicecheck);
                                         }, 1000);                                      
-                                        self.submit();
-                                        return false;
-                                    } else if (data['login'][0]['buyer_kyc_status'] == 'N' && data['login'][0]['authorize_status'] == 'N') {
+                                        //self.submit();
+                                       // return false;
+                                    if (data['login'][0]['buyer_kyc_status'] == 'N' && data['login'][0]['authorize_status'] == 'N') {
                                         window.location.href = "kyc.html";
                                     } else if (data['login'][0]['buyer_kyc_status'] == 'Y' && data['login'][0]['authorize_status'] == 'N') {
                                         window.location.href = "kyc_c.html";
+                                    } else {
+                                        window.location.href = "kyc.html";
                                     }
                                 }
                             } else {

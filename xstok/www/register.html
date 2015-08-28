@@ -49,7 +49,7 @@
                // window.location.href = "search_result.html"; //<-- remove
             }
             $(document).ready(function () {
-                $('.container').fadeIn(1000).show();
+                $('.container').fadeIn(1000).show();                
             });
         </script>
     </head>
@@ -73,7 +73,10 @@
                             <form id="login" action="otp.html" data-parsley-validate novalidate>
                                 <div class="text-boxs">
                                     <span class="text-box">                                        
-                                        <input type="text" placeholder="Name" required class="form-control  background-black input-sm" name="name"/> 
+                                        <input type="text" placeholder="First Name" required class="form-control  background-black input-sm" name="first_name"/> 
+                                    </span>
+                                    <span class="text-box">                                        
+                                        <input type="text" placeholder="Last Name" required class="form-control  background-black input-sm" name="last_name"/> 
                                     </span>
                                     <span class="text-box">                                        
                                         <input type="text" placeholder="Company Name" required class=" form-control  background-black input-sm" name="company_name"/> 
@@ -187,7 +190,27 @@
                 localStorage.mobile_no = $("input[name=\"mobile_no\"]").val();
                 localStorage.company_name = $("input[name=\"company_name\"]").val();
                 localStorage.p = $("input[name=\"password\"]").val();
-                var json = '{"id":null,"admin_id":null,"name":"' + $("input[name=\"name\"]").val() + '","company_name":"' + $("input[name=\"company_name\"]").val() + '","mobile_no":"' + $("input[name=\"mobile_no\"]").val() + '","email_id":"' + $("input[name=\"email_id\"]").val() + '","password":"' + md5 + '","active":"Y","address":null,"role_id":"3","comment":null,"pass":"' + md5 + '","now":"","action":"insert","form_type":"front_end"}';               
+                //http"//xstok.com/webservices/buyer_registration.php?json="
+                //{"id":null,"admin_id":null,"first_name":"Nitin","last_name":"Pandey","name":"Nitin Pandey","company_name":"Nitin Company Ltd","mobile_no":"+91 9664242221","email_id":"test@test.com","password":"b585c4415b1fe50f2c31fa1698b271b7","active":"Y","address":null,"role_id":"3","comment":null,"pass":"b585c4415b1fe50f2c31fa1698b271b7","now":"2015-08-24 15:48:53","action":"insert","form_type":"front_end","registration_type":"Buyer","flag_reg_update":"","register_from":"Mobile"}
+                //{"id":null,"admin_id":null,"first_name":"Nitin","last_name":"Pandey","name":"Nitin Pandey","company_name":"Nitin Company Ltd","mobile_no":"+91 9876543210","email_id":"test@test.com","password":"e10adc3949ba59abbe56e057f20f883e","active":"Y","address":null,"role_id":"3","comment":null,"pass":"e10adc3949ba59abbe56e057f20f883e","now":"2015-08-24 16:48:52","action":"insert","form_type":"front_end","registration_type":"Buyer","flag_reg_update":"","register_from":"Mobile"}
+                var now = new Date();
+                now = new Date(now.toUTCString());
+                now = now + ' ';
+                var now_time = now.split(" ")[4];
+                var today = new Date();
+                var dd = today.getDate();
+                var mm = today.getMonth()+1;
+                var yyyy = today.getFullYear();
+                if(dd<10){
+                    dd='0'+dd;
+                } 
+                if(mm<10){
+                    mm='0'+mm;
+                } 
+                var today = yyyy+'-'+mm+'-'+dd;
+                console.log(today + ' '+ now_time);
+                var date_ful = today + ' '+ now_time;
+                var json = '{"id":null,"admin_id":null,"first_name":"' + $("input[name=\"first_name\"]").val() + '","last_name":"' + $("input[name=\"last_name\"]").val() + '","name":"' + $("input[name=\"first_name\"]").val() + ' '+$("input[name=\"last_name\"]").val()+'","company_name":"' + $("input[name=\"company_name\"]").val() + '","mobile_no":"' + $("input[name=\"mobile_no\"]").val() + '","email_id":"' + $("input[name=\"email_id\"]").val() + '","password":"' + md5 + '","active":"Y","address":null,"role_id":"3","comment":null,"pass":"' + md5 + '","now":"'+date_ful+'","action":"insert","form_type":"front_end","registration_type":"Buyer","flag_reg_update":"","register_from":"Mobile"}';               //console.log(json);        
               $.ajax({url: localStorage.host + 'buyer_registration.php', data: {json: json}, type: 'get', success: function (data) {
                     //console.log(data);                   
                         $('button[type="submit"]').html('Done   <i class="fa fa-check"></i>');

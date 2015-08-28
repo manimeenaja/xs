@@ -370,7 +370,7 @@ $.fn.eventCalendar = function (options) {
 
                                 if (event.url) {
                                     if (event.room == 'N') {
-                                        var eventTitle = '<a onclick="auction_detail(\'' + event.lot_id + '\')" target="' + eventLinkTarget + '" class="eventTitle">' + event.title + '</a>';
+                                        var eventTitle = '<a onclick="auction_detail(\'' + event.lot_id + '\',\''+event.auc_type_id+'\')" target="' + eventLinkTarget + '" class="eventTitle">' + event.title + '</a>';
                                     } else {
                                         var eventTitle = '<a onclick="auction_room(\'' + event.lot_id + '\',\''+ event.room_id+'\')" target="' + eventLinkTarget + '" class="eventTitle">' + event.title + '</a>';
                                     }
