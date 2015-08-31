@@ -3,8 +3,8 @@
 //localStorage.host = "http://192.168.0.13/webservices/";
 //localStorage.host = "http://192.168.0.12/webservices/";
 //localStorage.host = "http://beta.xstok.com/webservices/";
-//localStorage.host = "http://fa.xstok.com/webservices/";
-localStorage.host = "http://www.xstok.com/webservices/";
+localStorage.host = "http://fa.xstok.com/webservices/";
+//localStorage.host = "http://www.xstok.com/webservices/";
 localStorage.device = 'Android';
 localStorage.vr = 'new';
 localStorage.key_code = 'euhe68vjdr1aX4F091c7aCggSMBf0A7M';
@@ -2023,17 +2023,17 @@ function showConfirm(msg, title, buttonlabels, link, dynamic_lot) {
 
     // http://192.168.0.13/classes/service_manage_auction.class.php?action=save_intial_bid_auction&user_id=d3&admin_id=d3&lot_id=d3&room_id=d7&golden_time=N&golden_time_value=d6d712&first_bid=172800&auction_on=discount&reserve_price=70&discount_value=144000&actual_price=480000&dynamic_min_user=d6&bid_type=All&tender_local_var=N
 
-    /*if (confirm(msg) == true) {
+    if (confirm(msg) == true) {
      onConfirm(link, dynamic_lot);
      } else {
      
-     }*/
+     }
 
 
 
 
 
-
+/*
     navigator.notification.confirm(
             msg, // message
             function (index) {
@@ -2043,7 +2043,7 @@ function showConfirm(msg, title, buttonlabels, link, dynamic_lot) {
             }, // callback to invoke with index of button pressed
             title, // title
             buttonlabels          // buttonLabels
-            );
+            );*/
 
 }
 
