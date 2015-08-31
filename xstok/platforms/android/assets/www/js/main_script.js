@@ -3,8 +3,8 @@
 //localStorage.host = "http://192.168.0.13/webservices/";
 //localStorage.host = "http://192.168.0.12/webservices/";
 //localStorage.host = "http://beta.xstok.com/webservices/";
-//localStorage.host = "http://fa.xstok.com/webservices/";
-localStorage.host = "http://www.xstok.com/webservices/";
+localStorage.host = "http://fa.xstok.com/webservices/";
+//localStorage.host = "http://www.xstok.com/webservices/";
 localStorage.device = 'Android';
 localStorage.vr = 'new';
 localStorage.key_code = 'euhe68vjdr1aX4F091c7aCggSMBf0A7M';
