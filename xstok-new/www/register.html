@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import materialize.css-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="screen,projection"/>
+         
+        <link rel="stylesheet" href="css/intlTelInput.css">
+
+        <!--Let browser know website is optimized for mobile-->
+        
+        <style>
+
+        </style>
+    </head>
+
+    <body class="grey lighten-4">
+        <div class="row padding-top-15">
+            <div class="col s2">
+                <a href="" class="back"><i class="fa fa-angle-left fa-3x"></i></a>
+            </div>
+            <div class="col s8"><img class="logo-login width-100p" src="images/logo.png"/></div>
+        </div> 
+        <div class="row padding-">
+            <h4 class="col s12 center-align fo">Registration</h4>                
+        </div>
+        <form id="login">
+            <div class="row margin-bottom-0">
+                <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
+                    <input id="name" type="text" class="validate">
+                    <label for="name">Name</label>
+                </div>
+            </div>
+            <div class="row margin-bottom-0">
+                <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
+                    <input id="company" type="text" class="validate">
+                    <label for="company">Company</label>
+                </div>
+            </div>
+            <div class="row margin-bottom-0">
+                <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
+                    <input id="mobile_no" pattern="^[0-9+/ /]*$" maxlength="16" type="text" class="validate" placeholder="Mobile">
+                </div>
+            </div>
+            <div class="row margin-bottom-0">
+                <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
+                    <input id="email" type="email" class="validate">
+                    <label for="email">Email</label>
+                </div>
+            </div>
+            <div class="row margin-bottom-0">
+                <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
+                    <input id="password" type="password" class="validate">
+                    <label for="password">Password</label>
+                </div>
+            </div>
+            <div class="row margin-bottom-0">
+                <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
+                    <button class="btn waves-effect waves-light width-100p xstok darken-1" type="submit" name="action">Sign in</button>
+                </div>
+            </div>
+            <div class="row margin-bottom-0 padding-top-15">
+                <div class="col offset-s1 offset-m1 s5 center-align"><a class=" x-grey font-size-0-8-em" href="forgot_password.html">Forgot password?</a></div>
+                <div class="col s5 center-align"><a class=" x-grey font-size-0-8-em" href="forgot_password.html">Create account</a></div>
+            </div>
+        </form>
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>        
+        <script type="text/javascript" src="js/intlTelInput.js"></script>
+        <script type="text/javascript" src="js/utils.js"></script>
+        <script type="text/javascript">
+            $("#mobile_no").intlTelInput({
+                autoFormat: true,
+                //autoHideDialCode: true,
+                //nationalMode: true,
+               // responsiveDropdown: true,
+                utilsScript: "js/utils.js"
+            });
+
+            $(document).ready(function () {
+                
+            });
+
+        </script>
+    </body>
+</html>

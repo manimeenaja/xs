@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import materialize.css-->
+
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="screen,projection"/>
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <style>
+
+        </style>
+    </head>
+
+    <body class="grey lighten-3">
+        <nav class="xstok darken-1 no-shadow navbar-fixed position-fixed ">
+            <ul id="slide-out" class="side-nav grey lighten-5">
+                <li class='padding-top-15 left-align main'>
+                    <span class="image-menu">
+                        <img src="images/user.jpg" class="circle profile-image-img left" alt="Profile Picture">
+                    </span>                    
+                    <br>
+                    <span class="name-menu"><a class="white-text" href="profile.html">Shadab Shaikh</a></span>
+                    <br>
+                    <span class="company-menu">Shasha Pvt ltd</span>
+                </li>
+                <li><a href="index.html"><i class='mdi-action-home'></i> Home</a></li>
+                <li><a href="#!"><i class='mdi-social-public'></i> All Auctions</a></li>
+                <li><a href="dash.html"><i class='mdi-social-poll'></i> Dashboard</a></li>                 <li><a href="auction_room.html"><i class="material-icons tiny">store_mall_directory</i> Room Page</a></li>
+                <li><a href="watchlist.html"><i class='mdi-editor-insert-invitation'></i>  Watch List</a></li>
+                <li><a href="#!"><i class='mdi-editor-insert-invitation'></i>  Calendar</a></li>
+                <li class="no-padding">
+                    <ul class="collapsible collapsible-accordion">
+                        <li>
+                            <a class="collapsible-header">Dropdown<i class="mdi-navigation-arrow-drop-down"></i></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="#!">First</a></li>
+                                    <li><a href="#!">Second</a></li>
+                                    <li><a href="#!">Third</a></li>
+                                    <li><a href="#!">Fourth</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#!">First Sidebar Link</a></li>
+                <li><a href="#!">Second Sidebar Link</a></li>
+                <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+                <ul id='dropdown1' class='dropdown-content'>
+                    <li><a href="#!">First</a></li>
+                    <li><a href="#!">Second</a></li>
+                    <li><a href="#!">Third</a></li>
+                    <li><a href="#!">Fourth</a></li>
+                </ul>
+            </ul>
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+
+
+        </nav>
+        <div class="row padding-top-56 ">
+            <blockquote class="font-20" >Watchlist(3)  <div class="right font-14 padding-5"><i class="fa fa-times"></i> Clear Watchlist</div></blockquote>
+
+            <ul class="collapsible popout" data-collapsible="expandable">
+                <li>
+                    <div class="collapsible-header height-auto padding-lr-0">
+                        <div class="header-info padding-lr-10">
+                            <div class="header-image "><img src="images/office.jpg" alt="" class="z-depth-1" style=""></div>
+                            <div class="header-deatils padding-top-5 vertical-align-top">
+                                <div class="header-auction-name font-15">L2 Denim Good Cuts 3,000 meters 3,000 meters</div>
+                                <div class="header-company font-14">Arvind Mills</div>
+                                <div class="header-time font-14">Time Left : 1 hrs 10 min 18 sec</div>
+                                <div class="header-bid font-14">Current Bid: Rs. 1,83,000</div>
+                            </div>                                
+                        </div>                        
+                        <div class="header-status font-14 status-red ">Sold Out</div>
+                    </div>
+                    <div class="collapsible-body padding-10 font-11  grey lighten-5">
+                        <table>
+                            <thead>
+                                <tr class="grey lighten-3" >
+                                    <th data-field="id" class="center-align padding-5">Start Price<hr>Per Unit</th>
+                                    <th data-field="name" class="center-align padding-5">My Bid<hr>Per Unit</th>
+                                    <th data-field="price" class="center-align padding-5">Current Bid<hr>Per Unit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="grey lighten-4">
+                                    <td class="center-align padding-5">Rs. 1,30,200<hr>Rs. 61.5</td>
+                                    <td class="center-align padding-5">Rs. 1,30,200<hr>Rs. 61.5</td>
+                                    <td class="center-align padding-5">Rs. 1,30,200<hr>Rs. 61.5</td>
+                                </tr>                                
+                            </tbody>
+                        </table>
+                        <div class="bid-area padding-10">
+                            <div class="bid-status font-bold status-green">Ready for Bidding</div>
+                            <div class="bid-function">
+                                <div class="bid-normal">
+                                    <div class="bid-input">
+                                        <label>Select Bid</label>
+                                        <select class="browser-default">
+                                            <option value="" disabled selected>Choose your Bid</option>
+                                            <option value="1">Bid 1</option>
+                                            <option value="2">Bid 2</option>
+                                            <option value="3">Bid 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="bid-submit"><a class="waves-effect waves-light btn xstok darken-1">Bid Now</a></div>
+                                    <div class="bid-error padding-5"></div>
+                                    <div class="bid-auto-withdraw">
+                                        <span><a class="waves-effect btn-flat ">Auto Bid</a></span>
+                                        <span class="right"><a class="waves-effect waves-red btn-flat status-red">Widthdraw</a></span>
+                                    </div>
+                                </div>
+                                <div class="bid-buy-now"></div>                                
+                            </div>
+                        </div>                        
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header height-auto padding-lr-0">
+                        <div class="header-info padding-lr-10">
+                            <div class="header-image "><img src="images/fabric.jpg" alt="" class="z-depth-1" style=""></div>
+                            <div class="header-deatils padding-top-5 vertical-align-top">
+                                <div class="header-auction-name font-15">L2 Denim Good Cuts 3,000 meters</div>
+                                <div class="header-company font-14">Arvind Mills</div>
+                                <div class="header-time font-14">Time Left : 1 hrs 10 min 18 sec</div>
+                                <div class="header-bid font-14">Current Bid: Rs. 1,83,000</div>
+                            </div>                                
+                        </div>                        
+                        <div class="header-status font-14 status-yellow ">EMD not Paid</div>
+                    </div>
+                    <div class="collapsible-body padding-10 font-11  grey lighten-5">
+                        <table>
+                            <thead>
+                                <tr class="grey lighten-3" >
+                                    <th data-field="id" class="center-align padding-5">Start Price<hr>Per Unit</th>
+                                    <th data-field="name" class="center-align padding-5">My Bid<hr>Per Unit</th>
+                                    <th data-field="price" class="center-align padding-5">Current Bid<hr>Per Unit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="grey lighten-4">
+                                    <td class="center-align padding-5">Rs. 1,30,200<hr>Rs. 61.5</td>
+                                    <td class="center-align padding-5">Rs. 1,30,200<hr>Rs. 61.5</td>
+                                    <td class="center-align padding-5">Rs. 1,30,200<hr>Rs. 61.5</td>
+                                </tr>                                
+                            </tbody>
+                        </table>
+                        <div class="bid-area padding-10">
+                            <div class="bid-status font-bold status-green">Ready for Bidding</div>
+                            <div class="bid-function">
+                                <div class="bid-normal width-80p display-inline-block">
+                                    <div class="bid-input">
+                                        <label>Select Bid</label>
+                                        <select class="browser-default">
+                                            <option value="" disabled selected>Choose your Bid</option>
+                                            <option value="1">Bid 1</option>
+                                            <option value="2">Bid 2</option>
+                                            <option value="3">Bid 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="bid-submit"><a class="waves-effect waves-light btn xstok darken-1">Bid Now</a></div>
+                                    <div class="bid-error padding-5"></div>
+                                    <div class="bid-auto-withdraw">
+                                        <span><a class="waves-effect btn-flat ">Auto Bid</a></span>
+                                        <span class="right"><a class="waves-effect waves-red btn-flat status-red">Widthdraw</a></span>
+                                    </div>
+                                </div>
+                                <div class="bid-buy-now width-19p display-inline-block">
+                                    <div class="bid-buy-now-button">Buy<br/>Now</div>
+                                </div>                                
+                            </div>
+                        </div>                        
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header height-auto padding-lr-0">
+                        <div class="header-info padding-lr-10">
+                            <div class="header-image "><img src="images/sample-1.jpg" alt="" class="z-depth-1" style=""></div>
+                            <div class="header-deatils padding-top-5 vertical-align-top">
+                                <div class="header-auction-name font-15">L2 Denim Good Cuts 3,000 meters</div>
+                                <div class="header-company font-14">Arvind Mills</div>
+                                <div class="header-time font-14">Time Left : 1 hrs 10 min 18 sec</div>
+                                <div class="header-bid font-14">Current Bid: Rs. 1,83,000</div>
+                            </div>                                
+                        </div>                        
+                        <div class="header-status font-14 status-green ">Ready for Bidding</div>
+                    </div>
+                    <div class="collapsible-body padding-10 font-11  grey lighten-5">
+                        <table>
+                            <thead>
+                                <tr class="grey lighten-3" >
+                                    <th data-field="id" class="center-align padding-5">Start Price<hr>Per Unit</th>
+                                    <th data-field="name" class="center-align padding-5">My Bid<hr>Per Unit</th>
+                                    <th data-field="price" class="center-align padding-5">Current Bid<hr>Per Unit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="grey lighten-4">
+                                    <td class="center-align padding-5">Rs. 1,30,200<hr>Rs. 61.5</td>
+                                    <td class="center-align padding-5">Rs. 1,30,200<hr>Rs. 61.5</td>
+                                    <td class="center-align padding-5">Rs. 1,30,200<hr>Rs. 61.5</td>
+                                </tr>                                
+                            </tbody>
+                        </table>
+                        <div class="bid-area padding-10">
+                            <div class="bid-status font-bold status-green">Ready for Bidding</div>
+                            <div class="bid-function">
+                                <div class="bid-normal width-80p display-inline-block">
+                                    <div class="bid-input">
+                                        <label>Select Bid</label>
+                                        <select class="browser-default">
+                                            <option value="" disabled selected>Choose your Bid</option>
+                                            <option value="1">Bid 1</option>
+                                            <option value="2">Bid 2</option>
+                                            <option value="3">Bid 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="bid-submit"><a class="waves-effect waves-light btn xstok darken-1">Bid Now</a></div>
+                                    <div class="bid-error padding-5"></div>
+                                    <div class="bid-auto-withdraw">
+                                        <span><a class="waves-effect btn-flat ">Auto Bid</a></span>
+                                        <span class="right"><a class="waves-effect waves-red btn-flat status-red">Widthdraw</a></span>
+                                    </div>
+                                </div>
+                                <div class="bid-buy-now width-19p display-inline-block">
+                                    <div class="bid-buy-now-button">Buy<br/>Now</div>
+                                </div>                                
+                            </div>
+                        </div>                        
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header height-auto padding-lr-0">
+                        <div class="header-info padding-lr-10">
+                            <div class="header-image "><img src="images/Denim-Fabric.jpg" alt="" class="z-depth-1" style=""></div>
+                            <div class="header-deatils padding-top-5 vertical-align-top">
+                                <div class="header-auction-name font-15">L2 Denim Good Cuts 3,000 meters</div>
+                                <div class="header-company font-14">Arvind Mills</div>
+                                <div class="header-time font-14">Time Left : 1 hrs 10 min 18 sec</div>
+                                <div class="header-bid font-14">Current Bid: Rs. 1,83,000</div>
+                            </div>                                
+                        </div>                        
+                        <div class="header-status font-14 status-green">Winning</div>
+                    </div>
+                    <div class="collapsible-body padding-10 font-11  grey lighten-5">
+                        <table>
+                            <thead>
+                                <tr class="grey lighten-3" >
+                                    <th data-field="id" class="center-align padding-5">Start Price<hr>Per Unit</th>
+                                    <th data-field="name" class="center-align padding-5">My Bid<hr>Per Unit</th>
+                                    <th data-field="price" class="center-align padding-5">Current Bid<hr>Per Unit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="grey lighten-4">
+                                    <td class="center-align padding-5">Rs. 1,30,200<hr>Rs. 61.5</td>
+                                    <td class="center-align padding-5">Rs. 1,30,200<hr>Rs. 61.5</td>
+                                    <td class="center-align padding-5">Rs. 1,30,200<hr>Rs. 61.5</td>
+                                </tr>                                
+                            </tbody>
+                        </table>
+                        <div class="bid-area padding-10">
+                            <div class="bid-status font-bold status-green">Winning</div>
+                            <div class="bid-function">
+                                <div class="bid-normal">
+                                    <div class="bid-input">
+                                        <label>Select Bid</label>
+                                        <select class="browser-default">
+                                            <option value="" disabled selected>Choose your Bid</option>
+                                            <option value="1">Bid 1</option>
+                                            <option value="2">Bid 2</option>
+                                            <option value="3">Bid 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="bid-submit"><a class="waves-effect waves-light btn xstok darken-1">Bid Now</a></div>
+                                    <div class="bid-error padding-5"></div>
+                                    <div class="bid-auto-withdraw">
+                                        <span><a class="waves-effect btn-flat ">Auto Bid</a></span>
+                                        <span class="right"><a class="waves-effect waves-red btn-flat status-red">Widthdraw</a></span>
+                                    </div>
+                                </div>
+                                <div class="bid-buy-now"></div>                                
+                            </div>
+                        </div>                        
+                    </div>
+                </li>
+            </ul>            
+        </div>        
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('select').material_select();
+                Materialize.showStaggeredList('.collection');
+                $('.button-collapse').sideNav({
+                    menuWidth: 300, // Default is 240
+                    edge: 'left', // Choose the horizontal origin
+                    closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                }
+                );
+            });
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.centerac.xstok" version="1.1.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>XSTOK</name>
+    <description>
+        Your marketplace for overstock apparels, home textiles, fabrics and yarns! 
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+	<preference name="Orientation" value="portrait" />
+	<platform name="android">
+       <preference name="fullscreen" value="false" />
+	</platform>
+	<feature name="Whatsapp">
+        <param name="android-package" value="mobi.moica.whatsapp.Whatsapp" />
+    </feature>
+	<feature name="Contacts">
+		<param name="android-package" value="org.apache.cordova.contacts.ContactManager" />
+	</feature>
+    <content src="index.html" />
+    <access origin="*" />
+	<access origin="tel:*" launch-external="yes"/>
+	<access origin="geo:*" launch-external="yes"/>
+	<access origin="mailto:*" launch-external="yes"/>
+	<access origin="sms:*" launch-external="yes"/>
+	<access origin="market:*" launch-external="yes"/>	
+	<plugin name="Capture" value="org.apache.cordova.Capture"/>
+	<platform name="android">
+		<icon src="res/icon/android/drawable-ldpi/appicon.png" density="ldpi" />
+		<icon src="res/icon/android/drawable-mdpi/appicon.png" density="mdpi" />
+		<icon src="res/icon/android/drawable-hdpi/appicon.png" density="hdpi" />
+		<icon src="res/icon/android/drawable-xhdpi/appicon.png" density="xhdpi" />
+		<icon src="res/icon/android/drawable-xxhdpi/appicon.png" density="xxhdpi" />
+		<icon src="res/icon/android/drawable-xxxhdpi/appicon.png" density="xxxhdpi" />
+		<!-- you can use any density that exists in the Android project -->
+		<splash src="res/screen/android/res-notlong-land-ldpi/default.png" density="land-ldpi"/>
+		<splash src="res/screen/android/res-notlong-land-mdpi/default.png" density="land-mdpi"/>
+		<splash src="res/screen/android/res-notlong-land-hdpi/default.png" density="land-hdpi"/>
+		<splash src="res/screen/android/res-notlong-land-xhdpi/default.png" density="land-xhdpi"/>
+		<splash src="res/screen/android/res-notlong-land-xxhdpi/default.png" density="land-xxhdpi"/>
+		<splash src="res/screen/android/res-notlong-land-xxxhdpi/default.png" density="land-xxxhdpi"/>
+		
+		<splash src="res/screen/android/res-notlong-port-ldpi/default.png" density="port-ldpi"/>
+		<splash src="res/screen/android/res-notlong-port-mdpi/default.png" density="port-mdpi"/>
+		<splash src="res/screen/android/res-notlong-port-hdpi/default.png" density="port-hdpi"/>
+		<splash src="res/screen/android/res-notlong-port-xhdpi/default.png" density="port-xhdpi"/>
+		<splash src="res/screen/android/res-notlong-port-xxhdpi/default.png" density="port-xxhdpi"/>
+		<splash src="res/screen/android/res-notlong-port-xxxhdpi/default.png" density="port-xxxhdpi"/>
+     </platform>
+
+	 <preference name="SplashScreen" value="screen"/>
+	 <preference name="SplashScreenDelay" value="5000"/>
+</widget>

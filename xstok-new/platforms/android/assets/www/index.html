@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import materialize.css-->
+
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="screen,projection"/>        
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <meta name="theme-color" content="#ffa300">
+        <script>
+            if (cordova.platformId == 'android') {
+                //StatusBar.backgroundColorByHexString("#ffa300");
+            }
+        </script>
+        <style>
+            .outer {
+                //  background-color: #ffa300;
+                width: 300px;
+                height: 300px;
+                position: relative;
+                //border: 1px solid #f57c00;
+                border-radius: 50%;
+                margin: auto;
+                transition: all .1s ease-in-out 0s;
+            }
+            .inner {
+                background-color: #ef6c00;
+                top: 36%;
+                left: 36%;
+                width: 88px;
+                height: 88px;
+                position: absolute;
+                /* border: 1px solid #e65100; */
+                border-radius: 50%;;
+                transition: all .1s ease-in-out 0s;
+            }
+            .color-or {
+                background-color :#ffa300;
+            }
+
+            .main-out{
+                width: 300px;
+                height: 300px;
+                margin: auto;
+                position: relative;
+            }
+
+            .rotate {
+                transform: rotate(-135deg);
+            }
+
+            .icon {
+                top: 42%;
+                left: 42%;
+                z-index: 0;
+                width: 45px;
+                height: 45px;
+                color: #fff;
+                font-size: 24px;
+                transform: none;
+                line-height: 45px;
+                border-radius: 50%;
+                position: absolute;
+                text-align: center;                
+                transition: all .3s cubic-bezier(.68, 1.55, .265, 1);
+            }
+
+            .one.active {               
+                transform: translate(2px, 99px);
+            }
+            .two.active {
+                transform: translate(-6px, -99px);
+            }
+            .three.active {
+                transform: translate(98px, 0px);
+            }
+            .four.active {
+                transform: translate(-98px, 0px);
+            }
+
+        </style>
+    </head>
+
+    <body class="x-grey-background">
+        <nav class="no-shadow transparent grey lighten-5 x-orange-border-bottom">
+            <ul id="slide-out" class="side-nav grey lighten-5">
+                <li class='padding-top-15 left-align main'>
+                    <span class="image-menu">
+                        <img src="images/user.jpg" class="circle profile-image-img left" alt="Profile Picture">
+                    </span>                    
+                    <br>
+                    <span class="name-menu"><a class="white-text" href="profile.html">Shadab Shaikh</a></span>
+                    <br>
+                    <span class="company-menu">Shasha Pvt ltd</span>
+                </li>
+                <li><a href="index.html"><i class='mdi-action-home'></i> Home</a></li>
+                <li><a href="search.html"><i class='mdi-social-public'></i> All Auctions</a></li>
+                <li><a href="dash.html"><i class='mdi-social-poll'></i> Dashboard</a></li>
+                <li><a href="auction_room.html"><i class="material-icons tiny">store_mall_directory</i> Room Page</a></li>
+                <li><a href="watchlist.html"><i class='mdi-editor-insert-invitation'></i>  Watch List</a></li><li><a href="#!"><i class='mdi-editor-insert-invitation'></i>  Calendar</a></li>
+                <li class="no-padding">
+                    <ul class="collapsible collapsible-accordion">
+                        <li>
+                            <a class="collapsible-header">Dropdown<i class="mdi-navigation-arrow-drop-down"></i></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="#!">First</a></li>
+                                    <li><a href="#!">Second</a></li>
+                                    <li><a href="#!">Third</a></li>
+                                    <li><a href="#!">Fourth</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#!">First Sidebar Link</a></li>
+                <li><a href="#!">Second Sidebar Link</a></li>
+                <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+                <ul id='dropdown1' class='dropdown-content'>
+                    <li><a href="#!">First</a></li>
+                    <li><a href="#!">Second</a></li>
+                    <li><a href="#!">Third</a></li>
+                    <li><a href="#!">Fourth</a></li>
+                </ul>
+            </ul>
+            <a href="#" data-activates="slide-out" class="button-collapse x-grey"><i class="mdi-navigation-menu"></i></a>
+            <a href="#" class="right  height-56"><img class="height-56" src="images/logo.png"></a>
+        </nav>
+        <div class="main-out hide">
+            <div class="outer">
+                <a class="icon one"><i class="fa fa-phone fa-2x"></i></a>
+                <a class="icon two"><i class="fa fa-archive  fa-2x"></i></a>
+                <a class="icon three"><i class="fa fa-windows fa-2x"></i></i></a>
+                <a class="icon four"><i class="fa fa-html5 fa-2x"></i></i></a>
+            </div>
+            <div class="inner center-align white-text z-depth-1">
+                <i class="material-icons large">add</i>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="row margin-bottom-0">
+            <div class="round-dash valign-wrapper z-depth-2" onclick="window.location.href = 'dash.html';"><h6 class="valign white-text width-100p center-align">Dashboard</h6></div>
+            <ul class="collection dash col s12 no-border margin-bottom-0 padding-lr-0 margin-top-0">
+                <li class="collection-item col m6 s6 transparent valign-wrapper background-size-cover homelist" style="background-image: url(images/apparel.jpg)" >
+                    <h5 class="valign center-align width-100p white-text ">Apparels</h5>
+                </li>
+                <li class="collection-item col m6 s6 transparent valign-wrapper background-size-cover homelist" style="background-image: url(images/home-text.jpg)">
+                    <h5 class="valign center-align width-100p white-text">Home Textiles</h5>
+                </li>
+                <li class="collection-item col m6 s6 transparent valign-wrapper background-size-cover homelist" style="background-image: url(images/fabric.jpg)">
+                    <h5 class="valign center-align width-100p white-text">Fabrics</h5>
+                </li>
+                <li class="collection-item col m6 s6 transparent valign-wrapper background-size-cover homelist" style="background-image: url(images/yarn.jpg)">
+                    <h5 class="valign center-align width-100p white-text">Yarns</h5>
+                </li>
+            </ul>
+        </div>
+        <div class="row margin-bottom-0 footer">
+            <div class="col s12 white-text center-align" onclick="window.location.href = 'search.html';"><h5 class="">Ongoing Auctions <i class="fa fa-angle-right fa-lg x-orange"></i></h5></div>
+        </div>
+
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript" src="js/cordova.js"></script>
+        <script type="text/javascript">
+            $(window).resize(function() {
+                $('.collection-item').height(($(window).height()-$('nav').height()-$('.footer').height()-2)/2);
+                $('.round-dash').css('margin-top',($('.dash').height()-$('.round-dash').height())/2);
+                $('.round-dash').css('margin-left',($('.dash').width()-$('.round-dash').width())/2);
+            });
+            $(document).ready(function () {
+                $('.collection-item').height(($(window).height()-$('nav').height()-$('.footer').height()-2)/2);
+                $('.round-dash').css('margin-top',($('.dash').height()-$('.round-dash').height())/2);
+                $('.round-dash').css('margin-left',($('.dash').width()-$('.round-dash').width())/2);
+                $('.inner').click(function () {
+                    $(".outer").toggleClass("color-or");
+                    $(".outer").toggleClass("z-depth-3");
+                    $(".inner").toggleClass("rotate");
+                    $(".one").toggleClass("active");
+                    $(".two").toggleClass("active");
+                    $(".three").toggleClass("active");
+                    $(".four").toggleClass("active");
+                });
+                $('select').material_select();
+                Materialize.showStaggeredList('.collection');
+                setTimeout(function() {
+                    $('.round-dash').hide().css('visibility','visible').fadeIn();
+                    $('.footer').hide().css('visibility','visible').fadeIn();
+                },1000);
+                $('.button-collapse').sideNav({
+                    menuWidth: 300, // Default is 240
+                    edge: 'left', // Choose the horizontal origin
+                    closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                }
+                );
+                $('.collection-item').click(function () {
+                    window.location.href = 'search.html';
+                });
+            });
+
+        </script>
+    </body>
+</html>

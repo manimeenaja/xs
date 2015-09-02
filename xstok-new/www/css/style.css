@@ -1,0 +1,977 @@
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Material Icons'), local('MaterialIcons-Regular'), url(../fonts/material-icons.woff2) format('woff2');
+}
+.indicators {
+    display: none;
+}
+.slider {
+    height: auto;
+}
+.slider .slides {
+    height: 80px;
+    background-color: #fff;
+}
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    word-wrap: normal;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+htmt,body {
+    -webkit-user-select: none;
+}
+input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid rgb(255, 163, 0);
+    box-shadow: 0 1px 0 0 rgb(255, 163, 0);
+}
+
+input[type=text]:focus:not([readonly])+label, input[type=password]:focus:not([readonly])+label, input[type=email]:focus:not([readonly])+label, input[type=url]:focus:not([readonly])+label, input[type=time]:focus:not([readonly])+label, input[type=date]:focus:not([readonly])+label, input[type=datetime-local]:focus:not([readonly])+label, input[type=tel]:focus:not([readonly])+label, input[type=number]:focus:not([readonly])+label, input[type=search]:focus:not([readonly])+label, textarea.materialize-textarea:focus:not([readonly])+label {
+    color:#000;
+}
+input[type=text], input[type=password], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime-local], input[type=tel], input[type=number], input[type=search], textarea.materialize-textarea {
+    border-bottom: 1px solid rgb(255, 163, 0);
+}
+.x-grey,.x-grey:hover,.x-grey:focus  {
+    color: #36454F !important;
+}
+.x-green,.x-green:hover,.x-green:focus  {
+    color: green !important;
+}
+.x-blue-grey,.x-blue-grey:hover,.x-blue-grey:focus  {
+    color: #455a64;
+}
+.x-deep-orange,.x-deep-orange:hover,.x-deep-orange:focus  {
+    color: #bf360c;
+}
+.x-amber,.x-amber:hover,.x-amber:focus  {
+    color: #ff8f00;
+}
+.x-light-blue,.x-light-blue:hover,.x-light-blue:focus  {
+    color: #0277bd;
+}
+.x-light-green,.x-light-green:hover,.x-light-green:focus  {
+    color: #7cb342 !important;
+}
+.x-light-green-background{
+    background-color: #7cb342;
+}
+.x-orange,.x-orange:hover,.x-orange:focus  {
+    color: #ffa300 !important;
+}
+.x-green,.x-green:hover,.x-green:focus  {
+    color: green !important;
+}
+.x-red,.x-red:hover,.x-red:focus  {
+    color: #ff3d00  !important;
+}
+.x-grey-background {
+    background-color: #36454F;
+}
+
+.xstok.darken-1 {
+    background-color: rgb(255, 163, 0) !important;
+}
+.xstok-text-white {
+    color: #fff !important;
+}
+.xstok-text-black {
+    color: #000 !important;
+}
+.no-border {
+    border: none;
+}
+.secondary-content {
+    color: #000;
+}
+.width-100p {
+    width: 100%;
+}
+.width-9p {
+    width: 9%;
+}
+.bold {
+    font-weight: bold;
+}
+.xstok-text-red {
+    color: #b71c1c;
+}
+.profile-image-img {
+    width: 60px;
+    height: 60px;
+    //border: 4px solid #fff;
+    //box-shadow: 1px 1px 5px 1px #999;
+}
+.padding-top-15 {
+    padding-top: 15px !important;
+}
+.padding-bottom-0 {
+    padding-bottom: 0px !important;
+}
+.margin-bottom-0 {
+    margin-bottom: 0px !important;
+}
+.margin-top-0 {
+    margin-top: 0px !important;
+}
+.padding-top-56 {
+    padding-top: 56px !important;
+}
+.padding-top-70 {
+    padding-top: 70px !important;
+}
+.padding-top-90 {
+    padding-top: 90px !important;
+}
+.padding-top-5 {
+    padding-top: 5px !important;
+}
+.padding-top-130 {
+    padding-top: 130px !important;
+}
+.padding-top-100 {
+    padding-top: 100px !important;
+}
+.padding-10 {
+    padding: 10px !important;
+}
+.padding-right-0{
+    padding-right: 0px !important; 
+}
+.padding-left-0{
+    padding-left: 0px !important; 
+}
+.font-size-0-8-em {
+    font-size: 0.8em;
+}
+.font-size-1-8-em {
+    font-size: 1.8em;
+}
+.font-size-1-6-em {
+    font-size: 1.6em;
+}
+.height-auto {
+    height: auto !important; 
+}
+.height-100p {
+    height: 100% !important; 
+}
+.header-image {
+    display: inline-block;
+    padding: 10px 0;
+    height: 100px;
+    width: 31.33333%
+}
+.header-image img {
+    width: 100px;
+}
+.header-deatils {
+    display: inline-block;
+    width: 66.66667%;
+    line-height: 1.2;
+}
+.event-deatils {
+    display: inline-block;
+    width: 66.66667%;
+    line-height: 1.2;
+}
+.header-auction-name {
+    font-weight: bold;    
+}
+.header-company {
+    font-style: italic;
+    color: #7cb342;
+}
+.header-time {
+    font-style: italic;
+    color: #212121;
+}
+.header-bid {
+    font-size: 11px;
+}
+.header-status {
+    text-align: center;   
+    color: #fff;
+    font-weight: bold;
+    line-height: 2;
+}
+.line-height-1 {
+    line-height: 1 !important;
+}
+.side-nav li.main:first-child {
+    padding-top: 15px;
+    background-image: url(../images/xs_dash.png);
+    background-size: cover;
+    line-height: 1;
+    padding-bottom: 15px;
+}
+.padding-lr-0 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+.padding-lr-2-5 {
+    padding-left: 2.5px !important;
+    padding-right:2.5px !important;
+}
+.padding-tb-0 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+.padding-bottom-10 {
+    padding-bottom: 10px;
+}
+.padding-bottom-20 {
+    padding-bottom: 20px;
+}
+.padding-tb-5 {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+.margin-lr-0 {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+.padding-lr-20 {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+.padding-lr-10 {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+.position-fixed {
+    position: fixed !important;
+}
+.font-style-italic {
+    font-style: italic;
+}
+.font-11 {
+    font-size: 11px;
+}
+.font-14 {
+    font-size: 14px;
+}
+.font-15 {
+    font-size: 15px;
+}
+.font-17 {
+    font-size: 17px;
+}
+.font-20 {
+    font-size: 20px;
+}
+.font-24 {
+    font-size: 24px;
+}
+.font-size-0-99-em {
+    font-size: 0.99em;
+}
+.menu-cover {
+    width: 100%;
+}
+.side-nav a {
+    height: auto;
+    line-height: 3;
+    padding: 0;
+    font-size: 14px;
+}
+.company-menu {
+    display: inline-table;
+    line-height: 1.8;
+}
+.name-menu {
+    display: inline-table;
+    font-weight: bold;
+}
+.image-menu {
+    display: inline-table;
+    padding: 10px 0 ;
+}
+.no-shadow {
+    box-shadow: none;
+}
+
+.tabs .tab a {
+    color: #fff;
+}
+.tabs .tab.profile-tab a {
+    color: #222;
+}
+.tabs .tab a:hover {
+    color: #fff;
+}
+.tabs .tab.profile-tab a:hover {
+    color: #222;
+}
+.collection-item {
+    opacity: 0;
+}
+nav .button-search {
+    float: right;
+    position: relative;
+    z-index: 1;
+    height: 56px;
+}
+nav .button-search i {
+    font-size: 2.7rem;
+    height: 56px;
+    line-height: 56px;
+}
+.dash-image-img {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #fff;
+}
+.profile-page-image-img {
+    width: 110px;
+    height: 60px;
+    border: 2px solid #fff;
+}
+.dash-info {
+    /*    padding: 10px;*/
+    background-color: #36454F;
+    color: #fff;
+}
+.dash .collection-item {
+    padding: 0px; 
+    background-color: #eeeeee;
+    border-bottom: none;
+}
+.dash .card .card-title {
+    color: #000;
+}
+.edit-profile {
+    right: 20px;
+    position: absolute;
+}
+.card-image  {
+    height: 150px;
+}
+.z-index-1 {
+    z-index: 1;
+}
+.z-index-2 {
+    z-index: 2;
+}
+.z-index-3 {
+    z-index: 3;
+}
+.back {
+    padding: 14px 14px 14px 0;
+    color: #000;
+}
+.back:hover, .back:focus {
+    color:  #000;
+}
+.logo-login {
+    max-width: 400px;
+    width: 100%;    
+}
+
+.position-absoulte {
+    position: absolute;
+}
+
+.margin-top--30 {
+    margin-top: -30px;
+}
+
+.bold {
+    font-weight: bold !important;
+}
+
+.info_list li {
+    display: inline-block;
+}
+
+.padding-5 {
+    padding: 5px !important;
+}
+
+.header  {
+    z-index: 10;
+}
+
+.bottom-0 {
+    bottom: 0;
+}
+.top-0 {
+    top: 0;
+}
+.z-index-10 {
+    z-index:10;
+}
+
+.bottom-to-top {
+    border-width: 1px;
+    border-style: solid;
+    -webkit-border-image: 
+      -webkit-gradient(linear, 0 100%, 0 0, from(rgba(189, 189, 189, 1)), to(rgba(189, 189, 189, 0))) 1 100%;
+    -webkit-border-image: 
+      -webkit-linear-gradient(bottom, rgba(189, 189, 189, 1), rgba(189, 189, 189, 0)) 1 100%;
+    -moz-border-image:
+      -moz-linear-gradient(bottom, rgba(189, 189, 189, 1), rgba(189, 189, 189, 0)) 1 100%;  
+    -o-border-image:
+      -o-linear-gradient(bottom, rgba(189, 189, 189, 1), rgba(189, 189, 189, 0)) 1 100%;
+    border-image:
+      linear-gradient(to top, rgba(189, 189, 189, 1), rgba(189, 189, 189, 0)) 1 100%;
+}
+
+
+.grey-gr {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#2c3540+0,36454f+100 */
+    background: rgb(44,53,64); /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  rgba(44,53,64,1) 0%, rgba(54,69,79,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(44,53,64,1)), color-stop(100%,rgba(54,69,79,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(-45deg,  rgba(44,53,64,1) 0%,rgba(54,69,79,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(-45deg,  rgba(44,53,64,1) 0%,rgba(54,69,79,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(-45deg,  rgba(44,53,64,1) 0%,rgba(54,69,79,1) 100%); /* IE10+ */
+    background: linear-gradient(135deg,  rgba(44,53,64,1) 0%,rgba(54,69,79,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2c3540', endColorstr='#36454f',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
+.white-gr {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,e5e5e5+100;White+3D */
+    background: rgb(255,255,255); /* Old browsers */
+    background: -moz-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(229,229,229,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(-45deg, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(-45deg, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(-45deg, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* IE10+ */
+    background: linear-gradient(135deg, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.hexagon {
+    position: relative;
+    width: 300px; 
+    height: 173.21px;
+    background-color: #64C7CC;
+    margin: 86.60px 0;
+}
+
+.hexagon:before,
+.hexagon:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+}
+
+.hexagon:before {
+    bottom: 100%;
+    border-bottom: 86.60px solid #64C7CC;
+}
+
+.hexagon:after {
+    top: 100%;
+    width: 0;
+    border-top: 86.60px solid #64C7CC;
+}
+
+.height-56 {
+    height: 56px;
+}
+.x-orange-border-bottom {
+    border-bottom: 2px solid rgb(255, 163, 0);
+}
+.x-light-grey-border-bottom {
+    border-bottom: 2px solid rgb(189, 189, 189);
+}
+
+.x-orange-border {
+    border: 2px solid rgb(255, 163, 0);
+}
+
+.background-size-cover {
+    background-size: cover;
+}
+
+.round-dash {
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    background-color: #ffa300;
+    position: absolute;
+    z-index: 2;
+    visibility: hidden;
+    border: 6px solid #fff;
+}
+.homelist{
+    position: relative;
+}
+.homelist h5 {
+    z-index: 1;
+}
+.homelist:before {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.65+100 */
+    background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: ' ';
+}
+.footer {
+    visibility: hidden;
+}
+
+.search-list li {
+    margin: 10px 0 !important;
+    padding: 0px !important;
+}
+.search-list li:first-child {
+    margin-top: 0 !important;
+}
+.collection .collection-item {
+    border-bottom: 0px;
+}
+.tabs .indicator {
+    background-color: #fff;
+    height: 4px;
+}
+.profile-tabs .indicator {
+    background-color: #ffa300;
+    height: 4px;
+}
+
+nav ul li:hover, nav ul li.active {
+    background-color: rgba(255,191,77,0.9);
+}
+
+.search-list li img {
+    width: 100px;
+    height: 100px;
+}
+
+.search-list-main-image {
+    float: left;
+}
+.search-list-main-body {    
+    padding: 5px;
+    float: left;
+    max-width: 70%;
+    width: 70%;
+}
+.search-list-main-body h6 {
+    width: 95%;
+}
+
+.search-list-main-body .title  {
+    font-size: 1.2em;
+}
+
+.collection .collection-item.avatar .secondary-content {
+    top: 5px;
+    right: 5px;
+}
+
+.collection .collection-item.avatar {
+    height: 100px;
+}
+.search-list-status {
+    padding-left: 20px;
+    padding-right: 10px;
+    position: absolute;
+    color:#fff;
+    bottom: 5px;
+}
+
+.search-list-status-seen {
+    background: #f4b400;
+}
+.status-green {
+    color: green;
+}
+.status-red {
+    color: red;
+}
+.status-yellow {
+    color: #f4b400;
+}
+.search-list-status-win {
+    background: green;
+}
+
+.search-list-status-lost {
+    background: red;
+}
+
+.fixed-action-btn {
+    z-index: 997;
+}
+
+blockquote {
+    border-left: 5px solid #ff8300;
+}
+
+.room-timer li {
+    display: inline;
+    padding-left: 4px;
+}
+
+.tik-tak-small {
+    font-size: 0.7em;
+}
+
+.tik-tak {
+    font-weight: bold;
+}
+
+.room-status {
+    padding: 5px;
+    color: #fff;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.room-auction-info li {
+    display: inline;
+}
+
+.room-auction-info .status-msg {
+    display: block;
+    text-align: center;
+    font-size: 1.1em;
+    padding: 5px;
+}
+
+.container {
+    padding: 100px;
+    background: #222D3A;
+}
+
+.timertitle {
+    width:100%;
+    text-align: center;
+    font-weight: bold;
+}
+#clock_ {
+    text-align: center;
+}
+#clock_ h2 {
+    font-size: 20px;
+    line-height: 1;    
+    display: inline-block;
+    margin:0;
+}
+#clock_ small {
+    font-size : 100%;
+}
+#clock_ li {
+    display: inline-block;
+    margin-right: 5px; 
+}
+
+.card-table td,.card-table th {
+    padding: 5px;
+}    
+.profile-image-background {
+    background-image: url('../images/xs_dash.png');
+    background-size: cover;
+    /*    height: 150px;*/
+    background-position: center;
+    width: 100%;    
+    padding: 10px;
+}
+.profile-info {
+
+}
+
+
+.long_sh {
+    /* box-shadow: rgb(31, 41, 52) 1px 1px,
+       rgb(31, 41, 52) 2px 2px,
+       rgb(31, 41, 52) 3px 3px,
+       rgb(31, 41, 52) 4px 4px,
+       rgb(31, 41, 52) 5px 5px,
+       rgb(31, 41, 52) 6px 6px,
+       rgb(31, 41, 52) 7px 7px,
+       rgb(31, 41, 52) 8px 8px,
+       rgb(31, 41, 52) 9px 9px,
+       rgb(31, 41, 52) 10px 10px,
+       rgb(31, 41, 52) 11px 11px,
+       rgb(31, 41, 52) 12px 12px,
+       rgb(31, 41, 52) 13px 13px,
+       rgb(31, 41, 52) 14px 14px,
+       rgb(31, 41, 52) 15px 15px,
+       rgb(31, 41, 52) 16px 16px,
+       rgb(31, 41, 52) 17px 17px,
+       rgb(31, 41, 52) 18px 18px,
+       rgb(31, 41, 52) 19px 19px,
+       rgb(31, 41, 52) 20px 20px,
+       rgb(31, 41, 52) 21px 21px,
+       rgb(31, 41, 52) 22px 22px,
+       rgb(31, 41, 52) 23px 23px,
+       rgb(31, 41, 52) 24px 24px,
+       rgb(31, 41, 52) 25px 25px,
+       rgb(31, 41, 52) 26px 26px,
+       rgb(31, 41, 52) 27px 27px,
+       rgb(31, 41, 52) 28px 28px,
+       rgb(31, 41, 52) 29px 29px,
+       rgb(31, 41, 52) 30px 30px,
+       rgb(31, 41, 52) 31px 31px,
+       rgb(31, 41, 52) 32px 32px,
+       rgb(31, 41, 52) 33px 33px,
+       rgb(31, 41, 52) 34px 34px,
+       rgb(31, 41, 52) 35px 35px,
+       rgb(31, 41, 52) 36px 36px,
+       rgb(31, 41, 52) 37px 37px,
+       rgb(31, 41, 52) 38px 38px,
+       rgb(31, 41, 52) 39px 39px,
+       rgb(31, 41, 52) 40px 40px,
+       rgb(31, 41, 52) 41px 41px,
+       rgb(31, 41, 52) 42px 42px,
+       rgb(31, 41, 52) 43px 43px,
+       rgb(31, 41, 52) 44px 44px,
+       rgb(31, 41, 52) 45px 45px,
+       rgb(31, 41, 52) 46px 46px,
+       rgb(31, 41, 52) 47px 47px,
+       rgb(31, 41, 52) 48px 48px,
+       rgb(31, 41, 52) 49px 49px,
+       rgb(31, 41, 53) 50px 50px,
+       rgb(31, 41, 53) 51px 51px,
+       rgb(31, 41, 53) 52px 52px,
+       rgb(31, 41, 53) 53px 53px,
+       rgb(31, 41, 53) 54px 54px,
+       rgb(31, 42, 53) 55px 55px,
+       rgb(31, 42, 53) 56px 56px,
+       rgb(31, 42, 53) 57px 57px,
+       rgb(31, 42, 53) 58px 58px,
+       rgb(31, 42, 53) 59px 59px,
+       rgb(32, 42, 54) 60px 60px,
+       rgb(32, 42, 54) 61px 61px,
+       rgb(32, 42, 54) 62px 62px,
+       rgb(32, 42, 54) 63px 63px,
+       rgb(32, 42, 54) 64px 64px,
+       rgb(32, 42, 54) 65px 65px,
+       rgb(32, 42, 54) 66px 66px,
+       rgb(32, 42, 54) 67px 67px,
+       rgb(32, 42, 54) 68px 68px,
+       rgb(32, 42, 54) 69px 69px,
+       rgb(32, 43, 55) 70px 70px,
+       rgb(32, 43, 55) 71px 71px,
+       rgb(32, 43, 55) 72px 72px,
+       rgb(32, 43, 55) 73px 73px,
+       rgb(32, 43, 55) 74px 74px,
+       rgb(32, 43, 55) 75px 75px,
+       rgb(32, 43, 55) 76px 76px,
+       rgb(32, 43, 55) 77px 77px,
+       rgb(32, 43, 55) 78px 78px,
+       rgb(32, 43, 55) 79px 79px,
+       rgb(33, 43, 56) 80px 80px,
+       rgb(33, 43, 56) 81px 81px,
+       rgb(33, 43, 56) 82px 82px,
+       rgb(33, 43, 56) 83px 83px,
+       rgb(33, 43, 56) 84px 84px,
+       rgb(33, 44, 56) 85px 85px,
+       rgb(33, 44, 56) 86px 86px,
+       rgb(33, 44, 56) 87px 87px,
+       rgb(33, 44, 56) 88px 88px,
+       rgb(33, 44, 56) 89px 89px,
+       rgb(33, 44, 57) 90px 90px,
+       rgb(33, 44, 57) 91px 91px,
+       rgb(33, 44, 57) 92px 92px,
+       rgb(33, 44, 57) 93px 93px,
+       rgb(33, 44, 57) 94px 94px,
+       rgb(33, 44, 57) 95px 95px,
+       rgb(33, 44, 57) 96px 96px,
+       rgb(33, 44, 57) 97px 97px,
+       rgb(33, 44, 57) 98px 98px,
+       rgb(33, 44, 57) 99px 99px,
+       rgb(34, 45, 58) 100px 100px;*/
+    text-shadow: rgba(0,0,0,0.98) 1px 1px,
+        rgba(0,0,0,0.96) 2px 2px,
+        rgba(0,0,0,0.94) 3px 3px,
+        rgba(0,0,0,0.9199999999999999) 4px 4px,
+        rgba(0,0,0,0.8999999999999999) 5px 5px,
+        rgba(0,0,0,0.8799999999999999) 6px 6px,
+        rgba(0,0,0,0.8599999999999999) 7px 7px,
+        rgba(0,0,0,0.8399999999999999) 8px 8px,
+        rgba(0,0,0,0.8199999999999998) 9px 9px,
+        rgba(0,0,0,0.7999999999999998) 10px 10px,
+        rgba(0,0,0,0.7799999999999998) 11px 11px,
+        rgba(0,0,0,0.7599999999999998) 12px 12px,
+        rgba(0,0,0,0.7399999999999998) 13px 13px,
+        rgba(0,0,0,0.7199999999999998) 14px 14px,
+        rgba(0,0,0,0.6999999999999997) 15px 15px,
+        rgba(0,0,0,0.6799999999999997) 16px 16px,
+        rgba(0,0,0,0.6599999999999997) 17px 17px,
+        rgba(0,0,0,0.6399999999999997) 18px 18px,
+        rgba(0,0,0,0.6199999999999997) 19px 19px,
+        rgba(0,0,0,0.5999999999999996) 20px 20px,
+        rgba(0,0,0,0.5799999999999996) 21px 21px,
+        rgba(0,0,0,0.5599999999999996) 22px 22px,
+        rgba(0,0,0,0.5399999999999996) 23px 23px,
+        rgba(0,0,0,0.5199999999999996) 24px 24px,
+        rgba(0,0,0,0.49999999999999956) 25px 25px,
+        rgba(0,0,0,0.47999999999999954) 26px 26px,
+        rgba(0,0,0,0.4599999999999995) 27px 27px,
+        rgba(0,0,0,0.4399999999999995) 28px 28px,
+        rgba(0,0,0,0.4199999999999995) 29px 29px,
+        rgba(0,0,0,0.39999999999999947) 30px 30px,
+        rgba(0,0,0,0.37999999999999945) 31px 31px,
+        rgba(0,0,0,0.35999999999999943) 32px 32px,
+        rgba(0,0,0,0.3399999999999994) 33px 33px,
+        rgba(0,0,0,0.3199999999999994) 34px 34px,
+        rgba(0,0,0,0.2999999999999994) 35px 35px,
+        rgba(0,0,0,0.27999999999999936) 36px 36px,
+        rgba(0,0,0,0.25999999999999934) 37px 37px,
+        rgba(0,0,0,0.23999999999999935) 38px 38px,
+        rgba(0,0,0,0.21999999999999936) 39px 39px,
+        rgba(0,0,0,0.19999999999999937) 40px 40px,
+        rgba(0,0,0,0.17999999999999938) 41px 41px,
+        rgba(0,0,0,0.1599999999999994) 42px 42px,
+        rgba(0,0,0,0.1399999999999994) 43px 43px,
+        rgba(0,0,0,0.1199999999999994) 44px 44px,
+        rgba(0,0,0,0.0999999999999994) 45px 45px,
+        rgba(0,0,0,0.07999999999999939) 46px 46px,
+        rgba(0,0,0,0.05999999999999939) 47px 47px,
+        rgba(0,0,0,0.03999999999999938) 48px 48px,
+        rgba(0,0,0,0.019999999999999383) 49px 49px,
+        rgba(0,0,0,-6.175615574477433e-16) 50px 50px,
+        rgba(0,0,0,-0.020000000000000618) 51px 51px,
+        rgba(0,0,0,-0.04000000000000062) 52px 52px,
+        rgba(0,0,0,-0.06000000000000062) 53px 53px;
+    height: 150px;
+    width: 150px;
+    font-size: 75px;
+    line-height: 150px;
+    text-align: center;
+}
+.vertical-text {
+    transform: rotate(-90deg);
+    transform-origin: left top 0;
+}
+.bid-buy-now  {
+    vertical-align: top;
+}
+.vertical-align-top{
+    vertical-align: top;
+}
+.bid-buy-now-button {  
+    background: green none repeat scroll 0 0;
+    border-radius: 90px 0 0 90px;
+    color: #fff;
+    height: 90px;
+    left: 0;
+    line-height: 1;
+    margin: -20px 0 0 auto;
+    padding-top: 30px;
+    right: 0;
+    text-align: center;
+    width: 45px;
+    z-index: 1;
+}
+.width-80p {
+    width: 80%;
+}
+.width-19p {
+    width: 19%;
+}
+.width-45p {
+    width: 45%;
+}
+.width-49p {
+    width: 49%;
+}
+.display-inline-block {
+    display: inline-block;
+}
+.bid-status {
+    text-align: center;
+}
+.bid-input {
+    width: 60%;
+    display: inline-block;
+}
+.bid-submit {
+    width:35%;
+    display: inline-block;
+}
+.bid-error {
+    text-align: center;
+    color: maroon;
+    font-weight: bold;
+}
+.font-bold {
+    font-weight: bold;
+}
+.event-head-text {
+    font-weight: bold;
+    text-align: center;
+}
+.buyer-protection-list {   
+    margin-left: 50px;
+    margin-top: 10px;
+    color: #666666;
+    margin-bottom: 10px;
+}
+.buyer-protection-list li {
+    margin: 5px 0;
+    list-style-type: disc;
+}
+.contact-list {
+    padding: 20px 20px;
+}
+.contact-list a {
+    margin: 0 15px;
+}
+@media only screen and (max-width: 320px) {
+    .search-list-main-body {
+        width: 66%;
+        max-width: 66%;
+    }
+
+    .font-11 {
+        font-size: 9px;
+    }
+    .font-14 {
+        font-size: 12px;
+    }
+    .font-15 {
+        font-size: 13px;
+    }
+    .font-17 {
+        font-size: 15px;
+    }
+    .font-20 {
+        font-size: 19px;
+    }
+    .font-24 {
+        font-size: 22px;
+    }
+    .header-image img {
+        width: 90px;
+    }
+    .side-nav a {
+        font-size: 12px;
+    }    
+    nav .button-search i {
+        font-size: 2.1rem;
+    }
+    nav .button-collapse i {
+        font-size: 2.1rem;
+    }
+    .profile-page-image-img {
+        width: 90px;
+    }
+    .font-size-1-6-em {
+        font-size: 1.4em;
+    }
+}

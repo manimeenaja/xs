@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import materialize.css-->
+
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="screen,projection"/>
+         
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <style>
+            img {
+                width: 100%;
+            }
+        </style>
+    </head>
+
+    <body class="grey lighten-3">        
+        <div class="row">
+            <div class="col s12"><img class="materialboxed panzoom-elements" width="380" src="images/sample-1.jpg"></div>
+        </div>
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript" src="js/jquery.panzoom.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('select').material_select();
+                $('.materialboxed').materialbox();
+                Materialize.showStaggeredList('.collection');
+                $('.button-collapse').sideNav({
+                    menuWidth: 300, // Default is 240
+                    edge: 'left', // Choose the horizontal origin
+                    closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                }
+                );
+                $('.collection-item').click(function () {
+                    window.location.href = $(this).attr('value') + '.html';
+                });  
+                $('.materialboxed').click(function () {
+                    $(".panzoom-elements").panzoom({
+                        minScale: 0,
+                        contain: false,
+                        $rest:  $('#materialbox-overlay')
+                    });
+                });
+                
+                 //$(".panzoom-elements").panzoom();
+            });
+            setInterval(function () {
+                 $('#materialbox-overlay').click(function () {                   
+                    $(".panzoom-elements").panzoom("destroy");
+                     $('.materialboxed').materialbox();
+                    //$(".panzoom-elements").panzoom("instance");
+                });
+            },1000);
+       
+
+        </script>
+    </body>
+</html>
