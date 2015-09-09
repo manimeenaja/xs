@@ -85,6 +85,13 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/org.apache.cordova.inappbrowser/www/inappbrowser.js",
+        "id": "org.apache.cordova.inappbrowser.inappbrowser",
+        "clobbers": [
+            "window.open"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-device/www/device.js",
         "id": "cordova-plugin-device.device",
         "clobbers": [
@@ -113,6 +120,7 @@ module.exports.metadata =
     "com.phonegap.plugin.mobile-accessibility": "0.1.3",
     "mobi.moica.whatsapp": "0.0.1",
     "org.apache.cordova.contacts": "0.2.16",
+    "org.apache.cordova.inappbrowser": "0.6.0",
     "cordova-plugin-device": "1.0.2-dev",
     "cordova-plugin-network-information": "1.0.2-dev"
 }

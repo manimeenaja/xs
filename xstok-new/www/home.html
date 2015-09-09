@@ -80,20 +80,9 @@
     </head>
 
     <body class="x-grey-background">
-        <nav id="menu-add" class="no-shadow transparent grey lighten-5 x-orange-border-bottom"></nav>        
-        <div class="main-out hide">
-            <div class="outer">
-                <a class="icon one"><i class="fa fa-phone fa-2x"></i></a>
-                <a class="icon two"><i class="fa fa-archive  fa-2x"></i></a>
-                <a class="icon three"><i class="fa fa-windows fa-2x"></i></i></a>
-                <a class="icon four"><i class="fa fa-html5 fa-2x"></i></i></a>
-            </div>
-            <div class="inner center-align white-text z-depth-1">
-                <i class="material-icons large">add</i>
-            </div>
-        </div>
+        <nav id="menu-add" class="no-shadow transparent grey lighten-5 x-orange-border-bottom"></nav>
         <div class="row margin-bottom-0">
-            <div class="round-dash valign-wrapper z-depth-2" onclick="window.location.href = 'dash.html';"><h6 class="valign white-text width-100p center-align">Dashboard</h6></div>
+            <div class="round-dash valign-wrapper z-depth-2 hide" onclick="window.location.href = 'dash.html';"><h6 class="valign white-text width-100p center-align">Dashboard</h6></div>
             <ul class="collection dash col s12 no-border margin-bottom-0 padding-lr-0 margin-top-0">
                 <li class="collection-item col m6 s6 transparent valign-wrapper background-size-cover homelist" style="background-image: url(images/apparel.jpg)" >
                     <h5 class="valign center-align width-100p white-text ">Apparels</h5>
@@ -109,11 +98,9 @@
                 </li>
             </ul>
         </div>
-        <div class="row margin-bottom-0 footer">
-            <div class="col s12 white-text center-align" onclick="window.location.href = 'search.html';"><h5 class="">Ongoing Auctions <i class="fa fa-angle-right fa-lg x-orange"></i></h5></div>
+        <div class="row margin-bottom-0 footer hide">
+            <div class="col s12 white-text center-align" onclick="all_listing()"><h5 class="">Ongoing Auctions <i class="fa fa-angle-right fa-lg x-orange"></i></h5></div>
         </div>
-
-
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
@@ -129,10 +116,16 @@
                         var body = "";
                         for (var i = 0; i < logininfo['category'].length; i++) {
                             console.log(logininfo['category'][i]);
-                            body += '<a href="javascript:void(0)" class="btn" onClick="category_select(\'' + logininfo['category'][i][0] + '\',\'' + logininfo['category'][i][1] + '\',\'' + logininfo['category'][i][2] + '\')" role="button">' + logininfo['category'][i][1] + ' <i class="fa fa-angle-right"></i></a><br>';
+                            body += '<li class="collection-item col m6 s6 transparent valign-wrapper background-size-cover homelist" style="background-image: url('+localStorage.host + '../images/' + logininfo['category'][i][3] + ')" onClick="home_select(\'' + logininfo['category'][i][0] + '\',\'' + logininfo['category'][i][1] + '\',\'' + logininfo['category'][i][2] + '\')" ><h5 class="valign center-align width-100p white-text ">' + logininfo['category'][i][1] + '</h5></li>';
                         }
                         console.log(body);
-                       // $('.collection').append(body);
+                        $('.footer').removeClass('hide');
+                        $('.round-dash ').removeClass('hide');
+                        $('.collection').html(body);
+                        Materialize.showStaggeredList('.collection');
+                        $('.collection-item').height(($(window).height() - $('nav').height() - $('.footer').height() - 2) / 2);
+                        $('.round-dash').css('margin-top', ($('.dash').height() - $('.round-dash').height()) / 2);
+                        $('.round-dash').css('margin-left', ($('.dash').width() - $('.round-dash').width()) / 2);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
@@ -140,9 +133,6 @@
                 });
                 $(document).ready(function () {                   
                     add_menu(2,1);
-                    $('.collection-item').height(($(window).height() - $('nav').height() - $('.footer').height() - 2) / 2);
-                    $('.round-dash').css('margin-top', ($('.dash').height() - $('.round-dash').height()) / 2);
-                    $('.round-dash').css('margin-left', ($('.dash').width() - $('.round-dash').width()) / 2);
                     $('.inner').click(function () {
                         $(".outer").toggleClass("color-or");
                         $(".outer").toggleClass("z-depth-3");
@@ -152,8 +142,7 @@
                         $(".three").toggleClass("active");
                         $(".four").toggleClass("active");
                     });
-                    $('select').material_select();
-                    Materialize.showStaggeredList('.collection');
+                    $('select').material_select();                    
                     setTimeout(function () {
                         $('.round-dash').hide().css('visibility', 'visible').fadeIn();
                         $('.footer').hide().css('visibility', 'visible').fadeIn();
@@ -162,13 +151,11 @@
                         menuWidth: 300, // Default is 240
                         edge: 'left', // Choose the horizontal origin
                         closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
-                    }
-                    );
+                    });
                     $('.collection-item').click(function () {
                         window.location.href = 'search.html';
                     });
                 });
-
         </script>
     </body>
 </html>

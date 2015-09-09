@@ -138,43 +138,35 @@
                 utilsScript: "js/utils.js"
             });
             
-            $('#email_id').bind('click blur',function(){ // Keyup function for check the user action in input
-            var EmailID = $(this).val(); // Get the username textbox using $(this) or you can use directly $('#username')
-            var EmailIDAvailResult = $('#email_avail_result'); // Get the ID of the result where we gonna display the results
-            var EmailIDAvail = $('#email_avail');
-            $('button[type="submit"]').addClass('disable');
-            if (EmailID.length > 2) { // check if greater than 2 (minimum 3)
-                EmailIDAvailResult.html('<i class="fa fa-refresh fa-spin"></i>'); // Preloader, use can use loading animation here
-                var UrlToPass = 'action=email_availability&email_id=' + EmailID;
-                $.ajax({// Send the username val to another ajax.php using Ajax in POST menthod
-                    type: 'POST',
-                    data: UrlToPass,
-                    url: localStorage.host+'../ajax.php',
-                    success: function (responseText) { // Get the result and asign to each cases
-                        if (responseText == 0) {
-                            // EmailIDAvailResult.html('<span class="success">EmailID name available</span>');
-                            // EmailIDAvail.html('');
-                            EmailIDAvailResult.html('<i class="fa fa-check x-light-green"></i>');
-                            $('button[type="submit"]').removeClass('disable');
+            $('#email_id').bind('click blur',function(){ 
+                var EmailID = $(this).val(); 
+                var EmailIDAvailResult = $('#email_avail_result'); 
+                var EmailIDAvail = $('#email_avail');
+                $('button[type="submit"]').addClass('disable');
+                if (EmailID.length > 2) { 
+                    EmailIDAvailResult.html('<i class="fa fa-refresh fa-spin"></i>'); 
+                    var UrlToPass = 'action=email_availability&email_id=' + EmailID;
+                    $.ajax({
+                        type: 'POST',
+                        data: UrlToPass,
+                        url: localStorage.host+'../ajax.php',
+                        success: function (responseText) {
+                            if (responseText == 0) {    
+                                EmailIDAvailResult.html('<i class="fa fa-check x-light-green"></i>');
+                                $('button[type="submit"]').removeClass('disable');
+                            } else if (responseText > 0) {
+                                EmailIDAvailResult.html('<i class="fa fa-times x-red"></i>');
+                                $('button[type="submit"]').addClass('disable');
+                            }else {  }
                         }
-                        else if (responseText > 0) {
-
-                            EmailIDAvailResult.html('<i class="fa fa-times x-red"></i>');
-                            $('button[type="submit"]').addClass('disable');
-
-                        }
-                        else {
-                            x_alert('Problem with sql query');
-                        }
-                    }
-                });
-            } else {
-                EmailIDAvailResult.html('');
-            }
-            if (EmailID.length == 0) {
-                EmailIDAvailResult.html('');
-            }
-        });
+                    });
+                } else {
+                    EmailIDAvailResult.html('');
+                }
+                if (EmailID.length == 0) {
+                    EmailIDAvailResult.html('');
+                }
+            });
             
             
             $("#login").submit(function (e) {

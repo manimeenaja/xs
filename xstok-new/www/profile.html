@@ -15,7 +15,7 @@
         </style>
     </head>
 
-    <body class="grey lighten-3">
+    <body class="grey lighten-5">
         <nav id="menu-add" class=" grey lighten-5 no-shadow navbar-fixed position-fixed x-orange-border-bottom"></nav>
         <div class="margin-bottom-0 padding-top-56 z-index-1 ">
             <div class="row profile-image-background margin-bottom-0">
@@ -29,80 +29,38 @@
                 </div>
             </div>
             <div class="row margin-bottom-0">
-                <div class="col s12 padding-lr-0">
+                <div class="col s12 padding-lr-0 profile-tabs-ul">
                     <ul class="tabs profile-tabs">
                         <li class="tab col s3 profile-tab font-14"><a class="active" href="#test1">Profile</a></li>
                         <li class="tab col s3 profile-tab font-14"><a href="#test2">Password</a></li>
                         <li class="tab col s3 profile-tab font-14"><a href="#test4">Notifications</a></li>
                     </ul>
                 </div>
-                <div id="test1" class="col s12 grey lighten-5">
-                    <div class="row">
-                        <form class="col s12">
-                            <div class="row margin-bottom-0">
-                                <div class="input-field col s12">
-                                    <input  id="first_name" type="text" class="validate">
-                                    <label for="first_name">First Name</label>
-                                </div>
-                            </div>
-                            <div class="row margin-bottom-0">
-                                <div class="input-field col s12">
-                                    <input id="last_name" type="text" class="validate">
-                                    <label for="last_name">Last Name</label>
-                                </div>
-                            </div>
-                            <div class="row margin-bottom-0">
-                                <div class="input-field col s12">
-                                    <input id="email" type="email" class="validate">
-                                    <label for="email">Email</label>
-                                </div>
-                            </div>                            
-                            <label>Browser Select</label>
-                            <select class="browser-default">
-                                <option value="" disabled selected>Choose your option</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                            </select>
-                            <div class="">
-                                <label for="email">Date</label>
-                                <input type="date" class="datepicker">                                
-                            </div>
-                            <p>
-                                <input type="checkbox" id="test5" />
-                                <label for="test5">Option 1</label>
-                            </p>
-                            <p>
-                                <input type="checkbox" id="test6" />
-                                <label for="test6">Option 2</label>
-                            </p> 
-                            <a class="waves-effect waves-light btn xstok darken-1">Update Details</a>
-                        </form>
-                    </div>
-                </div>
+                <div id="test1" class="col s12 grey lighten-5"></div>
                 <div id="test2" class="col s12 grey lighten-5">
                     <div class="row margin-bottom-0">
-                        <form class="col s12">
+                        <form id="login" class="col s12" data-parsley-validate novalidate action="profile.html#test1">
                             <div class="row margin-bottom-0">
                                 <div class="input-field col s12">
-                                    <input id="password" type="password" class="validate">
-                                    <label for="password">Current Password</label>
+                                    <input id="old_password" name="old_password" type="password"  required="" class="validate parsley-validated parsley-error" data-parsley-required-message="Please enter your old password">
+                                    <label for="old_password">Old password</label>
                                 </div>
                             </div>
                             <div class="row margin-bottom-0">
                                 <div class="input-field col s12">
-                                    <input id="password" type="password" class="validate">
-                                    <label for="password">New Password</label>
+                                    <input id="new_password"  name="new_password" type="password" required="" class="validate parsley-validated parsley-error" data-parsley-required-message="Please enter your new password">
+                                    <label for="new_password">New Password</label>
                                 </div>
                             </div>
                             <div class="row margin-bottom-0">
                                 <div class="input-field col s12">
-                                    <input id="password" type="password" class="validate">
-                                    <label for="password">Confirm Password</label>
+                                    <span id="email_avail_result"></span>
+                                    <input id="new_confirm_password" name="new_confirm_password" required="" type="password" class="validate parsley-validated parsley-error" data-parsley-required-message="Please enter your new password for confirmation">
+                                    <label for="new_confirm_password">Confirm new password</label>
                                 </div>
                             </div>
                             <div class="row">
-                                <a class="waves-effect waves-light btn xstok darken-1">Update</a>
+                                <button class="btn waves-effect waves-light xstok darken-1" type="submit" name="action">Update</button>
                             </div>
                         </form>
                     </div>
@@ -120,9 +78,13 @@
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript" src="js/parsley.min.js"></script>
         <script type="text/javascript">
+            $(window).scroll(function () {
+                tab_stick();
+            });
             $(document).ready(function () {
-                 add_menu(1,1,0);
+                add_menu(1, 1, 0);
                 $('select').material_select();
                 $('ul.tabs').tabs();
                 $('.datepicker').pickadate({
@@ -139,7 +101,105 @@
                 $('.collection-item').click(function () {
                     window.location.href = $(this).attr('value') + '.html';
                 });
+
+                $.ajax({url: localStorage.host + '../classes/buyer_dashboard_inc.class.php', data: {action: 'buyer_my_detail_all', user_id: localStorage.user_id}, type: 'get', success: function (data) {
+                        var logininfo = JSON.parse(data);
+                        //console.log(logininfo['data']);
+                        $('#test1').html(logininfo['data']);
+                        $('.col-md-12').addClass('col s12');
+                        $('.col-md-8').addClass('col s7');
+                        $('.col-md-4').addClass('col s5');
+                        $('.col-md-6').addClass('col s6');
+                        $('.col-md-9').addClass('col s9');
+                        $('.edit-link a[href="/buyer_registration/edit/' + localStorage.user_id + '/').attr('href', 'form1.html');
+                        $('.edit-link a[href="/buyer_company/edit/' + localStorage.user_id + '/').attr('href', 'form2.html');
+                        $('.edit-link a[href="/buyer_business/edit/' + localStorage.user_id + '/').attr('href', 'form3.html');
+                        $('.edit-link a[href="/buyer_general/edit/' + localStorage.user_id + '/').attr('href', 'form4.html');
+                        $('.edit-link a[href="/buyer_bank/edit/' + localStorage.user_id + '/').attr('href', 'form5.html');
+                        $('.edit-link a[href="/buyer_documents/edit/' + localStorage.user_id + '/').attr('href', 'form6.html');
+                        $('.edit-link a[href="/buyer_documents/edit/' + localStorage.user_id + '/').attr('href', 'form6.html');
+                        $('.my_profile_doc').each(function () {
+                            $(this).attr('onclick', 'window.open("' + $(this).attr('href') + '", "_system")');
+                            $(this).attr('href', '#');
+                        });
+                    }
+                });
+
+                $('input[name="new_confirm_password"],input[name="new_password"]').bind('click blur keyup', function () {
+                    $('#email_avail_result').html('<i class="fa fa-refresh fa-spin"></i>');
+                    if ($('input[name="new_confirm_password"]').val() === $('input[name="new_password"]').val()) {
+                        $('button[type="submit"]').removeAttr('disabled');
+                        $('#email_avail_result').html('<i class="fa fa-check x-light-green"></i>');
+                    } else {
+                        $('button[type="submit"]').attr('disabled', 'disabled');
+                        $('#email_avail_result').html('<i class="fa fa-times x-red"></i>');
+                    }
+                });
+
+                $("#login").submit(function (e) {
+                    if ($('#login').parsley('isValid')) {
+                        $('button[type="submit"]').attr('disabled', 'disabled');
+                        $('button[type="submit"]').html('Processing   <i class="fa fa-refresh fa-spin"></i>');
+                        e.preventDefault();
+                        var self = this;
+                        $('.back-button-load').html('Sending Request <i class="fa fa-refresh fa-spin"></i>');
+                        var json = '{"new_password":"' + $('input[name="new_confirm_password"]').val() + '","old_password":"' + $('input[name="old_password"]').val() + '","action":"change","user_id":"' + rc4_dr(localStorage.user_id) + '"}';
+                        console.log(json);
+                        $.ajax({url: localStorage.host + 'change_password_user.php', data: {json: json}, type: 'get', success: function (data) {
+
+                                var logininfo = JSON.parse(data);
+                                console.log(logininfo);
+                                if (logininfo['status'] == 'error') {                                   
+                                    $('button[type="submit"]').html('Change');
+                                    $('button[type="submit"]').removeAttr('disabled');
+                                     x_alert(logininfo['msg']);
+                                } else {                                    
+                                    $('button[type="submit"]').html('Done   <i class="fa fa-check"></i>');
+                                    $('button[type="submit"]').removeAttr('disabled');
+                                    $('input[name="new_confirm_password"]').val('');
+                                    $('input[name="new_password"]').val('');
+                                    $('input[name="old_password"]').val('');
+                                    x_alert(logininfo['msg']);
+                                    self.submit();
+                                    return false;
+                                }
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                //   if(textStatus==="timeout") {
+                                x_alert("You seem to have lost internet connection, please reconnect to get going");
+                                window.location.href = "no_connection.html";
+                                //   } 
+                            }
+                        });
+                    }
+                });
             });
+
+            function tab_stick() {
+                var window_top = $(window).scrollTop();
+                var menu_add = $('#menu-add').offset().top + 56;
+                var div_top = $('.profile-tabs-ul').offset().top;
+                var profile_image_background = $('.profile-image-background').offset().top;
+                if (window_top > profile_image_background) {
+                    if (menu_add >= div_top) {
+                        $('.profile-tabs-ul').css('top', '56px');
+                        $('.profile-tabs-ul').addClass('z-depth-1');
+                        $('.profile-tabs-ul').addClass('position-fixed');
+                        // $('.stick').css('top', '0');
+                    } else {
+                        $('.profile-tabs-ul').css('top', '0');
+                        $('.profile-tabs-ul').removeClass('z-depth-1');
+                        $('.profile-tabs-ul').removeClass('position-fixed');
+                        //$('.stick').css('top', 'none');
+                    }
+                } else {
+                    $('.profile-tabs-ul').css('top', '0');
+                    $('.profile-tabs-ul').removeClass('z-depth-1');
+                    $('.profile-tabs-ul').removeClass('position-fixed');
+                }
+            }
+            //http://fa.xstok.com/classes/buyer_dashboard_inc.class.php?action=buyer_my_detail_all&type=html&user_id=d6d713
+
 
         </script>
     </body>
