@@ -256,7 +256,7 @@ $.fn.eventCalendar = function (options) {
                 flags.eventsJson = data; // save data to future filters
                 getEventsData(flags.eventsJson, limit, year, month, day, direction);
             }).error(function () {
-                showError("You seem to have lost internet connection, please reconnect to get going");
+                showError(localStorage.no_connection);
             });
         } else {
             // filter previus saved json

@@ -10,24 +10,21 @@
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
         <link rel="stylesheet" href="css/intlTelInput.css">
-        <script type="text/javascript" src='js/main.js'></script> 
-        <style>
-
-        </style>
+        <script type="text/javascript" src='js/main.js'></script>        
     </head>
 
-    <body class="grey lighten-3">
+    <body class="grey lighten-5">
         <nav id="menu-add" class=" grey lighten-5 no-shadow navbar-fixed position-fixed x-orange-border-bottom"></nav>
         <div class="margin-bottom-0 padding-top-56 z-index-1 ">            
             <div class="row margin-bottom-0">
                 <div class="col s12 padding-lr-0 profile-tabs-ul position-fixed z-index-2 ">
                     <ul class="row margin-bottom-0 margin-top-0 edit-list-btn  ">
-                        <li class="col s2 profile-tab font-11 display-inline-block xstok darken-1 white-text active_tab x-orange-border-bottom padding-tb-10"><a class=" cust_tab" href="#test1">Buyer Details</a></li>
+                        <li class="col s2 profile-tab font-11 display-inline-block xstok darken-1 white-text active_tab x-orange-border-bottom padding-tb-10"><a class="cust_tab" href="#test1">Buyer Details</a></li>
                         <li class="col s2 profile-tab font-11 display-inline-block xstok darken-1 white-text x-orange-border-bottom padding-tb-10"><a class="cust_tab" href="#test2">Company Details</a></li>
                         <li class="col s2 profile-tab font-11 display-inline-block xstok darken-1 white-text x-orange-border-bottom padding-tb-10"><a class="cust_tab" href="#test3">Business Details</a></li>
-                        <li class="col s2 profile-tab font-11 display-inline-block xstok darken-1 white-text x-orange-border-bottom padding-tb-10"><a class="cust_tab" href="#test4">Business Details</a></li>
-                        <li class="col s2 profile-tab font-11 display-inline-block xstok darken-1 white-text x-orange-border-bottom padding-tb-10"><a class="cust_tab" href="#test5">Business Details</a></li>
-                        <li class="col s2 profile-tab font-11 display-inline-block xstok darken-1 white-text x-orange-border-bottom padding-tb-10"><a class="cust_tab" href="#test6">Business Details</a></li>
+                        <li class="col s2 profile-tab font-11 display-inline-block xstok darken-1 white-text x-orange-border-bottom padding-tb-10"><a class="cust_tab" href="#test4">General Details</a></li>
+                        <li class="col s2 profile-tab font-11 display-inline-block xstok darken-1 white-text x-orange-border-bottom padding-tb-10"><a class="cust_tab" href="#test5">Bank Details</a></li>
+                        <li class="col s2 profile-tab font-11 display-inline-block xstok darken-1 white-text x-orange-border-bottom padding-tb-10"><a class="cust_tab" href="#test6">Upload Document</a></li>
                     </ul> 
                 </div>
                 <div id="test1" class="tab-body row grey lighten-5 padding-top-56 padding-bottom-20">
@@ -80,7 +77,7 @@
                         </div>
                         <div class="row margin-bottom-0">
                             <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
-                                <input id="department" type="text" placeholder="" name="job_title">
+                                <input id="department" type="text" placeholder="" name="department">
                                 <label for="department">Department</label>
                             </div>
                         </div>
@@ -90,9 +87,9 @@
                                 <a class="waves-effect waves-light btn xstok darken-1" onClick="capturePhoto()"><i class="fa fa-camera"></i> Upload Visiting Card</a><span class="padding-lr-10 upload-succ"></span>
                             </div>
                         </div>
-                        <div class="row margin-bottom-0">
+                        <div class="row">
                             <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
-                                <button class="btn waves-effect waves-light width-100p xstok darken-1" type="submit" name="action">Update Date</button>
+                                <button class="btn waves-effect waves-light width-100p xstok darken-1" type="submit" name="action">Update Data</button>
                             </div>
                         </div>            
                     </form>  
@@ -164,15 +161,15 @@
                                 <div class="margin-top-10">State</div>
                                 <select class="browser-default" required="" id="state_id" name="state_id" data-parsley-required-message="Please select your state"></select>
                             </div>
-                        </div>
-                        <div class="row margin-bottom-0 margin-top-10">
-                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-10 ">
+                        </div>                        
+                        <div class="row margin-bottom-0">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
                                 <span class="x-required" style="">*</span>
-                                <input id="city" type="text" placeholder="" class="validate" name="city" required data-parsley-required-message="Please enter your city">
-                                <label for="city">City</label>
+                                <div class="margin-top-10">City</div>
+                                <select class="browser-default" required="" id="city_id" name="city_id" data-parsley-required-message="Please select your City"></select>
                             </div>
                         </div>
-                        <div class="row margin-bottom-0">
+                        <div class="row margin-bottom-0 padding-tb-10">
                             <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
                                 <span class="x-required" style="">*</span>
                                 <input  placeholder=""  id="pin_code" class="form-control parsley-validated" type="text" value="" name="pin_code" required="" pattern="^[0-9+/ /]*$">
@@ -198,29 +195,33 @@
                         <div class="row margin-bottom-0">
                             <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
                                 <div class="margin-top-10">State</div>
-                                <select class="browser-default" id="ship_state_id" name="ship_state_id" ></select>
+                                <select class="browser-default" id="ship_state_id" name="ship_state_id" >
+                                    <option>Please select country first</option>
+                                </select>
                             </div>
-                        </div>
-                        <div class="row margin-bottom-0 margin-top-10">
-                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-10 ">
-                                <input id="ship_city" type="text" placeholder="" class="validate" name="ship_city">
-                                <label for="ship_city">City</label>
-                            </div>
-                        </div>
+                        </div>                        
                         <div class="row margin-bottom-0">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">                                
+                                <div class="margin-top-10">City</div>
+                                <select class="browser-default" id="ship_city_id" name="ship_city_id" >
+                                    <option>Please select state first</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-0 padding-tb-10">
                             <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
                                 <input  placeholder=""  id="ship_pin_code" class="form-control parsley-validated" type="text" value="" name="ship_pin_code" required="" pattern="^[0-9+/ /]*$">
                                 <label for="ship_pin_code">Pin Code.</label>
                             </div>
                         </div>
                         <div style="padding: 0 40px; margin-bottom: 17px;">                            
-                            <input type="checkbox" class="filled-in" id="shipping_same_as" name="shipping_same_as" />
+                            <input type="checkbox" class="filled-in" id="billing_same_as" name="billing_same_as" />
                             <label for="billing_same_as">Same as Company Address</label>                           
                         </div>
                         <div class="row margin-bottom-0">
                             <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
                                 <textarea placeholder="" id="billing_address" name="billing_address" class="materialize-textarea"></textarea>
-                                <label for="billing_address">Shipping Address</label>
+                                <label for="billing_address">Billing Address</label>
                             </div>
                         </div>
                         <div class="row margin-bottom-0">
@@ -232,377 +233,1023 @@
                         <div class="row margin-bottom-0">
                             <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
                                 <div class="margin-top-10">State</div>
-                                <select class="browser-default" id="bill_state_id" name="bill_state_id" ></select>
-                            </div>
-                        </div>
-                        <div class="row margin-bottom-0 margin-top-10">
-                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-10 ">
-                                <input id="bill_city" type="text" placeholder="" class="validate" name="bill_city">
-                                <label for="bill_city">City</label>
+                                <select class="browser-default" id="bill_state_id" name="bill_state_id" >
+                                    <option>Please select country first</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row margin-bottom-0">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">                                
+                                <div class="margin-top-10">City</div>
+                                <select class="browser-default" id="bill_city_id" name="bill_city_id" >
+                                    <option>Please select state first</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-0 padding-tb-10">
                             <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
                                 <input  placeholder=""  id="bill_pin_code" class="form-control parsley-validated" type="text" value="" name="bill_pin_code" required="" pattern="^[0-9+/ /]*$">
                                 <label for="bill_pin_code">Pin Code.</label>
                             </div>
                         </div>                        
-                        <div class="row margin-bottom-0">
+                        <div class="row">
                             <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
-                                <button class="btn waves-effect waves-light width-100p xstok darken-1" type="submit" name="action">Update Date</button>
+                                <button class="btn waves-effect waves-light width-100p xstok darken-1" type="submit" name="action">Update Data</button>
                             </div>
                         </div>            
                     </form>
                 </div>
-                <div id="test3" class="tab-body col s12 padding-top-56 hide">
-                    Hello 3
+                <div id="test3" class="tab-body col s12 grey lighten-5 padding-top-56 padding-bottom-20 hide">
+                    <form id="login2" class="padding-top-15" data-parsley-validate novalidate>
+                        <div class="row margin-bottom-0">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
+                                <span class="x-required" style="">*</span>
+                                <input class="form-control parsley-validated" type="text" placeholder="" value="" id="pan_no" name="pan_no" required data-parsley-required-message="Please enter your Pan No." pattern="([A-Za-z]{5}[0-9]{4}[A-Za-z]{1})$">                                
+                                <label for="pan_no">PAN No.</label>
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-0">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">                               
+                                <input class="form-control parsley-validated" type="text" placeholder="" value="" name="cst_no"  id="cst_no" pattern="^[a-zA-Z0-9]*$">
+                                <label for="cst_no">CST/VAT No.</label>
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-0">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
+                                <input class="form-control parsley-validated" type="text" placeholder="" value="" name="sst_no"  id="sst_no" pattern="^[a-zA-Z0-9]*$">
+                                <label for="sst_no">SST No.</label>
+                            </div>
+                        </div>            
+                        <div class="row margin-bottom-0">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
+                                <input class="form-control parsley-validated" type="text" value="" placeholder="" name="excise_no" id="excise_no" pattern="^[a-zA-Z0-9]*$">
+                                <label for="excise_no">Excise/Registration No</label>
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-0">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
+                                <input class="form-control parsley-validated" type="text" value=""  placeholder=""  id="business_turnover" placeholder="" name="business_turnover" parsley-type="number">
+                                <label for="business_turnover">Last Year Turnover</label>
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-0">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-bottom-20 margin-top-0">
+                                <div class="margin-top-10">Dealing in which category</div>
+                                <div class="dealing"></div>                    
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
+                                <button class="btn waves-effect waves-light width-100p xstok darken-1" type="submit" name="action">Update Data</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div id="test4" class="tab-body col s12 padding-top-56 hide">
-                    Hello 3
+                <div id="test4" class="tab-body col s12 grey lighten-5 padding-top-56 padding-bottom-20 hide">
+                    <form id="login3" class="padding-top-15" data-parsley-validate novalidate>
+                        <div class="row margin-bottom-0">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-bottom-20 margin-top-0">
+                                <div class="margin-top-10">What categories are you interested in?</div>
+                                <div class="interested_category"></div>                    
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-0">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-bottom-20 margin-top-0">
+                                <div class="margin-top-10">Are you buying branded goods?</div>
+                                <input name="buying_branded" type="radio" id="buying_branded_y" value="Y" />
+                                <label for="buying_branded_y">Yes</label>
+                                <input name="buying_branded" type="radio" id="buying_branded_n" value="N"/>
+                                <label for="buying_branded_n">No</label>
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-0">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-bottom-20 margin-top-0">
+                                <div class="margin-top-10">If yes, what brands do you normally buy?</div>
+                                <input id="buying_brand_name" class="form-control" type="text" value="" name="buying_brand_name" placeholder="">
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-0">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-bottom-20 margin-top-0">
+                                <div class="margin-top-10">Which brands would you be interested in buying?</div>
+                                <input id="interested_buying_brand" class="form-control" type="text" value="" name="interested_buying_brand">
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-0">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-bottom-20 margin-top-0">
+                                <div class="margin-top-10">Would you be interested in selling on the platform?</div>
+                                <input name="interested_selling_on_platform" type="radio" id="interested_selling_on_platform_y" value="Y" />
+                                <label for="interested_selling_on_platform_y">Yes</label>
+                                <input name="interested_selling_on_platform" type="radio" id="interested_selling_on_platform_n" value="N" />
+                                <label for="interested_selling_on_platform_n">No</label>
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-0">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-bottom-20 margin-top-0">
+                                <div class="margin-top-10">How did you hear about us?</div>
+                                <input class="form-control" type="text" value="" name="hear_about_us">
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-0">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-bottom-20 margin-top-0">
+                                <div class="margin-top-10">Any other comments or feedback?</div>
+                                <textarea id="comments_feedback" class="materialize-textarea" name="comments_feedback"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
+                                <button class="btn waves-effect waves-light width-100p xstok darken-1" type="submit" name="action">Update Data</button>
+                            </div>
+                        </div>
+                    </form>                   
                 </div>
-                <div id="test5" class="tab-body col s12 padding-top-56 hide">
-                    Hello 3
+                <div id="test5" class="tab-body col s12 grey lighten-5 padding-top-56 padding-bottom-20 hide">
+                    <form id="login4" class="padding-top-15" data-parsley-validate novalidate>
+                        <div class="row margin-bottom-0">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">                                
+                                <input id="beneficiary_name" placeholder="" class="form-control" type="text" value="bank name" name="beneficiary_name">
+                                <label for="beneficiary_name">Beneficiary Name</label>
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-0">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">                               
+                                <input id="bank_name" class="form-control parsley-validated" placeholder="" type="text" value="" name="bank_name" pattern="^[a-zA-Z0-9/ ]*$">
+                                <label for="bank_name">Bank Name</label>
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-0">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
+                                <input id="account_no" class="form-control parsley-validated" placeholder="" type="text" value="" name="account_no" pattern="^[a-zA-Z0-9]*$">
+                                <label for="account_no">Account No.</label>
+                            </div>
+                        </div>            
+                        <div class="row margin-bottom-0">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
+                                <input class="form-control parsley-validated" type="text" value=""  placeholder="" id="ifsc_code" name="ifsc_code" pattern="^[a-zA-Z0-9]*$">
+                                <label for="ifsc_code">IFSC Code</label>
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-0">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
+                                <input class="form-control" type="text" value=""  placeholder=""  id="branch_name" name="branch_name">
+                                <label for="branch_name">Branch Name</label>
+                            </div>
+                        </div>                        
+                        <div class="row">
+                            <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
+                                <button class="btn waves-effect waves-light width-100p xstok darken-1" type="submit" name="action">Update Data</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div id="test6" class="tab-body col s12 padding-top-56 hide">
-                    Hello 3
+                    <div class="font-12 padding-tb-5 center-align">Note: Please upload PAN, Company Certificate Documents</div>
+                    <table class="striped">
+                        <thead>
+                            <tr>
+                                <th data-field="id">Document Name</th>
+                                <th data-field="name">View Document</th>
+                                <th data-field="action">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="doc_list">
+                            <tr>
+                                <td colspan="3">
+                                    <div class="progress xstok">
+                                        <div class="indeterminate xstok"></div>
+                                    </div>
+                                </td>
+                            </tr>                            
+                        </tbody>
+                    </table>
+                    <div class="row margin-bottom-0">
+                        <div class="col s12 m5">
+                            <div class="card-panel grey lighten-4">
+                                <div class="text-boxs">
+                                    <span class="text-box">                                        
+                                        <input id="doc_name" type="text" placeholder="Document Name" class="form-control  background-black input-sm" name="doc_name"/> 
+                                    </span>                                    
+                                    <div class="right-align">
+                                        <a id="upload" class=" btn btn-xstok font-20 font-family-helvetica font-weight-normal " onClick="uploadFromGallery();"><i class="fa fa-cloud-upload x-white"></i> Upload</a>
+                                    </div>
+                                    <div class="x-red font-11 padding-5">(Please upload PAN, company registration certificate & copy of canceled cheque.)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-boxs font-12 padding-5">Please click the finish button to submit your details for review.</div>
+                    <div>
+                        <a class="btn xstok darken-1 width-100p font-20 last_submit" />Finish</a>
+                    </div>
                 </div>
-            </div>
-            <!--<span class="edit-profile"><i class="fa fa-pencil"></i></span>-->
+            </div>          
         </div>
-        <!--<div class="row xstok darken-1 valign-wrapper">
-            <div class="col s6 center-align valign xstok-text-white">Discount</div>
-            <div class="col s6 center-align valign xstok-text-white">Time</div>
-        </div>-->
-
-
-        <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
         <script type="text/javascript" src="js/intlTelInput.js"></script>
         <script type="text/javascript" src="js/utils.js"></script>
         <script type="text/javascript" src="js/parsley.min.js"></script>
         <script type="text/javascript">
-                                    var pictureSource;   // picture source
-                                    var destinationType;
-                                    var retries = 0;
-                                    function onDeviceReady() {
-                                        //FastClick.attach(document.body);
-                                        pictureSource = navigator.camera.PictureSourceType;
-                                        destinationType = navigator.camera.DestinationType;
-                                        if (device.platform == "Android") {
-                                            // document.addEventListener("backbutton", onBackKeyDown, false);
-                                        }
-                                    }
-                                    function clearCache() {
-                                        navigator.camera.cleanup();
-                                    }
-                                    setTimeout(function () {
-                                        onDeviceReady();
-                                    }, 2000);
-                                    function onCapturePhoto(fileURI) {
-                                        $('#upload').addClass('disable');
-                                        $('#upload').html('<i class="fa fa-refresh fa-spin x-white"></i> Uploading...');
-                                        var win = function (r) {
-                                            clearCache();
-                                            retries = 0;
-                                            $('#upload').removeClass('disable');
-                                            $('#upload').html('<i class="fa fa-cloud-upload x-white"></i> Upload Visiting Card</a>');
-                                            $('.upload-succ').html('<i class="fa fa-check x-green fa-2x"></i>');
-                                            x_alert('Visiting Card Uploaded');
+                                            var pictureSource;
+                                            var destinationType;
+                                            var retries = 0;
+                                            function onDeviceReady() {
+                                                //FastClick.attach(document.body);
+                                                pictureSource = navigator.camera.PictureSourceType;
+                                                destinationType = navigator.camera.DestinationType;
+                                                if (device.platform == "Android") {
+                                                    // document.addEventListener("backbutton", onBackKeyDown, false);
+                                                }
+                                            }
+                                            function clearCache() {
+                                                navigator.camera.cleanup();
+                                            }
+                                            setTimeout(function () {
+                                                onDeviceReady();
+                                            }, 2000);
+                                            function onCapturePhoto(fileURI) {
+                                                $('#upload').addClass('disable');
+                                                $('#upload').html('<i class="fa fa-refresh fa-spin x-white"></i> Uploading...');
+                                                var win = function (r) {
+                                                    clearCache();
+                                                    retries = 0;
+                                                    $('#upload').removeClass('disable');
+                                                    $('#upload').html('<i class="fa fa-cloud-upload x-white"></i> Upload Visiting Card</a>');
+                                                    $('.upload-succ').html('<i class="fa fa-check x-green fa-2x"></i>');
+                                                    x_alert('Visiting Card Uploaded');
 
-                                        }
+                                                }
 
-                                        var fail = function (error) {
-                                            if (retries == 0) {
-                                                retries++;
-                                                setTimeout(function () {
-                                                    onCapturePhoto(fileURI);
-                                                }, 1000);
-                                            } else {
-                                                retries = 0;
-                                                clearCache();
-                                                x_alert('Upload failed Please try again');
+                                                var fail = function (error) {
+                                                    if (retries == 0) {
+                                                        retries++;
+                                                        setTimeout(function () {
+                                                            onCapturePhoto(fileURI);
+                                                        }, 1000);
+                                                    } else {
+                                                        retries = 0;
+                                                        clearCache();
+                                                        x_alert('Upload failed Please try again');
+                                                        $('.upload-succ').html('<i class="fa fa-times x-red fa-2x"></i>');
+                                                    }
+                                                }
+
+                                                var options = new FileUploadOptions();
+                                                options.fileKey = "file";
+                                                //options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
+                                                var filename = fileURI.substr(fileURI.lastIndexOf('/') + 1);
+                                                var ext = filename.split('.')[1];
+                                                if (typeof ext == 'undefined') {
+                                                    ext = 'jpg';
+                                                }
+                                                options.fileName = filename + '.' + ext;
+                                                var filename_full = filename + '.' + ext;
+                                                options.mimeType = "image/jpeg";
+                                                options.params = {}; // if we need to send parameters to the server request
+                                                var ft = new FileTransfer();
+                                                ft.upload(fileURI, encodeURI(localStorage.host + "visiting_card_upload_mobile.php?user_id=" + localStorage.user_id + "&visiting_card=" + filename_full + '&action=save'), win, fail, options);
+                                            }
+                                            function capturePhoto() {
+                                                navigator.camera.getPicture(onCapturePhoto, onFail, {
+                                                    quality: 100,
+                                                    destinationType: destinationType.FILE_URI
+                                                });
+                                            }
+                                            function onFail(message) {
+                                                //alert('Failed because: ' + message);
                                                 $('.upload-succ').html('<i class="fa fa-times x-red fa-2x"></i>');
                                             }
-                                        }
+                                            function uploadFromGallery() {
+                                                if ($('#doc_name').val() != '') {
+                                                    // Retrieve image file location from specified source
 
-                                        var options = new FileUploadOptions();
-                                        options.fileKey = "file";
-                                        //options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
-                                        var filename = fileURI.substr(fileURI.lastIndexOf('/') + 1);
-                                        var ext = filename.split('.')[1];
-                                        if (typeof ext == 'undefined') {
-                                            ext = 'jpg';
-                                        }
-                                        options.fileName = filename + '.' + ext;
-                                        var filename_full = filename + '.' + ext;
-                                        options.mimeType = "image/jpeg";
-                                        options.params = {}; // if we need to send parameters to the server request
-                                        var ft = new FileTransfer();
-                                        ft.upload(fileURI, encodeURI(localStorage.host + "visiting_card_upload_mobile.php?user_id=" + localStorage.user_id + "&visiting_card=" + filename_full + '&action=save'), win, fail, options);
-                                    }
-                                    function capturePhoto() {
-                                        navigator.camera.getPicture(onCapturePhoto, onFail, {
-                                            quality: 100,
-                                            destinationType: destinationType.FILE_URI
-                                        });
-                                    }
-
-                                    function onFail(message) {
-                                        //alert('Failed because: ' + message);
-                                        $('.upload-succ').html('<i class="fa fa-times x-red fa-2x"></i>');
-                                    }
-                                    $(window).scroll(function () {
-                                        //tab_stick();
-                                    });
-                                    $(document).ready(function () {
-                                        console.log(window.location.href.split('#')[1]);
-                                        var country_id = 0;
-                                        var ship_country_id = 0;
-                                        var bill_country_id = 0;
-                                        add_menu(2, 1, 0);
-                                        $('select').material_select();
-                                        $('ul.tabs').tabs();
-                                        $('.datepicker').pickadate({
-                                            selectMonths: true, // Creates a dropdown to control month
-                                            selectYears: 15 // Creates a dropdown of 15 years to control year
-                                        });
-                                        Materialize.showStaggeredList('.collection');
-                                        $('.button-collapse').sideNav({
-                                            menuWidth: 300, // Default is 240
-                                            edge: 'left', // Choose the horizontal origin
-                                            closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
-                                        }
-                                        );
-                                        $("#mobile_no").intlTelInput({
-                                            autoFormat: true,
-                                            //autoHideDialCode: true,
-                                            //nationalMode: true,
-                                            // responsiveDropdown: true,
-                                            utilsScript: "js/utils.js"
-                                        });
-                                        $('.collection-item').click(function () {
-                                            window.location.href = $(this).attr('value') + '.html';
-                                        });
-                                        setTimeout(function () {
-                                            $('a[href="#' + window.location.href.split('#')[1] + '"]').parent().click();
-                                        }, 0);
-                                        $.ajax({url: localStorage.host + 'buyer_business_type_select.php', data: {}, type: 'get', success: function (data) {
-                                                var body_se = '<option value="">Select Business Type</option>';
-                                                console.log(data['result']);
-                                                for (var i = 0; i < data['result'].length; i++) {
-                                                    body_se += '<option value="' + data['result'][i]['id'] + '">' + data['result'][i]['business_type_name'] + '</option>';
+                                                    navigator.camera.getPicture(uploadPhoto,
+                                                            function (message) {
+                                                                x_alert('Load failed');
+                                                            },
+                                                            {quality: 50,
+                                                                destinationType: navigator.camera.DestinationType.FILE_URI,
+                                                                sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY}
+                                                    );
+                                                } else {
+                                                    x_alert('Please fill the document name field');
                                                 }
-                                                $('#business_type').html(body_se);
+
+                                            }
+                                            function uploadPhoto(imageURI) {
+                                                $('#upload').addClass('disable');
+                                                $('#upload').html('<i class="fa fa-refresh fa-spin x-white"></i> Uploading...');
+                                                var options = new FileUploadOptions();
+                                                options.fileKey = "file";
+                                                var filename = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+                                                var ext = filename.split('.')[1];
+                                                if (typeof ext == 'undefined') {
+                                                    ext = 'jpg';
+                                                }
+                                                options.fileName = filename + '.' + ext;
+                                                //  options.fileName='test.jpg';
+                                                // options.mimeType = "image/jpeg";
+
+                                                var params = new Object();
+
+                                                options.params = params;
+
+                                                var ft = new FileTransfer();
+                                                console.log(localStorage.host + "upload.php");
+                                                ft.upload(imageURI, encodeURI(localStorage.host + "buyer_doc_upload_mobile.php?user_id=" + localStorage.user_id + "&doc_name=" + $('input[name=\'doc_name\']').val()) + '&action=save', win, fail, options);
+                                            }
+                                            function win(r) {
+                                                console.log("Code = " + r.responseCode);
+                                                console.log("Response = " + r.response);
+                                                console.log("Sent = " + r.bytesSent);
+                                                $('#upload').removeClass('disable');
+                                                $('#upload').html('<i class="fa fa-cloud-upload x-white"></i> Upload</a>');
+                                                get_doc_list();
+                                            }
+                                            function get_doc_list() {
+                                                $.ajax({url: localStorage.host + '../classes/buyer_dashboard_inc.class.php', data: {action: 'buyer_my_detail_all', user_id: localStorage.user_id}, type: 'get', success: function (data) {
+                                                        var logininfo = JSON.parse(data);
+                                                        var body ='';
+                                                        if (logininfo['documents_detail'].length != 0) {
+                                                            for (var i = 0; i < logininfo['documents_detail'].length; i++) {
+                                                                body += '<tr id="' + logininfo['documents_detail'][i]['id'] + '"><td>' + logininfo['documents_detail'][i]['doc_name'] + '</td><td  class=""><a href="#" onclick="download_file_open(\'' + logininfo['documents_detail'][i]["doc_img"] + '\')">View</a></td><td class="center-align"><a href="#" onclick="delete_doc(\'' + logininfo['documents_detail'][i]['id'] + '\')"><i class="fa fa-times x-red"></i></a></td></tr>';
+                                                            }
+                                                        } else {
+                                                            body += '<div class="row padding-tb-5"><div class="col s12 ">No document uploaded</div></div>';
+                                                        }
+                                                        $('.doc_list').html(body);
+                                                }
+                                            });
+                                            }
+
+                                            function fail(error) {
+                                                x_alert("An error has occurred: Code = " + error.code);
+                                                console.log("upload error source " + error.source);
+                                                console.log("upload error target " + error.target);
+                                            }
+                                            $(window).scroll(function () {
+                                                //tab_stick();
+                                            });
+                                            $(document).ready(function () {
+                                                var state_id = 0;
+                                                var ship_state_id = 0;
+                                                var bill_state_id = 0;
+                                                var country_id = 0;
+                                                var ship_country_id = 0;
+                                                var bill_country_id = 0;
+                                                add_menu(2, 1, 0);
                                                 $('select').material_select();
-                                            }
-                                        });
-                                        $.ajax({url: localStorage.host + '../classes/buyer_dashboard_inc.class.php', data: {action: 'buyer_my_detail_all', user_id: localStorage.user_id}, type: 'get', success: function (data) {
-                                                var logininfo = JSON.parse(data);
-                                                //$('#test1').html(logininfo['data']);
-                                                //console.log(logininfo);
-                                                console.log(logininfo['company_detail']);
-                                                $('input[name="company_name"]').val(localStorage.company_name);
-                                                $('input[name="name"]').val(logininfo['buyer_detail']['name']);
-                                                $('input[name="mobile_no"]').val(logininfo['buyer_detail']['mobile_no']);
-                                                $('input[name="email_id"]').val(localStorage.email_id);
-                                                $('input[name="title"]').val(logininfo['buyer_detail']['title']);
-                                                $('input[name="department"]').val(logininfo['buyer_detail']['department']);
-                                                $('input[name="last_name"]').attr('value', logininfo['buyer_detail']['last_name']);
-                                                $('input[name="first_name"]').val(logininfo['buyer_detail']['first_name']);
-                                                if (logininfo['buyer_detail']['visiting_card'] != '') {
-                                                    $('.visting-card').html('<img src="' + logininfo['buyer_detail']['visiting_card'] + '"class="width-100p" >');
+                                                $('ul.tabs').tabs();
+                                                $('.datepicker').pickadate({
+                                                    selectMonths: true, // Creates a dropdown to control month
+                                                    selectYears: 15 // Creates a dropdown of 15 years to control year
+                                                });
+                                                Materialize.showStaggeredList('.collection');
+                                                $('.button-collapse').sideNav({
+                                                    menuWidth: 300, // Default is 240
+                                                    edge: 'left', // Choose the horizontal origin
+                                                    closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
                                                 }
-                                                $('#business_type option[value="' + logininfo['company_detail']['business_type'] + '"]').prop('selected', true);
-                                                $('#nature_business_type option[value="' + logininfo['company_detail']['nature_business_type'] + '"]').prop('selected', true);
-                                                $('input[name="city"]').val(logininfo['company_detail']['city']);
-                                                if (logininfo['company_detail']['pin_code'] != 0)
-                                                    $('input[name="pin_code"]').val(logininfo['company_detail']['pin_code']);
-                                                country_id = logininfo['company_detail']['country_id'];
-                                                ship_country_id = logininfo['company_detail']['ship_country_id'];
-                                                bill_country_id = logininfo['company_detail']['bill_country_id'];
-                                                // $('#company_address').html(logininfo['company_detail']['company_address']);
-                                                // $('input[name="pan_no"]').val(data['msg'][0]['pan_no']);
-                                                //  $('input[name="cst_no"]').val(data['msg'][0]['cst_no']);
-
-                                                $.post(localStorage.host + '../classes/common.class.php?action=get_statte_list&c_=' + country_id + '', {id: country_id},
-                                                function (info) {
-                                                    var items = [];
-                                                    if (info) {
-                                                        items.push("<option value=''>Select State Name</option>");
-                                                        $.each($.parseJSON(info), function (idx, obj) {
-                                                            var select_s = '';
-                                                            if (logininfo['company_detail']['state_id'] == obj.id) {
-                                                                select_s = 'selected';
+                                                );
+                                                $("#mobile_no").intlTelInput({
+                                                    autoFormat: true,
+                                                    //autoHideDialCode: true,
+                                                    //nationalMode: true,
+                                                    // responsiveDropdown: true,
+                                                    utilsScript: "js/utils.js"
+                                                });
+                                                $('.collection-item').click(function () {
+                                                    window.location.href = $(this).attr('value') + '.html';
+                                                });
+                                                setTimeout(function () {
+                                                    $('a[href="#' + window.location.href.split('#')[1] + '"]').parent().click();
+                                                }, 0);
+                                                $.ajax({url: localStorage.host + 'buyer_business_type_select.php', data: {}, type: 'get', success: function (data) {
+                                                        var body_se = '<option value="">Select Business Type</option>';
+                                                        //console.log(data['result']);
+                                                        for (var i = 0; i < data['result'].length; i++) {
+                                                            body_se += '<option value="' + data['result'][i]['id'] + '">' + data['result'][i]['business_type_name'] + '</option>';
+                                                        }
+                                                        $('#business_type').html(body_se);
+                                                        $('select').material_select();
+                                                    }
+                                                });
+                                                $.ajax({url: localStorage.host + 'search_category.php', data: {}, type: 'get', success: function (data) {
+                                                        var logininfo = JSON.parse(data);
+                                                        var body = "";
+                                                        for (var i = 0; i < logininfo['category'].length; i++) {
+                                                            //console.log(logininfo['category'][i]);
+                                                            var lowername = logininfo['category'][i][1].toLowerCase().replace(' ', '_');
+                                                            body += '<input type="checkbox" id="' + lowername + '" name="dealing_product[]" value="' + logininfo['category'][i][0] + '" class="checkbox' + logininfo['category'][i][0] + ' filled-in" /><label for="' + lowername + '">' + logininfo['category'][i][1] + '</label><br>';
+                                                        }
+                                                        //console.log(body);
+                                                        $('.dealing').html(body);
+                                                    },
+                                                    error: function (jqXHR, textStatus, errorThrown) {
+                                                        x_alert(localStorage.no_connection);
+                                                        window.location.href = "no_connection.html";
+                                                    }
+                                                });
+                                                $.ajax({url: localStorage.host + 'search_category.php', data: {}, type: 'get', success: function (data) {
+                                                        var logininfo = JSON.parse(data);
+                                                        var body = "";
+                                                        for (var i = 0; i < logininfo['category'].length; i++) {
+                                                            //console.log(logininfo['category'][i]);
+                                                            var lowername = logininfo['category'][i][1].toLowerCase().replace(' ', '_');
+                                                            body += '<input type="checkbox" id="interested_' + lowername + '" name="interested_category[]" value="' + logininfo['category'][i][0] + '" class="interested_checkbox' + logininfo['category'][i][0] + ' filled-in" /><label for="interested_' + lowername + '">' + logininfo['category'][i][1] + '</label><br>';
+                                                        }
+                                                        //console.log(body);
+                                                        $('.interested_category').html(body);
+                                                    },
+                                                    error: function (jqXHR, textStatus, errorThrown) {
+                                                        x_alert(localStorage.no_connection);
+                                                        window.location.href = "no_connection.html";
+                                                    }
+                                                });
+                                                $.ajax({url: localStorage.host + '../classes/buyer_dashboard_inc.class.php', data: {action: 'buyer_my_detail_all', user_id: localStorage.user_id}, type: 'get', success: function (data) {
+                                                        var logininfo = JSON.parse(data);
+                                                        //$('#test1').html(logininfo['data']);
+                                                        console.log(logininfo);
+                                                        //console.log(logininfo['bank_detail']);
+                                                        $('input[name="company_name"]').val(localStorage.company_name);
+                                                        $('input[name="name"]').val(logininfo['buyer_detail']['name']);
+                                                        $('input[name="mobile_no"]').val(logininfo['buyer_detail']['mobile_no']);
+                                                        $('input[name="email_id"]').val(localStorage.email_id);
+                                                        $('input[name="title"]').val(logininfo['buyer_detail']['title']);
+                                                        $('input[name="phone_no"]').val(logininfo['buyer_detail']['phone_no']);
+                                                        $('input[name="department"]').val(logininfo['buyer_detail']['department']);
+                                                        $('input[name="last_name"]').attr('value', logininfo['buyer_detail']['last_name']);
+                                                        $('input[name="first_name"]').val(logininfo['buyer_detail']['first_name']);
+                                                        if (logininfo['buyer_detail']['visiting_card'] != '') {
+                                                            $('.visting-card').html('<img src="' + logininfo['buyer_detail']['visiting_card'] + '"class="width-100p" >');
+                                                        }
+                                                        $('#business_type option[value="' + logininfo['company_detail']['business_type'] + '"]').prop('selected', true);
+                                                        $('#nature_business_type option[value="' + logininfo['company_detail']['nature_business_type'] + '"]').prop('selected', true);
+                                                        $('input[name="city"]').val(logininfo['company_detail']['city']);
+                                                        $('input[name="dt_of_incorporation"]').val(logininfo['company_detail']['dt_of_incorporation']);
+                                                        $('input[name="company_registration_no"]').val(logininfo['company_detail']['company_registration_no']);
+                                                        $('input[name="company_website"]').val(logininfo['company_detail']['company_website']);
+                                                        $('input[name="ship_pin_code"]').val(logininfo['company_detail']['ship_pin_code']);
+                                                        $('input[name="pin_code"]').val(logininfo['company_detail']['pin_code']);
+                                                        $('input[name="bill_pin_code"]').val(logininfo['company_detail']['bill_pin_code']);
+                                                        $('#company_address').val(logininfo['company_detail']['company_address']);
+                                                        $('#billing_address').val(logininfo['company_detail']['billing_address']);
+                                                        $('#shipping_address').val(logininfo['company_detail']['shipping_address']);
+                                                        $('input[name="cst_no"]').val(logininfo['business_detail']['cst_no']);
+                                                        $('input[name="pan_no"]').val(logininfo['business_detail']['pan_no']);
+                                                        $('input[name="sst_no"]').val(logininfo['business_detail']['sst_no']);
+                                                        $('input[name="excise_no"]').val(logininfo['business_detail']['excise_no']);
+                                                        $('input[name="business_turnover"]').val(logininfo['business_detail']['business_turnover']);
+                                                        $('input[name="beneficiary_name"]').val(logininfo['bank_detail']['beneficiary_name']);
+                                                        $('input[name="branch_name"]').val(logininfo['bank_detail']['branch_name']);
+                                                        $('input[name="ifsc_code"]').val(logininfo['bank_detail']['ifsc_code']);
+                                                        $('input[name="account_no"]').val(logininfo['bank_detail']['account_no']);
+                                                        $('input[name="bank_name"]').val(logininfo['bank_detail']['bank_name']);
+                                                        localStorage.bank_detail_id = logininfo['bank_detail']['id'];
+                                                        localStorage.business_detail_id = logininfo['business_detail']['id'];
+                                                        localStorage.general_detail_id = logininfo['general_detail']['id'];
+                                                        localStorage.company_detail_id = logininfo['company_detail']['id'];
+                                                        $("#buying_branded_" + logininfo['general_detail']['buying_branded'].toLowerCase()).attr('checked', 'checked');
+                                                        $("#interested_selling_on_platform_" + logininfo['general_detail']['interested_selling_on_platform'].toLowerCase()).attr('checked', 'checked');
+                                                        $('input[name="buying_brand_name"]').val(logininfo['general_detail']['buying_brand_name']);
+                                                        $('input[name="interested_buying_brand"]').val(logininfo['general_detail']['interested_buying_brand']);
+                                                        $('input[name="hear_about_us"]').val(logininfo['general_detail']['hear_about_us']);
+                                                        $('#comments_feedback').html(logininfo['general_detail']['comments_feedback']);
+                                                        $('#company_address').html(logininfo['company_detail']['company_address']);
+                                                        var body = '';
+                                                        if (logininfo['documents_detail'].length != 0) {
+                                                            for (var i = 0; i < logininfo['documents_detail'].length; i++) {
+                                                                body += '<tr id="' + logininfo['documents_detail'][i]['id'] + '"><td>' + logininfo['documents_detail'][i]['doc_name'] + '</td><td  class=""><a href="#" onclick="download_file_open(\'' + logininfo['documents_detail'][i]["doc_img"] + '\')">View</a></td><td class="center-align"><a href="#" onclick="delete_doc(\'' + logininfo['documents_detail'][i]['id'] + '\')"><i class="fa fa-times x-red"></i></a></td></tr>';
                                                             }
-                                                            items.push("<option " + select_s + " value=" + obj.id + ">" + obj.state_name + "</option>");
+                                                        } else {
+                                                            body += '<div class="row padding-tb-5"><div class="col s12 ">No document uploaded</div></div>';
+                                                        }
+                                                        $('.doc_list').html(body);
+                                                        if (logininfo['company_detail']['pin_code'] != 0)
+                                                            $('input[name="pin_code"]').val(logininfo['company_detail']['pin_code']);
+                                                        country_id = logininfo['company_detail']['country_id'];
+                                                        state_id = logininfo['company_detail']['state_id'];
+                                                        ship_country_id = logininfo['company_detail']['ship_country_id'];
+                                                        ship_state_id = logininfo['company_detail']['state_id'];
+                                                        bill_country_id = logininfo['company_detail']['bill_country_id'];
+                                                        bill_state_id = logininfo['company_detail']['bill_state_id'];
+                                                        var type = logininfo['business_detail']['dealing_product'].split(',');
+                                                        localStorage.dealing_product = logininfo['business_detail']['dealing_product'];
+                                                        setTimeout(function () {
+                                                            $.each(type, function (i, item) {
+                                                                //console.log('.checkbox' + item.trim());
+                                                                //$('.checkbox' + item).prop(':checked', true);
+                                                                $('.checkbox' + item.trim()).attr('checked', 'checked');
+                                                            });
+                                                        }, 0);
+                                                        $(".dealing input[type='checkbox']").change(function () {
+                                                            var dealing_product = [];
+                                                            $('.dealing input[type="checkbox"]').each(function () {
+                                                                if ($(this).is(":checked")) {
+                                                                    dealing_product.push($(this).attr('value'));
+                                                                }
+                                                            });
+                                                            localStorage.dealing_product = dealing_product;
+                                                        });
+
+                                                        var interested_category_type = logininfo['general_detail']['interested_category'].split(',');
+                                                        localStorage.interested_category = logininfo['general_detail']['interested_category'];
+                                                        setTimeout(function () {
+                                                            $.each(interested_category_type, function (i, item) {
+                                                                //console.log('.interested_checkbox' + item.trim());
+                                                                //$('.checkbox' + item).prop(':checked', true);
+                                                                $('.interested_checkbox' + item.trim()).attr('checked', 'checked');
+                                                            });
+                                                        }, 1000);
+                                                        setTimeout(function () {
+                                                            $(".interested_category input[type='checkbox']").change(function () {
+                                                                var interested_category = [];
+                                                                $('.interested_category input[type="checkbox"]').each(function () {
+                                                                    if ($(this).is(":checked")) {
+                                                                        interested_category.push($(this).attr('value'));
+                                                                    }
+                                                                });
+                                                                localStorage.interested_category = interested_category;
+                                                            });
+                                                        }, 1000);
+
+                                                        $.post(localStorage.host + '../classes/common.class.php?action=get_statte_list&c_=' + country_id + '', {id: country_id},
+                                                        function (info) {
+                                                            var items = [];
+                                                            var select_o = '';
+                                                            if (info) {
+                                                                items.push("<option value=''>Select State Name</option>");
+                                                                $.each($.parseJSON(info), function (idx, obj) {
+                                                                    var select_s = '';
+                                                                    if (logininfo['company_detail']['state_id'] == obj.id) {
+                                                                        select_s = 'selected';
+                                                                    }
+                                                                    items.push("<option " + select_s + " value=" + obj.id + ">" + obj.state_name + "</option>");
+                                                                });
+                                                            }
+                                                            //items.push("<option " + select_o + " value='other'>Other</option>");
+                                                            if(items)
+                                                                $("select#state_id").html(items.join(""));
+                                                        });
+                                                        $.post(localStorage.host + '../classes/common.class.php?action=get_city_list&c_=' + state_id + '', {id: state_id},
+                                                        function (info) {
+                                                            var items = [];
+                                                            var select_o = '';
+                                                            if (info) {
+                                                                items.push("<option value=''>Select City Name</option>");
+                                                                $.each($.parseJSON(info), function (idx, obj) {
+                                                                    var select_c = '';
+                                                                    if (logininfo['company_detail']['city_id'] == obj.id) {
+                                                                        select_c = 'selected';
+                                                                    }
+                                                                    items.push("<option " + select_c + " value=" + obj.id + ">" + obj.city_name + "</option>");
+                                                                });
+                                                            }
+                                                            //items.push("<option " + select_o + " value='other'>Other</option>");
+                                                            if(items)
+                                                                $("select#city_id").html(items.join(""));
+                                                        });
+                                                        $.post(localStorage.host + '../classes/common.class.php?action=get_statte_list&c_=' + ship_country_id + '', {id: ship_country_id},
+                                                        function (info) {
+                                                            var items = [];
+                                                            var select_o = '';
+                                                            if (info) {
+                                                                items.push("<option value=''>Select State Name</option>");
+                                                                $.each($.parseJSON(info), function (idx, obj) {
+                                                                    var select_s = '';
+                                                                    if (logininfo['company_detail']['ship_state_id'] == obj.id) {
+                                                                        select_s = 'selected';
+                                                                    }
+                                                                    items.push("<option " + select_s + " value=" + obj.id + ">" + obj.state_name + "</option>");
+                                                                });
+                                                            }
+                                                            //items.push("<option " + select_o + " value='other'>Other</option>");
+                                                            $("select#ship_state_id").html(items.join(""));
+                                                        });
+                                                        $.post(localStorage.host + '../classes/common.class.php?action=get_city_list&c_=' + ship_state_id + '', {id: ship_state_id},
+                                                        function (info) {
+                                                            var items = [];
+                                                            var select_o = '';
+                                                            if (info) {
+                                                                items.push("<option value=''>Select City Name</option>");
+                                                                $.each($.parseJSON(info), function (idx, obj) {
+                                                                    var select_c = '';
+                                                                    if (logininfo['company_detail']['ship_city_id'] == obj.id) {
+                                                                        select_c = 'selected';
+                                                                    }
+                                                                    items.push("<option " + select_c + " value=" + obj.id + ">" + obj.city_name + "</option>");
+                                                                });                                                                
+                                                            }
+                                                            //items.push("<option " + select_o + " value='other'>Other</option>");
+                                                            if(items)
+                                                                $("select#ship_city_id").html(items.join(""));
+                                                        });
+                                                        $.post(localStorage.host + '../classes/common.class.php?action=get_statte_list&c_=' + bill_country_id + '', {id: bill_country_id},
+                                                        function (info) {
+                                                            var items = [];
+                                                            var select_o = '';
+                                                            if (info) {
+                                                                items.push("<option value=''>Select State Name</option>");
+                                                                $.each($.parseJSON(info), function (idx, obj) {
+                                                                    var select_s = '';
+                                                                    if (logininfo['company_detail']['bill_state_id'] == obj.id) {
+                                                                        select_s = 'selected';
+                                                                    }
+                                                                    items.push("<option " + select_s + " value=" + obj.id + ">" + obj.state_name + "</option>");
+                                                                });
+                                                            }
+                                                            //items.push("<option " + select_o + " value='other'>Other</option>");
+                                                            $("select#bill_state_id").html(items.join(""));
+                                                        });
+                                                        $.post(localStorage.host + '../classes/common.class.php?action=get_city_list&c_=' + bill_state_id + '', {id: bill_state_id},
+                                                        function (info) {
+                                                            var items = [];
+                                                            var select_o = '';
+                                                            if (info) {
+                                                                items.push("<option value=''>Select City Name</option>");
+                                                                $.each($.parseJSON(info), function (idx, obj) {
+                                                                    var select_c = '';
+                                                                    if (logininfo['company_detail']['bill_city_id'] == obj.id) {
+                                                                        select_c = 'selected';
+                                                                    }
+                                                                    items.push("<option " + select_c + " value=" + obj.id + ">" + obj.city_name + "</option>");
+                                                                });
+                                                            }
+                                                            //items.push("<option " + select_o + " value='other'>Other</option>");
+                                                            if(items)
+                                                                $("select#bill_city_id").html(items.join(""));
+                                                        });
+                                                        $.ajax({url: localStorage.host + '../classes/common.class.php?action=get_country_list', data: {}, type: 'get', success: function (data) {
+                                                                var detail = JSON.parse(data);
+                                                                var body = '<option value="">Select Country Name</option>';
+                                                                for (var i = 0; i < detail.length; i++) {
+                                                                    var select = '';
+                                                                    if (typeof detail[i]['id'] !== 'undefined') {
+                                                                        if (country_id == detail[i]['id']) {
+                                                                            select = 'selected';
+                                                                        }
+                                                                        body += '<option value="' + detail[i]['id'] + '" ' + select + '>' + detail[i]['country_name'] + '</option>';
+                                                                    }
+                                                                }
+                                                                $('#country_id').html(body);
+                                                            }
+                                                        });
+                                                        $.ajax({url: localStorage.host + '../classes/common.class.php?action=get_country_list', data: {}, type: 'get', success: function (data) {
+                                                                var detail = JSON.parse(data);
+                                                                var body = '<option value="">Select Country Name</option>';
+                                                                for (var i = 0; i < detail.length; i++) {
+                                                                    var select = '';
+                                                                    if (typeof detail[i]['id'] !== 'undefined') {
+                                                                        if (ship_country_id == detail[i]['id']) {
+                                                                            select = 'selected';
+                                                                        }
+                                                                        body += '<option value="' + detail[i]['id'] + '" ' + select + '>' + detail[i]['country_name'] + '</option>';
+                                                                    }
+                                                                }
+                                                                $('#ship_country_id').html(body);
+                                                            }
+                                                        });
+                                                        $.ajax({url: localStorage.host + '../classes/common.class.php?action=get_country_list', data: {}, type: 'get', success: function (data) {
+                                                                var detail = JSON.parse(data);
+                                                                var body = '<option value="">Select Country Name</option>';
+                                                                for (var i = 0; i < detail.length; i++) {
+                                                                    var select = '';
+                                                                    if (typeof detail[i]['id'] !== 'undefined') {
+                                                                        if (bill_country_id == detail[i]['id']) {
+                                                                            select = 'selected';
+                                                                        }
+                                                                        body += '<option value="' + detail[i]['id'] + '" ' + select + '>' + detail[i]['country_name'] + '</option>';
+                                                                    }
+                                                                }
+                                                                $('#bill_country_id').html(body);
+                                                            }
                                                         });
                                                     }
-                                                    $("select#state_id").html(items.join(""));
                                                 });
-                                                $.post(localStorage.host + '../classes/common.class.php?action=get_statte_list&c_=' + ship_country_id + '', {id: country_id},
-                                                function (info) {
-                                                    var items = [];
-                                                    if (info) {
-                                                        items.push("<option value=''>Select State Name</option>");
-                                                        $.each($.parseJSON(info), function (idx, obj) {
-                                                            var select_s = '';
-                                                            if (logininfo['company_detail']['ship_state_id'] == obj.id) {
-                                                                select_s = 'selected';
+                                                $("select#country_id").change(function () {
+                                                    var id = $("select#country_id option:selected").attr('value');
+                                                    $.post(localStorage.host + '../classes/common.class.php?action=get_statte_list&c_=' + id + '', {id: id},
+                                                    function (data) {
+                                                        var items = [];
+                                                        if (data) {
+                                                            items.push("<option value=''>Select State Name</option>");
+                                                            $.each($.parseJSON(data), function (idx, obj) {
+                                                                items.push("<option value=" + obj.id + ">" + obj.state_name + "</option>");
+                                                            });
+                                                        }
+                                                        $("select#state_id").html(items.join(""));
+                                                    });                                                    
+                                                });
+                                                $("select#state_id").change(function () {
+                                                    var id = $("select#state_id option:selected").attr('value');
+                                                    $.post(localStorage.host + '../classes/common.class.php?action=get_city_list&c_=' + id + '', {id: id},
+                                                        function (info) {
+                                                            var items = [];
+                                                            if (info) {
+                                                                items.push("<option value=''>Select City Name</option>");
+                                                                $.each($.parseJSON(info), function (idx, obj) {
+                                                                    items.push("<option  value=" + obj.id + ">" + obj.city_name + "</option>");
+                                                                });
                                                             }
-                                                            items.push("<option " + select_s + " value=" + obj.id + ">" + obj.state_name + "</option>");
+                                                            $("select#city_id").html(items.join(""));
+                                                        });                                                    
+                                                });
+                                                $("select#ship_country_id").change(function () {
+                                                    var id = $("select#ship_country_id option:selected").attr('value');
+                                                    $.post(localStorage.host + '../classes/common.class.php?action=get_statte_list&c_=' + id + '', {id: id},
+                                                    function (data) {
+                                                        var items = [];
+                                                        if (data) {
+                                                            items.push("<option value=''>Select State Name</option>");
+                                                            $.each($.parseJSON(data), function (idx, obj) {
+                                                                items.push("<option value=" + obj.id + ">" + obj.state_name + "</option>");
+                                                            });
+                                                        }
+                                                        $("select#ship_state_id").html(items.join(""));
+                                                    });
+                                                });
+                                                $("select#ship_state_id").change(function () {
+                                                    var id = $("select#ship_state_id option:selected").attr('value');
+                                                    $.post(localStorage.host + '../classes/common.class.php?action=get_city_list&c_=' + id + '', {id: id},
+                                                        function (info) {
+                                                            var items = [];
+                                                            if (info) {
+                                                                items.push("<option value=''>Select City Name</option>");
+                                                                $.each($.parseJSON(info), function (idx, obj) {
+                                                                    items.push("<option  value=" + obj.id + ">" + obj.city_name + "</option>");
+                                                                });
+                                                            }
+                                                            $("select#ship_city_id").html(items.join(""));
+                                                        });                                                    
+                                                });
+                                                $("select#bill_country_id").change(function () {
+                                                    var id = $("select#bill_country_id option:selected").attr('value');
+                                                    $.post(localStorage.host + '../classes/common.class.php?action=get_statte_list&c_=' + id + '', {id: id},
+                                                    function (data) {
+                                                        var items = [];
+                                                        if (data) {
+                                                            items.push("<option value=''>Select State Name</option>");
+                                                            $.each($.parseJSON(data), function (idx, obj) {
+                                                                items.push("<option value=" + obj.id + ">" + obj.state_name + "</option>");
+                                                            });
+                                                        }
+                                                        $("select#bill_state_id").html(items.join(""));
+                                                    });
+                                                });
+                                                $("select#bill_state_id").change(function () {
+                                                    var id = $("select#bill_state_id option:selected").attr('value');
+                                                    $.post(localStorage.host + '../classes/common.class.php?action=get_city_list&c_=' + id + '', {id: id},
+                                                        function (info) {
+                                                            var items = [];
+                                                            if (info) {
+                                                                items.push("<option value=''>Select City Name</option>");
+                                                                $.each($.parseJSON(info), function (idx, obj) {
+                                                                    items.push("<option  value=" + obj.id + ">" + obj.city_name + "</option>");
+                                                                });
+                                                            }
+                                                            $("select#bill_city_id").html(items.join(""));
+                                                        });                                                    
+                                                });
+                                                $('.edit-list-btn li').click(function () {
+                                                    $('.profile-tab').removeClass('active_tab');
+                                                    $(this).addClass('active_tab');
+                                                    $('.tab-body').addClass('hide');
+                                                    $('#' + $(this).find('a').attr('href').split('#')[1]).fadeIn().removeClass('hide');
+                                                    setTimeout(function () {
+                                                        $(window).scrollTop(0);
+                                                    }, 0);
+
+                                                });
+
+                                                /******************************************************************************************************************/
+                                                $("#login").submit(function (e) {
+                                                    if ($('#login').parsley('isValid')) {
+                                                        $('#login button[type="submit"]').addClass('disable');
+                                                        $('#login button[type="submit"]').html('Processing   <i class="fa fa-refresh fa-spin"></i>');
+                                                        e.preventDefault();
+                                                        var self = this;
+                                                        var json = '{"id":"' + rc4_dr(localStorage.user_id) + '","email_id":"' + $('input[name="email_id"]').val() + '","admin_id":"' + rc4_dr(localStorage.user_id) + '","name":"' + $('input[name="first_name"]').val() + ' ' + $('input[name="last_name"]').val() + '","first_name":"' + $('input[name="first_name"]').val() + '","last_name":"' + $('input[name="last_name"]').val() + '","mobile_no":"' + $('input[name="mobile_no"]').val() + '","phone_no":"' + $('input[name="phone_no"]').val() + '","title":"' + $('input[name="title"]').val() + '","department":"' + $('input[name="department"]').val() + '","active":"Y","role_id":"3","action":"update","form_type":"FrontEnd","registration_type":"Buyer"}';
+                                                        // http://xstok.com/webservices/buyer_registration.php?json={"id":"8","admin_id":"1","name":"Nitin Pandey","first_name":"Nitin","last_name":"Pandey","mobile_no":"9664242221","mobile_no_verification":"Y","phone_no":"","email_id":"nitin@ezcommindia.com","password":"","active":"Y","title":"","department":"","comment":"Pls fill PAN No not correct","role_id":"3","pass":"d41d8cd98f00b204e9800998ecf8427e","now":"2015-09-10 10:20:26","action":"update","form_type":"FrontEnd","registration_type":"Buyer","authorize_status":"Y","account_manager":"2","visiting_card":null}
+
+                                                        console.log(json);
+                                                        $.ajax({url: localStorage.host + 'buyer_registration.php', data: {json: json}, type: 'get', success: function (data) {
+                                                                $('#login button[type="submit"]').html('Done   <i class="fa fa-check"></i>');
+                                                                $('#login button[type="submit"]').removeClass('disable');
+                                                                setTimeout(function () {
+                                                                    $('a[href="#test2"]').parent().click();
+                                                                    //self.submit();
+                                                                    //return false;
+                                                                }, 700);
+                                                            },
+                                                            error: function (jqXHR, textStatus, errorThrown) {
+                                                                x_alert(localStorage.no_connection);
+                                                                window.location.href = "no_connection.html";
+                                                            }
                                                         });
                                                     }
-                                                    $("select#ship_state_id").html(items.join(""));
                                                 });
-                                                $.post(localStorage.host + '../classes/common.class.php?action=get_statte_list&c_=' + bill_country_id + '', {id: country_id},
-                                                function (info) {
-                                                    var items = [];
-                                                    if (info) {
-                                                        items.push("<option value=''>Select State Name</option>");
-                                                        $.each($.parseJSON(info), function (idx, obj) {
-                                                            var select_s = '';
-                                                            if (logininfo['company_detail']['bill_country_id'] == obj.id) {
-                                                                select_s = 'selected';
+                                                $("#login1").submit(function (e) {
+                                                    if ($('#login1').parsley('isValid')) {
+                                                        $('#login1 button[type="submit"]').addClass('disable');
+                                                        $('#login1 button[type="submit"]').html('Processing   <i class="fa fa-refresh fa-spin"></i>');
+                                                        e.preventDefault();
+                                                        var self = this;
+                                                        var json = '{"id":"' + localStorage.company_detail_id + '","user_id":"' + rc4_dr(localStorage.user_id) + '","admin_id":"' + rc4_dr(localStorage.user_id) + '","company_name":"' + $('input[name="company_name"]').val() + '","company_website":"' + $('input[name="company_website"]').val() + '","company_registration_no":"' + $('input[name="company_registration_no"]').val() + '","dt_of_incorporation":"' + $('input[name="dt_of_incorporation"]').val() + '","company_address":"' + $('#company_address').val() + '","business_type":"' + $('#business_type').val() + '","nature_business_type":"' + $('#nature_business_type').val() + '","shipping_address":"' + $('#shipping_address').val() + '","billing_address":"' + $('#billing_address').val() + '","country_id":"' + $('#country_id').val() + '","state_id":"' + $('#state_id').val() + '","state":"Test","city_id":"' + $('#city_id').val() + '","city":"Test","pin_code":"' + $('input[name="pin_code"]').val() + '","ship_country_id":"' + $('#ship_country_id').val() + '","ship_state_id":"' + $('#ship_state_id').val() + '","ship_state":"Test12","ship_city_id":"' + $('#ship_city_id').val() + '","ship_city":"' + $('#ship_city').val() + '","ship_pin_code":"' + $('input[name="ship_pin_code"]').val() + '","bill_country_id":"' + $('#bill_country_id').val() + '","bill_state_id":"' + $('#bill_state_id').val() + '","bill_state":"test123","bill_city_id":"' + $('#bill_city_id').val() + '","bill_city":"321234","bill_pin_code":"' + $('input[name="bill_pin_code"]').val() + '","action":"update"}';
+                                                        //http://xstok.com/webservices/buyer_companydetails.php?json={"id":"7","user_id":"8","admin_id":"","company_name":"Nitin Company LTD","company_website":"www.nitin.com","company_registration_no":"211231313","dt_of_incorporation":"1970-01-01","business_type":"1","nature_business_type":"5","company_address":"Colaba Mumbai","shipping_address":"Colaba Mumbai","billing_address":"Colaba Mumbai","country_id":"93","state_id":"Other","state":"Test","city_id":"Other","city":"Test","pin_code":"400005","ship_country_id":"98","ship_state_id":"Other","ship_state":"Test12","ship_city_id":"Other","ship_city":"Test123","ship_pin_code":"400005","bill_country_id":"84","bill_state_id":"Other","bill_state":"test123","bill_city_id":"Other","bill_city":"321234","bill_pin_code":"400005","now":"2015-09-10 10:24:17","action":"update"}
+
+                                                        console.log(json);
+                                                        
+                                                            $.ajax({url: localStorage.host + 'buyer_companydetails.php', data: {json: json}, type: 'get', success: function (data) {
+                                                                    $('#login1 button[type="submit"]').html('Done   <i class="fa fa-check"></i>');
+                                                                    $('#login1 button[type="submit"]').removeClass('disable');
+                                                                    setTimeout(function () {
+                                                                        $('a[href="#test3"]').parent().click();
+                                                                        //self.submit();
+                                                                        //return false;
+                                                                    }, 700);
+                                                                },
+                                                                error: function (jqXHR, textStatus, errorThrown) {
+                                                                    x_alert(localStorage.no_connection);
+                                                                    window.location.href = "no_connection.html";
+                                                                }
+                                                            });
+                                                        
+                                                    }
+                                                });
+                                                $("#login2").submit(function (e) {
+                                                    if ($('#login2').parsley('isValid')) {
+                                                        $('#login2 button[type="submit"]').addClass('disable');
+                                                        $('#login2 button[type="submit"]').html('Processing   <i class="fa fa-refresh fa-spin"></i>');
+                                                        e.preventDefault();
+                                                        var self = this;
+                                                        var json = '{"id":"' + localStorage.business_detail_id + '","user_id":"' + rc4_dr(localStorage.user_id) + '","admin_id":"' + rc4_dr(localStorage.user_id) + '","pan_no":"' + $('input[name="pan_no"]').val() + '","cst_no":"' + $('input[name="cst_no"]').val() + '","sst_no":"' + $('input[name="sst_no"]').val() + '","excise_no":"' + $('input[name="excise_no"]').val() + '","business_turnover":"' + $('input[name="business_turnover"]').val() + '","dealing_product":"' + localStorage.dealing_product + '","action":"update"}';
+                                                        // http://xstok.com/webservices/buyer_businessdetails.php?json={"id":"6","user_id":"8","admin_id":"","pan_no":"ASSER1232R","cst_no":"BDF343","sst_no":"","excise_no":"","business_turnover":"","dealing_product":"3","supplier_details":"","c_form":"","tds_form":"","now":"2015-09-10 10:28:10","action":"update"}
+
+                                                        console.log(json);
+                                                        if (localStorage.dealing_product != '') {
+                                                            $.ajax({url: localStorage.host + 'buyer_businessdetails.php', data: {json: json}, type: 'get', success: function (data) {
+                                                                    $('#login2 button[type="submit"]').html('Done   <i class="fa fa-check"></i>');
+                                                                    $('#login2 button[type="submit"]').removeClass('disable');
+                                                                    setTimeout(function () {
+                                                                        $('a[href="#test4"]').parent().click();
+                                                                        //self.submit();
+                                                                        //return false;
+                                                                    }, 700);
+                                                                },
+                                                                error: function (jqXHR, textStatus, errorThrown) {
+                                                                    x_alert(localStorage.no_connection);
+                                                                    window.location.href = "no_connection.html";
+                                                                }
+                                                            });
+                                                        } else {
+                                                            x_alert('Please select dealing in which category');
+                                                        }
+                                                    }
+                                                });
+                                                $("#login3").submit(function (e) {
+                                                    if ($('#login3').parsley('isValid')) {
+                                                        $('#login3 button[type="submit"]').addClass('disable');
+                                                        $('#login3 button[type="submit"]').html('Processing   <i class="fa fa-refresh fa-spin"></i>');
+                                                        e.preventDefault();
+                                                        var self = this;
+                                                        var json = '{"id":"' + localStorage.general_detail_id + '","user_id":"' + rc4_dr(localStorage.user_id) + '","admin_id":"' + rc4_dr(localStorage.user_id) + '","buying_brand_name":"' + $('input[name="buying_brand_name"]').val() + '","interested_buying_brand":"' + $('input[name="interested_buying_brand"]').val() + '","hear_about_us":"' + $('input[name="hear_about_us"]').val() + '","comments_feedback":"' + $('#comments_feedback').val() + '","business_turnover":"' + $('input[name="business_turnover"]').val() + '","interested_category":"' + localStorage.interested_category + '","interested_selling_on_platform":"' + $('input[name=interested_selling_on_platform]:checked', '#login3').val() + '","buying_branded":"' + $('input[name=buying_branded]:checked', '#login3').val() + '","action":"update"}';
+                                                        //http://xstok.com/webservices/buyer_generaldetails.php?json={"id":"6","user_id":"8","admin_id":"","interested_category":"1","buying_branded":"Y","buying_brand_name":"","interested_buying_brand":"","interested_selling_on_platform":"Y","hear_about_us":"","comments_feedback":"","now":"2015-09-10 10:31:06","action":"update"}
+
+                                                        console.log(json);
+
+                                                        $.ajax({url: localStorage.host + 'buyer_generaldetails.php', data: {json: json}, type: 'get', success: function (data) {
+                                                                $('#login3 button[type="submit"]').html('Done   <i class="fa fa-check"></i>');
+                                                                $('#login3 button[type="submit"]').removeClass('disable');
+                                                                setTimeout(function () {
+                                                                    $('a[href="#test5"]').parent().click();
+                                                                    //self.submit();
+                                                                    //return false;
+                                                                }, 700);
+                                                            },
+                                                            error: function (jqXHR, textStatus, errorThrown) {
+                                                                x_alert(localStorage.no_connection);
+                                                                window.location.href = "no_connection.html";
                                                             }
-                                                            items.push("<option " + select_s + " value=" + obj.id + ">" + obj.state_name + "</option>");
+                                                        });
+
+                                                    }
+                                                });
+                                                $("#login4").submit(function (e) {
+                                                    if ($('#login4').parsley('isValid')) {
+                                                        $('#login4 button[type="submit"]').addClass('disable');
+                                                        $('#login4 button[type="submit"]').html('Processing   <i class="fa fa-refresh fa-spin"></i>');
+                                                        e.preventDefault();
+                                                        var self = this;
+                                                        var json = '{"id":"' + localStorage.bank_detail_id + '","user_id":"' + rc4_dr(localStorage.user_id) + '","admin_id":"' + rc4_dr(localStorage.user_id) + '","beneficiary_name":"' + $('input[name="beneficiary_name"]').val() + '","bank_name":"' + $('input[name="bank_name"]').val() + '","account_no":"' + $('input[name="account_no"]').val() + '","ifsc_code":"' + $('input[name="ifsc_code"]').val() + '","branch_name":"' + $('input[name="branch_name"]').val() + '","action":"update"}';
+                                                        // http://xstok.com/webservices/buyer_bankdetails.php?json={"id":"6","user_id":"8","admin_id":"","beneficiary_name":"Nitin Pandey","bank_name":"ICICI Bank","account_no":"02225252111","ifsc_code":"ICICI005","branch_name":"Colaba","now":"2015-09-10 10:34:30","action":"update"}
+
+                                                        console.log(json);
+                                                        $.ajax({url: localStorage.host + 'buyer_bankdetails.php', data: {json: json}, type: 'get', success: function (data) {
+                                                                $('#login4 button[type="submit"]').html('Done   <i class="fa fa-check"></i>');
+                                                                $('#login4 button[type="submit"]').removeClass('disable');
+                                                                setTimeout(function () {
+                                                                    $('a[href="#test6"]').parent().click();
+                                                                    //self.submit();
+                                                                    //return false;
+                                                                }, 700);
+                                                            },
+                                                            error: function (jqXHR, textStatus, errorThrown) {
+                                                                x_alert(localStorage.no_connection);
+                                                                window.location.href = "no_connection.html";
+                                                            }
                                                         });
                                                     }
-                                                    $("select#bill_country_id").html(items.join(""));
                                                 });
-                                                $.ajax({url: localStorage.host + '../classes/common.class.php?action=get_country_list', data: {}, type: 'get', success: function (data) {
-                                                        var detail = JSON.parse(data);
-                                                        var body = '<option value="">Select Country Name</option>';
-                                                        for (var i = 0; i < detail.length; i++) {
-                                                            var select = '';
-                                                            if (typeof detail[i]['id'] !== 'undefined') {
-                                                                if (country_id == detail[i]['id']) {
-                                                                    select = 'selected';
-                                                                }
-                                                                body += '<option value="' + detail[i]['id'] + '" ' + select + '>' + detail[i]['country_name'] + '</option>';
-                                                            }
-                                                        }
-                                                        $('#country_id').html(body);
+                                                
+                                                $('#shipping_same_as').change(function () {
+                                                    if ($('#shipping_same_as').is(":checked")) {
+                                                        $('#shipping_address').val($('#company_address').val());
+                                                        $('#shipping_address').attr('readonly','readonly');
+                                                        $('#ship_country_id').val($('#country_id').val());
+                                                        $('#ship_country_id').attr('readonly','readonly');
+                                                        $('#ship_state_id').val($('#state_id').val());
+                                                        $('#ship_state_id').attr('readonly','readonly');
+                                                        $('#ship_city_id').val($('#city_id').val());
+                                                        $('#ship_city_id').attr('readonly','readonly');
+                                                        $('#ship_pin_code').val($('#pin_code').val());
+                                                        $('#ship_pin_code').attr('readonly','readonly');
+                                                    } else {
+                                                        $('#shipping_address').removeAttr('readonly');
+                                                        $('#ship_country_id').removeAttr('readonly');
+                                                        $('#ship_pin_code').removeAttr('readonly');
+                                                        $('#ship_city_id').removeAttr('readonly');
+                                                        $('#ship_state_id').removeAttr('readonly');
                                                     }
                                                 });
-                                                $.ajax({url: localStorage.host + '../classes/common.class.php?action=get_country_list', data: {}, type: 'get', success: function (data) {
-                                                        var detail = JSON.parse(data);
-                                                        var body = '<option value="">Select Country Name</option>';
-                                                        for (var i = 0; i < detail.length; i++) {
-                                                            var select = '';
-                                                            if (typeof detail[i]['id'] !== 'undefined') {
-                                                                if (ship_country_id == detail[i]['id']) {
-                                                                    select = 'selected';
-                                                                }
-                                                                body += '<option value="' + detail[i]['id'] + '" ' + select + '>' + detail[i]['country_name'] + '</option>';
-                                                            }
-                                                        }
-                                                        $('#ship_country_id').html(body);
+                                                $('#billing_same_as').change(function () {
+                                                    if ($('#billing_same_as').is(":checked")) {
+                                                        $('#billing_address').val($('#shipping_address').val());
+                                                        $('#billing_address').attr('readonly','readonly');
+                                                        $('#bill_country_id').val($('#ship_country_id').val());
+                                                        $('#bill_country_id').attr('readonly','readonly');
+                                                        $('#bill_state_id').val($('#ship_state_id').val());
+                                                        $('#bill_state_id').attr('readonly','readonly');
+                                                        $('#bill_city_id').val($('#ship_city_id').val());
+                                                        $('#bill_city_id').attr('readonly','readonly');
+                                                        $('#bill_pin_code').val($('#ship_pin_code').val());
+                                                        $('#bill_pin_code').attr('readonly','readonly');
+                                                    } else {
+                                                        $('#billing_address').removeAttr('readonly');
+                                                        $('#bill_country_id').removeAttr('readonly');
+                                                        $('#bill_pin_code').removeAttr('readonly');
+                                                        $('#bill_city_id').removeAttr('readonly');
+                                                        $('#bill_state_id').removeAttr('readonly');
                                                     }
                                                 });
-                                                $.ajax({url: localStorage.host + '../classes/common.class.php?action=get_country_list', data: {}, type: 'get', success: function (data) {
-                                                        var detail = JSON.parse(data);
-                                                        var body = '<option value="">Select Country Name</option>';
-                                                        for (var i = 0; i < detail.length; i++) {
-                                                            var select = '';
-                                                            if (typeof detail[i]['id'] !== 'undefined') {
-                                                                if (bill_country_id == detail[i]['id']) {
-                                                                    select = 'selected';
-                                                                }
-                                                                body += '<option value="' + detail[i]['id'] + '" ' + select + '>' + detail[i]['country_name'] + '</option>';
-                                                            }
-                                                        }
-                                                        $('#bill_country_id').html(body);
-                                                    }
+                                                $('.last_submit').click(function () {
+                                                    $('.last_submit').addClass('disable');
+                                                    $('.last_submit').html('Processing   <i class="fa fa-refresh fa-spin"></i>');
+                                                    setTimeout(function () {
+                                                                    window.location.href = "profile.html";
+                                                                }, 2000);
                                                 });
-
-
+                                            });
+                                            function  download_file_open(url) {
+                                                window.open(url, '_system');
                                             }
-                                        });
-
-                                        $("select#country_id").change(function () {
-                                            var id = $("select#country_id option:selected").attr('value');
-                                            $.post(localStorage.host + '../classes/common.class.php?action=get_statte_list&c_=' + id + '', {id: id},
-                                            function (data) {
-                                                var items = [];
-                                                if (data) {
-                                                    items.push("<option value=''>Select State Name</option>");
-                                                    $.each($.parseJSON(data), function (idx, obj) {
-                                                        items.push("<option value=" + obj.id + ">" + obj.state_name + "</option>");
+                                            function delete_doc(id) {
+                                                if (confirm('Are you sure ?')) {
+                                                    $.ajax({url: localStorage.host + 'buyer_document_delete_mobile.php?user_id=' + localStorage.user_id + '&id=' + id, data: {}, type: 'get', success: function (data) {
+                                                            if (data == 0) {
+                                                                $('#' + id).remove();
+                                                            }
+                                                        },
+                                                        error: function (jqXHR, textStatus, errorThrown) {
+                                                            //      if (textStatus === "timeout") {
+                                                            x_alert(localStorage.no_connection);
+                                                            window.location.href = "no_connection.html";
+                                                            //    }
+                                                        }
                                                     });
                                                 }
-                                                $("select#state_id").html(items.join(""));
-                                            });
-                                        });
-                                        $("select#ship_country_id").change(function () {
-                                            var id = $("select#ship_country_id option:selected").attr('value');
-                                            $.post(localStorage.host + '../classes/common.class.php?action=get_statte_list&c_=' + id + '', {id: id},
-                                            function (data) {
-                                                var items = [];
-                                                if (data) {
-                                                    items.push("<option value=''>Select State Name</option>");
-                                                    $.each($.parseJSON(data), function (idx, obj) {
-                                                        items.push("<option value=" + obj.id + ">" + obj.state_name + "</option>");
-                                                    });
-                                                }
-                                                $("select#ship_state_id").html(items.join(""));
-                                            });
-                                        });
-                                        $("select#bill_country_id").change(function () {
-                                            var id = $("select#bill_country_id option:selected").attr('value');
-                                            $.post(localStorage.host + '../classes/common.class.php?action=get_statte_list&c_=' + id + '', {id: id},
-                                            function (data) {
-                                                var items = [];
-                                                if (data) {
-                                                    items.push("<option value=''>Select State Name</option>");
-                                                    $.each($.parseJSON(data), function (idx, obj) {
-                                                        items.push("<option value=" + obj.id + ">" + obj.state_name + "</option>");
-                                                    });
-                                                }
-                                                $("select#bill_state_id").html(items.join(""));
-                                            });
-                                        });
-
-                                        //
-                                        $('.edit-list-btn li').click(function () {
-                                            console.log($(this).find('a').attr('href').split('#')[1]);
-                                            $('.profile-tab').removeClass('active_tab');
-                                            $(this).addClass('active_tab');
-                                            $('.tab-body').addClass('hide');
-                                            $('#' + $(this).find('a').attr('href').split('#')[1]).fadeIn().removeClass('hide');
-                                            setTimeout(function () {
-                                                $(window).scrollTop(0);
-                                            }, 0);
-
-                                        });
-                                    });
-
-                                    function tab_stick() {
-                                        var window_top = $(window).scrollTop();
-                                        var menu_add = $('#menu-add').offset().top + 56;
-                                        var div_top = $('.profile-tabs-ul').offset().top;
-                                        var profile_image_background = $('.profile-image-background').offset().top;
-                                        if (window_top > profile_image_background) {
-                                            if (menu_add >= div_top) {
-                                                $('.profile-tabs-ul').css('top', '56px');
-                                                $('.profile-tabs-ul').addClass('z-depth-1');
-                                                $('.profile-tabs-ul').addClass('position-fixed');
-                                                // $('.stick').css('top', '0');
-                                            } else {
-                                                $('.profile-tabs-ul').css('top', '0');
-                                                $('.profile-tabs-ul').removeClass('z-depth-1');
-                                                $('.profile-tabs-ul').removeClass('position-fixed');
-                                                //$('.stick').css('top', 'none');
                                             }
-                                        } else {
-                                            $('.profile-tabs-ul').css('top', '0');
-                                            $('.profile-tabs-ul').removeClass('z-depth-1');
-                                            $('.profile-tabs-ul').removeClass('position-fixed');
-                                        }
-                                    }
-                                    //http://fa.xstok.com/classes/buyer_dashboard_inc.class.php?action=buyer_my_detail_all&type=html&user_id=d6d713
-
-
+                                            function tab_stick() {
+                                                var window_top = $(window).scrollTop();
+                                                var menu_add = $('#menu-add').offset().top + 56;
+                                                var div_top = $('.profile-tabs-ul').offset().top;
+                                                var profile_image_background = $('.profile-image-background').offset().top;
+                                                if (window_top > profile_image_background) {
+                                                    if (menu_add >= div_top) {
+                                                        $('.profile-tabs-ul').css('top', '56px');
+                                                        $('.profile-tabs-ul').addClass('z-depth-1');
+                                                        $('.profile-tabs-ul').addClass('position-fixed');
+                                                        // $('.stick').css('top', '0');
+                                                    } else {
+                                                        $('.profile-tabs-ul').css('top', '0');
+                                                        $('.profile-tabs-ul').removeClass('z-depth-1');
+                                                        $('.profile-tabs-ul').removeClass('position-fixed');
+                                                        //$('.stick').css('top', 'none');
+                                                    }
+                                                } else {
+                                                    $('.profile-tabs-ul').css('top', '0');
+                                                    $('.profile-tabs-ul').removeClass('z-depth-1');
+                                                    $('.profile-tabs-ul').removeClass('position-fixed');
+                                                }
+                                            }
         </script>
     </body>
 </html>

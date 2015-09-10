@@ -1237,6 +1237,14 @@ blockquote {
 .active_tab {
     border-bottom: 2px solid #fff !important;   
 }
+
+.progress .indeterminate.xstok {
+    background-color: #ffa300;
+}
+.progress.xstok {
+    background-color: #ffdb9a;
+}
+
 @media only screen and (max-width: 320px) {
     .search-list-main-body {
         width: 66%;

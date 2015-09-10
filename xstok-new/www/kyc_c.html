@@ -187,7 +187,7 @@
                         type = type.replace('7', ' Fabrics');
                         //console.log(type);
                         $('.dealing_product').html(type);
-                        localStorage.interested_category = data['msg'][0]['dealing_product'];
+                        localStorage.dealing_product = data['msg'][0]['dealing_product'];
                         if (data['msg'][0]['cst_no'] != '') {
                             $('.cst_no').html(data['msg'][0]['cst_no']);
                         }
@@ -220,7 +220,7 @@
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         //if (textStatus === "timeout") {
-                        x_alert("You seem to have lost internet connection, please reconnect to get going");
+                        x_alert(localStorage.no_connection);
                         window.location.href = "no_connection.html";
                         //}
                     }

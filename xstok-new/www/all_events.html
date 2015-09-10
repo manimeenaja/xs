@@ -73,7 +73,7 @@
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         // if (textStatus === "timeout") {
-                        x_alert("You seem to have lost internet connection, please reconnect to get going");
+                        x_alert(localStorage.no_connection);
                         window.location.href = "no_connection.html";
                         // }
                     }

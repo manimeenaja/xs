@@ -141,7 +141,7 @@
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                        // if (textStatus === "timeout") {
-                            x_alert("You seem to have lost internet connection, please reconnect to get going"); 
+                            x_alert(localStorage.no_connection); 
                             $('button[type="submit"]').html('Sign in');
                             $('button[type="submit"]').removeClass('disable');
                        // }

@@ -128,7 +128,7 @@
                         $('.round-dash').css('margin-left', ($('.dash').width() - $('.round-dash').width()) / 2);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                        x_alert(localStorage.no_connection); window.location.href = "no_connection.html";
                     }
                 });
                 $(document).ready(function () {                   

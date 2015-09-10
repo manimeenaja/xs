@@ -111,13 +111,12 @@
                         $('.col-md-4').addClass('col s5');
                         $('.col-md-6').addClass('col s6');
                         $('.col-md-9').addClass('col s9');
-                        $('.edit-link a[href="/buyer_registration/edit/' + localStorage.user_id + '/').attr('href', 'form1.html');
-                        $('.edit-link a[href="/buyer_company/edit/' + localStorage.user_id + '/').attr('href', 'form2.html');
-                        $('.edit-link a[href="/buyer_business/edit/' + localStorage.user_id + '/').attr('href', 'form3.html');
-                        $('.edit-link a[href="/buyer_general/edit/' + localStorage.user_id + '/').attr('href', 'form4.html');
-                        $('.edit-link a[href="/buyer_bank/edit/' + localStorage.user_id + '/').attr('href', 'form5.html');
-                        $('.edit-link a[href="/buyer_documents/edit/' + localStorage.user_id + '/').attr('href', 'form6.html');
-                        $('.edit-link a[href="/buyer_documents/edit/' + localStorage.user_id + '/').attr('href', 'form6.html');
+                        $('.edit-link a[href="/buyer_registration/edit/' + localStorage.user_id + '/').attr('href', 'profile_edit.html#test1');
+                        $('.edit-link a[href="/buyer_company/edit/' + localStorage.user_id + '/').attr('href', 'profile_edit.html#test2');
+                        $('.edit-link a[href="/buyer_business/edit/' + localStorage.user_id + '/').attr('href', 'profile_edit.html#test3');
+                        $('.edit-link a[href="/buyer_general/edit/' + localStorage.user_id + '/').attr('href', 'profile_edit.html#test4');
+                        $('.edit-link a[href="/buyer_bank/edit/' + localStorage.user_id + '/').attr('href', 'profile_edit.html#test5');
+                        $('.edit-link a[href="/buyer_documents/edit/' + localStorage.user_id + '/').attr('href', 'profile_edit.html#test6');
                         $('.my_profile_doc').each(function () {
                             $(this).attr('onclick', 'window.open("' + $(this).attr('href') + '", "_system")');
                             $(this).attr('href', '#');
@@ -166,7 +165,7 @@
                             },
                             error: function (jqXHR, textStatus, errorThrown) {
                                 //   if(textStatus==="timeout") {
-                                x_alert("You seem to have lost internet connection, please reconnect to get going");
+                                x_alert(localStorage.no_connection);
                                 window.location.href = "no_connection.html";
                                 //   } 
                             }

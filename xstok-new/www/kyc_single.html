@@ -238,7 +238,7 @@
                         $('.dealing').html(body);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        x_alert("You seem to have lost internet connection, please reconnect to get going");
+                        x_alert(localStorage.no_connection);
                         window.location.href = "no_connection.html";
                     }
                 });
@@ -287,7 +287,7 @@
                             $("select#state_id").html(items.join(""));
                         });
                         var type = data['msg'][0]['dealing_product'].split(',');
-                        localStorage.interested_category = data['msg'][0]['dealing_product'];
+                        localStorage.dealing_product = data['msg'][0]['dealing_product'];
                         setTimeout(function () {
                             $.each(type, function (i, item) {
                                 console.log('.checkbox' + item.trim());
@@ -297,20 +297,20 @@
                         }, 0);
 
                         $("input[type='checkbox']").change(function () {
-                            var interested_category = [];
+                            var dealing_product = [];
                             console.log('hehe');
                             $('input[type="checkbox"]').each(function () {
                                 console.log('hehe1');
                                 if ($(this).is(":checked")) {
                                     console.log('hehe2 ->' + $(this).attr('value'));
-                                    interested_category.push($(this).attr('value'));
+                                    dealing_product.push($(this).attr('value'));
                                 }
                             });
-                            localStorage.interested_category = interested_category;
+                            localStorage.dealing_product = dealing_product;
                         });
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        x_alert("You seem to have lost internet connection, please reconnect to get going");
+                        x_alert(localStorage.no_connection);
                         window.location.href = "no_connection.html";
                     }
                 });
@@ -345,7 +345,7 @@
                 });
                 $("#login").submit(function (e) {
                     if ($('#login').parsley('isValid')) {
-                        if (localStorage.interested_category != '') {
+                        if (localStorage.dealing_product != '') {
                             $('button[type="submit"]').addClass('disable');
                             $('button[type="submit"]').html('Processing   <i class="fa fa-refresh fa-spin"></i>');
                             e.preventDefault();
@@ -370,7 +370,7 @@
                             //http://xstok.com/webservices/buyer_profile_update.php?json={"id":"8","company_id":"7","name":"Nitin Pandey","first_name":"Nitin","last_name":"Pandey","company_name":"Nitin Company","mobile_no":"9664242221","email_id":"nitin@ezcommindia.com","company_address":"Colaba Mumbai","country_id":"99","state_id":"3","city":"Mumbai","pin_code":"400005","business_type":"1","nature_business_type":"5","pan_no":"ASSER1232R","cst_no":"BDF343","dealing_product":"3","visiting_card":null,"now":"2015-08-24 15:54:00","action":"update","registration_type":"Buyer"}
                             ////{"id":"121","company_id":"120","name":"Shadab Shaikh","first_name":"Shadab","last_name":"Shaikh","company_name":"KLN","mobile_no":"+91 9819414708","email_id":"shadabs@centerac.com","company_address":"test","country_id":"99","state_id":"22","city":"Mumbai","pin_code":"400005","admin_id":"121","pan_no":"aaaaa1234a","business_type":"1","nature_business_type":"2","cst_no":"D10010","dealing_product":"1","now":"2015-08-25 11:09:57","action":"update","registration_type":"Buyer"}
                             //var date = new Date().toISOString().slice(0, 19).replace('T', ' ');                        
-                            var json = '{"id":"' + rc4_dr(localStorage.user_id) + '","company_id":"' + localStorage.company_id + '","name":"' + $('input[name="first_name"]').val() + ' ' + $('input[name="last_name"]').val() + '","first_name":"' + $('input[name="first_name"]').val() + '","last_name":"' + $('input[name="last_name"]').val() + '","company_name":"' + $('input[name="company_name"]').val() + '","mobile_no":"' + $('input[name="mobile_no"]').val() + '","email_id":"' + $('input[name="email_id"]').val() + '","company_address":"' + $('#company_address').val() + '","country_id":"' + $('#country_id').val() + '","state_id":"' + $('#state_id').val() + '","city":"' + $('input[name="city"]').val() + '","pin_code":"' + $('input[name="pin_code"]').val() + '","admin_id":"' + rc4_dr(localStorage.user_id) + '","pan_no":"' + $('input[name="pan_no"]').val() + '","business_type":"' + $('#business_type :selected').val() + '","nature_business_type":"' + $('#nature_business_type :selected').val() + '","cst_no":"' + $('input[name="cst_no"]').val() + '","dealing_product":"' + localStorage.interested_category + '","now":"' + date_ful + '","action":"update","registration_type":"Buyer"}';
+                            var json = '{"id":"' + rc4_dr(localStorage.user_id) + '","company_id":"' + localStorage.company_id + '","name":"' + $('input[name="first_name"]').val() + ' ' + $('input[name="last_name"]').val() + '","first_name":"' + $('input[name="first_name"]').val() + '","last_name":"' + $('input[name="last_name"]').val() + '","company_name":"' + $('input[name="company_name"]').val() + '","mobile_no":"' + $('input[name="mobile_no"]').val() + '","email_id":"' + $('input[name="email_id"]').val() + '","company_address":"' + $('#company_address').val() + '","country_id":"' + $('#country_id').val() + '","state_id":"' + $('#state_id').val() + '","city":"' + $('input[name="city"]').val() + '","pin_code":"' + $('input[name="pin_code"]').val() + '","admin_id":"' + rc4_dr(localStorage.user_id) + '","pan_no":"' + $('input[name="pan_no"]').val() + '","business_type":"' + $('#business_type :selected').val() + '","nature_business_type":"' + $('#nature_business_type :selected').val() + '","cst_no":"' + $('input[name="cst_no"]').val() + '","dealing_product":"' + localStorage.dealing_product + '","now":"' + date_ful + '","action":"update","registration_type":"Buyer"}';
                             console.log(json);
                             $.ajax({url: localStorage.host + 'buyer_profile_update.php', data: {json: json}, type: 'get', success: function (data) {
                                     $('button[type="submit"]').html('Done   <i class="fa fa-check"></i>');
@@ -382,7 +382,7 @@
                                 },
                                 error: function (jqXHR, textStatus, errorThrown) {
                                     //  if (textStatus === "timeout") {
-                                    x_alert("You seem to have lost internet connection, please reconnect to get going");
+                                    x_alert(localStorage.no_connection);
                                     window.location.href = "no_connection.html";
                                     // }
                                 }

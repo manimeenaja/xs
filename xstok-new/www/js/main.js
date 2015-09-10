@@ -149,6 +149,7 @@ localStorage.reserve_price_not_met_ = 'Reserve price not met';
 localStorage.reserve_price_met_ = 'Reserve price met';
 localStorage.confirm_auto_choose_val_ = "Your auto bid value doesn't match auction minimum increment value <br /> <br />Choose from one of the values below";
 localStorage.confirm_100_per_auto_bid = "You have entered price of more than 100% of the start value. Do you wish to continue?";
+localStorage.no_connection = "You seem to have lost internet connection, please reconnect to get going";
 localStorage.hide_list_p_percent = 1;
 localStorage.supp_id_list_array = [1470, 1868];
 /*----------------DEFINED END-------------------*/
@@ -157,8 +158,8 @@ function back() {
     window.history.back();
 }
 function x_alert(data) {
-    //alert(data);
-    navigator.notification.alert(data);
+    alert(data);
+    //navigator.notification.alert(data);
 }
 function auction_detail(id, auc_type_id) {
     // alert(id);
