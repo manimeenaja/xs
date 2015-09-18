@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import materialize.css-->
+
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="screen,projection"/>
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <script type="text/javascript" src='js/main.js'></script> 
+        <style>
+
+        </style>
+    </head>
+
+    <body class="grey lighten-3">        
+        <div class="header row font-size-1-6-em  padding-10 width-100p position-fixed z-index-1 xstok-text-white">
+            <div class="col s2 left-align"><a onclick="back()" class="xstok-text-white"><i class="fa fa-arrow-left"></i></a></i></div>
+        </div>
+        <div class="row margin-bottom-0">
+            <div class="col s12 padding-lr-0 black"><img class="materialboxed width-100p" style="opacity: 0.5" src="images/buyer-protection.jpg"/></div>
+        </div>       
+        <div class="body-container margin-top--30 position-absoulte ">            
+            <div class="row margin-bottom-0">
+                <div class="col s12 m6">
+                    <div class="card grey lighten-5">
+                        <div class="card-content font-17">
+                            <h5 class="center-align">Safeguarding you is our priority at XSTOK</h5><br/>
+                            Your needs come first and hence, our buyer protection program is designed to provide you with the trust and comfort required for online trading in the B2B marketplace. Keeping your requirements in mind, we have created a six fold protection plan, which will ensure you are 100% protected through your journey at XSTOK.<br><br>
+
+                            <div class="buyer-protection-head font-size-1-2-em">
+                                <i class="fa fa-check x-light-green"></i>
+                                Only Verified Suppliers
+                            </div>
+                            <ul type="disc" class="buyer-protection-list font-size-0-99-em">
+                                <li>XSTOK suppliers are thoroughly verified before being brought onboard.</li>
+                                <li>Each supplier goes through a Know Your Customer (KYC) process for added security and stability.</li>
+                            </ul>
+                            <div class="buyer-protection-head font-size-1-2-em">
+                                <i class="fa fa-check x-light-green"></i>
+                                Guaranteed Availability
+                            </div>
+                            <ul type="disc" class="buyer-protection-list font-size-0-99-em">
+                                <li>All products showcased for auctions come with guaranteed availability.</li>
+                                <li>Products, once listed on the auction platform, cannot be sold by the supplier till the duration of the auction is not complete.</li>
+                            </ul>
+
+                            <div class="buyer-protection-head font-size-1-2-em">
+                                <i class="fa fa-check x-light-green"></i>
+                                Payment Security
+                            </div>
+                            <ul type="disc" class="buyer-protection-list font-size-0-99-em">
+                                <li>Buyer deposits and payments will be done via an Escrow account managed by ICICI bank.</li>
+                                <li>Payment is released to the Supplier only after the Buyer confirms satisfactory receipt of the goods.</li>
+                            </ul>
+
+                            <div class="buyer-protection-head font-size-1-2-em">
+                                <i class="fa fa-check x-light-green"></i>
+                                QX Inspection
+                            </div>
+                            <ul type="disc" class="buyer-protection-list font-size-0-99-em">
+                                <li>A comprehensive inspection service that reliably verifies the goods and provides all the required information of the purchase to the Buyer.</li>
+                                <li>QX inspection is undertaken by experienced XSTOK members or a well known 3rd party vendor.</li>
+                                <li>QX logo will be clearly marked in the auctions verified by XSTOK.</li>
+                                <li>Suppliers requested inspection is shared with all the buyers.</li>
+                                <li>Buyer requested inspection is only shared with that particular buyer.</li>
+                            </ul>
+
+                            <div class="buyer-protection-head font-size-1-2-em">
+                                <i class="fa fa-check x-light-green"></i>
+                                Insured Shipping
+                            </div>
+                            <ul type="disc" class="buyer-protection-list font-size-0-99-em">
+                                <li>All shipments through XSTOK are insured by leading insurance companies, such as ICICI Lombard.</li>
+                                <li>All shipments are delivered to the buyers doorstep for easy accessibility.</li>
+                            </ul>
+
+                            <div class="buyer-protection-head font-size-1-2-em">
+                                <i class="fa fa-check x-light-green"></i>
+                                7 Days Dispute Resolution
+                            </div>
+                            <ul type="disc" class="buyer-protection-list font-size-0-99-em">
+                                <li>In rare occasions, when there are disputes, we offer a definite resolution within a week to all our buyers.</li>
+                            </ul>
+                        </div>              
+                    </div>
+                </div>                
+            </div>
+        </div>
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(window).scrollTop(1);
+                sticky_relocate();
+            });
+            $(window).scroll(function () {
+                sticky_relocate();
+            });
+            function sticky_relocate() {
+                var window_top = $(window).scrollTop();
+                var div_top = $('.body-container').offset().top;
+                if (window_top > div_top) {
+                    $('.header').css('background-color', 'rgba(255,163,0,1)');
+                    $('.header').addClass('z-depth-1');
+                    // $('.stick').css('top', '0');
+                } else {
+                    $('.header').css('background-color', 'rgba(255,163,0,' + window_top / div_top + ')');
+                    $('.header').removeClass('z-depth-1');
+                    //$('.stick').css('top', 'none');
+                }
+            }
+        </script>
+    </body>
+</html>

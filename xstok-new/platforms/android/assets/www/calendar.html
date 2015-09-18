@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import materialize.css-->
+
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="screen,projection"/>
+        <link rel="stylesheet" href="css/eventCalendar.css">
+        <link rel="stylesheet" href="css/eventCalendar_theme_responsive.css">
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <script type="text/javascript" src='js/main.js'></script> 
+        <script type="text/javascript">
+            //	The menu on the left
+
+
+            if (localStorage.logged_in == '1') {
+                if (localStorage.otp == '1') {
+                    if (localStorage.verified == '1') {
+                        //window.location.href = "search_result.html";
+                    } else {
+                        if (localStorage.kyc_status == '1') {
+                            window.location.href = "kyc_c.html";
+                        } else {
+                            window.location.href = "kyc.html";
+                        }
+                    }
+                } else {
+                    window.location.href = "otp.html";
+                }
+            } else {
+                window.location.href = "signin.html";
+            }
+        </script>
+    </head>
+
+    <body class="grey lighten-3">
+        <nav id="menu-add" class="xstok darken-1 navbar-fixed position-fixed"></nav>
+        <div class="row padding-top-56">
+            <div class="calendar-body">
+                <div id="auction_calendar"></div>
+            </div>     
+        </div>        
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript" src="js/classie.js"></script>
+        <script type="text/javascript" src="js/jquery.eventCalendar.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                add_menu(0, 0, 0, 0);                
+                $('.button-collapse').sideNav({
+                    menuWidth: 300, // Default is 240
+                    edge: 'left', // Choose the horizontal origin
+                    closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                }
+                );
+                search_loader ();
+                $("#auction_calendar").eventCalendar({
+                    eventsjson: localStorage.host + '../classes/buyer_dashboard.class.php?action=buyer_auction_calendar_event&user_id=' + localStorage.user_id + '&type=html', // link to events json
+                    showDescription: true,
+                    eventsLimit:50
+                });
+                $('time').remove();
+            });
+
+        </script>
+    </body>
+</html>

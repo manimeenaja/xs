@@ -1926,7 +1926,6 @@ setInterval(function () {
     //window.MobileAccessibility.usePreferredTextZoom(false);
     //console.log(typeof usePreferredTextZoom != 'undefined');
     if (typeof usePreferredTextZoom != 'undefined') {
-
         window.MobileAccessibility.usePreferredTextZoom(false);
     }
     window.MobileAccessibility.usePreferredTextZoom(false);

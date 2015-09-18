@@ -1,24 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.coolappz.mat" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.centerac.xstok" version="1.1.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
-    <name>mat</name>
-    <description>
-        A sample Apache Cordova application that responds to the deviceready event.
-    </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
-    </author>
-    <content src="index.html" />
-    <access origin="*" />
-    <feature name="Device">
-        <param name="android-package" value="org.apache.cordova.device.Device" />
+    <feature name="PushPlugin">
+        <param name="android-package" value="com.plugin.gcm.PushPlugin" />
     </feature>
-    <feature name="NetworkStatus">
-        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
-    </feature>
-    <access origin="https://ssl.gstatic.com/accessibility/javascript/android/*" />
-    <feature name="MobileAccessibility">
-        <param name="android-package" value="com.phonegap.plugin.mobileaccessibility.MobileAccessibility" />
+    <feature name="LocalNotification">
+        <param name="android-package" value="de.appplant.cordova.plugin.localnotification.LocalNotification" />
     </feature>
     <feature name="Whatsapp">
         <param name="android-package" value="mobi.moica.whatsapp.Whatsapp" />
@@ -27,7 +14,73 @@
     <feature name="Contacts">
         <param name="android-package" value="org.apache.cordova.contacts.ContactManager" />
     </feature>
+    <feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+    </feature>
     <feature name="InAppBrowser">
         <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
     </feature>
+    <feature name="Camera">
+        <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
+    </feature>
+    <feature name="File">
+        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="FileTransfer">
+        <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
+    </feature>
+    <feature name="Vibration">
+        <param name="android-package" value="org.apache.cordova.vibration.Vibration" />
+    </feature>
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+    </feature>
+    <feature name="AppVersion">
+        <param name="android-package" value="uk.co.whiteoctober.cordova.AppVersion" />
+    </feature>
+    <access origin="https://ssl.gstatic.com/accessibility/javascript/android/*" />
+    <feature name="MobileAccessibility">
+        <param name="android-package" value="com.phonegap.plugin.mobileaccessibility.MobileAccessibility" />
+    </feature>
+    <preference name="fullscreen" value="false" />
+    <icon density="ldpi" src="res/icon/android/drawable-ldpi/appicon.png" />
+    <icon density="mdpi" src="res/icon/android/drawable-mdpi/appicon.png" />
+    <icon density="hdpi" src="res/icon/android/drawable-hdpi/appicon.png" />
+    <icon density="xhdpi" src="res/icon/android/drawable-xhdpi/appicon.png" />
+    <icon density="xxhdpi" src="res/icon/android/drawable-xxhdpi/appicon.png" />
+    <icon density="xxxhdpi" src="res/icon/android/drawable-xxxhdpi/appicon.png" />
+    <splash density="land-ldpi" src="res/screen/android/res-notlong-land-ldpi/default.png" />
+    <splash density="land-mdpi" src="res/screen/android/res-notlong-land-mdpi/default.png" />
+    <splash density="land-hdpi" src="res/screen/android/res-notlong-land-hdpi/default.png" />
+    <splash density="land-xhdpi" src="res/screen/android/res-notlong-land-xhdpi/default.png" />
+    <splash density="land-xxhdpi" src="res/screen/android/res-notlong-land-xxhdpi/default.png" />
+    <splash density="land-xxxhdpi" src="res/screen/android/res-notlong-land-xxxhdpi/default.png" />
+    <splash density="port-ldpi" src="res/screen/android/res-notlong-port-ldpi/default.png" />
+    <splash density="port-mdpi" src="res/screen/android/res-notlong-port-mdpi/default.png" />
+    <splash density="port-hdpi" src="res/screen/android/res-notlong-port-hdpi/default.png" />
+    <splash density="port-xhdpi" src="res/screen/android/res-notlong-port-xhdpi/default.png" />
+    <splash density="port-xxhdpi" src="res/screen/android/res-notlong-port-xxhdpi/default.png" />
+    <splash density="port-xxxhdpi" src="res/screen/android/res-notlong-port-xxxhdpi/default.png" />
+    <name>XSTOK</name>
+    <description>
+        Your marketplace for overstock apparels, home textiles, fabrics and yarns! 
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+    <preference name="Orientation" value="portrait" />
+    <content src="index.html" />
+    <access origin="*" />
+    <access launch-external="yes" origin="tel:*" />
+    <access launch-external="yes" origin="geo:*" />
+    <access launch-external="yes" origin="mailto:*" />
+    <access launch-external="yes" origin="sms:*" />
+    <access launch-external="yes" origin="market:*" />
+    <plugin name="Capture" value="org.apache.cordova.Capture" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="5000" />
 </widget>

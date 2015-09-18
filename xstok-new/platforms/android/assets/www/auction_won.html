@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import materialize.css-->
+
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="screen,projection"/>
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <script type="text/javascript" src='js/main.js'></script>        
+    </head>
+
+    <body class="grey lighten-4">
+        <nav id="menu-add" class="grey lighten-5 no-shadow navbar-fixed position-fixed"></nav>
+
+
+        <!--<div class="row xstok darken-1 valign-wrapper">
+            <div class="col s6 center-align valign xstok-text-white">Discount</div>
+            <div class="col s6 center-align valign xstok-text-white">Time</div>
+        </div>-->
+        <div class="font-24 padding-top-56 padding-lr-10 green darken-1 white-text font-bold"><i class="fa fa-trophy"></i> Auctions Won <span class="total_auction_won-count"></span></div>
+        <div class="row margin-bottom-0  grey lighten-5">            
+            <table class="striped">
+                <thead>
+                    <tr class="font-11">
+                        <th data-field="">Order Id</th>
+                        <th data-field="">Winning Price</th>
+                        <th data-field="">VAT</th>
+                        <th data-field="">Shipping Cost</th>
+                        <th data-field="">Status</th> 
+                    </tr>
+                </thead>
+                <tbody class="total_auction_won font-11">
+                    <tr>
+                        <td colspan="5">
+                            <div class="progress auction_won">
+                                <div class="indeterminate auction_won"></div>
+                            </div>
+                        </td>
+                    </tr>                    
+                </tbody>
+            </table>
+        </div>        
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                add_menu(2, 0);
+                $('select').material_select();
+                $('.button-collapse').sideNav({
+                    menuWidth: 300, // Default is 240
+                    edge: 'left', // Choose the horizontal origin
+                    closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                }
+                );
+                $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'buyer', days: '7', type: 'webservice', user_id: localStorage.user_id}, type: 'get', success: function (data) {
+                        $('.list_loader').remove();
+                        $('.collection.dash').removeClass('center-align');
+                        var logininfo = JSON.parse(data);
+                        var lot_array = '';
+                        var room_id_array = '';
+                        console.log(logininfo);
+
+                        /*-------------------Watchlist start-------------------------*/
+                        var total_auction_won = "";
+                        for (var i = 0; i < logininfo['total_auction_won'].length; i++) {
+                            lot_array += rc4_er(logininfo['total_auction_won'][i]['lot_id']) + ',';
+                            room_id_array += rc4_er(logininfo['total_auction_won'][i]['room_id']) + ',';
+                           /// if (logininfo['total_auction_won'][i]['order_id'] == '1' || logininfo['total_auction_won'][i]['order_id'] == '2' || logininfo['total_auction_won'][i]['order_id'] == '3') {
+                                var function_name = "shipping_detail(\"" + rc4_er(logininfo['total_auction_won'][i]['lot_id']) + "\",\"" + logininfo['total_auction_won'][i]['room_id'] + "\")";
+                            //} else {
+                            //    var function_name = "auction_detail(\"" + rc4_er(logininfo['total_auction_won'][i]['lot_id']) + "\",\"" + logininfo['total_auction_won'][i]['auc_type_id'] + "\")";
+                           // }
+                            total_auction_won += "<tr onclick='" + function_name + "'><td>" + (logininfo['total_auction_won'][i]['order_id']) + "</td><td>" + numberWithCommas(logininfo['total_auction_won'][i]['bid_amount']) + "</td><td>" + logininfo['total_auction_won'][i]['tax_amount'] + "</td><td>" + logininfo['total_auction_won'][i]['shipping_amt'] + "</td><td>" + logininfo['total_auction_won'][i]['status'] + "</td></tr>";
+                        }
+                        if (logininfo['total_auction_won'].length > 0) {
+                            $('.total_auction_won-count').html('(' + logininfo['total_auction_won'].length + ')');
+                        }
+                        if (total_auction_won == '') {
+                            total_auction_won = "<tr><td <td colspan='5'>No Auction Won</td></tr>";
+                        }
+                        $('.total_auction_won').html(total_auction_won);
+                        /*-------------------Watchlist end-------------------------*/
+                        lot_array = lot_array.substring(0, lot_array.length - 1);
+                        room_id_array = room_id_array.substring(0, room_id_array.length - 1);
+                        //console.log(lot_array);
+                        localStorage.lot_id_array = lot_array;
+                        localStorage.room_id_array = room_id_array;
+                        Materialize.showStaggeredList('.collection');
+                        $('.collection-item').click(function () {
+                            window.location.href = $(this).attr('value') + '.html';
+                        });
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        x_alert("You seem to have lost internet connection, please reconnect to get going");
+                        window.location.href = "no_connection.html";
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

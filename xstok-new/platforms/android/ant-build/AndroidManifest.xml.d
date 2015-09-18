@@ -1,2 +1,2 @@
-E:\mat\platforms\android\ant-build\AndroidManifest.xml : \
-E:\mat\platforms\android\AndroidManifest.xml \
+E:\xstok\xstok-new\platforms\android\ant-build\AndroidManifest.xml : \
+E:\xstok\xstok-new\platforms\android\AndroidManifest.xml \

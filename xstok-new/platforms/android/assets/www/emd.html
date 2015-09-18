@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import materialize.css-->
+
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="screen,projection"/>
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <script type="text/javascript" src='js/main.js'></script>        
+    </head>
+
+    <body class="grey lighten-4">
+        <nav id="menu-add" class="grey lighten-5 no-shadow navbar-fixed position-fixed"></nav>
+
+
+        <!--<div class="row xstok darken-1 valign-wrapper">
+            <div class="col s6 center-align valign xstok-text-white">Discount</div>
+            <div class="col s6 center-align valign xstok-text-white">Time</div>
+        </div>-->
+        <div class="font-24 padding-top-56 padding-lr-10 light-blue darken-1 white-text font-bold"><i class="fa fa-inr"></i> EMD Details </div>
+        <div class="padding-lr-10 blue darken-1 white-text font-bold center-align"><h2 class="margin-tb-0"><i class="fa fa-inr font-24"></i> <span class="emd-bal"><i class="fa fa-spinner fa-pulse font-size-0-99-em"></i></span></h2></div>
+        <div class="padding-10 grey lighten-5">All interested registered buyers shall be required to deposit in advance non-interest bearing EMD with XSTOK before participating in the e-Auction</div>
+        <div class="padding-10 grey lighten-5"><a class="waves-effect waves-light btn width-100p light-blue darken-4 add_emd_button"><i class="fa fa-plus"></i> Add EMD</a></div>
+        <div class="row margin-bottom-0 grey lighten-5">            
+            <table class="striped responsive-table emd_table bordered">
+                <thead>
+                    <tr class="">                       
+                        <th data-field="">Given</th>
+                        <th data-field="">Used</th>
+                        <th data-field="">Redeemed</th>
+                        <th data-field="">Current Blocked</th>
+                        <th data-field="">Current Balance</th>
+                    </tr>
+                </thead>
+                <tbody class="active_auction_table">
+                    <tr class="width-100p">                       
+                        <td class="emd_total_amount"><i class="fa fa-spinner fa-pulse"></i></td>
+                        <td class="emd_used"><i class="fa fa-spinner fa-pulse"></i></td>
+                        <td class="emd_refund"><i class="fa fa-spinner fa-pulse"></i></td>
+                        <td class="emd_block"><i class="fa fa-spinner fa-pulse"></i></td>
+                        <td class="emd_balance"><i class="fa fa-spinner fa-pulse"></i></td>
+                    </tr>                    
+                </tbody>
+            </table>
+        </div>
+        <div class="row margin-top-10">
+            <div class="col s6"><a class="waves-effect waves-light btn width-100p  grey darken-1"><i class="fa fa-money"></i> Refund EMD</a></div>
+            <div class="col s6"><a onclick="buyer_emd_history_detail()" class="waves-effect waves-light btn width-100p green accent-4"><i class="fa fa-download"></i> Excel Download</a></div>
+        </div>
+        <div id="add_emd" class="modal">
+            <div class="modal-content">
+                <h4>Pay EMD</h4>
+                <p class="font-11">Buyers are required to deposit a non-interest bearing EMD before participating in auctions. The amount deposited is placed into an escrow account with ICICI Bank.</p>
+                <input type="text" class="form-control display-inline input-sm add-emd" maxlength="7" id="add-emd" placeholder="Enter EMD" onkeyup="allnumeric('add-emd')">
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class=" modal-action waves-effect waves-green btn-flat add-emd-button">Pay</a>
+                <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Close</a>
+            </div>
+        </div>
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript">
+                function buyer_emd_history_detail() {
+                    window.open(localStorage.host + "../ajax.php?action=buyer_emd_history_detail&type=html&user_id=" + localStorage.user_id, "_system");
+                }
+                $(document).ready(function () {
+                    add_menu(2, 0);
+                    $('select').material_select();
+                    $('.button-collapse').sideNav({
+                        menuWidth: 300, // Default is 240
+                        edge: 'left', // Choose the horizontal origin
+                        closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                    }
+                    );
+                    $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'buyer_emd_details', type: 'webservice', user_id: localStorage.user_id}, type: 'get', success: function (data) {
+                            $('.list_loader').remove();
+                            $('.collection.dash').removeClass('center-align');
+                            var logininfo = JSON.parse(data);
+                            var lot_array = '';
+                            var room_id_array = '';
+                            console.log(logininfo);
+                            $('.emd-bal').html(numberWithCommas(logininfo['emd_balance']));
+                            $('.emd_total_amount').html('<i class="fa fa-inr"></i> ' + numberWithCommas(logininfo['emd_total_amount']));
+                            $('.emd_used').html('<i class="fa fa-inr"></i> ' + numberWithCommas(logininfo['emd_used']));
+                            $('.emd_refund').html('<i class="fa fa-inr"></i> ' + numberWithCommas(logininfo['emd_refund']));
+                            $('.emd_block').html('<i class="fa fa-inr"></i> ' + numberWithCommas(logininfo['emd_block']));
+                            $('.emd_balance').html('<i class="fa fa-inr"></i> ' + numberWithCommas(logininfo['emd_balance']));
+                            Materialize.showStaggeredList('.collection');                            
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            x_alert("You seem to have lost internet connection, please reconnect to get going");
+                            window.location.href = "no_connection.html";
+                        }
+                    });
+                    $('.add_emd_button').click(function () {
+                        $('#add_emd').openModal({
+                            dismissible: false
+                        });
+                    });
+                    $('.add-emd-button').click(function () {
+                        if($('#add-emd').val() == '') {
+                            x_alert('Please fill a amount');
+                        } else if(parseFloat($('#add-emd').val()) < 20000) {
+                            x_alert('Amount should be greater than Rs. 20,000');
+                        } else {
+                            $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'add_emd', type: 'webservice', user_id: localStorage.user_id, emd_amount: $('#add-emd').val()}, type: 'get', success: function (data) {
+                                    var logininfo = JSON.parse(data);
+                                    console.log(logininfo);
+                                    $('#add-emd').val('');
+                                    localStorage.url = logininfo['url'];
+                                    localStorage.notification_emd = rc4_er(logininfo['notification_emd']);
+                                    localStorage.inserted_id = (logininfo['inserted_id']);
+                                    window.location.href = "payment.html";
+                                }
+                            });
+                        }
+                    });
+                });
+        </script>
+    </body>
+</html>
