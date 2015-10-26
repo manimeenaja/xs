@@ -80,7 +80,6 @@
     <access launch-external="yes" origin="mailto:*" />
     <access launch-external="yes" origin="sms:*" />
     <access launch-external="yes" origin="market:*" />
-    <plugin name="Capture" value="org.apache.cordova.Capture" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="5000" />
 </widget>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import materialize.css-->
+
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="screen,projection"/>
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <script type="text/javascript" src='js/main.js'></script><script type="text/javascript" src="cordova.js"></script>        
+    </head>
+
+    <body class="grey lighten-4">
+        <nav id="menu-add" class="grey lighten-5 no-shadow navbar-fixed position-fixed"></nav>
+
+
+        <!--<div class="row xstok darken-1 valign-wrapper">
+            <div class="col s6 center-align valign xstok-text-white">Discount</div>
+            <div class="col s6 center-align valign xstok-text-white">Time</div>
+        </div>-->
+        <div class="font-24 padding-top-56 padding-lr-10 green darken-1 white-text font-bold"><i class="fa fa-trophy"></i> Order in Process <span class="total_auction_won-count"></span></div>
+        <div class="row margin-bottom-0  grey lighten-5">
+            <ul class="total_auction_won padding-lr-10 grey lighten-3 margin-bottom-0"></ul>            
+        </div>        
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                add_menu('dashboard',2, 0);
+                $('select').material_select();
+                $('.button-collapse').sideNav({
+                    menuWidth: 300, // Default is 240
+                    edge: 'left', // Choose the horizontal origin
+                    closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                }
+                );
+                $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'auction_won_list', type: 'webservice', user_id: localStorage.user_id}, type: 'get', success: function (data) {
+                        $('.list_loader').remove();
+                        $('.collection.dash').removeClass('center-align');
+                        var logininfo = JSON.parse(data);
+                        var lot_array = '';
+                        var room_id_array = '';
+                        console.log(logininfo);
+
+                        /*-------------------Watchlist start-------------------------*/
+                        var auction_won = "";
+                        for (var i = 0; i < logininfo['auction_won'].length; i++) {
+                            lot_array += rc4_er(logininfo['auction_won'][i]['lot_id']) + ',';
+                            room_id_array += rc4_er(logininfo['auction_won'][i]['room_id']) + ',';
+                            /// if (logininfo['auction_won'][i]['order_id'] == '1' || logininfo['auction_won'][i]['order_id'] == '2' || logininfo['auction_won'][i]['order_id'] == '3') {
+                            var function_name = "shipping_detail(\"" + rc4_er(logininfo['auction_won'][i]['lot_id']) + "\",\"" + logininfo['auction_won'][i]['room_id'] + "\")";
+                            //} else {
+                            //    var function_name = "auction_detail(\"" + rc4_er(logininfo['auction_won'][i]['lot_id']) + "\",\"" + logininfo['auction_won'][i]['auc_type_id'] + "\")";
+                            // }
+                            //auction_won += "<tr onclick='" + function_name + "'><td>" + (logininfo['auction_won'][i]['order_id']) + "</td><td>" + numberWithCommas(logininfo['auction_won'][i]['bid_amount']) + "</td><td>" + logininfo['auction_won'][i]['tax_amount'] + "</td><td>" + logininfo['auction_won'][i]['shipping_amt'] + "</td><td>" + logininfo['auction_won'][i]['status'] + "</td></tr>";
+                            auction_won += "<li class='z-depth-1' onclick='" + function_name + "'><div class='collapsible-header height-auto padding-lr-0'><div class='header-info padding-lr-10'><div class='header-deatils padding-10 vertical-align-top'><div class='header-auction-name font-17'>" + logininfo['auction_won'][i]['order_id'] + "</div><div class='header-bid font-14 x-green '>Winning Price : Rs. " + numberWithCommas(logininfo['auction_won'][i]['bid_amount']) + "</div><div class='header-bid font-14 '>Tax : Rs. " + logininfo['auction_won'][i]['tax_amount'] + "</div><div class='header-time font-14 x-orange'>" + logininfo['auction_won'][i]['status'] + "</div></div></div></div></li>";
+                        }
+                        for (var i = 0; i < logininfo['wholesale_auction'].length; i++) {
+                            lot_array += rc4_er(logininfo['wholesale_auction'][i]['lot_id']) + ',';
+                            room_id_array += rc4_er(0) + ',';                            
+                            var function_name = "";
+                            var status = '';
+                            
+                            if(logininfo['wholesale_auction'][i]['status']=="Y"){
+                                status="Under Consideration";
+                                //$action_txt="Wait";
+                              function_name="auction_detail("+logininfo['wholesale_auction'][i]['lot_id']+", 6)";
+                               // $style_txt="";
+                            } else if(logininfo['wholesale_auction'][i]['status']=="A"){
+                                status="Approved";
+                              //  $action_txt="Pay Now";
+                              function_name="pay_now_make_offer(\""+rc4_er(logininfo['wholesale_auction'][i]['offer_id'])+"\",\""+rc4_er(logininfo['wholesale_auction'][i]['lot_id'])+"\")";
+                               // $style_txt="style='color:#ffa300; cursor:pointer;'";
+                            }  else if(logininfo['wholesale_auction'][i]['status']=="D"){
+                                status="Decline";
+                              //  $action_txt="Closed";
+                               function_name="auction_detail("+logininfo['wholesale_auction'][i]['lot_id']+", 6)";
+                               // $style_txt="";
+                            }
+                            
+                            auction_won += "<li class='z-depth-1 ' onclick='" + function_name + "'><div class='green lighten-5 collapsible-header height-auto padding-lr-0'><div class='header-info padding-lr-10'><div class='header-deatils padding-10 vertical-align-top'><div class='header-auction-name font-17'>" + logininfo['wholesale_auction'][i]['lot_name'] + " <span class='font-11'>("+logininfo['wholesale_auction'][i]['category_name']+")</span></div><div class='header-bid font-14 '>Location : " + logininfo['wholesale_auction'][i]['location'] + "</div><div class='header-bid font-14 x-green '>Amount : Rs. " + numberWithCommas(logininfo['wholesale_auction'][i]['offer_amount']) + "</div><div class='header-bid font-14 '>Quantity : " + logininfo['wholesale_auction'][i]['qty'] + "</div><div class='header-time font-14 x-orange'>" + status + "</div></div></div></div></li>";
+                        }
+                        if (logininfo['auction_won'].length + logininfo['wholesale_auction'].length > 0) {
+                            $('.total_auction_won-count').html('(' + (parseFloat(logininfo['auction_won'].length) + parseFloat(logininfo['wholesale_auction'].length)) + ')');
+                        }
+                        if (auction_won == '') {
+                            auction_won = "<li class='padding-10'>No Order in Process</li>";
+                        }
+                        $('.total_auction_won').html(auction_won);
+                        /*-------------------Watchlist end-------------------------*/
+                        lot_array = lot_array.substring(0, lot_array.length - 1);
+                        room_id_array = room_id_array.substring(0, room_id_array.length - 1);
+                        //console.log(lot_array);
+                        localStorage.lot_id_array = lot_array;
+                        localStorage.room_id_array = room_id_array;
+                        Materialize.showStaggeredList('.collection');
+                        $('.collection-item').click(function () {
+                            window.location.href = $(this).attr('value') + '.html';
+                        });
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        x_alert("You seem to have lost internet connection, please reconnect to get going");
+                        window.location.href = "no_connection.html";
+                    }
+                });
+            });
+            function pay_now_make_offer(offer_id,lot_id){
+            if(offer_id!=""){
+                $.getJSON(localStorage.host + "../classes/buyer_dashboard_inc.class.php?action=pay_now_make_offer&offer_id="+offer_id+"&user_id="+localStorage.user_id, function (data) {
+                    if(data['status']=="success"){
+                        //alert(data['url']);
+                        //window.location.href = data['url'];
+                         shipping_detail(lot_id, '0');
+                    } else if(data['status']=="exceed"){
+                        x_alert(data['msg']);                       
+                    }  else if(data['status']=="emd"){
+                        x_alert(data['msg']);
+                    } else {
+                        x_alert(data['msg']);
+                    }
+                });
+            } else {
+                 x_alert('Error!');
+            }
+        }
+        </script>
+    </body>
+</html>

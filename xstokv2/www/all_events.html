@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import materialize.css-->
+
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="screen,projection"/>
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <script type="text/javascript" src='js/main.js'></script>
+        <script type="text/javascript" src="cordova.js"></script> 
+        <script type="text/javascript">
+            //	The menu on the left
+
+
+            if (localStorage.logged_in == '1') {
+                if (localStorage.otp == '1') {
+                    if (localStorage.verified == '1') {
+                        //window.location.href = "search_result.html";
+                    } else {
+                        if (localStorage.kyc_status == '1') {
+                            window.location.href = "kyc_c.html";
+                        } else {
+                            window.location.href = "kyc.html";
+                        }
+                    }
+                } else {
+                    window.location.href = "otp.html";
+                }
+            } else {
+                window.location.href = "signin.html";
+            }
+        </script>
+    </head>
+
+    <body class="grey lighten-3">
+        <nav id="menu-add" class="xstok darken-1 navbar-fixed position-fixed"></nav>
+        <div class="row padding-top-56">
+            <ul class="collapsible popout search-list" data-collapsible="expandable"></ul>            
+        </div>        
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                add_menu('room',0, 0, 0, 1);                
+                $('.button-collapse').sideNav({
+                    menuWidth: 300, // Default is 240
+                    edge: 'left', // Choose the horizontal origin
+                    closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                }
+                );
+                search_loader ();
+                $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php?action=room_detail_all&type=html&user_id=d0', data: {}, type: 'get', success: function (data) {
+                        var body = '';
+                        var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                        var logininfo = JSON.parse(data);
+                        console.log(logininfo);
+                        if (parseInt(logininfo['room_count']) >= 1) {
+                            $.each(logininfo['room_auction'], function (index, value) {
+                                var today = new Date(logininfo['room_auction'][index]['end_date_w']);
+                                var dd = today.getDate();
+                                var mm = monthNames[today.getMonth()]; //January is 0!
+
+                                var yyyy = today.getFullYear();
+                                if (dd < 10) {
+                                    dd = '0' + dd;
+                                }
+
+                                var hh = today.getHours();
+                                var mmm = today.getMinutes();
+                                if (mmm < 10) {
+                                    mmm = '0' + mmm;
+                                }
+                                var today_e = dd + ' ' + mm + ' ' + yyyy + ', ' + hh + ':' + mmm;
+                                var today = new Date(logininfo['room_auction'][index]['start_date_w']);
+                                var dd = today.getDate();
+                                var mm = monthNames[today.getMonth()]; //January is 0!
+
+                                var yyyy = today.getFullYear();
+                                if (dd < 10) {
+                                    dd = '0' + dd;
+                                }
+
+                                var hh = today.getHours();
+                                var mmm = today.getMinutes();
+                                if (mmm < 10) {
+                                    mmm = '0' + mmm;
+                                }
+                                var today_s = dd + ' ' + mm + ' ' + yyyy + ', ' + hh + ':' + mmm;
+                                //console.log(index + ": " + value);
+                                body += '<li id="' + index + '" onclick="auction_room(\'' + rc4_er(logininfo['room_auction'][index]['lot_id']) + '\',\'' + rc4_er(logininfo['room_auction'][index]['room_id']) + '\')"><div class="card-panel  grey lighten-5 height-auto padding-lr-0 padding-tb-5"><div class="header-info padding-lr-10"><div class="event-head-text font-20">' + logininfo['room_auction'][index]['title'] + '</div><div class="header-image "><img src="' + logininfo['room_auction'][index]['img'] + '" alt="" class="z-depth-1" style=""></div><div class="event-deatils padding-top-5 vertical-align-top"><div class="event-body">' + logininfo['room_auction'][index]['description'] + '</div></div><div class="row margin-bottom-0"><div class="col s12 center-align  padding-lr-0"><span class="font-bold">Start Date : </span><span>' + today_s + '</span></div><div class="col s12 center-align padding-lr-0"><span class="font-bold">End Date : </span><span>' + today_e + '</span></div></div></div></div></li>';
+                                //body += '<li id="' + index + '" class="room-list" onclick="auction_room(\'' + rc4_er(logininfo['room_auction'][index]['lot_id']) + '\',\'' + rc4_er(logininfo['room_auction'][index]['room_id']) + '\')"><div class="room-list-body"><div class="room-list-head">' + logininfo['room_auction'][index]['title'] + '</div><div class="room-list-detail"><div class="room-list-image"><img src="' + logininfo['room_auction'][index]['img'] + '"></div><div class="room-list-info">' + logininfo['room_auction'][index]['description'] + '</div></div><div class="room-list-time"><div class="keep-on-left"><span class="font-bold">Start Date : </span><span>' + logininfo['room_auction'][index]['start_date'] + '</span></div><div class="keep-on-right"><span class="font-bold">End Date : </span><span>' + logininfo['room_auction'][index]['end_date'] + '</span></div></div></div></li>';
+                            });
+                        } else {
+                            body += '<li class="no-room no-shadow font-20 center-align" style="border-bottom: none !important;padding: 30px !important;">No rooms present at the moment<li>';
+                        }
+                        if (body != '') {
+                            $('.search-list').html(body);
+                        } else {
+                            $('.search-list').html('<li class="no-room no-shadow font-20 center-align" style="border-bottom: none !important;padding: 30px !important;">No rooms present at the moment</li>');
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        // if (textStatus === "timeout") {
+                        x_alert(localStorage.no_connection);
+                        window.location.href = "no_connection.html";
+                        // }
+                    }
+                });
+            });
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import materialize.css-->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="screen,projection"/>
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src='js/main.js'></script><script type="text/javascript" src="cordova.js"></script>
+        <!--Let browser know website is optimized for mobile-->
+
+        <script>
+            function retype_pass() {
+                $('#modal1').openModal({
+                    dismissible: false,
+                    complete: function () {
+                        window.location.href = "logout.html";
+                    }
+                });
+            }
+            function close_pass() {
+                window.location.href = "logout.html";
+            }
+            function submit_pass(retype) {
+                var pass = $('#re-pass').val();
+                if (typeof retype != 'undefined') {
+                    if (pass == '') {
+                        x_alert('Please enter the password');
+                    } else {
+                        $('#modal1').closeModal();
+                        localStorage.p = pass;
+                    }
+                }
+                $.ajax({url: localStorage.host + '../classes/common.class.php?action=check_login_details&user_name=' + rc4_er(localStorage.email_id) + '&password=' + rc4_er(localStorage.p), data: {}, type: 'get', success: function (data) {
+                        var info = JSON.parse(data);
+                        if (info['status'] == 'Y') {
+                            //$.ajax({url: localStorage.host + '../classes/common.class.php?action=login_session_payment&user_name='+rc4_er(localStorage.u_)+'&password='+rc4_er(localStorage.p) +'&url='+rc4_er(localStorage.url), data: {}, type: 'get', success: function (data) {  
+                            $('.iframe').attr('src', localStorage.host + '../classes/common.class.php?action=login_session_payment&user_name=' + rc4_er(localStorage.u_) + '&password=' + rc4_er(localStorage.p) + '&url=' + rc4_er(localStorage.url));
+                            //   //   } 
+                            ///  });
+                        } else {
+                            retype_pass();
+                        }
+                    }
+                });
+            }
+            $(function () {
+                setTimeout(function () {
+                    $('.iframe').height($(window).height() - 62);
+                    $('.iframe').width($(window).width() -4);
+                }, 1000);
+                submit_pass();
+                var paycheck = setInterval(function () {
+                    //   localStorage.notification_emd = rc4_er(logininfo['notification_emd']);
+                    //                          localStorage.inserted_id = (logininfo['inserted_id']);
+                    $.ajax({url: localStorage.host + '../classes/common.class.php?action=check_emd_payment&type=' + localStorage.notification_emd + '&pay_id=' + localStorage.inserted_id, data: {}, type: 'get', success: function (data) {
+                            var info = JSON.parse(data);
+                            //info['status'] = 'Y'
+                            if (info['status'] == 'P' || info['status'] == 'C' || info['status'] == 'U') {
+                                clearInterval(paycheck);
+                                setTimeout(function () {
+                                    //window.location.href = "emd.html";
+                                    $('.payment-dash').fadeIn();
+                                }, 5000);
+                            }
+
+                        }
+                    });
+                }, 1000);
+                console.log(localStorage.host + '../login/autologin/' + localStorage.u_ + '/' + localStorage.p_);
+            });
+        </script>
+    </head>
+
+    <body class="grey lighten-4">
+        <div class="row  margin-bottom-0 padding-tb-5">
+            <div class="col s2">
+                <a onclick="back()" class="back"><i class="fa fa-chevron-left fa-2x"></i></a>
+            </div>
+            <div class="col offset-s6 s4"><img class="logo-login width-100p" src="images/logo.png"/></div>
+        </div> 
+        <div class="InAppBrowser">
+            <iframe class="iframe" src=""></iframe>
+        </div>
+        <a href="dashboard.html" style="display: none" class="btn btn-xstok payment-dash xstok darken-1">Move Dashboard</a>
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <div class="font-bold font-14">Please enter your login password</div>
+                <input type="password" class="form-control display-inline input-sm " id="re-pass" placeholder="Enter Password">
+                <span class="font-11 x-red">Note: Selecting close will log you out.</span>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:void(0)" class=" modal-action waves-effect waves-green btn-flat" onClick="submit_pass('1')">Submit</a>
+                <a href="javascript:void(0)" class=" modal-action modal-close waves-effect waves-red btn-flat">Close</a>
+            </div>
+        </div>
+
+        <!--Import jQuery before materialize.js-->       
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript" src="js/parsley.min.js"></script>
+        <script type="text/javascript" src="js/md5.js"></script>       
+    </body>
+</html>

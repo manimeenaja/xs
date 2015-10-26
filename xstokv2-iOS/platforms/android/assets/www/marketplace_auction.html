@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import materialize.css-->
+
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/slick.css" rel='stylesheet' type='text/css' />
+        <link href="css/slick-theme.css" rel='stylesheet' type='text/css' />
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="screen,projection"/>
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src='js/main.js'></script><script type="text/javascript" src="cordova.js"></script> 
+        <script>
+            var hide_details_list_price_ctl = "";
+            $(document).ready(function () {
+                var hash = window.location.hash.split('#')[1];
+                var hide_details_list_price = "N";
+                var hide_details_current_bid = "N";
+                var hide_details_price_per_unit = "N";
+                var hide_details_discount = "N";
+                var hide_details_starting_value = "N";
+                var hide_details_starting_discount = "N";
+                var hide_details_request_for_sample = "N";
+                var hide_details_start_price_per_unit = "N";
+                var hide_details_list_price_per_unit = "N";
+                var hide_details_hide_quantity = "N";
+                var hide_details_hide_emd_required = "N";
+                localStorage.emd_for_this_auc = 'N';
+
+                supplier_circle();
+                $.ajax({url: localStorage.host + '../classes/service_manage_wholesale_auction.class.php', data: {action: 'get_auction_details', lot_id: hash}, type: 'get', success: function (data) {
+                        if (data) {
+                            $('.bid_now_button').removeClass('hide');
+                            var supp_id_list_array = localStorage.supp_id_list_array.split(',').map(Number);
+                            var detail = JSON.parse(data);
+                            console.log(detail);
+                            detail[0]['room_id'] = -1;
+                            $('#total_qty_left').html(detail[0]['total_quantity']);
+                            $('.head-title-text').html(detail[0]['title']);
+                            $('.shipping-main').html(detail[0]['shipping']);
+                            $('.product_description').html(detail[0]['description']);
+                            $('.offer_select').attr('id', 'dd_' + hash);
+                            $('.offer_select').attr('dynamic_lot', hash);
+                            $('.offer_select').attr('minimum_quantity', detail[0]['minimum_quantity']);
+                            $('.offer_select').attr('id_info', detail[0]['id']);
+                            $('#total_qty_left').html(detail[0]['total_quantity']);
+                            $('.tnc').html(detail[0]['terms']);
+                            $('#span_offer_qty').html(detail[0]['minimum_quantity']);
+                            $('#span_total_quantity').html(detail[0]['total_quantity']);
+                            $('.package').html(detail[0]['shipping']);
+                            $('.package *[style]').attr('style', ''); 
+                            $('.tnc *[style]').attr('style', ''); 
+                            $('.product_description *[style]').attr('style', ''); 
+                            $('.bid_now_button').attr('id', 'bid_now_button_' + hash);
+                            $('.bid_now_button').attr('dynamic_lot', hash);
+                            $('#make_offer').attr('dynamic_lot', hash);
+                            if (parseFloat(detail[0]['emd_for_this_auc']) > 0) {
+                                localStorage.emd_for_this_auc = detail[0]['emd_for_this_auc'];
+                            }
+                            var er_sup_id = rc4_er(detail[0]['supplier_id']);
+                            supplier_detail(er_sup_id);
+                            get_wishlist(detail[0]['lot_id'], detail[0]['room_id'], localStorage.marketplace_auction);
+                            if (localStorage.emd_for_this_auc != 'N' && parseFloat(localStorage.emd_for_this_auc) > 0) {
+                                $('#emd_req').html(numberWithCommas(localStorage.emd_for_this_auc));
+                            } else {
+                                $('#emd_req').html('No EMD');
+                            }
+                            var image = '';
+                            var img = detail[0]['image'].split('|');
+                            $('.head-image').empty();
+                            localStorage.image_count = 0;
+                            for (var i = 0; i < img.length; i++) {
+                                if (detail[0]['image'].indexOf("|")) {
+                                    image = detail[0]['image'].split('|');
+                                    for (var j = 0; j < image.length; j++) {
+                                        var src = image[j];
+                                        if (image[j] == '') {
+                                            src = 'images/no_image.jpg';
+                                        }
+                                        $('.head-image').append('<div><img  alt="xstok" class="head-image-img" src="' + src + '"></div>');
+                                        localStorage.image_count = parseInt(localStorage.image_count) + 1;
+                                        localStorage.image_slide += '|' + src;
+                                    }
+                                } else {
+                                    var src = detail[0]['image'];
+                                    if (image[j] == '') {
+                                        src = 'images/no_image.jpg';
+                                    }
+                                    $('.head-image').append('<div><img alt="xstok" class="head-image-img" src="' + detail[0]['image'] + '"></div>');
+                                    localStorage.image_slide += '|' + detail[0]['image'];
+                                    localStorage.image_count = parseInt(localStorage.image_count) + 1;
+                                }
+                            }
+                            show_data(hash, detail[0]['minimum_quantity'], detail[0]['total_quantity'], detail[0]['no_of_variation'], detail[0]['id']);
+                            setInterval(function () {
+                                show_data(hash, detail[0]['minimum_quantity'], detail[0]['total_quantity'], detail[0]['no_of_variation'], detail[0]['id']);
+                            }, 1000);
+                            show_time(hash);
+
+                            setInterval(function () {
+                                show_time(hash);
+                            }, 1000);
+                            $('.image-count-value').html(localStorage.image_count);
+                            setTimeout(function () {
+                                $('.single-item').slick({
+                                    //                    autoplay: true,
+                                    //                    autoplaySpeed: 2000,
+                                    arrows: false,
+                                    //                    fade: true,
+                                    dots: false
+                                });
+                            }, 0);
+                            $('.head-image-img').click(function () {
+                                var back = $(this).parent().prev().find('img').attr('src');
+                                $('#image').height($(window).outerHeight());
+                                $(".panzoom-elements").html('<img src="' + $(this).attr('src') + '">');
+                                $(".next_image").attr('onclick', 'next_image("' + $(this).attr('src') + '")');
+                                $(".back_image").attr('onclick', 'back_image("' + back + '")');
+                                $(".panzoom-elements").panzoom({
+                                    contain: 'invert'
+//                    $reset: $('.image-close')
+                                            // maxScale: $(this).naturalWidth / $(this).clientWidth
+                                });
+                                $('.panzoom-elements').on("panzoomend", function (e, panzoom) {
+                                    var array = panzoom.getMatrix();
+                                    if (array[0] <= 1 && array[3] <= 1) {
+                                        $('.panzoom-elements').css('transform', 'none');
+                                        $(".panzoom-elements").on('swipeleft', function () {
+                                            $(".next_image").click();
+                                        });
+                                        $(".panzoom-elements").on('swiperight', function () {
+                                            $(".back_image").click();
+                                        });
+                                    } else {
+                                        $(".panzoom-elements").unbind('swipeleft');
+                                        $(".panzoom-elements").unbind('swiperight');
+                                    }
+                                });
+                                $('.panzoom-elements').css('margin-top', ($(window).height() - $('.panzoom-elements').height()) / 2);
+                                $('#image').css('visibility', 'visible');
+                                $('body').bind('touchmove', function (e) {
+                                    e.preventDefault();
+                                });
+                                $(".panzoom-elements").on('swipeleft', function () {
+                                    $(".next_image").click();
+                                });
+                                $(".panzoom-elements").on('swiperight', function () {
+                                    $(".back_image").click();
+                                });
+                            });
+                            /*var hide_details_array = detail[0]['hide_details'];
+                             var hide_details = hide_details_array.split(',');
+                             var reserve_price_start_price = detail[0]['start_price'];
+                             hide_details_list_price = hide_details[0];
+                             hide_details_current_bid = hide_details[1];
+                             hide_details_price_per_unit = hide_details[2];
+                             hide_details_discount = hide_details[3];
+                             hide_details_starting_value = hide_details[4];
+                             hide_details_starting_discount = hide_details[5];
+                             hide_details_request_for_sample = hide_details[6];
+                             hide_details_start_price_per_unit = hide_details[7];
+                             hide_details_list_price_per_unit = hide_details[8];
+                             hide_details_hide_quantity = hide_details[9];
+                             hide_details_hide_emd_required = hide_details[10];*/
+
+                            /*
+                             if (hide_details_hide_quantity == "Y") {
+                             $(".product_quantity_list").hide();
+                             } else {
+                             $(".product_quantity_list").show();
+                             }
+                             if (hide_details_list_price == "Y") {
+                             $("#hide_details_list_price_id").hide();
+                             } else {
+                             $("#hide_details_list_price_id").show();
+                             }
+                             if (hide_details_price_per_unit == "Y") {
+                             $("#list_price_per_unit").hide();
+                             } else {
+                             $("#list_price_per_unit").show();
+                             }
+                             
+                             
+                             
+                             if (hide_details_hide_emd_required == "Y") {
+                             $("#hide_details_hide_emd_required_id").hide();
+                             } else {
+                             $("#hide_details_hide_emd_required_id").show();
+                             }
+                             if (hide_details_current_bid == "Y") {
+                             if ($("span_current_text").html() == "Current") {
+                             $("#hide_details_current_bid_id").hide();
+                             }
+                             } else {
+                             if ($("span_current_text").html() == "Current") {
+                             $("#hide_details_current_bid_id").show();
+                             }
+                             }
+                             
+                             
+                             if (hide_details_starting_value == "Y") {
+                             $("#hide_details_start_price_id").hide();
+                             } else {
+                             $("#hide_details_start_price_id").show();
+                             }
+                             if (parseFloat(detail[0]['emd_for_this_auc']) > 0) {
+                             localStorage.emd_for_this_auc = detail[0]['emd_for_this_auc'];
+                             }
+                             //product_price_list
+                             
+                             var actual_price = 0;
+                             var reserve_price = 0;
+                             var ass_reserve_price = 0;
+                             var discount_value = 0;
+                             localStorage.min_user = rc4_er(detail[0]['min_user']);
+                             console.log(detail);
+                             if (detail[0]['lot_image'] != '') {
+                             localStorage.image_count = 1;
+                             }
+                             $('.head-image').html('<div><img alt="xstok" class="head-image-img" src="' + detail[0]['lot_image'] + '"></div>');
+                             localStorage.image_slide = detail[0]['lot_image'];
+                             
+                             //$('.head-description-text').html(detail[0]['description']); short
+                             $('.product_description').html(detail[0]['lot_desc']);
+                             $('.product_description table tr').each(function (i) {
+                             $('.product_description table').removeAttr('width');
+                             //$('.product_description table').width($(window).width());
+                             $(this).children('td').each(function (j) {
+                             $(this).removeAttr('width');
+                             });
+                             });
+                             $('.product_description p').each(function (i) {
+                             $(this).html($(this).html().replace(/&nbsp;&nbsp;&nbsp;/gi, ''));
+                             });
+                             
+                             var date = new Date();
+                             var time = parseInt((date.getTime()) / 1000);
+                             var end_date = new Date(detail[0]['end_date']);
+                             end_date = parseInt((end_date.getTime()) / 1000);
+                             var golden_time_value = parseInt(detail[0]['golden_time']);
+                             var apply_golden_time = parseInt(detail[0]['apply_golden_time']);
+                             var dynamic_min_user = detail[0]['min_user'];
+                             var dynamic_room = rc4_er(detail[0]['room_id']);
+                             insert_update_emd_temp_table(hash, rc4_er(detail[0]['room_id']));
+                             var flg = 'Y';
+                             $('#auc_type_id_val').val(detail[0]['auc_type_id']);
+                             if (detail[0]['auc_type_id'] == localStorage.private_auction) {
+                             if (localStorage.buyer_user_id == localStorage.user_id) {
+                             flg = 'Y';
+                             } else {
+                             flg = 'N';
+                             }
+                             } else {
+                             flg = 'Y';
+                             }
+                             $('.tnc').html(detail[0]['terms_condition'] + '<br>Standard website and transaction terms and conditions apply.');
+                             $('.package').html(detail[0]['package']);
+                             var start_date = new Date(detail[0]['start_date']);
+                             start_date = parseInt((start_date.getTime()) / 1000);
+                             if (flg == 'Y' && start_date <= time) {
+                             if (detail[0]['auc_type_id'] == localStorage.closed_bid_auction) {
+                             auction_assort_close_allow_buy(hash, detail[0]['room_id']);
+                             } else if (detail[0]['auc_type_id'] == localStorage.curate_auction) {
+                             } else if (detail[0]['auc_type_id'] == localStorage.private_auction) {
+                             } else if (detail[0]['auc_type_id'] == localStorage.assorted_auction) {
+                             auction_assort_close_allow_buy(hash, detail[0]['room_id']);
+                             }
+                             var browser = detectBrowser();
+                             var agent = browser[0] + '-' + browser[1];
+                             $.ajax({url: localStorage.host + '../classes/common.class.php', data: {action: 'update_view_auction_visit_count', lot_id: hash, room_id: rc4_er(detail[0]['room_id']), user_id: localStorage.user_id, agent: agent}, type: 'get', success: function (data) {
+                             var bid = JSON.parse(data);
+                             $('.head-user-per-text').html(bid);
+                             console.log('2');
+                             }
+                             });
+                             if (detail[0]['auction_on'] == 'discount') {
+                             var dis_symbol = '%';
+                             actual_price = (detail[0]['discount_value'] / detail[0]['reserve_price'] * 100);
+                             if (detail[0]['auc_type_id'] == localStorage.assorted_auction) {
+                             discount_value = detail[0]['discount_value'];
+                             } else {
+                             discount_value = detail[0]['discount_value'];
+                             }
+                             reserve_price = (100 - parseFloat(detail[0]['reserve_price']));
+                             ass_reserve_price = (parseFloat(actual_price) * parseFloat(detail[0]['reserve_price'])) / 100;
+                             } else if (detail[0]['auction_on'] == 'price') {
+                             
+                             var dis_symbol = '%';
+                             actual_price = parseFloat(detail[0]['reserve_price']) + parseFloat(detail[0]['discount_value']);
+                             if (detail[0]['auc_type_id'] == localStorage.assorted_auction) {
+                             discount_value = detail[0]['reserve_price'];
+                             } else {
+                             discount_value = detail[0]['reserve_price'];
+                             }
+                             
+                             reserve_price = parseFloat(((actual_price - parseFloat(detail[0]['discount_value'])) / actual_price) * 100).toFixed(2);
+                             // }
+                             reserve_price = (100 - reserve_price);
+                             ass_reserve_price = parseFloat(detail[0]['reserve_price']);
+                             }
+                             $('.head-percentage-text').after(' ' + dis_symbol);
+                             $('.head-percentage-text').addClass('curr_per_bid_' + hash);
+                             $('.head-list-discount-text').html(reserve_price);
+                             $('.curr_per_bid_' + hash).html(round(reserve_price, 2));
+                             $('.head-list-price-text').html(numberWithCommas(actual_price));
+                             
+                             if (localStorage.emd_for_this_auc != 'N' && parseFloat(localStorage.emd_for_this_auc) > 0) {
+                             $('#emd_req').html(numberWithCommas(localStorage.emd_for_this_auc));
+                             } else {
+                             $('#emd_req').html(((parseFloat(actual_price) / parseFloat(localStorage.limit_val)) < parseFloat(localStorage.emd_list_price_limit)) ? numberWithCommas(round(parseFloat(actual_price) / parseFloat(localStorage.limit_val))) : numberWithCommas(parseFloat(localStorage.emd_list_price_limit)));
+                             }
+                             if ((parseFloat(actual_price) / parseFloat(localStorage.limit_val)) < parseFloat(localStorage.emd_list_price_limit)) {
+                             $('#list_price_actual').html(numberWithCommas(actual_price));
+                             } else {
+                             $('#list_price_actual').html(numberWithCommas(parseFloat(localStorage.emd_list_price_limit) * parseFloat(localStorage.limit_val)));
+                             }
+                             $('.head-starting-value-text').html(discount_value);
+                             if (Math.abs(time - end_date) <= apply_golden_time) { //apply golden time checking
+                             var golden_time = end_date;
+                             } else {
+                             var golden_time = "N";
+                             }
+                             $('.unit_price_val').html(detail[0]['unit_price']);
+                             $('.f_well_for_count').addClass('bid_status_' + hash);
+                             //$('.head-value-text').addClass('curr_bid_' + hash);
+                             $('.curr_bid_' + hash).html(numberWithCommas(discount_value));
+                             $('.auctions-status-text').addClass('bid_cal_' + hash);
+                             $('.auctions-status-text-new').addClass('bid_cal_' + hash);
+                             $('.f_well_for_count').attr('dynamic_lot', hash);
+                             $('.f_well_for_count').attr('og_lot', detail[0]['lot_id']);
+                             $('.f_well_for_count').attr('dynamic_room', dynamic_room);
+                             $('.f_well_for_count').attr('dynamic_min_user', rc4_er(dynamic_min_user));
+                             $('.f_well_for_count').attr('dynamic_r_price', rc4_er(reserve_price));
+                             $('.head-total-bid-text').addClass('total_bid_' + hash);
+                             var unit_price_auction = detail[0]['unit_price_auction'];
+                             $('.unit_price_auction_val').html(unit_price_auction);
+                             if(unit_price_auction=='Y'){
+                             $('.set-auto-bid').attr('placeholder','Enter per unit in rupees');
+                             } else {
+                             $('.set-auto-bid').attr('placeholder','Enter value in rupees'); 
+                             }*/
+                            
+                            /* var tender_period = 'No';
+                             var tender_period_date = new Date(detail[0]['tender_period']);
+                             tender_period_date = parseInt((tender_period_date.getTime()) / 1000);
+                             //end_date = end_date.trim();
+                             if (tender_period_date > time && time > start_date) {
+                             tender_period = 'Yes';
+                             $('.aut-type-1').html('I`m Interested');
+                             tender_period_func(hash, dynamic_room, detail[0]['tender_period'], detail[0]['end_date'], actual_price, detail[0]['supplier_id'], supp_id_list_array);
+                             }
+                             if (detail[0]['auc_type_id'] == localStorage.closed_bid_auction && tender_period_date < time) {
+                             $('.assorted_hide').show();
+                             }
+                             if (detail[0]['auc_type_id'] != localStorage.closed_bid_auction && tender_period == 'No') {
+                             $('#not_for_closed_bid').show();
+                             $('.aut-type-1').html('Bid Now');
+                             }
+                             
+                             
+                             $('.div_tendor').addClass('hide');
+                             $('.div_tendor').attr('golden_time', golden_time);
+                             $('.div_tendor').attr('auc_end_date', rc4_er(detail[0]['end_date']));
+                             $('.div_tendor').attr('golden_time_value', rc4_er(golden_time_value));
+                             $('.div_tendor').attr('dynamic_min_user', rc4_er(dynamic_min_user));
+                             $('.div_tendor').attr('og_dynamic_min_user', detail[0]['min_user']);
+                             $('.div_tendor').attr('dynamic_lot', hash);
+                             $('.div_tendor').attr('dynamic_room', dynamic_room);
+                             $('.div_tendor').attr('actual_price', actual_price);
+                             $('.div_tendor').attr('discount_value', discount_value);
+                             $('.div_tendor').attr('reserve_price', reserve_price);
+                             $('.div_tendor').attr('auction_on', detail[0]['auction_on']);
+                             $('.div_tendor').attr('min_incr_value', detail[0]['min_incr_value']);
+                             $('.div_tendor').attr('auction_on', detail[0]['auction_on']);
+                             $('.div_tendor').attr('auction_on', detail[0]['auction_on']);
+                             $('.interested').attr('interest_val', discount_value);
+                             $('.interested').attr('dynamic_lot', hash);
+                             $('.dup_curr_bid').html(discount_value);
+                             $('.dup_curr_bid').addClass('dup_curr_bid_' + hash);
+                             $('.bid-now-select').change(function () {
+                             if ($('#dd_' + hash + ' option:selected').text().toLowerCase() == 'bid') {
+                             $('#bid_now_button_' + hash).addClass('disabled');
+                             } else {
+                             if ($('.bid_cal_' + hash).html() != localStorage.winner__) {
+                             $('#bid_now_button_' + hash).removeClass('disabled');
+                             $('.current_value').html($('#dd_' + hash + ' option:selected').attr('cal_val'));
+                             } else {
+                             // $('.msg_' + hash).css('padding', '15px 1px');
+                             //$('.auction-status').css('padding', '15px 1px');
+                             $('.msg_' + hash).hide().html(localStorage.bid_winner__);
+                             Materialize.toast(localStorage.bid_winner__, 2000, 'x-green bold', function () {
+                             $('#toast-container').remove();
+                             });
+                             setTimeout(function () {
+                             //  $('.msg_' + hash).css('padding', '24px 1px');
+                             //  $('.auction-status').css('padding', '24px 1px');
+                             }, 5500);
+                             }
+                             }
+                             });
+                             var withdraw_btn = '<a class="withdraw x-grey" id="withdraw_' + hash + '" onclick="showWithdrawDialog(\'' + dynamic_room + '\',\'' + hash + '\',\'' + (localStorage.user_id) + '\',\'' + localStorage.user_id + '\')">Withdraw</a>';
+                             $('.bid-now-withdraw-btn').html(withdraw_btn);
+                             if (detail[0]['auc_type_id'] == localStorage.closed_bid_auction) {
+                             $('.bid-now-withdraw-btn').addClass('hide');
+                             }
+                             if (detail[0]['auc_type_id'] == localStorage.closed_bid_auction) {
+                             $('.bid_now_button').val('Make offer');
+                             $('.aut-type-1').html('Make offer');
+                             $('.sealed-bid-value-text').html('My Offer');
+                             $('.close_hide').show();
+                             $('.offer_seal').html('My Last Offer');
+                             } else {
+                             $('.close_hide').remove();
+                             }
+                             
+                             $('.set-auto-bid').attr("id", "first_bid_" + hash);
+                             $('.auto_bid_button_small').attr("id", "bid_now_button_" + hash);
+                             $('.auto_bid_button_small').attr("dynamic_lot", hash);
+                             $('.auction-status').addClass('msg_' + hash);
+                             localStorage.final_status = '';
+                             //console.log(localStorage.name);
+                             $('#ship_to_message').val(localStorage.shipping_auction_msg);
+                             $('#auc_to_message').val(localStorage.email_auction_msg);
+                             $('#ship_to_message').val(localStorage.shipping_auction_msg);
+                             $('#ship_name').val(localStorage.name);
+                             
+                             $('input[name="auc_title"]').val(detail[0]['lot_name']);
+                             $('input[name="auc_url"]').val('/auction_detail/' + rc4_er(detail[0]['room_id']) + '/' + rc4_er(detail[0]['lot_id']) + '');
+                             var buy_now = '';
+                             localStorage.ass_auc_buy_now_price = 0;
+                             if (detail[0]['auc_type_id'] == localStorage.assorted_auction) {
+                             buy_now = 'For <i class="fa fa-inr"></i> ' + numberWithCommas(detail[0]['buy_now']) + ' / Per <span class="unit"></span> : <i class="fa fa-inr"></i> ' + numberWithCommas(round(parseFloat(detail[0]['buy_now']) / parseFloat(detail[0]['unit_price']), 2));
+                             // $('.col-4').hide();
+                             //$('.aut-type-1').hide();
+                             //  $('.col-3').show();
+                             //$('.aut-type-2').show();
+                             var total_bid_count = setInterval(function () {
+                             if (typeof $('.total_bid_' + hash).html() != 'undefined') {
+                             $('.buy_now_button').attr('onclick', 'buy_now("' + hash + '","' + rc4_er(detail[0]['room_id']) + '","' + $('.total_bid_' + hash).html() + '","' + detail[0]['buy_now'] + '","' + Math.round(discount_value) + '","' + actual_price + '")');
+                             clearInterval(total_bid_count);
+                             }
+                             }, 500);
+                             $('.buy_now_button').attr('id', 'direct_buy_' + hash + '');
+                             $('.buy_now_button').addClass('direct_buy_' + hash + '');
+                             }
+                             localStorage.ass_auc_buy_now_price = detail[0]['buy_now'];
+                             if (detail[0]['auc_type_id'] == localStorage.closed_bid_auction) {
+                             localStorage.ass_auc_buy_now_price = ass_reserve_price;
+                             }
+                             $('.head-buy-now-price-text').html(buy_now);
+                             var buy_now_btn = '<a id="buy_' + hash + '" class="btn xstok darken-1 white-text buy_' + hash + ' hide" href="shipping_detail.html?#' + hash + '-' + detail[0]['room_id'] + '" role="button">Proceed to Payment</a>';
+                             $('.bid-now-buy-now-btn').html(buy_now_btn);
+                             $('.bid_now_button').attr("id", "bid_now_button_" + hash);
+                             $('.bid_now_button').attr("bid_type", detail[0]['auc_type_id']);
+                             $('.bid_now_button').attr("dynamic_lot", hash);
+                             var mL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                             var tender_date = new Date(detail[0]['start_date']);
+                             var tender_date_text = tender_date.getDate() + ' ' + mL[tender_date.getMonth()] + ' ' + tender_date.getFullYear() + ', ' + tender_date.getHours() + ':' + (tender_date.getMinutes() < 10 ? '0' : '') + tender_date.getMinutes();
+                             $('.head-tender-start-text').html('<div class="col s4"><b>Start date</b></div><div class="col s8">' + tender_date_text + '</div>');
+                             var tender_period_limit = 'No Limit';
+                             var tender_period1 = 'No';
+                             if (detail[0]['end_date'] != '') {
+                             var mL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                             var tender_date = new Date(detail[0]['end_date']);
+                             var tender_date_text_end = tender_date.getDate() + ' ' + mL[tender_date.getMonth()] + ' ' + tender_date.getFullYear() + ', ' + tender_date.getHours() + ':' + (tender_date.getMinutes() < 10 ? '0' : '') + tender_date.getMinutes();
+                             tender_period_limit = tender_date_text_end;
+                             tender_period1 = '';
+                             }
+                             $('.head-tender-period-text').html('<div class="col s4"><b>End date</b></div><div class="col s8">' + tender_period_limit + '</div>');
+                             
+                             var tender_period_limit1 = 'No Limit';
+                             var tender_period2 = 'No';
+                             if (detail[0]['tender_period'] != '') {
+                             var mL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                             var tender_date = new Date(detail[0]['tender_period']);
+                             var tender_date_text_end = tender_date.getDate() + ' ' + mL[tender_date.getMonth()] + ' ' + tender_date.getFullYear() + ', ' + tender_date.getHours() + ':' + (tender_date.getMinutes() < 10 ? '0' : '') + tender_date.getMinutes();
+                             tender_period_limit1 = tender_date_text_end;
+                             tender_period1 = '';
+                             }
+                             $('.head-tender-end-text').html('<div class="col s4"><b>End date</b></div><div class="col s8">' + tender_period_limit1 + '</div>');
+                             $('.head-bid-start-text').html('<div class="col s4"><b>Start date</b></div><div class="col s8">' + tender_period_limit1 + '</div>');
+                             
+                             if (detail[0]['auc_type_id'] == localStorage.closed_bid_auction) {
+                             show_time(discount_value);
+                             setInterval(function () {
+                             show_time(discount_value);
+                             }, 1000);
+                             }
+                             
+                             
+                             
+                             localStorage.sample_lot_id = detail[0]['lot_id'];
+                             localStorage.sample_room_id = detail[0]['room_id'];
+                             
+                             get_product_with_lot_name(detail[0]['lot_id'], hide_details_list_price_ctl);
+                             get_packege_detail(rc4_er(detail[0]['lot_id']), rc4_er(detail[0]['room_id']));
+                             
+                             $('.heart-detail').attr('onclick', 'heart(\'' + rc4_er(detail[0]['lot_id']) + '\',\'' + rc4_er(detail[0]['room_id']) + '\',\'' + detail[0]['auc_type_id'] + '\')');
+                             $('.heart-detail').attr('id', 'heart' + rc4_er(detail[0]['lot_id']) + rc4_er(detail[0]['room_id']));
+                             
+                             $('.download-excl').attr('onclick', 'download_exl("' + hash + '")');
+                             localStorage.tender_period = tender_period;
+                             get_unit(detail[0]['lot_unit']);
+                             if (localStorage.hide_list_p_percent && supp_id_list_array.indexOf(parseFloat(detail[0]['supplier_id'])) > -1) {
+                             $('.lp').hide();
+                             $('.count-opt').html('+ 1');
+                             $('.emd_req').addClass('padding-bottom-5-p');
+                             }
+                             if (parseInt(detail[0]['room_id']) < 1) {
+                             $('.gotoroom').hide();
+                             } else {
+                             $('.gotoroom').attr('href', 'auction_room.html#' + hash + '-' + rc4_er(detail[0]['room_id']));
+                             }
+                             }
+                             if (detail[0]['auc_type_id'] != localStorage.closed_bid_auction) {
+                             $('.assorted_hide').remove();
+                             $('.close_hide').remove();
+                             $('.seal_info').remove();
+                             }
+                             */
+
+                            /******************************NEW CODE START****************************************/
+
+                            /*  $('#list_price_value').html('<i class="fa fa-inr"></i> ' + numberWithCommas(Math.round(actual_price)));
+                             if (hide_details_list_price_per_unit == "Y") {
+                             $('#list_price_per_unit').html('-');
+                             hide_details_list_price_ctl = "Y";
+                             } else {
+                             $('#list_price_per_unit').html('<i class="fa fa-inr"></i> ' + numberWithCommas(RoundTo(parseFloat(actual_price) / parseFloat(detail[0]['unit_price']), parseFloat(0.5))));
+                             hide_details_list_price_ctl = "N";
+                             }
+                             $('#start_price_value').html('<i class="fa fa-inr"></i> <span class="span_start_price_per_unit_">' + numberWithCommas(round(parseFloat(discount_value), 0)) + '</span>');
+                             if (hide_details_starting_discount == 'Y') {
+                             $('#start_price_discount').html('-');
+                             } else {
+                             $('#start_price_discount').html(round(parseFloat(reserve_price), 2));
+                             }
+                             
+                             if (hide_details_start_price_per_unit == 'Y') {
+                             $('#start_price_per_unit').html('-');
+                             } else {
+                             $('#start_price_per_unit').html('<i class="fa fa-inr"></i> ' + numberWithCommas(RoundTo(parseFloat(discount_value) / parseFloat(detail[0]['unit_price']), parseFloat(0.5))));
+                             }
+                             $('#current_price_value').html('<span class="span_curr_bid_hypen">-</span><span class="span_curr_bid"><i class="fa fa-inr"></i> <span class="curr_bid_' + rc4_er(detail[0]['lot_id']) + '">' + numberWithCommas(round(discount_value, 0)) + '</span></span>');
+                             
+                             if (hide_details_discount == 'Y') {
+                             $('#current_price_discount').html('- <span class="hide curr_per_bid_' + rc4_er(detail[0]['lot_id']) + '">' + (100 - (parseFloat(round((parseFloat(reserve_price_start_price) / parseFloat(actual_price) * 100), 2)))) + '</span>');
+                             } else {
+                             $('#current_price_discount').html('<span class="span_curr_bid_dis_hypen">-</span> <span class="span_curr_bid_dis"><span class="curr_per_bid_' + rc4_er(detail[0]['lot_id']) + '"></span>');
+                             }
+                             //$('#current_price_discount').html('<span class="span_curr_bid_dis_hypen">-</span> <span class="span_curr_bid_dis"><span class="curr_per_bid_' + rc4_er(detail[0]['lot_id']) +'">'</span></span>');  
+                             var select_body = "";
+                             select_body += '<select class="form-control bid-now-select input-sm select_tab dropdown browser-default" id="dd_' + hash + '" golden_time="' + golden_time + '" golden_time_value ="' + rc4_er(golden_time_value) + '" dynamic_min_user="' + rc4_er(dynamic_min_user) + '" dynamic_lot="' + hash + '" dynamic_room="' + dynamic_room + '" actual_price="' + actual_price + '" discount_value="' + discount_value + '" reserve_price="' + round(reserve_price, 2) + '" auction_on="' + detail[0]['auction_on'] + '" min_incr_value="' + detail[0]['min_incr_value'] + '" auc_end_date = "' + rc4_er(detail[0]['end_date']) + '" og_dynamic_min_user="' + detail[0]['min_user'] + '" unit_price_auction="' + unit_price_auction + '"><option value="Bid"> Bid </option>';
+                             var min_incr_value = 0;
+                             select_body += "</select>";
+                             $('.bidvalue').addClass('cal_bid_cal_' + hash);
+                             $('.bidding-area-left').html(select_body);
+                             
+                             */
+                            /*********************************NEW CODE END*****************************************/
+                        }
+                        // callout('bid_now_callout', 'Bid now', 'Click here to bid.', 0, 0);
+                        callout('bid_drop_callout', 'Bid now', 'Place your bid by choosing a value from the dropdown.', 2, 0);
+                        callout('auto_bid_callout', 'Bid now', 'Autobid bids on your behalf ensuring you stay the winner. Place your highest bid here.', 3, 1);
+                        callout('withdraw_callout', 'Bid now', 'Withdraw from this lot, if you are not the highest bidder. And release your proportanite EMD.', 0, 2);
+                        if (localStorage.tender_period == 'No') {
+                            setTimeout(function () {
+                                if (localStorage.ttb == 0 || typeof localStorage.ttb == 'undefined') {
+                                    if ($('.aut-type-1').text().toLowerCase() == 'bid now') {
+                                        localStorage.ttb = 1;
+                                        // $('.bid_now_callout').fadeIn();
+                                        //$('.bid_now_callout').css('bottom', $('.aut-type-1').outerHeight() + 'px');
+                                        //$('.bid_now_callout').css('position', 'fixed');
+                                    }
+                                }
+                            }, 2000);
+                            var auto_bid_callout = setInterval(function () {
+                                $('.auto_bid_callout').width(300);
+                                $('.auto_bid_callout').css('top', ($('.auto_withdraw').height() - 29) + 'px');
+                                if ($('.auto_withdraw').height() != 0) {
+                                    clearInterval(auto_bid_callout);
+                                }
+
+                            }, 100);
+                            var withdraw_callout = setInterval(function () {
+                                $('.withdraw_callout').width(300);
+                                $('.withdraw_callout').css('top', ($('.auto_withdraw').height() - 29) + 'px');
+                                if ($('.auto_withdraw').height() != 0) {
+                                    localStorage.tt = 1;
+                                    clearInterval(withdraw_callout);
+                                }
+                            }, 100);
+                            var bid_drop_callout = setInterval(function () {
+                                $('.bid_drop_callout').width(300);
+                                $('.bid_drop_callout').css('top', '-36px');
+                                /*if($('.auto_withdraw').height() != 0 ){
+                                 clearInterval(bid_drop_callout);
+                                 }*/
+                            }, 100);
+                        }
+                        //supplier_rating(hash, detail[0]['supplier_id']);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        // if (textStatus === "timeout") {
+                        x_alert("You seem to have lost internet connection, please reconnect to get going");
+                        window.location.href = "no_connection.html";
+                        // }
+                    }
+                });
+                $('.offer_select').change(function () {
+                    $('#current_price').html($('.offer_select option:selected').attr('cal_val'));
+                    $('#current_per_price').html(numberWithCommas($('.offer_select option:selected').attr('cal_dis')));
+                    localStorage.cal_value = parseFloat($('.offer_select option:selected').attr('cal_val').replace(/,/g, ''));
+                    localStorage.dis_value = parseFloat($('.offer_select option:selected').attr('cal_dis').replace(/,/g, ''));
+                    $.post(localStorage.host + '../classes/service_manage_wholesale_auction.class.php?action=generate_matrix_front&step_1_id=' + $('.offer_select').attr('id_info') + '&f_min_q=' + $('.offer_select').attr('minimum_quantity') + '&f_total_q=' + $('#total_qty_left').html() + '&f_show_row_=' + $('.offer_select option:selected').text() + '', {id: -1},
+                    function (data) {
+                        $("#available_quantity_table").html(data);
+                    });
+                });
+            });
+            function supplier_rating(lot_id, supplier_id) {
+                $.ajax({url: localStorage.host + '../classes/common.class.php?action=get_supplier_rating_detail&supplier_id=' + rc4_er(supplier_id) + '&lot_id=' + lot_id, data: {}, type: 'get', success: function (data) {
+                        console.log(data);
+                        var detail = JSON.parse(data);
+                        console.log(detail);
+                        $('.rating-since').html(detail['company_created']);
+                        $('.rating-comp').html(detail['comp_trans']);
+                        $('.rating-repeat').html(1 - round((detail['num_of_one_time_buyer'] / detail['num_of_comp_trans']), 2) + ' %');
+                        var rating_value = round(((parseFloat(detail['goods_avg']) + parseFloat(detail['delivery_avg'])) / 2), 2);
+                        rating_star(rating_value, 'rating-star');
+
+                        $('.rating-good-count').html(round(detail['goods_avg'], 2));
+                        $('.rating-delivery-count').html(round(detail['delivery_avg'], 2));
+                        rating_star(detail['goods_avg'], 'rating-good-star');
+                        rating_star(detail['delivery_avg'], 'rating-delivery-star');
+
+                    }
+                });
+            }
+        </script>
+    </head>
+
+    <body class="grey lighten-2">
+        <div class="fixed-action-btn top-bid hide-on-med-and-up hide" style="bottom: 45px; right: 24px;">
+            <a class="btn-floating btn-large red">
+                <i class="fa fa-angle-double-up"></i>
+            </a>
+        </div>
+        <div class="header row font-size-1-6-em xstok-text-white  padding-10 width-100p position-fixed z-index-1">
+            <div class="col s2 left-align"><a onclick="back()" class="xstok-text-white"><i class="fa fa-chevron-left"></i></a></i></div>
+            <div class="col s9 supplier-name"><i class="fa fa-spinner fa-pulse"></i></div>
+            <div class="col s1 right-align" onclick='$("#more_options").openModal()'><i class="fa fa-ellipsis-v"></i></div>
+        </div>
+        <div class="row margin-bottom-0">
+            <div class="col s12 padding-lr-0 ">
+                <div class="image-head center-align ">                    
+                    <div class="head-image slider single-item ">
+                        <div class="image-loader valign-wrapper">
+                            <div class="preloader-wrapper big active valign center-block">
+                                <div class="spinner-layer spinner-yellow-only">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div><div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div><div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <span class="image-count"><i class="fa fa-picture-o"></i> <span class="image-count-value"></span></span>
+                </div>
+            </div>
+        </div>        
+        <div class="body-container margin-top--30 position-absoulte width-100p">            
+            <div class="row margin-bottom-0">
+                <div class="col s12 m6">
+                    <div class="card grey lighten-5 margin-bottom-0">
+                        <div class="padding-10">
+                            <span class="card-title x-grey bold text-transform-capitalize"><span class="head-title-text"><i class="fa fa-spinner fa-pulse"></i></span><span class="right heart-detail hide"><i class="fa fa-heart"></i></span></span>
+                        </div>
+                        <div class="card-action grey lighten-3 padding-tb-5 info_all">
+                            <div class="timertitle font-bold font-15">
+                                <i class="fa fa-clock-o"></i> <span id="span_time_left">Time Left</span>
+                            </div>
+                            <div class="timer" id="clock_"></div>
+                        </div>
+                        <div class="card-action padding-tb-5 grey lighten-2">
+                            <div class="center-align">EMD Required : <i class="fa fa-inr"></i> <span class="head-list-price-text" id="emd_req"></span></div>                            
+                        </div> 
+                        <ul class="collapsible margin-tb-0 no-border no-shadow" data-collapsible="accordion">
+                            <li>
+                                <div class="collapsible-header white-text  green darken-4 font-bold active no-border "><i class="fa fa-shopping-cart"></i>Buy Now</div>
+                                <div class="collapsible-body">
+                                    <div class="row margin-lr-0 margin-top-10">
+                                        <div class="col s7"><select class="browser-default offer_select"></select></div>
+                                        <div class="col s5">
+                                            <a class="waves-effect waves-light btn x-green-background  bid_now_button">Buy Now</a>
+                                        </div>
+                                    </div>
+                                    <div class="row margin-lr-0">
+                                        <span class="span_unit_db hide"></span>
+                                        <span id="emd_required_val" class="hide"></span>
+                                        <span id="total_qty_left" class="hide"></span>
+                                        <span class="hide" id="list_price_actual"></span>
+                                        <span class="unit_price_auction_val hide"></span>
+                                        <span class="unit_price_val hide"></span>
+                                        <span class="dup_curr_bid hide"></span>
+                                        <span class="span_emd hide"></span>
+                                        <span class="hide" id="span_total_quantity"></span>
+                                        <div class="col s6 price-perpc right-align">Price/pcs: <i class="fa fa-inr"></i> <span id="current_per_price"></span></div>                                    
+                                        <div class="col s6 total-value left-align">Total Value: <i class="fa fa-inr"></i> <span id="current_price"></span></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header xstok darken-1 no-border font-bold white-text"><i class="fa fa-tags"></i>Make Offer</div>
+                                <div class="collapsible-body">
+                                    <div id="offer_plcae_div">
+                                        <div class="padding-10">Offer price for <span id="span_offer_qty"></span> pcs</div>
+                                        <div class="row margin-lr-0">
+                                            <div class="col s6"><input type="text" class="make-offer-textfild" placeholder="Value in Rs." name="text_make_offer" id="text_make_offer"></div>
+                                            <div class="col s6 right-align"><a class="makeoffer-btn waves-effect waves-light btn xstok darken-1 " id="make_offer">Make Offer</a></div>
+                                        </div>
+                                    </div>                                    
+                                    <div id="div_offer_places"></div>                                    
+                                </div>
+                            </li>
+                        </ul>                        
+                    </div>
+                </div> 
+                <div class="col s12 m6">
+                    <div class="card-panel grey lighten-5 padding-0 no-border no-shadow margin-bottom-0">
+                            <div class="font-20 padding-lr-10 padding-tb-5">Available Quantity</div>
+                            <div id="available_quantity_table" class="card-action padding-tb-0 padding-lr-0"></div> 
+                        </div>
+                </div>
+            </div>    
+            <div class="center-align more_info_div margin-top-10"><a class="width-100p padding-10 font-20 " onclick="more_info()">More Details <i class="fa fa-chevron-circle-down"></i></a></div>
+            <div class="row margin-bottom-0 show-top-bid hide">
+                <div class="col s12 m12">
+                    <div class="card grey lighten-5">
+                        <div class="card-content">
+                            <span class="card-title x-grey"><i class="fa fa-info-circle"></i> Product Details </span>
+                            <span class="right font-13 x-black download-excl" style="padding-top: 4px;"><a><i class="fa fa-file-excel-o"></i> Download </a></span>
+                            <p class="product_description"></p>
+                            Winning buyer will have the option to arrange for his own transportation or use XSTOK logistics services.
+                        </div>                                              
+                    </div>
+                </div>                
+            </div>
+            <div class="row hide package_term">
+                <div class="col s12 m6">
+                    <div class="card teal">
+                        <div class="card-content">
+                            <span class="card-title"><i class="fa fa-truck"></i> Packaging & Shipping</span>
+                            <div class="shipping"></div>                            
+                            <div class="divider"></div><br>
+                            <p class="white-text package"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6">
+                    <div class="card grey lighten-5">
+                        <div class="card-content">
+                            <span class="card-title x-grey"><i class="fa fa-file-text-o"></i> Terms and Conditions</span>
+                            <p class="tnc"></p>
+                            <p>Standard website and transaction terms and conditions apply.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="row xstok darken-1 valign-wrapper">
+            <div class="col s6 center-align valign xstok-text-white">Discount</div>
+            <div class="col s6 center-align valign xstok-text-white">Time</div>
+        </div>-->
+        <div id="auto_bid_body" class="modal bottom-sheet">
+            <div class="modal-content">
+                <h5>Auto bid</h5>
+                <p><input type="number" class="set-auto-bid form-control input-sm select_tab" name="first_bid" id="first_bid_d3" placeholder="Value in rupees" style="" onkeyup="allnumeric('set-auto-bid')" ></p>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:void(0)" class=" modal-action waves-effect waves-green btn-flat auto_bid_button_small" >Set auto bid</a>
+                <a href="javascript:void(0)" class=" modal-action modal-close waves-effect waves-red btn-flat">Close</a>
+            </div>
+        </div>
+        <div id="more_options" class="modal">
+            <div class="modal-content">                
+                <div><span class="font-17"><i class="fa fa-gavel"></i> Total Bids : </span><span class="head-total-bid-text font-bold"></span></div>
+                <div><span class="font-17"><i class="fa fa-eye"></i> Total Views :  </span><span class="head-user-per-text font-bold"></span></div>
+                <div class="divider margin-bottom-10"></div>
+                <div class="margin-bottom-10"><a class="padding-tb-10 font-17" onclick="email_auction()"><i class="fa fa-envelope "></i> Email this Auction</a></div>
+                <div><a class="padding-tb-10 font-17" onclick='shipping_qoute()'><i class="fa fa-truck "></i> Request Shipping Quote</a></div>
+
+            </div>
+            <div class="modal-footer grey lighten-3">
+                <a href="javascript:void(0)" class=" modal-action modal-close waves-effect waves-red btn-flat">Close</a>
+            </div>
+        </div>
+        <div id="shipping_qoute" class="modal">
+            <div class="modal-content">
+                <div class="padding-bottom-5-p font-17"><i class="fa fa-truck "></i> Request Shipping Quote</div>
+                <form id="form2" class="form-horizontal group-border-dashed well" accept-charset='UTF-8' enctype="multipart/form-data" data-parsley-validate novalidate>
+                    <input type="hidden" name = 'auc_title' value = ''>
+                    <input type="hidden" name = 'auc_url' value = ''>
+                    <input type="hidden" name='auc_type_id_val' id='auc_type_id_val'/>
+                    <input type="hidden" class="hidden_auto_val" value="">
+                    <div class="input-field margin-top-10 padding-lr-10">
+                        <input id="first_name" type="text" class="validate" name="first_name" required data-parsley-required-message="Please enter your first name">
+                        <label for="first_name">Name</label>
+                    </div>
+                    <div class='input-field padding-lr-10'>
+                        <textarea name="ship_to_message" class="materialize-textarea" required id="ship_to_message" data-parsley-trigger="keyup"  data-parsley-maxlength="2000" data-parsley-validation-threshold="10" data-parsley-minlength-message = "Come on! You need to enter at least a 20 caracters long comment.." style="margin-left: 0px;">
+                        </textarea>
+                        <label for="first_name">Messages</label>
+                    </div>
+                    <div class="ship_loader padding-bottom-5-p"></div>
+                    <button class=" modal-action  waves-effect waves-orange btn-flat xstok darken-1 white-text" >Submit Request</button>
+                </form>
+            </div>            
+        </div>
+        <div id="email_auction" class="modal">
+            <div class="modal-content">
+                <form id="form" class="form-horizontal group-border-dashed well" action="#" accept-charset='UTF-8' enctype="multipart/form-data"  data-parsley-validate novalidate>
+                    <input type="hidden" name = 'auc_title' value = ''>
+                    <input type="hidden" name = 'auc_url' value = ''>
+                    <div class="padding-bottom-5-p"><i class="fa fa-envelope "></i> Email this Auction </div>
+
+                    <div class="padding-bottom-5-p">
+                        <label for="auc_to_name" >Name</label>
+                        <input type="text" class="form-control" required parsley-minlength="4" name="auc_to_name" id="auc_to_name" value=""/>
+                    </div>
+                    <div class="padding-bottom-5-p">
+                        <label for="auc_to_email" >Email</label>
+                        <input type="email" class="form-control"  name="auc_to_email" id="auc_to_email" data-parsley-trigger="change" required />
+
+                    </div>
+                    <div class="padding-bottom-5-p">
+                        <label>Messages: </label> <br>
+                        <textarea name="auc_to_message" class="materialize-textarea" id="auc_to_message" required data-parsley-trigger="keyup" data-parsley-minlength="0" data-parsley-maxlength="200" data-parsley-validation-threshold="10" data-parsley-minlength-message = "Come on! You need to enter at least a 20 caracters long comment.." style="margin-left: 0px;"></textarea>
+                    </div>
+                    <div class="auc_loader padding-bottom-5-p"></div>
+                    <div class=""><button type="submit" class="btn btn-primary email_submit">Submit</button>&nbsp;&nbsp;<a class="other_close btn deep-orange darken-3 white-text modal-close">Cancel</a>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div id="autobid" class="modal">
+            <div class="modal-content">
+                <div class="x-white-background padding-lr-10 padding-tb-10" style="border-radius: 3px;">
+                    <input type="hidden" name="confirm_lot_id" id="confirm_lot_id" value="">
+                    <input type="hidden" name="first_option" id="first_option" value="">
+                    <input type="hidden" name="sec_option" id="sec_option" value="">
+                    <div id="confirm_msg_" class="padding-bottom-5-p"></div>
+
+                </div>
+            </div>
+            <div class="modal-footer">               
+                <a href="javascript:void(0)" class=" modal-action waves-effect waves-red btn-flat " onclick="$('#autobid').closeModal({out_duration: 100, complete: function () {
+                                setTimeout(function () {
+                                    $('#auto_bid_body').openModal();
+                                }, 100);
+                            }})">Cancel</a>
+                <a href="javascript:void(0)" onclick="confirm_ajax_call(this.value)" id="confirm_button_"  class=" modal-action waves-effect waves-green btn-flat ">Confirm</a>
+            </div>
+        </div>
+        <div id="image" class="" style="visibility: hidden" >
+            <div class="image-close font-size-1-6-em"><i class="fa fa-times-circle"></i></div>
+            <div class="panzoom-elements head-image slider single-item image-show"></div>
+            <div class="back_image"></div>
+            <div class="next_image"></div>
+        </div>
+        <div id="rating" class="modal">
+            <div class="modal-content padding-10">
+                <h5 class="supplier-name no-text-shawdow">Modal Header</h5>
+                <span class="rating-star"><i class="fa fa-refresh fa-spin"></i></span>                
+                <div class="">Since: <span class="rating-since"><i class="fa fa-refresh fa-spin"></i></span></div>
+                <div class="">Completed Transaction: <span class="rating-comp"><i class="fa fa-refresh fa-spin"></i></span></div>
+                <div class="">Repeat Buyer: <span class="rating-repeat"><i class="fa fa-refresh fa-spin"></i></span></div>
+                <div class="">Supplier Rating:</div>
+                <div class="rating-full padding-10">
+                    <div class="rating-good">
+                        <div class="">Goods Rating (<span class="rating-good-count"></span>)</div>
+                        <div class="rating-good-star"><i class="fa fa-refresh fa-spin"></i></div>
+                    </div>
+                    <div class="rating-delivery">
+                        <div class="">Delivery Rating (<span class="rating-delivery-count"></span>)</div>
+                        <div class="rating-delivery-star"><i class="fa fa-refresh fa-spin"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+            </div>
+        </div>
+        <!--Import jQuery before materialize.js-->        
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript" src="js/parsley.min.js"></script>
+        <script type="text/javascript" src="js/slick.min.js"></script>
+        <script type="text/javascript" src="js/jquery.panzoom.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile.custom.min.js"></script>
+        <script type="text/javascript">
+                    var curr_value_dropdown = '';
+                    function shipping_qoute() {
+                        $("#more_options").closeModal({
+                            out_duration: 100,
+                            complete: function () {
+                                setTimeout(function () {
+                                    $("#shipping_qoute").openModal();
+                                }, 100);
+                            }
+                        });
+                    }
+                    function email_auction() {
+                        $("#more_options").closeModal({
+                            out_duration: 100,
+                            complete: function () {
+                                setTimeout(function () {
+                                    $('#email_auction').openModal();
+                                }, 100);
+                            }
+                        });
+                    }
+                    $('.image-close').click(function () {
+                        $('#image').css('visibility', 'hidden');
+                        $('.panzoom-elements').panzoom("resetZoom");
+                        $('body').unbind('touchmove');
+                    });
+                    $(document).ready(function () {
+
+                        $(window).scrollTop(1);
+                        sticky_relocate();
+                        $('.parallax').parallax();
+                        $('select').material_select();
+                        Materialize.showStaggeredList('.collection');
+                        $('.button-collapse').sideNav({
+                            menuWidth: 300, // Default is 240
+                            edge: 'left', // Choose the horizontal origin
+                            closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                        }
+                        );
+                        $('#form').on('submit', insertIntoDb);
+                        $('#form2').on('submit', insertIntoDb_shipping);
+                        $('.collection-item').click(function () {
+                            window.location.href = $(this).attr('value') + '.html';
+                        });
+                        $('.error').click(function () {
+                            Materialize.toast("Auction has been cancelled!!!", 3000, 'x-red bold');
+                        });
+                        $('.done').click(function () {
+                            Materialize.toast("You are Winning!!!", 3000, 'x-green bold');
+                        });
+                        $('.bid_now_main').click(function () {
+                            $('html, body').animate({
+                                scrollTop: $(".info_all").offset().top - 53
+                            }, 500);
+                            //$('.bid_now_main').fadeOut();
+                        });
+                        $('.top-bid').click(function () {
+                            $('html, body').animate({
+                                scrollTop: $(".info_all").offset().top - 53
+                            }, 500);
+                            //$('.bid_now_main').fadeOut();
+                        });
+
+                        /*-------------------------------Bid now Start-------------------------------------------*/
+
+                        $('.bid_now_button').click(function () {
+                            var first_bid = '';
+                            var per_price = '';
+                            var size_ = [];
+                            var sub_qty_ = [];
+                            var dynamic_lot = $(this).attr('dynamic_lot');
+                            var tr_qty_ = $('#available_quantity_table').find('tr.selected-qty').find('td').eq(0).html().replace(/(<([^>]+)>)/ig,"");
+                            var tr_price_ = $('#available_quantity_table').find('tr.selected-qty').find('td').eq(1).html().replace(/(<([^>]+)>)/ig,"");
+                            $.each($('.span_avail_size'), function (idx, obj) {
+                                size_.push($(this).html());
+                                sub_qty_.push($('#available_quantity_table').find('tr.selected-qty').find('td').eq((idx+2)).html().replace(/(<([^>]+)>)/ig,""));
+                            });
+                            first_bid = localStorage.cal_value;
+                            per_price = localStorage.dis_value;
+                            if (localStorage.cal_value == '' && localStorage.dis_value == '') {
+                                first_bid = $('#dd_' + dynamic_lot + ' option:selected').attr('cal_val').replace(/,/g, '');
+                                per_price = $('#dd_' + dynamic_lot + ' option:selected').attr('cal_dis').replace(/,/g, '');
+                            }
+                            if (first_bid != 'Select Qty' && first_bid > 0 && first_bid != '') {
+                                if (localStorage.emd_for_this_auc != 'N' && parseFloat(localStorage.emd_for_this_auc) > 0) {
+                                    var og_emd__ = round(parseFloat(localStorage.emd_for_this_auc));
+                                }
+                                if (parseFloat(localStorage.emd_bal.replace(/,/g, '')) < parseFloat(og_emd__) && $('#emd_required_val').html() == 'EMD Released Winner') {
+                                    var confirmtitle = localStorage.EMD_over__;
+                                    var confirmbutton = 'Top up,Cancel';
+                                    var confirmlink = 'emd.html';
+                                    showEmdConfirm(confirmtitle, confirmbutton, confirmlink);
+                                } else {
+                                    var temp_unit_price_ = "(Per " + $('.span_unit_db').first().text() + " of Rs. " + number_format(per_price, 1, '.', ',') + ")";
+                                    if ($('#emd_required_val').html() == 'EMD Released Winner') {
+                                        var confirm_msg_ = localStorage.confirm_offer_of_bid + ' Rs. ' + numberWithCommas(first_bid) + ' ' + temp_unit_price_ + 'Note: this will block EMD of Rs. ' + numberWithCommas(og_emd__);
+                                    } else {
+                                        var confirm_msg_ = localStorage.confirm_offer_of_bid + ' Rs. ' + numberWithCommas(first_bid) + '. ' + temp_unit_price_;
+                                    }
+                                    var confirmtitle = 'Buy Now';
+                                    var confirmbutton = 'Yes,Cancel';
+                                    var confirmlink = localStorage.host + '../classes/service_manage_wholesale_auction.class.php?action=save_wholesale_auction_bid&user_id=' + localStorage.user_id + '&admin_id=' + localStorage.user_id + '&lot_id=' + dynamic_lot + '&room_id=-1&qty=' + $("#span_offer_qty").html() + '&per_pcs=' + localStorage.cal_value + '&total_val=' + first_bid + '&emd=' + rc4_er(localStorage.emd_for_this_auc) +'&total_quantity=' + $("#span_total_quantity").html() + '&size_=' + size_ + '&sub_qty_=' + sub_qty_ + '&step_1_id='+$('.offer_select').attr('id_info') + + '&min_quantity='+ $('#span_offer_qty').html() + '';
+                                    showbuynowConfirm(confirmtitle, confirm_msg_, confirmbutton, confirmlink, dynamic_lot);
+                                }
+                            } else {
+                                Materialize.toast(localStorage.bid_select_error__, 2000, 'x-red bold', function () {
+                                    $('#toast-container').remove();
+                                });
+                                $('.msg_' + dynamic_lot).hide().html(localStorage.bid_select_error__);
+                                //$('.msg_').html("<?php echo bid_select_error__ ?>").fadeIn('slow').delay(3000).fadeOut('slow');
+                            }
+                        });
+                        /*-------------------------------Bid now button end-------------------------------------------*/
+                        /*-------------------------------Make offer STart-------------------------------------------*/
+                        $('#make_offer').click(function () {
+                            var per_price = localStorage.dis_value;
+                            var dynamic_lot = $(this).attr('dynamic_lot');
+                            
+                            if (localStorage.cal_value == '' && localStorage.dis_value == '') {
+                                per_price = $('#dd_' + dynamic_lot + ' option:selected').attr('cal_dis').replace(/,/g, '');
+                            }
+                             var per_price_less = parseFloat((50 / 100)) * parseFloat(per_price);
+               var per_price_more = parseFloat(per_price);
+                            var z = $('#text_make_offer').val();
+                            if (isNaN(z) || z <= 0) {
+                                Materialize.toast(localStorage.bid_numeric_error, 2000, 'x-red bold', function () {
+                                    $('#toast-container').remove();
+                                });
+                                $('#msg_offer_').hide().html(localStorage.bid_numeric_error);
+                            } else if (z < per_price_less) {
+                                Materialize.toast('Offer must not be less then 50% of per/pcs value', 2000, 'x-red bold', function () {
+                                    $('#toast-container').remove();
+                                });
+                                $('.msg_').hide().html('Offer must not be less then 50% of per/pcs value');
+                            } else if (z > per_price_more) {
+                                Materialize.toast('Offer must not be grater then 50% of per/pcs value', 2000, 'x-red bold', function () {
+                                    $('#toast-container').remove();
+                                });
+                                $('.msg_').hide().html('Offer must not be grater then 50% of per/pcs value');
+                            } else {
+                                var confirm_msg_ = localStorage.confirm_offer_of_bid + "Rs. " + numberWithCommas(z);
+                                var confirmtitle = 'Make offer';
+                                var confirmbutton = 'Yes,Cancel';
+                                var confirmlink = localStorage.host + '../classes/service_manage_wholesale_auction.class.php?action=save_update_wholesale_auction_offer&user_id=' + localStorage.user_id + '&admin_id=' + localStorage.user_id + '&lot_id=' + dynamic_lot + '&room_id=-1&qty=' + $("#span_offer_qty").html() + '&per_pcs=' + per_price + '&total_val=' + z + '&emd=' + rc4_er(localStorage.emd_for_this_auc);
+                                showmakeofferConfirm(confirmtitle, confirm_msg_, confirmbutton, confirmlink, dynamic_lot);
+                                var r = $(".confirm_modal_open").trigger("click");
+                                $('#text_make_offer').val('');
+                            }
+                        });
+                        /*-------------------------------Make offer end-------------------------------------------*/
+                        setInterval(function () {
+                            $('.or_div').css('margin-left', (($(window).outerWidth() / 2) - ($('.or_div').outerWidth() / 2)) - 10);
+                            if ($('.current_value').text() == '' || $('.current_value').text() == localStorage.bid_No_place__) {
+                                $('.current_value').text(localStorage.bid_No_place__);
+                                $('.head-bid-value-text-sys').fadeOut();
+                                // $('.bidvalue').fadeOut();
+                            } else {
+                                //$('.bidvalue').fadeIn();
+                            }
+                            if ($('.head-bid-value-text').text() == '') {
+                                $('.head-bid-value-text').text(localStorage.bid_No_place__);
+                                $('.head-bid-value-text-sys').fadeOut();
+                            }
+                            // console.log($('.auctions-status-text').text());
+                            if ($('.auctions-status-text').text() == localStorage.winner__) {
+                                $('.auctions-status-text').css('color', 'green');
+                            } else if ($('.auctions-status-text').text() == localStorage.winning__) {
+                                $('.auctions-status-text').css('color', 'green');
+                            } else if ($('.auctions-status-text').text() == localStorage.live__) {
+                                $('.auctions-status-text').css('color', 'green');
+                            } else if ($('.auctions-status-text').text() == localStorage.won__) {
+                                $('.auctions-status-text').css('color', 'green');
+                            } else if ($('.auctions-status-text').text() == localStorage.lost__) {
+                                $('.auctions-status-text').css('color', 'red');
+                            } else if ($('.auctions-status-text').text() == localStorage.sold__) {
+                                $('.auctions-status-text').css('color', 'red');
+                            } else if ($('.auctions-status-text').text() == localStorage.losing__) {
+                                $('.auctions-status-text').css('color', 'red');
+                            } else if ($('.auctions-status-text').text() == localStorage.sold_out_) {
+                                $('.auctions-status-text').css('color', 'red');
+                            } else if ($('.auctions-status-text').text() == localStorage.out_bid_) {
+                                $('.auctions-status-text').css('color', '#e74c3c');
+                            }
+                        }, 400);
+                    });
+                    $(window).scroll(function () {
+                        sticky_relocate();
+                    });
+                    function sticky_relocate() {
+                        var window_top = $(window).scrollTop();
+                        var div_top = $('.body-container').offset().top;
+                        var info_all = $('.info_all').offset().top - 55;
+                        var show_top_bid = $('.show-top-bid').offset().top - 55;
+                        if (window_top > div_top) {
+                            $('.header').css('background-color', 'rgba(255,163,0,1)');
+                            $('.header').addClass('z-depth-1');
+                            $('.supplier-name').removeClass('text-shadow-supplier');
+                            // $('.stick').css('top', '0');
+                        } else {
+                            $('.header').css('background-color', 'rgba(255,163,0,' + window_top / div_top + ')');
+                            $('.header').css('text-shadow', '0px 0px 10px rgba(0,0,0,' + (1 - (window_top / div_top)) + ')');
+                            $('.header').removeClass('z-depth-1');
+                            $('.supplier-name').addClass('text-shadow-supplier');
+                            //$('.stick').css('top', 'none');
+                        }
+                        if (window_top > info_all) {
+                            $('.bid_now_main').fadeOut();
+                        } else {
+                            $('.bid_now_main').fadeIn();
+                        }
+                        if (window_top > show_top_bid) {
+                            $('.top-bid').fadeIn();
+                        } else {
+                            $('.top-bid').fadeOut();
+                        }
+                        if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+                            $('.bid_now_main').fadeOut();
+                        }
+                    }
+                    function show_data(lot_id, minimum_quantity, total_quantity, no_of_variation, id) {
+
+                        $.post(localStorage.host + '../classes/service_manage_wholesale_auction.class.php?action=load_dynamic_wholesale_auction_status&dn_r=-1&dn_l=' + lot_id + '&user_id=' + localStorage.user_id + '&admin_id=' + localStorage.user_id + '&clock_=' + $('#clock_').html() + '&min_q=' + rc4_er(minimum_quantity) + '&total_q=' + rc4_er(total_quantity) + '', {id: lot_id},
+                        function (data) {
+                            var items = [];
+                            if (data) {
+                                $.each($.parseJSON(data), function (idx, obj) {
+                                    var limit_emd = localStorage.limit_val;
+                                    var emd_left_tmp = (obj.emd_left / limit_emd);
+                                    $(".span_emd").html(numberWithCommas(round(emd_left_tmp)));
+                                    $('#emd_required_val').html(obj.emd_req);
+                                    $('#total_qty_left').html(obj.qty_left);
+                                    //alert(obj.user_bid);                                
+                                    if (curr_value_dropdown != obj.qty_left) {
+                                        $.post(localStorage.host + '../classes/service_manage_wholesale_auction.class.php?action=load_dynamic_qty_drop_down_mobile&lot_id=' + rc4_dr(lot_id) + '&total_quantity=' + obj.qty_left + '&minimum_quantity=' + minimum_quantity + '&no_of_variation=' + no_of_variation + '&step_1_id=' + id + '', {id: 1},
+                                        function (data) {                                            
+                                            if (data && !$("#dd_" + lot_id).is(':focus')) {
+                                                curr_value_dropdown = obj.qty_left;
+                                                $("select[id='dd_" + lot_id + "']").html(data);
+                                                $('#current_per_price').html(numberWithCommas($("select[id='dd_" + lot_id + "']").find(":selected").attr('cal_dis')));
+                                                $('#current_price').html($("select[id='dd_" + lot_id + "']").find(":selected").attr('cal_val'));
+                                                localStorage.cal_value = parseFloat($("select[id='dd_" + lot_id + "']").find(":selected").attr('cal_val').replace(/,/g, ''));
+                                                localStorage.dis_value = parseFloat($("select[id='dd_" + lot_id + "']").find(":selected").attr('cal_dis').replace(/,/g, ''));
+                                            }
+                                        });
+
+                                        $.post(localStorage.host + '../classes/service_manage_wholesale_auction.class.php?action=generate_matrix_front&step_1_id=' + id + '&f_min_q=' + minimum_quantity + '&f_total_q=' + obj.qty_left + '&f_show_row_=' + minimum_quantity + '', {id: -1},
+                                        function (data1) {
+                                            //hideconsole.log(data1);
+                                            $("#available_quantity_table").html(data1);
+                                            //$("#available_quantity_table table").addClass('responsive-table');
+                                            //$("#available_quantity_table table").addClass('striped');
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                        if ($("#div_offer_places").html() == "") {
+                            $.post(localStorage.host + '../classes/service_manage_wholesale_auction.class.php?action=get_latest_offer_user_wise&dn_r=-1&dn_l=' + lot_id + '&user_id=' + localStorage.user_id, {id: -1},
+                            function (data1) {
+                                if (data1) {
+                                    data1 = $.parseJSON(data1);
+                                    $("#offer_plcae_div").hide();
+                                    $("#div_offer_places").html("<div class='padding-10 '>Your offer for " + data1.qty + " pcs is " + numberWithCommas(data1.offer_amount) + " <a class='right' onclick='show_offer_place_div();'> <i class='fa fa-pencil'></i> Edit Offer</a></div>");
+                                }
+                            });
+                        }
+                        $.post(localStorage.host + '../classes/service_manage_wholesale_auction.class.php?action=get_accepted_latest_offer_user_wise&dn_r=-1&dn_l='+lot_id+'&user_id=' + localStorage.user_id, {id: -1},
+                        function (data1) { 
+                            if(data1){
+                                data1 = $.parseJSON(data1);
+                                if(data1.status=='A'){
+                                    $("#offer_plcae_div").show();
+                                    $("#div_offer_places").html("Your offer for " +data1.qty+" pcs is "+data1.offer_amount +" is accepted. Proceed to <input id='offer_proceed_but' class='bidnow-green offer_proceed_but' type='button' value='payment' onclick='pay_now_make_offer(\""+data1.enc_offer_id+"\",\""+lot_id+"\")'>");
+                                } 
+                            }
+                        });
+                    }
+                    
+                    function pay_now_make_offer(offer_id,lot_id){
+                        if(offer_id!=""){
+                            $.getJSON(localStorage.host + "../classes/buyer_dashboard_inc.class.php?action=pay_now_make_offer&offer_id="+offer_id+"&user_id=" + localStorage.user_id, function (data) {
+                                if(data['status']=="success"){
+                                    shipping_detail(lot_id, '0');
+                                } else if(data['status']=="exceed"){
+                                    x_alert(data['msg']);
+                                }  else if(data['status']=="emd"){
+                                    var confirmtitle = localStorage.EMD_over__;
+                                    var confirmbutton = 'Top up,Cancel';
+                                    var confirmlink = 'emd.html';
+                                    showEmdConfirm(confirmtitle, confirmbutton, confirmlink);
+                                } else {
+                                    x_alert(data['msg']);
+                                }
+                            });
+                        } else {
+                            pay_now_make_offer(offer_id,lot_id);
+                        }
+                    }
+
+                    function show_time(lot_id) {
+                        $.post(localStorage.host + '../classes/service_manage_wholesale_auction.class.php?action=load_dynamic_wholesale_end_date&dn_r=-1&dn_l=' + lot_id + '&user_id=' + localStorage.user_id + '&admin_id=' + localStorage.user_id + '', {id: 1},
+                        function (data) {
+                            var items = [];
+                            if (data) {
+                                $.each($.parseJSON(data), function (idx, obj) {
+                                    $('#clock_').html(obj.countdown_date);
+                                });
+                            }
+                        });
+                    }
+
+                    function get_wishlist(lot_id, room_id, auc_type_id) {
+                        $.ajax({
+                            type: "POST",
+                            url: localStorage.host + '../classes/service_manage_auction.class.php?action=get_wishlist_details',
+                            data: {l_: rc4_er(lot_id), r_: room_id, u_: localStorage.user_id, au_: auc_type_id},
+                            success: function (data) {
+                                if (data == 'Yes')
+                                    $('.fa-heart').addClass('w_selected');
+                            }
+                        });
+                    }
+
+
+                    function confirm_modal3_auction(this_) {
+                        $('.set-auto-bid').val(this_);
+                        $('.auto_bid_button_small').click();
+                        $('.bidnow-sml').click();
+                    }
+                    function show_offer_place_div() {
+                        $("#offer_plcae_div").show();
+                    }
+        </script>
+    </body>
+</html>

@@ -4,3 +4,5 @@ xstok-ip/platforms/
 xstok/platforms/android/ant-build/classes.dex
 xstok/platforms/android/ant-build/classes/com/centerac/xstok/BuildConfig.class
 /xstok_old/nbproject/private/
+/xstokv2/nbproject/private/
+node_modules

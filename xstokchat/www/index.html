@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import Google Icon Font-->        
+        <!--Import materialize.css-->
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="screen,projection"/>
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/chat.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script>
+            $(function () {
+                
+                var temp = window.location.hash.split('#')[1];
+                localStorage.log_id = temp.split('-')[0];
+                localStorage.log_type = temp.split('-')[1];
+                setTimeout(function() { goToByScroll();},3000);
+                
+                setInterval(function () {
+                    $('#chat').height($(window).outerHeight() - $('.head').outerHeight() - $('.xtab').outerHeight());
+                $('#more').height($(window).outerHeight() - $('.head').outerHeight() - $('.xtab').outerHeight());
+                $('.chat-area').height($('#chat').outerHeight() - $('.footer').outerHeight());
+                   
+                    $.ajax({url: localStorage.host + 'index.php', data: {log_id: localStorage.log_id}, type: 'get', success: function (data) {
+                            //console.log(data);
+                            var detail = JSON.parse(data);
+                            // console.log(detail['message']);
+                            var body = '';
+                            $.each(detail['message'], function (index, value) {
+                                //console.log(value);
+                                var type = 'other';
+                                if (value.f == localStorage.log_id) {
+                                    type = 'self';
+                                }
+                                body += '<div id="' + value.i + '" class="z-depth-1 ' + type + '">' + value.m + '<div class="date_' + type + '">' + get_date_time(value.sd) + '</div></div>';
+                                localStorage.last_msg = value.i;
+                            });
+                            if($('#'+localStorage.last_msg).length <= 0 || localStorage.getItem("last_msg") == 'undefined'){
+                            $('.chat-area').html(body);
+                            //setTimeout(function() {goToByScroll(localStorage.last_msg);},500);
+                        }
+
+                        }, error: function (jqXHR, textStatus, errorThrown) {
+                            // if (textStatus === "timeout") {
+                            //alert("You seem to have lost internet connection, please reconnect to get going");
+                            //window.location.href = "no_connection.html";
+                            // }
+                        }
+                    });
+              
+                }, 1000);
+            });
+        </script>
+    </head>
+
+    <body class=" grey lighten-3">
+        <div class="row margin-bottom-0 xstok-background padding-10 head">
+            <div class="col s4"><img class="width-100p" style="max-width: 140px;" src="img/logo_w.png"/></div>
+            <div class="col s6"></div>
+            <div class="col s2"></div>
+        </div>
+        <div class="row margin-bottom-0">
+            <div class="col s12 padding-lr-0 xtab">
+                <ul class="tabs xstok-background">
+                    <li class="tab col s3"><a class="white-text active font-bold active_tab" href="#chat">Chat</a></li>
+                    <li class="tab col s3"><a class="white-text font-bold" href="#more">More</a></li> 
+                </ul>
+            </div>
+            <div id="chat" class="col s12 padding-lr-0">
+                <div class="row margin-bottom-0">
+                    <div id="chat-area" class="col s12 chat-area"></div>
+                </div>
+                <div class="row margin-bottom-0 footer padding-5">                   
+                    <div class="col s10 m11 l11 chat-bar padding-lr-5">
+                        <span class="display-inline-block font-22 padding-51 smily hide"><i class="fa fa-smile-o"></i></span>
+                        <span class="display-inline-block width-100p padding-left-25"><textarea class="chatbox" placeholder="Type a message"></textarea></span>
+                    </div>
+                    <div class="col s2 m1 l1"><a class="btn-round xstok-background" onclick="send_msg()"><i class="fa fa-paper-plane"></i></a></div>
+                </div>
+                <div id="more" class="col s12">Test 2</div>    
+            </div>
+
+            <!--Import jQuery before materialize.js-->
+
+            <script type="text/javascript" src="js/materialize.min.js"></script>
+    </body>
+</html>
