@@ -101,7 +101,7 @@
                                 var flag = 'Y';
                                 $('.room_des').html(detail[i]['description']);
                                 $('.room_name').html(detail[i]['title']);
-                                var today = new Date(detail[i]['end_date']);
+                                var today = new Date(date_fution(detail[i]['end_date']));
                                 var dd = today.getDate();
                                 var mm = monthNames[today.getMonth()]; //January is 0!
 
@@ -117,7 +117,7 @@
                                 }
                                 var today = dd + ' ' + mm + ' ' + yyyy + ', ' + hh + ':' + mmm;
                                 $('.room-time-end').html(today);
-                                var today = new Date(detail[i]['start_date']);
+                                var today = new Date(date_fution(detail[i]['start_date']));
                                 var dd = today.getDate();
                                 var mm = monthNames[today.getMonth()]; //January is 0!
 
@@ -145,12 +145,12 @@
                                 if (flag == 'Y') {
                                     var golden_time_value = detail[i]['golden_time'];
                                     var apply_golden_time = detail[i]['apply_golden_time'];
-                                    var row_end_date = new Date(detail[i]['end_date']);
+                                    var row_end_date = new Date(date_fution(detail[i]['end_date']));
                                     row_end_date = row_end_date.getTime();
                                     var today = new Date();
                                     today = today.getTime();
                                     if (Math.abs(today - row_end_date) <= apply_golden_time) {
-                                        var golden_time = detail[i]['end_date'];
+                                        var golden_time = date_fution(detail[i]['end_date']);
                                     } else {
                                         var golden_time = 'N';
                                     }
@@ -164,7 +164,7 @@
                                     /* if (detail[i]['hot_auction'] == 'N') {
                                      hot = 'hidden';
                                      }*/
-                                    var y2k = new Date(detail[i]['end_date']);
+                                    var y2k = new Date(date_fution(detail[i]['end_date']));
                                     // console.log(y2k);
                                     var Jan1st2010 = new Date(y2k.getFullYear() + 10, y2k.getMonth(), y2k.getDate());
                                     var today = new Date();
@@ -194,7 +194,7 @@
                                         seen = '';
                                     }
                                     var new_list = 'hidden';
-                                    var cr_date = new Date(detail[i]['created']);
+                                    var cr_date = new Date(date_fution(detail[i]['created']));
                                     var cr_date_new = new Date(cr_date.getFullYear() + 10, cr_date.getMonth(), cr_date.getDate());
                                     var today_new = new Date();
                                     //var new_date = Date.daysBetween(cr_date, today_new);

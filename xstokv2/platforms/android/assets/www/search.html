@@ -506,7 +506,7 @@
                 $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'get_tym_ticker', lot_id: localStorage.lot_id_array, room_id: localStorage.room_id_array, user_id: localStorage.user_id}, type: 'get', success: function (data) {
                         var logininfo = JSON.parse(data);
                         //console.log(localStorage.toggle);
-                        console.log(logininfo['auction_per_unit_ary']);
+                        console.log(logininfo);
                         for (i in logininfo['active_tym_ary_mobile']) {
 
                            //console.log(logininfo)
@@ -531,16 +531,16 @@
                                 $('.cldprice' + i).removeClass('x-light-green');
                                 $('.cldprice' + i).addClass('x-red');
                                 if(logininfo['auction_per_unit_ary'][i] == 'Y') {
-                                    $('.cldprice' + i).html("Start Bid : " + logininfo['active_start_bid_per_ary'][i]+ " Per Unit");
+                                    $('.cldprice' + i).html("Start Bid: " + logininfo['active_start_bid_per_ary'][i]+ " Per Unit");
                                 } else {
-                                    $('.cldprice' + i).html("Start Bid : " + logininfo['active_start_bid_ary'][i]);
+                                    $('.cldprice' + i).html("Start Bid: " + logininfo['active_start_bid_ary'][i]);
                                 }
                             } else if (logininfo['auction_period_ary_tmp'][i] == "S" && logininfo['total_bid_ary'][i] != 0 ) {
                                 $('.cldprice' + i).removeClass('x-light-green');
                                 if(logininfo['auction_per_unit_ary'][i] == 'Y') {
-                                    $('.cldprice' + i).html("Final Bid : " + logininfo['active_current_bid_per_ary'][i]+ " Per Unit");
+                                    $('.cldprice' + i).html("Final Bid: " + logininfo['active_current_bid_per_ary'][i]+ " Per Unit");
                                 } else {
-                                    $('.cldprice' + i).html("Final Bid : " + logininfo['active_current_bid_ary'][i]);
+                                    $('.cldprice' + i).html("Final Bid: " + logininfo['active_current_bid_ary'][i]);
                                 }
                             } else if (logininfo['auction_period_ary_tmp'][i] == "L" && logininfo['active_start_bid_ary'][i] == '-' ) {
                                 $('.cldprice' + i).removeClass('x-light-green');
@@ -549,23 +549,23 @@
                             } else if (logininfo['auction_period_ary_tmp'][i] == "L" && logininfo['total_bid_ary'][i] == 0 ) {
                                 $('.cldprice' + i).removeClass('x-light-green');
                                 if(logininfo['auction_per_unit_ary'][i] == 'Y') {
-                                    $('.cldprice' + i).html("Start Bid : " + logininfo['active_start_bid_per_ary'][i]+ " Per Unit");
+                                    $('.cldprice' + i).html("Start Bid: " + logininfo['active_start_bid_per_ary'][i]+ " Per Unit");
                                 } else {
-                                    $('.cldprice' + i).html("Start Bid : " + logininfo['active_start_bid_ary'][i]);
+                                    $('.cldprice' + i).html("Start Bid: " + logininfo['active_start_bid_ary'][i]);
                                 }
                             } else if (logininfo['auction_period_ary_tmp'][i] == "L" && logininfo['total_bid_ary'][i] != 0 ) {
                                 $('.cldprice' + i).removeClass('x-light-green');
                                 if(logininfo['auction_per_unit_ary'][i] == 'Y') {
-                                    $('.cldprice' + i).html("Current Bid : " + logininfo['active_current_bid_per_ary'][i]+ " Per Unit");
+                                    $('.cldprice' + i).html("Current Bid: " + logininfo['active_current_bid_per_ary'][i]+ " Per Unit");
                                 } else {
-                                    $('.cldprice' + i).html("Current Bid : " + logininfo['active_current_bid_ary'][i]);
+                                    $('.cldprice' + i).html("Current Bid: " + logininfo['active_current_bid_ary'][i]);
                                 }                                
                             } else if (logininfo['auction_period_ary_tmp'][i] == "T") {
                                 $('.cldprice' + i).removeClass('x-light-green');
                                 if(logininfo['auction_per_unit_ary'][i] == 'Y') {
-                                    $('.cldprice' + i).html("Start Bid : " + logininfo['active_start_bid_per_ary'][i]+ " Per Unit");
+                                    $('.cldprice' + i).html("Start Bid: " + logininfo['active_start_bid_per_ary'][i]+ " Per Unit");
                                 } else {
-                                    $('.cldprice' + i).html("Start Bid : " + logininfo['active_start_bid_ary'][i]);
+                                    $('.cldprice' + i).html("Start Bid: " + logininfo['active_start_bid_ary'][i]);
                                 }
                             } else if (logininfo['auction_period_ary_tmp'][i] == "C") {
                                 $('.cldprice' + i).html("<strong>TBD</strong>").addClass('font-14');

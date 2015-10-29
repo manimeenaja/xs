@@ -127,7 +127,7 @@
                             });
                             var date = new Date();
                             var time = parseInt((date.getTime()) / 1000);
-                            var end_date = new Date(detail[0]['end_date']);
+                            var end_date = new Date(date_fution(detail[0]['end_date']));
                             end_date = parseInt((end_date.getTime()) / 1000);
                             var golden_time_value = parseInt(detail[0]['golden_time']);
                             var apply_golden_time = parseInt(detail[0]['apply_golden_time']);
@@ -147,7 +147,7 @@
                             }
                             $('.tnc').html(detail[0]['terms_condition'] + '<br>Standard website and transaction terms and conditions apply.');
                             $('.package').html(detail[0]['package']);
-                            var start_date = new Date(detail[0]['start_date']);
+                            var start_date = new Date(date_fution(detail[0]['start_date']));
                             start_date = parseInt((start_date.getTime()) / 1000);
                             if (flg == 'Y' && start_date <= time) {
                                 if (detail[0]['auc_type_id'] == localStorage.closed_bid_auction) {
@@ -242,13 +242,13 @@
                                     show_time(discount_value);
                                 }, 1000);
                                 var tender_period = 'No';
-                                var tender_period_date = new Date(detail[0]['tender_period']);
+                                var tender_period_date = new Date(date_fution(detail[0]['tender_period']));
                                 tender_period_date = parseInt((tender_period_date.getTime()) / 1000);
                                 //end_date = end_date.trim();
                                 if (tender_period_date > time && time > start_date) {
                                     tender_period = 'Yes';
                                     $('.aut-type-1').html('I`m Interested');
-                                    tender_period_func(hash, dynamic_room, detail[0]['tender_period'], detail[0]['end_date'], actual_price, detail[0]['supplier_id'], supp_id_list_array);
+                                    tender_period_func(hash, dynamic_room, date_fution(detail[0]['tender_period']), date_fution(detail[0]['end_date']), actual_price, detail[0]['supplier_id'], supp_id_list_array);
                                 }
                                 if (detail[0]['auc_type_id'] == localStorage.closed_bid_auction && tender_period_date < time) {
                                     $('.assorted_hide').show();
@@ -261,7 +261,7 @@
 
                                 $('.div_tendor').addClass('hide');
                                 $('.div_tendor').attr('golden_time', golden_time);
-                                $('.div_tendor').attr('auc_end_date', rc4_er(detail[0]['end_date']));
+                                $('.div_tendor').attr('auc_end_date', rc4_er(date_fution(detail[0]['end_date'])));
                                 $('.div_tendor').attr('golden_time_value', rc4_er(golden_time_value));
                                 $('.div_tendor').attr('dynamic_min_user', rc4_er(dynamic_min_user));
                                 $('.div_tendor').attr('og_dynamic_min_user', detail[0]['min_user']);
@@ -355,14 +355,14 @@
                                 $('.bid_now_button').attr("bid_type", detail[0]['auc_type_id']);
                                 $('.bid_now_button').attr("dynamic_lot", hash);
                                 var mL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-                                var tender_date = new Date(detail[0]['start_date']);
+                                var tender_date = new Date(date_fution(detail[0]['start_date']));
                                 var tender_date_text = tender_date.getDate() + ' ' + mL[tender_date.getMonth()] + ' ' + tender_date.getFullYear() + ', ' + tender_date.getHours() + ':' + (tender_date.getMinutes() < 10 ? '0' : '') + tender_date.getMinutes();
                                 $('.head-tender-start-text').html('<div class="col s4"><b>Start date</b></div><div class="col s8">' + tender_date_text + '</div>');
                                 var tender_period_limit = 'No Limit';
                                 var tender_period1 = 'No';
                                 if (detail[0]['end_date'] != '') {
                                     var mL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-                                    var tender_date = new Date(detail[0]['end_date']);
+                                    var tender_date = new Date(date_fution(detail[0]['end_date']));
                                     var tender_date_text_end = tender_date.getDate() + ' ' + mL[tender_date.getMonth()] + ' ' + tender_date.getFullYear() + ', ' + tender_date.getHours() + ':' + (tender_date.getMinutes() < 10 ? '0' : '') + tender_date.getMinutes();
                                     tender_period_limit = tender_date_text_end;
                                     tender_period1 = '';
@@ -373,7 +373,7 @@
                                 var tender_period2 = 'No';
                                 if (detail[0]['tender_period'] != '') {
                                     var mL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-                                    var tender_date = new Date(detail[0]['tender_period']);
+                                    var tender_date = new Date(date_fution(detail[0]['tender_period']));
                                     var tender_date_text_end = tender_date.getDate() + ' ' + mL[tender_date.getMonth()] + ' ' + tender_date.getFullYear() + ', ' + tender_date.getHours() + ':' + (tender_date.getMinutes() < 10 ? '0' : '') + tender_date.getMinutes();
                                     tender_period_limit1 = tender_date_text_end;
                                     tender_period1 = '';
@@ -456,7 +456,7 @@
                             }
                             //$('#current_price_discount').html('<span class="span_curr_bid_dis_hypen">-</span> <span class="span_curr_bid_dis"><span class="curr_per_bid_' + rc4_er(detail[0]['lot_id']) +'">'</span></span>');  
                             var select_body = "";
-                            select_body += '<select class="form-control bid-now-select input-sm select_tab dropdown browser-default" id="dd_' + hash + '" golden_time="' + golden_time + '" golden_time_value ="' + rc4_er(golden_time_value) + '" dynamic_min_user="' + rc4_er(dynamic_min_user) + '" dynamic_lot="' + hash + '" dynamic_room="' + dynamic_room + '" actual_price="' + actual_price + '" discount_value="' + discount_value + '" reserve_price="' + round(reserve_price, 2) + '" auction_on="' + detail[0]['auction_on'] + '" min_incr_value="' + detail[0]['min_incr_value'] + '" auc_end_date = "' + rc4_er(detail[0]['end_date']) + '" og_dynamic_min_user="' + detail[0]['min_user'] + '" unit_price_auction="' + unit_price_auction + '"><option value="Bid"> Bid </option>';
+                            select_body += '<select class="form-control bid-now-select input-sm select_tab dropdown browser-default" id="dd_' + hash + '" golden_time="' + golden_time + '" golden_time_value ="' + rc4_er(golden_time_value) + '" dynamic_min_user="' + rc4_er(dynamic_min_user) + '" dynamic_lot="' + hash + '" dynamic_room="' + dynamic_room + '" actual_price="' + actual_price + '" discount_value="' + discount_value + '" reserve_price="' + round(reserve_price, 2) + '" auction_on="' + detail[0]['auction_on'] + '" min_incr_value="' + detail[0]['min_incr_value'] + '" auc_end_date = "' + rc4_er(date_fution(detail[0]['end_date'])) + '" og_dynamic_min_user="' + detail[0]['min_user'] + '" unit_price_auction="' + unit_price_auction + '"><option value="Bid"> Bid </option>';
                             var min_incr_value = 0;
                             select_body += "</select>";
                             $('.bidvalue').addClass('cal_bid_cal_' + hash);
@@ -545,7 +545,7 @@
                 <i class="fa fa-angle-double-up"></i>
             </a>
         </div>
-        <div class="header row font-size-1-6-em xstok-text-white  padding-10 width-100p position-fixed z-index-1">
+        <div class="header row font-size-1-6-em xstok-text-white  padding-10 width-100p position-fixed z-index-1 nav">
             <div class="col s2 left-align"><a onclick="back()" class="xstok-text-white"><i class="fa fa-chevron-left"></i></a></i></div>
             <div class="col s9 supplier-name"><i class="fa fa-spinner fa-pulse"></i></div>
             <div class="col s1 right-align" onclick='$("#more_options").openModal()'><i class="fa fa-ellipsis-v"></i></div>
@@ -579,7 +579,7 @@
                 <div class="col s12 m6">
                     <div class="card grey lighten-5">
                         <div class="card-content">
-                            <div class="card-title x-grey bold"><span class="head-title-text"><i class="fa fa-spinner fa-pulse"></i></span><span class="right heart-detail"><i class="fa fa-heart"></i></span></div>                            
+                            <div class="card-title x-grey bold line-height-25"><span class="head-title-text"><i class="fa fa-spinner fa-pulse"></i></span><span class="right heart-detail"><i class="fa fa-heart"></i></span></div>                            
                             <span class="gotoroom"><a class="gotoroom">View room</a> |</span><span> <a class="sample-request" onclick="sample_request()">Request Sample</a></span><span class="right hide"> <a class="" onclick=" $('#rating').openModal()">See Seller details</a></span>
                         </div>                        
                         <div class="card-action grey lighten-3 padding-tb-5 info_all">
@@ -1046,7 +1046,7 @@
                                 if (parseFloat(localStorage.emd_bal.replace(/,/g, '')) < parseFloat(og_emd__)) {
                                     //localStorage.EMD_over__ = localStorage.EMD_over__.replace('/buyer_dashboard?action=emd_details', 'emd.html');
                                     // $('.msg_' + dynamic_lot).html(localStorage.EMD_over__).fadeIn('slow');
-                                    Materialize.toast('<a href="emd.html">'+localStorage.EMD_over__ +'</a>', 999999999999, 'x-red bold font-20', function () {
+                                    Materialize.toast('<a href="emd.html">' + localStorage.EMD_over__ + '</a>', 999999999999, 'x-red bold font-20', function () {
                                         $('#toast-container').remove();
                                     });
                                 } else {
@@ -1436,7 +1436,7 @@
                                                 $.post(localStorage.host + '../classes/common.class.php?action=load_dynamic_drop_down_mobile&curr_val=' + $('.curr_bid_' + lot_id).text() + '&min_inc=' + min_incr_value + '&actual_p=' + actual_price + '&auc_on=' + auction_on + '&user_id=' + localStorage.user_id + '&total_bid=' + obj.total_bid + '&unit_price_auction=' + unit_price_auction + '&unit_price=' + unit_price + '', {id: 1},
                                                 function (data) {
                                                     var items = [];
-                                                    if (data && !$("#dd_" + lot_id).is(':focus')) {
+                                                    if (data && infocus(lot_id)) {
                                                         curr_value_dropdown = $('.curr_bid_' + lot_id + '').text();
                                                         $("select[id='dd_" + lot_id + "']").empty().append('<option value="Bid"> Bid </option>');
                                                         $("select[id='dd_" + lot_id + "']").append(data);
@@ -1454,7 +1454,7 @@
                                                 $.post(localStorage.host + '../classes/common.class.php?action=load_dynamic_drop_down_mobile&curr_val=' + discount_value + '&min_inc=' + min_incr_value + '&actual_p=' + actual_price + '&auc_on=' + auction_on + '&user_id=' + localStorage.user_id + '&total_bid=' + obj.total_bid + '&unit_price_auction=' + unit_price_auction + '&unit_price=' + unit_price + '', {id: 1},
                                                 function (data) {
                                                     var items = [];
-                                                    if (data && !$("#dd_" + lot_id).is(':focus')) {
+                                                    if (data && infocus(lot_id)) {
                                                         curr_value_dropdown = $('.curr_bid_' + lot_id + '').text();
                                                         $("select[id='dd_" + lot_id + "']").empty().append('<option value="Bid"> Bid </option>');
                                                         $("select[id='dd_" + lot_id + "']").append(data);

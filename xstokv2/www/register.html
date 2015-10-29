@@ -159,12 +159,14 @@
                                 var today = yyyy + '-' + mm + '-' + dd;
                                 console.log(today + ' ' + now_time);
                                 var date_ful = today + ' ' + now_time;
-                                var json = '{"id":null,"admin_id":null,"first_name":"' + $("input[name=\"first_name\"]").val() + '","last_name":"' + $("input[name=\"last_name\"]").val() + '","name":"' + $("input[name=\"first_name\"]").val() + ' ' + $("input[name=\"last_name\"]").val() + '","company_name":"' + $("input[name=\"company_name\"]").val() + '","mobile_no":"' + $("input[name=\"mobile_no\"]").val() + '","email_id":"' + $("input[name=\"email_id\"]").val() + '","password":"' + md5_v + '","active":"Y","address":null,"role_id":"3","comment":null,"pass":"' + md5_v + '","now":"' + date_ful + '","action":"insert","form_type":"front_end","registration_type":"Buyer","flag_reg_update":"","register_from":"Mobile"}'; // console.log(json);  
+                                var json = '{"id":null,"admin_id":null,"first_name":"' + $("input[name=\"first_name\"]").val() + '","last_name":"' + $("input[name=\"last_name\"]").val() + '","name":"' + $("input[name=\"first_name\"]").val() + ' ' + $("input[name=\"last_name\"]").val() + '","company_name":"' + $("input[name=\"company_name\"]").val() + '","mobile_no":"' + $("input[name=\"mobile_no\"]").val() + '","email_id":"' + $("input[name=\"email_id\"]").val() + '","password":"' + md5_v + '","active":"Y","address":null,"role_id":"3","comment":null,"pass":"' + md5_v + '","now":"' + date_ful + '","action":"insert","form_type":"front_end","registration_type":"Buyer","flag_reg_update":"","register_from":"Mobile"}';
+                                console.log(json);  
                                 $.ajax({url: localStorage.host + 'buyer_registration.php', data: {json: json}, type: 'get', success: function (data) {
-                                        //console.log(data);                   
+                                        console.log(data['user_id']);                   
                                         $('button[type="submit"]').html('Done   <i class="fa fa-check"></i>');
                                         $('button[type="submit"]').removeAttr('disabled');
-                                        localStorage.logged_in = 1;
+                                        localStorage.logged_in = 1;                                         
+                                        localStorage.user_id = rc4_er(data['user_id']);
                                         setTimeout(function () {
                                             self.submit();
                                             return false;

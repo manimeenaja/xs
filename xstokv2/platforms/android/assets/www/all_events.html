@@ -60,7 +60,7 @@
                         console.log(logininfo);
                         if (parseInt(logininfo['room_count']) >= 1) {
                             $.each(logininfo['room_auction'], function (index, value) {
-                                var today = new Date(logininfo['room_auction'][index]['end_date_w']);
+                                var today = new Date(date_fution(logininfo['room_auction'][index]['end_date_w']));
                                 var dd = today.getDate();
                                 var mm = monthNames[today.getMonth()]; //January is 0!
 
@@ -75,7 +75,7 @@
                                     mmm = '0' + mmm;
                                 }
                                 var today_e = dd + ' ' + mm + ' ' + yyyy + ', ' + hh + ':' + mmm;
-                                var today = new Date(logininfo['room_auction'][index]['start_date_w']);
+                                var today = new Date(date_fution(logininfo['room_auction'][index]['start_date_w']));
                                 var dd = today.getDate();
                                 var mm = monthNames[today.getMonth()]; //January is 0!
 

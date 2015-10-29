@@ -3,8 +3,8 @@
 //localStorage.host = "http://192.168.0.13/webservices/";
 //localStorage.host = "http://192.168.0.12/webservices/";
 //localStorage.host = "http://beta.xstok.com/webservices/";
-//localStorage.host = "http://fa.xstok.com/webservices/";
-localStorage.host = "http://www.xstok.com/webservices/";
+localStorage.host = "http://fa.xstok.com/webservices/";
+//localStorage.host = "http://www.xstok.com/webservices/";
 localStorage.device = 'Android';
 localStorage.vr = 'new';
 localStorage.key_code = 'euhe68vjdr1aX4F091c7aCggSMBf0A7M';
@@ -171,7 +171,7 @@ function back() {
 }
 function x_alert(data) {
     //alert(data);
-    //navigator.notification.alert(data);
+    navigator.notification.alert(data);
 }
 function auction_detail(id, auc_type_id) {
     //window.location.href = 'auction_detail.html#' + id;
@@ -204,14 +204,7 @@ function auction_room(lot_id, room_id) {
 function shipping_detail(lot_id, room_id) {
     window.location.href = 'shipping_detail.html#' + lot_id + '-' + room_id;
 }
-function date_fution(date) {
-    var dateStr = date; //returned from mysql timestamp/datetime field
-    var a = dateStr.split(" ");
-    var d = a[0].split("-");
-    var t = a[1].split(":");
-    var start_date = new Date(d[0], (d[1] - 1), d[2], t[0], t[1], t[2]);
-    return start_date;
-}
+
 function redirect(location, hash) {
     if (typeof hash === 'undefined') {
         hash = '';
@@ -591,6 +584,9 @@ function confirm_watchlist(lot_id) {
     var user_id = localStorage.user_id;
     $.getJSON(localStorage.host + "../classes/buyer_dashboard.class.php?action=remove_watchlist&lot_id=" + lot_id + "&user_id=" + user_id, function (data) {
         if (data['status'] == "success") {
+            var count = ($('.watchlist-count').html().split('(')[1]);
+            count = parseFloat(count.split(')')[0]) -1;
+            $('.watchlist-count').html('('+count+')');
             $('.watchlist_' + lot_id).each(function () {
                 $(this).remove();
             });
@@ -1416,21 +1412,21 @@ function bid_counter(hash) {
     });
 }
 function showmakeofferConfirm(confirmtitle, confirm_msg_, confirmbutton, confirmlink, dynamic_lot) {
-   /* if (confirm(confirm_msg_) == true) {
-        wholesale_makeoffer_submit(dynamic_lot, confirmlink);
-    }*/
+    /* if (confirm(confirm_msg_) == true) {
+     wholesale_makeoffer_submit(dynamic_lot, confirmlink);
+     }*/
 
     navigator.notification.confirm(
-     confirm_msg_, // message
-     function (index) {
-     if (index == 1) {
-     wholesale_makeoffer_submit(dynamic_lot,confirmlink);
-     //window.location.href = confirmlink;
-     }
-     }, // callback to invoke with index of button pressed
-     confirmtitle, // title
-     confirmbutton          // buttonLabels
-     );
+            confirm_msg_, // message
+            function (index) {
+                if (index == 1) {
+                    wholesale_makeoffer_submit(dynamic_lot, confirmlink);
+                    //window.location.href = confirmlink;
+                }
+            }, // callback to invoke with index of button pressed
+            confirmtitle, // title
+            confirmbutton          // buttonLabels
+            );
 }
 function wholesale_makeoffer_submit(lot_id, confirmlink) {
     $.ajax({
@@ -1443,20 +1439,20 @@ function wholesale_makeoffer_submit(lot_id, confirmlink) {
 }
 function showbuynowConfirm(confirmtitle, confirm_msg_, confirmbutton, confirmlink, dynamic_lot) {
     /*if (confirm(confirm_msg_) == true) {
-        wholesale_buy_now_submit(dynamic_lot, confirmlink);
-    }*/
+     wholesale_buy_now_submit(dynamic_lot, confirmlink);
+     }*/
 
     navigator.notification.confirm(
-     confirm_msg_, // message
-     function (index) {
-     if (index == 1) {
-     wholesale_buy_now_submit(dynamic_lot,confirmlink);
-     //window.location.href = confirmlink;
-     }
-     }, // callback to invoke with index of button pressed
-     confirmtitle, // title
-     confirmbutton          // buttonLabels
-     );
+            confirm_msg_, // message
+            function (index) {
+                if (index == 1) {
+                    wholesale_buy_now_submit(dynamic_lot, confirmlink);
+                    //window.location.href = confirmlink;
+                }
+            }, // callback to invoke with index of button pressed
+            confirmtitle, // title
+            confirmbutton          // buttonLabels
+            );
 }
 function wholesale_buy_now_submit(lot_id, confirmlink) {
     $.ajax({
@@ -1639,6 +1635,7 @@ function confirm_empty_watchlist(lot_id) {
                     $(this).remove();
                 });
             });
+            $('.watchlist-count').html('');
             x_alert("All auctions removed successfully from the Watchlist");
         }
     });
@@ -1646,7 +1643,7 @@ function confirm_empty_watchlist(lot_id) {
 
 setTimeout(function () {
     version_check();
-}, 2000);
+}, 1000);
 
 
 function version_check() {
@@ -1654,7 +1651,7 @@ function version_check() {
 
     $.ajax({url: localStorage.host + '../classes/buyer_dashboard_inc.class.php?action=cart_count&user_id=' + localStorage.user_id, data: {}, type: 'get', success: function (data) {
             var detail = JSON.parse(data);
-            if(detail['cart_count'] != 0) {
+            if (detail['cart_count'] != 0) {
                 $('.cart_count').html(detail['cart_count']);
             }
 
@@ -1683,24 +1680,24 @@ function version_check() {
 
 function version_confirm(msg, title, buttonlabels) {
 
-    if (confirm(msg) == true) {
-        onConfirm_ver();
-    } else {
-        navigator.app.exitApp();
-    }
-    /*
-     navigator.notification.confirm(
-     msg,  // message
-     function(index) {
-     if (index == 1) {
+    /*if (confirm(msg) == true) {
      onConfirm_ver();
-     }else {
+     } else {
      navigator.app.exitApp();
-     }
-     },                // callback to invoke with index of button pressed
-     title,            // title
-     buttonlabels          // buttonLabels
-     );*/
+     }*/
+
+    navigator.notification.confirm(
+            msg,
+            function (index) {
+                if (index == 1) {
+                    onConfirm_ver();
+                } else {
+                    navigator.app.exitApp();
+                }
+            },
+            title,
+            buttonlabels
+            );
     // navigator.app.exitApp();
 }
 
@@ -1720,3 +1717,78 @@ function more_info() {
         scrollTop: $(".show-top-bid").offset().top - 53
     }, 500);
 }
+
+function find_platform() {
+    //console.log(localStorage.device);
+    if (typeof device == 'undefined') {
+        return localStorage.device;
+    } else {
+        localStorage.device = device.platform;
+        return localStorage.device;
+    }
+
+}
+
+function infocus(lot_id) {
+    var devicePlatform = find_platform();
+    if (devicePlatform == 'iOS') {
+        return $.trim($("#dd_" + lot_id + " option:selected").text()) == 'Bid';
+    } else {
+        return !$("#dd_" + lot_id).is(':focus');
+    }
+}
+
+function date_fution(date) {
+    var devicePlatform = find_platform();
+    if (devicePlatform == 'iOS') {
+        var dateStr = date; //returned from mysql timestamp/datetime field
+        var a = dateStr.split(" ");
+        var d = a[0].split("-");
+        var t = a[1].split(":");
+        var start_date = new Date(d[0], (d[1] - 1), d[2], t[0], t[1], t[2]);
+        return start_date;
+    } else {
+        return date;
+    }
+}
+function isiPhone() {
+    var devicePlatform = find_platform();
+    if (devicePlatform == 'iOS') {
+        return true;
+    } else {
+        return false;
+    }
+    /*return (
+     (navigator.platform.indexOf("iPhone") != -1) ||
+     (navigator.platform.indexOf("iPod") != -1) ||
+     (navigator.platform.indexOf("iPad") != -1)
+     );*/
+}
+var ip = setInterval(function () {
+    if (isiPhone()) {
+        $('#menu-add').addClass('h-76');// .css('height', '76px !important');
+        $('.nav').addClass('p-t-20');
+        $('nav').addClass('p-t-20');
+        $('.height-76').addClass('h-76');
+        clearInterval(ip);
+    }
+}, 0);
+var top_padding = setInterval(function () {
+    if (window.location.href.indexOf("home") < 0) {
+        if (isiPhone()) {
+            console.log($('nav').outerHeight() + 'px !important');
+            if ($('.padding-top-56').css('padding-top') == '56px') {
+                var height = $('nav').outerHeight();
+                if ($('nav').length < 1) {
+                    height = $('.nav').outerHeight();
+                }
+                console.log(height + 'px !important');
+                $('.padding-top-56').attr('style', 'padding-top: ' + height + 'px !important');
+                clearInterval(top_padding);
+            } else if ($('.nav').css('padding-top') == '20px') {
+                console.log($('.nav').css('padding-top') + 'px !important');
+                clearInterval(top_padding);
+            }
+        }
+    }
+}, 0);

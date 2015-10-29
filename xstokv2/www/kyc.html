@@ -43,6 +43,30 @@
                         add_menu('',2, 0);
                     }
                 });
+                 setInterval(function () {
+                        if (typeof device != 'undefined') {
+                            if (device.platform == "Android") {
+                                document.addEventListener("backbutton", onBackKeyDown, false);
+                            }
+                        }
+                    }, 500);
+                    function onBackKeyDown() {// Handle the back button
+                    // alert(window.location.href.indexOf("auction_detail"));
+                    //if (window.location.href.indexOf("auction_detail") < 0) {
+                    navigator.notification.confirm(
+                            'Are you sure want to exit?', // message
+                            function (index) {
+                                if (index == 1) {//look at the docs for this part
+                                    navigator.app.exitApp();
+                                }
+                            }, // callback to invoke with index of button pressed
+                            'Exit', // title
+                            'Yes,No' // buttonLabels
+                            );
+                    /*} else {
+                     navigator.app.backHistory();
+                     }*/
+                }
             });
 
 

@@ -1753,6 +1753,9 @@ li.main_option a i  {
     max-height: 362px;
     min-height: 162px;
 }
+.line-height-25 {
+    line-height: 25px !important;
+}
 @media only screen and (max-width: 360px) {
     .header-image.room img {
         width:80px;

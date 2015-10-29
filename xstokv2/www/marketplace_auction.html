@@ -674,7 +674,7 @@
                 <i class="fa fa-angle-double-up"></i>
             </a>
         </div>
-        <div class="header row font-size-1-6-em xstok-text-white  padding-10 width-100p position-fixed z-index-1">
+        <div class="header row font-size-1-6-em xstok-text-white  padding-10 width-100p position-fixed z-index-1 nav">
             <div class="col s2 left-align"><a onclick="back()" class="xstok-text-white"><i class="fa fa-chevron-left"></i></a></i></div>
             <div class="col s9 supplier-name"><i class="fa fa-spinner fa-pulse"></i></div>
             <div class="col s1 right-align" onclick='$("#more_options").openModal()'><i class="fa fa-ellipsis-v"></i></div>
@@ -707,7 +707,7 @@
                 <div class="col s12 m6">
                     <div class="card grey lighten-5 margin-bottom-0">
                         <div class="padding-10">
-                            <span class="card-title x-grey bold text-transform-capitalize"><span class="head-title-text"><i class="fa fa-spinner fa-pulse"></i></span><span class="right heart-detail"><i class="fa fa-heart"></i></span></span>
+                            <span class="card-title x-grey bold line-height-25 text-transform-capitalize"><span class="head-title-text"><i class="fa fa-spinner fa-pulse"></i></span><span class="right heart-detail"><i class="fa fa-heart"></i></span></span>
                             <div class="qty font-13 x-light-blue">
                                 Total Quantity: <span class="total_quantity"></span> <span class="span_unit_db"></span> | Available Quantity: <span class="span_available_quantity"></span> <span class="span_unit_db"></span>
                             </div>
@@ -734,6 +734,7 @@
                                     <span class="hide" id="span_total_quantity"></span>
                                     <span id="span_offer_qty" class="hide"></span>
                                     <span id="enc_total_qty_sold" class="hide"></span>
+                                    <span class="hide for_calculation"></span>
                                     <div id="div_no_tendor">
                                         <div class="row margin-lr-0 margin-top-10">
                                             <div class="col s2 padding-tb-10">Quantity </div>
@@ -1110,6 +1111,8 @@
                                     var temp_unit_price_ = "(Per " + $('.span_unit_db').first().text() + " of Rs. " + number_format(per_price, 1, '.', ',') + ")";
                                     if ($('#emd_required_val').html() == 'EMD Released Winner') {
                                         var confirm_msg_ = 'Confirm offer to buy ' + $('#span_offer_qty').html() + ' ' + $('.span_unit_db').first().text() + " at Rs. " + number_format(per_price, 1, '.', ',') + " Total Value: Rs. " + numberWithCommas(first_bid) + ". Note: this will block EMD of Rs. " + numberWithCommas(og_emd__);
+                                    } else if ($('#emd_required_val').html() === null || typeof $('#emd_required_val').html() === null) {
+                                        var confirm_msg_ = 'Confirm offer to buy ' + $('#span_offer_qty').html() + ' ' + $('.span_unit_db').first().text() + " at Rs. " + number_format(per_price, 1, '.', ',') + " Total Value: Rs. " + numberWithCommas(first_bid) + " Note: This will block EMD of Rs. " + numberWithCommas(og_emd__);
                                     } else {
                                         var confirm_msg_ = "Confirm offer to buy " + $('#span_offer_qty').html() + " " + $('.span_unit_db').first().text() + " at Rs. " + number_format(per_price, 1, '.', ',') + ". Total Value: Rs. " + numberWithCommas(first_bid);
                                     }
@@ -1169,7 +1172,7 @@
                                     sub_qty_.push($('#available_quantity_table').find('tr.selected-qty').find('td').eq((idx + 2)).html().replace(/(<([^>]+)>)/ig, ""));
                                 });
                                 //var confirm_msg_ = localStorage.confirm_offer_of_bid + "Rs. " + numberWithCommas(z);
-                                var confirm_msg_ = "Quantity " + $('#span_offer_qty').html() +" per " + $('.span_unit_db').first().text() + " Price Per " + $('.span_unit_db').first().text() + " : Rs. " + numberWithCommas(z) + " Total Value: Rs. " + numberWithCommas((z*$('#span_offer_qty').html()));
+                                var confirm_msg_ = "Quantity " + $('#span_offer_qty').html() + " per " + $('.span_unit_db').first().text() + " Price Per " + $('.span_unit_db').first().text() + " : Rs. " + numberWithCommas(z) + " Total Value: Rs. " + numberWithCommas((z * $('#span_offer_qty').html()));
                                 var confirmtitle = 'Confirm offer';
                                 var confirmbutton = 'Yes,Cancel';
                                 var confirmlink = localStorage.host + '../classes/service_manage_wholesale_auction.class.php?action=save_update_wholesale_auction_offer&user_id=' + localStorage.user_id + '&admin_id=' + localStorage.user_id + '&lot_id=' + dynamic_lot + '&room_id=-1&qty=' + $("#span_offer_qty").html() + '&per_pcs=' + per_price + '&total_val=' + z + '&emd=' + rc4_er(localStorage.emd_for_this_auc) + '&total_quantity=' + $("#span_total_quantity").html() + '&size_=' + size_ + '&sub_qty_=' + sub_qty_ + '&color_=' + color_ + '&step_1_id=' + $('.makeoffer_select').attr('id_info') + '&min_quantity=' + $('#min_quantity').html();
@@ -1314,7 +1317,12 @@
                                             if (data1.status == 'Y') {
                                                 $("#offer_plcae_div").hide();
                                                 //$("#div_offer_places").html("<div class='padding-10 '>Your offer of " + numberWithCommas(data1.offer_amount) + " for " + data1.qty + " " + $('.span_unit_db').first().text() + " has been received. Supplier is reviewing the offer and will revert within 24 hours. <a class='right' onclick='show_offer_place_div();'> <i class='fa fa-pencil'></i> Change Offer</a></div>");
-                                                $("#div_offer_places").html("<div class='padding-10 font-14'>Your offer has been received, supplier is reviewing the offer and will revert within 24 hours. <br /><br/> <b>Offer Details: </b><br/>Qty: " + data1.qty + " <span class='span_unit_db'></span> <br> Price/<span class='span_unit_db'></span>: <i class='fa fa-inr'></i> " + data1.offer_amount + " <br>  Total value: <i class='fa fa-inr'></i> " + numberWithCommas(data1.offer_amount*data1.per_pcs) + "<br />  <a class='left padding-10 center-align width-100p' onclick='show_offer_place_div();'> <i class='fa fa-pencil'></i> Change Offer</a></div>");
+                                                $("#div_offer_places").html("<div class='padding-10 font-14'>Your offer has been received, supplier is reviewing the offer and will revert within 24 hours. <br /><br/> <b>Offer Details: </b><br/>Qty: " + data1.qty + " <span class='span_unit_db'></span> <br> Price/<span class='span_unit_db'></span>: <i class='fa fa-inr'></i> " + data1.offer_amount + " <br>  Total value: <i class='fa fa-inr'></i> " + numberWithCommas(data1.offer_amount * data1.per_pcs) + "<br />  <a class='left padding-10 center-align width-100p' onclick='show_offer_place_div();'> <i class='fa fa-pencil'></i> Change Offer</a></div>");
+                                            } else{
+                                                if(data1.status=='D'){
+                                                    $("#offer_plcae_div").hide();
+                                                    $("#div_offer_places").html("<div class='padding-10 font-14'>Your offer is declined. <br /> <b>Offer Details: </b><br>Qty: " +data1.qty+" <span class='span_unit_db'></span> <br> Price/<span class='span_unit_db'></span>: " +data1.offer_amount+" <br> Total value: <i class='fa fa-inr'></i> " +numberWithCommas( round(( parseFloat(data1.offer_amount)* parseFloat(data1.qty) ),2)) +"<br /> <a class='left padding-10 center-align width-100p' onclick='show_offer_place_div();'> <i class='fa fa-pencil'></i> Change Offer</a></div>");
+                                                }
                                             }
                                         }
                                     });
@@ -1353,9 +1361,11 @@
                                     if ($('#total_qty_left').html() < 1) {
                                         $(".div_offer_content").html('<div class="padding-10 font-24 center-align">' + localStorage.out_of_stock__ + '</div>');
                                     }
+                                } else {
+                                    if(data1.status=='D') {                                        
+                                        $("#div_offer_places").html("<div class='padding-10 font-14'>Your offer is declined. <br /> <b>Offer Details: </b><br>Qty: " +data1.qty+" <span class='span_unit_db'></span> <br> Price/<span class='span_unit_db'></span>: " +data1.offer_amount+" <br> Total value: <i class='fa fa-inr'></i> " +numberWithCommas( round(( parseFloat(data1.offer_amount)* parseFloat(data1.qty)),2)) +"<br /> <a class='left padding-10 center-align width-100p' onclick='show_offer_place_div();'> <i class='fa fa-pencil'></i> Change Offer</a></div>");
+                                    }
                                 }
-                            } else {
-                                // $("#div_offer_places").html('');
                             }
                         });
                         $('#text_make_offer').attr('placeholder', 'Enter price in per ' + $('.span_unit_db').first().text());

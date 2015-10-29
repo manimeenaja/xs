@@ -1,0 +1,2466 @@
+2015-10-26 17:05:37.640 XSTOK[1594:69391] Apache Cordova native platform version 3.9.1 is starting.
+2015-10-26 17:05:37.641 XSTOK[1594:69391] Multi-tasking -> Device: YES, App: YES
+2015-10-26 17:05:37.660 XSTOK[1594:69391] Unlimited access to network resources
+2015-10-26 17:05:37.678 XSTOK[1594:69391] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-10-26 17:05:38.219 XSTOK[1594:69391] [CDVTimer][file] 46.886981ms
+2015-10-26 17:05:39.526 XSTOK[1594:69391] [CDVTimer][splashscreen] 1306.562006ms
+2015-10-26 17:05:39.526 XSTOK[1594:69391] [CDVTimer][mobileaccessibility] 0.111997ms
+2015-10-26 17:05:39.526 XSTOK[1594:69391] [CDVTimer][TotalPluginStartup] 1354.215980ms
+2015-10-26 17:05:39.536 XSTOK[1594:69391] active
+2015-10-26 17:05:39.662 XSTOK[1594:69391] Resetting plugins due to page load.
+2015-10-26 17:05:40.655 XSTOK[1594:69391] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/3272AA82-1829-4E2F-A060-BD27AE08A2A6/XSTOK.app/www/index.html
+2015-10-26 17:05:40.682 XSTOK[1594:69391] THREAD WARNING: ['Device'] took '11.421143' ms. Plugin should use a background thread.
+2015-10-26 17:05:42.220 XSTOK[1594:69484] App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured via your app's Info.plist file.
+2015-10-26 17:05:46.843 XSTOK[1594:69391] active
+2015-10-26 17:05:46.853 XSTOK[1594:69391] Resetting plugins due to page load.
+2015-10-26 17:05:47.014 XSTOK[1594:69391] Failed to load webpage with error: The operation couldn’t be completed. (NSURLErrorDomain error -999.)
+2015-10-26 17:05:47.014 XSTOK[1594:69391] Resetting plugins due to page load.
+2015-10-26 17:05:47.309 XSTOK[1594:69391] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/3272AA82-1829-4E2F-A060-BD27AE08A2A6/XSTOK.app/www/no_connection.html
+2015-10-26 17:05:54.773 XSTOK[1594:69391] Resetting plugins due to page load.
+2015-10-26 17:05:54.803 XSTOK[1594:69391] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/3272AA82-1829-4E2F-A060-BD27AE08A2A6/XSTOK.app/www/index.html
+2015-10-26 17:05:54.915 XSTOK[1594:69391] Resetting plugins due to page load.
+2015-10-26 17:05:55.021 XSTOK[1594:69391] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/3272AA82-1829-4E2F-A060-BD27AE08A2A6/XSTOK.app/www/home.html
+2015-10-26 17:05:55.033 XSTOK[1594:69391] Resetting plugins due to page load.
+2015-10-26 17:05:55.078 XSTOK[1594:69391] THREAD WARNING: ['File'] took '15.809082' ms. Plugin should use a background thread.
+2015-10-26 17:05:55.148 XSTOK[1594:69391] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/3272AA82-1829-4E2F-A060-BD27AE08A2A6/XSTOK.app/www/no_connection.html
+2015-10-26 17:07:20.408 XSTOK[1594:69391] Resetting plugins due to page load.
+2015-10-26 17:07:20.439 XSTOK[1594:69391] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/3272AA82-1829-4E2F-A060-BD27AE08A2A6/XSTOK.app/www/index.html
+2015-10-26 17:07:20.548 XSTOK[1594:69391] Resetting plugins due to page load.
+2015-10-26 17:07:20.668 XSTOK[1594:69391] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/3272AA82-1829-4E2F-A060-BD27AE08A2A6/XSTOK.app/www/home.html
+2015-10-26 17:07:20.680 XSTOK[1594:69391] Resetting plugins due to page load.
+2015-10-26 17:07:20.708 XSTOK[1594:69391] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/3272AA82-1829-4E2F-A060-BD27AE08A2A6/XSTOK.app/www/no_connection.html
+2015-10-26 17:07:22.590 XSTOK[1594:69391] Resetting plugins due to page load.
+2015-10-26 17:07:22.610 XSTOK[1594:69391] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/3272AA82-1829-4E2F-A060-BD27AE08A2A6/XSTOK.app/www/index.html
+2015-10-26 17:07:22.696 XSTOK[1594:69391] Resetting plugins due to page load.
+2015-10-26 17:07:22.729 XSTOK[1594:69391] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/3272AA82-1829-4E2F-A060-BD27AE08A2A6/XSTOK.app/www/home.html
+2015-10-26 17:07:22.731 XSTOK[1594:69391] Resetting plugins due to page load.
+2015-10-26 17:07:22.784 XSTOK[1594:69391] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/3272AA82-1829-4E2F-A060-BD27AE08A2A6/XSTOK.app/www/no_connection.html
+2015-10-26 17:07:23.898 XSTOK[1594:69391] Resetting plugins due to page load.
+2015-10-26 17:07:23.915 XSTOK[1594:69391] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/3272AA82-1829-4E2F-A060-BD27AE08A2A6/XSTOK.app/www/index.html
+2015-10-26 17:07:23.964 XSTOK[1594:69391] Resetting plugins due to page load.
+2015-10-26 17:07:24.042 XSTOK[1594:69391] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/3272AA82-1829-4E2F-A060-BD27AE08A2A6/XSTOK.app/www/home.html
+2015-10-26 17:07:24.053 XSTOK[1594:69391] Resetting plugins due to page load.
+2015-10-26 17:07:24.082 XSTOK[1594:69391] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/3272AA82-1829-4E2F-A060-BD27AE08A2A6/XSTOK.app/www/no_connection.html
+2015-10-26 17:09:39.209 XSTOK[1594:69391] Resetting plugins due to page load.
+2015-10-26 17:09:39.342 XSTOK[1594:69391] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/3272AA82-1829-4E2F-A060-BD27AE08A2A6/XSTOK.app/www/index.html
+2015-10-26 17:09:39.546 XSTOK[1594:69391] THREAD WARNING: ['File'] took '50.577148' ms. Plugin should use a background thread.
+2015-10-26 17:09:40.289 XSTOK[1594:69391] Resetting plugins due to page load.
+2015-10-26 17:09:40.598 XSTOK[1594:69391] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/3272AA82-1829-4E2F-A060-BD27AE08A2A6/XSTOK.app/www/home.html
+2015-10-26 17:09:40.707 XSTOK[1594:69391] Resetting plugins due to page load.
+2015-10-26 17:09:40.800 XSTOK[1594:69391] THREAD WARNING: ['File'] took '40.752930' ms. Plugin should use a background thread.
+2015-10-26 17:09:40.849 XSTOK[1594:69391] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/3272AA82-1829-4E2F-A060-BD27AE08A2A6/XSTOK.app/www/no_connection.html
+2015-10-26 17:09:41.016 XSTOK[1594:69391] THREAD WARNING: ['File'] took '37.887207' ms. Plugin should use a background thread.
+2015-10-26 17:09:50.814 XSTOK[1594:69391] Resetting plugins due to page load.
+2015-10-26 17:09:50.934 XSTOK[1594:69391] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/3272AA82-1829-4E2F-A060-BD27AE08A2A6/XSTOK.app/www/index.html
+2015-10-26 17:09:51.221 XSTOK[1594:69391] Resetting plugins due to page load.
+2015-10-26 17:09:51.397 XSTOK[1594:69391] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/3272AA82-1829-4E2F-A060-BD27AE08A2A6/XSTOK.app/www/home.html
+2015-10-26 17:09:51.490 XSTOK[1594:69391] Resetting plugins due to page load.
+2015-10-26 17:09:52.017 XSTOK[1594:69391] THREAD WARNING: ['File'] took '468.908691' ms. Plugin should use a background thread.
+2015-10-26 17:09:52.075 XSTOK[1594:69391] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/3272AA82-1829-4E2F-A060-BD27AE08A2A6/XSTOK.app/www/no_connection.html
+2015-10-26 17:09:52.274 XSTOK[1594:69391] THREAD WARNING: ['File'] took '28.128906' ms. Plugin should use a background thread.
+2015-10-26 17:13:10.401 XSTOK[1674:73518] Apache Cordova native platform version 3.9.1 is starting.
+2015-10-26 17:13:10.435 XSTOK[1674:73518] Multi-tasking -> Device: YES, App: YES
+2015-10-26 17:13:10.453 XSTOK[1674:73518] Unlimited access to network resources
+2015-10-26 17:13:10.467 XSTOK[1674:73518] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-10-26 17:13:10.697 XSTOK[1674:73518] [CDVTimer][file] 38.039982ms
+2015-10-26 17:13:11.639 XSTOK[1674:73518] [CDVTimer][splashscreen] 940.991998ms
+2015-10-26 17:13:11.639 XSTOK[1674:73518] [CDVTimer][mobileaccessibility] 0.138998ms
+2015-10-26 17:13:11.639 XSTOK[1674:73518] [CDVTimer][TotalPluginStartup] 979.869008ms
+2015-10-26 17:13:11.649 XSTOK[1674:73518] active
+2015-10-26 17:13:11.866 XSTOK[1674:73518] Resetting plugins due to page load.
+2015-10-26 17:13:12.539 XSTOK[1674:73518] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/7DAFF44A-6685-42D2-BFC5-45557B48B8E4/XSTOK.app/www/index.html
+2015-10-26 17:13:13.219 XSTOK[1674:73518] Resetting plugins due to page load.
+2015-10-26 17:13:13.371 XSTOK[1674:73646] App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured via your app's Info.plist file.
+2015-10-26 17:13:13.392 XSTOK[1674:73518] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/7DAFF44A-6685-42D2-BFC5-45557B48B8E4/XSTOK.app/www/home.html
+2015-10-26 17:13:13.495 XSTOK[1674:73518] Resetting plugins due to page load.
+2015-10-26 17:13:13.567 XSTOK[1674:73518] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/7DAFF44A-6685-42D2-BFC5-45557B48B8E4/XSTOK.app/www/no_connection.html
+2015-10-26 17:14:14.236 XSTOK[1707:74345] Apache Cordova native platform version 3.9.1 is starting.
+2015-10-26 17:14:14.282 XSTOK[1707:74345] Multi-tasking -> Device: YES, App: YES
+2015-10-26 17:14:14.298 XSTOK[1707:74345] Unlimited access to network resources
+2015-10-26 17:14:14.336 XSTOK[1707:74345] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-10-26 17:14:14.666 XSTOK[1707:74345] [CDVTimer][file] 26.818991ms
+2015-10-26 17:14:16.028 XSTOK[1707:74345] [CDVTimer][splashscreen] 1361.160994ms
+2015-10-26 17:14:16.028 XSTOK[1707:74345] [CDVTimer][mobileaccessibility] 0.088990ms
+2015-10-26 17:14:16.028 XSTOK[1707:74345] [CDVTimer][TotalPluginStartup] 1388.742983ms
+2015-10-26 17:14:16.039 XSTOK[1707:74345] active
+2015-10-26 17:14:16.214 XSTOK[1707:74345] Resetting plugins due to page load.
+2015-10-26 17:14:17.858 XSTOK[1707:74345] THREAD WARNING: ['File'] took '45.125977' ms. Plugin should use a background thread.
+2015-10-26 17:14:17.865 XSTOK[1707:74345] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/AFA00065-E47C-46D6-8684-153E43E8D9CD/XSTOK.app/www/index.html
+2015-10-26 17:14:18.752 XSTOK[1707:74345] Resetting plugins due to page load.
+2015-10-26 17:14:18.879 XSTOK[1707:74593] App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured via your app's Info.plist file.
+2015-10-26 17:14:19.179 XSTOK[1707:74345] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/AFA00065-E47C-46D6-8684-153E43E8D9CD/XSTOK.app/www/home.html
+2015-10-26 17:14:19.806 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:19.807 XSTOK[1707:74345] THREAD WARNING: ['PushNotification'] took '20.616943' ms. Plugin should use a background thread.
+2015-10-26 17:14:19.870 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:20.788 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:20.854 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:21.788 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:21.790 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:22.789 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:22.791 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:23.790 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:23.791 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:24.790 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:24.794 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:25.790 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:25.792 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:26.792 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:26.794 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:27.793 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:27.795 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:28.852 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:28.854 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:29.795 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:29.796 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:30.796 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:30.797 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:31.797 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:32.055 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:32.797 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:32.827 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:33.799 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:33.800 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:34.127 XSTOK[1707:74345] active
+2015-10-26 17:14:34.510 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:34.552 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:34.577 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:34.800 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:34.860 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:34.860 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:34.922 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:34.948 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:34.951 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:35.056 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:35.145 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:35.280 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:35.462 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:35.567 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:35.631 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:35.716 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:35.800 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:35.802 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:35.915 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:35.988 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:36.271 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:36.800 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:36.830 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:37.725 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:37.801 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:37.802 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:38.231 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:38.801 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:39.251 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:39.803 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:40.546 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:40.803 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:41.302 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:41.304 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:41.804 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:41.806 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:42.704 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:42.804 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:43.189 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:43.228 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:43.443 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:43.800 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:43.805 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:43.806 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:43.929 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:44.805 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:44.807 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:44.911 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:45.804 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:45.805 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:45.881 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:46.805 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:46.807 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:47.023 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:47.805 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:47.807 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:48.143 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:48.807 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:48.873 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:49.582 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:49.806 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:49.991 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:50.271 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:50.807 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:50.808 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:51.046 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:51.808 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:51.810 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:51.922 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:52.808 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:52.810 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:53.808 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:53.810 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:53.811 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:53.830 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:54.811 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:54.917 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:55.239 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:55.812 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:55.819 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:56.228 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:56.810 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:57.658 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:57.810 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:58.129 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:58.130 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:58.293 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:58.812 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:14:59.088 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:14:59.812 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:00.203 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:00.212 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:00.365 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:00.813 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:01.223 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:01.813 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:01.858 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:01.860 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:03.630 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:03.815 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:04.815 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:04.935 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:04.958 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:04.959 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:04.961 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:05.452 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:05.594 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:05.817 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:05.819 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:06.490 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:06.818 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:06.839 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:06.840 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:07.423 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:07.819 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:07.872 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:08.518 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:08.819 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:08.962 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:09.821 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:10.188 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:10.207 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:10.208 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:10.822 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:11.145 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:11.727 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:11.822 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:11.921 XSTOK[1707:74345] THREAD WARNING: ['PushNotification'] took '98.846191' ms. Plugin should use a background thread.
+2015-10-26 17:15:12.212 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:12.789 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:12.822 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:12.824 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:13.194 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:13.822 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:13.824 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:14.217 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:14.824 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:14.972 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:15.364 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:15.824 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:16.416 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:16.825 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:17.238 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:17.321 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:17.825 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:18.107 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:18.275 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:18.784 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:18.827 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:18.996 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:19.389 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:19.827 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:19.829 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:20.013 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:20.828 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:21.247 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:21.389 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:21.829 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:21.879 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:21.928 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:22.963 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:23.195 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:23.419 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:23.830 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:23.832 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:24.104 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:24.831 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:24.833 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:24.838 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:25.832 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:25.834 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:25.865 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:26.833 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:26.834 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:26.861 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:27.834 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:27.835 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:27.839 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:28.834 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:28.836 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:28.914 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:29.836 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:29.838 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:29.867 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:30.836 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:30.837 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:30.847 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:31.835 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:31.986 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:32.120 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:32.837 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:32.856 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:32.889 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:33.838 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:33.839 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:33.880 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:34.838 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:34.846 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:34.905 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:35.839 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:35.841 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:35.853 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:36.840 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:36.841 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:37.067 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:37.839 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:37.841 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:37.854 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:38.840 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:38.842 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:38.846 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:39.840 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:39.841 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:39.911 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:40.841 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:40.903 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:41.084 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:41.842 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:41.843 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:41.849 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:42.842 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:42.844 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:42.931 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:43.843 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:43.858 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:43.928 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:44.843 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:44.845 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:44.849 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:45.843 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:45.929 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:46.253 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:46.845 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:46.847 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:46.852 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:47.844 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:47.846 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:48.007 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:48.846 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:48.914 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:49.092 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:49.847 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:49.849 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:50.113 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:50.848 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:50.851 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:51.033 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:51.848 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:51.849 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:51.856 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:52.849 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:52.885 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:52.943 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:53.849 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:53.851 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:53.855 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:54.850 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:55.201 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:55.271 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:55.851 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:55.872 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:56.053 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:56.852 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:56.854 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:56.859 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:57.853 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:57.854 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:57.860 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:58.855 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:58.856 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:58.861 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:15:59.855 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:15:59.935 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:00.099 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:00.856 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:00.858 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:00.862 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:01.857 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:01.859 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:01.863 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:02.857 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:02.868 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:02.902 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:03.858 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:03.860 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:04.356 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:04.858 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:04.860 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:04.864 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:05.860 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:05.953 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:06.004 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:06.860 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:06.862 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:06.866 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:07.861 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:08.082 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:08.166 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:08.861 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:08.863 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:09.063 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:09.862 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:09.936 XSTOK[1707:74345] THREAD WARNING: ['PushNotification'] took '73.498047' ms. Plugin should use a background thread.
+2015-10-26 17:16:09.937 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:10.066 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:10.863 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:10.864 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:10.932 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:11.864 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:11.866 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:11.905 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:12.864 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:12.866 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:12.876 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:13.864 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:13.865 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:13.870 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:14.864 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:14.866 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:14.871 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:15.866 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:16.053 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:16.131 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:16.867 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:16.869 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:16.979 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:17.868 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:17.869 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:17.873 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:18.868 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:18.870 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:18.874 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:19.870 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:19.872 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:19.899 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:20.870 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:20.871 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:20.889 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:21.870 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:21.871 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:21.877 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:22.871 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:22.872 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:22.877 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:23.872 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:23.873 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:23.985 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:24.873 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:24.874 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:24.879 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:25.873 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:25.874 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:25.910 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:26.874 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:26.875 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:26.891 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:27.874 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:27.875 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:27.911 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:28.874 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:28.876 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:28.882 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:29.875 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:29.877 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:29.905 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:30.875 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:30.876 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:30.881 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:31.877 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:31.879 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:31.893 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:32.877 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:32.879 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:32.915 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:33.878 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:33.880 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:33.885 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:34.878 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:34.880 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:34.884 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:35.879 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:35.881 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:35.885 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:36.879 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:36.881 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:36.885 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:37.881 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:37.883 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:37.979 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:38.882 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:38.884 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:39.024 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:39.883 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:39.884 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:39.942 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:40.883 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:40.885 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:40.889 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:41.884 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:41.886 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:41.926 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:42.884 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:42.886 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:42.925 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:43.885 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:43.886 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:43.891 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:44.886 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:44.888 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:44.893 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:45.887 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:45.926 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:46.323 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:46.887 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:46.889 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:46.904 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:47.889 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:47.891 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:47.898 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:48.889 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:48.891 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:48.910 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:49.890 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:49.892 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:49.897 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:50.891 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:50.892 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:50.905 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:51.891 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:51.893 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:51.897 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:52.892 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:52.894 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:52.899 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:53.892 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:53.894 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:53.922 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:54.893 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:54.896 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:54.900 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:55.894 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:55.895 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:55.901 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:56.894 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:56.896 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:56.900 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:57.895 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:57.897 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:57.956 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:58.897 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:58.899 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:58.904 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:59.897 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:16:59.899 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:16:59.903 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:00.897 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:00.899 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:00.904 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:01.898 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:01.900 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:01.904 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:02.899 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:02.900 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:02.921 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:03.901 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:03.902 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:03.908 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:04.901 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:04.903 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:04.907 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:05.901 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:05.903 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:05.935 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:06.903 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:06.904 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:06.909 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:07.903 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:07.905 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:07.909 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:08.903 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:08.905 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:08.909 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:09.903 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:09.904 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:09.919 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:10.904 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:10.905 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:10.910 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:11.904 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:11.906 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:11.923 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:12.906 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:12.907 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:12.923 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:13.905 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:13.907 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:13.937 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:14.906 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:14.915 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:14.928 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:15.906 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:15.908 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:16.269 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:16.907 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:16.909 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:17.245 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:17.908 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:17.910 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:17.935 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:18.909 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:18.910 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:18.924 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:19.909 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:19.910 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:19.931 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:20.909 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:20.910 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:20.918 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:21.909 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:21.911 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:21.924 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:22.912 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:22.914 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:22.920 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:23.911 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:23.913 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:23.917 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:24.911 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:24.913 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:24.918 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:25.912 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:25.914 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:25.920 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:26.912 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:26.914 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:26.924 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:27.914 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:27.916 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:27.920 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:28.914 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:28.916 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:28.922 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:29.913 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:29.915 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:29.933 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:30.916 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:30.918 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:30.922 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:31.915 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:31.917 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:31.921 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:32.915 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:32.916 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:32.928 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:33.915 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:33.917 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:33.955 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:34.916 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:34.918 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:34.923 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:35.917 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:35.919 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:35.923 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:36.918 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:36.919 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:36.954 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:37.918 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:37.928 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:37.934 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:38.920 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:38.921 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:38.945 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:39.921 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:39.922 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:39.927 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:40.921 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:40.923 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:40.973 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:41.922 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:41.923 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:41.946 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:42.923 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:42.924 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:42.928 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:43.924 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:43.925 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:43.930 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:44.925 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:44.927 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:44.931 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:45.926 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:45.928 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:45.938 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:46.927 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:46.929 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:46.944 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:47.928 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:47.929 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:47.934 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:48.929 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:48.932 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:48.970 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:49.929 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:49.930 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:49.935 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:50.931 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:50.932 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:50.937 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:51.931 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:51.933 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:51.937 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:52.930 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:52.932 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:52.952 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:53.932 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:53.934 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:53.938 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:54.933 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:54.934 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:54.939 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:55.934 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:55.936 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:55.953 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:56.935 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:56.936 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:56.941 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:57.936 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:57.938 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:57.943 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:58.936 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:58.938 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:58.942 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:59.937 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:17:59.939 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:17:59.943 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:00.938 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:00.940 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:00.944 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:01.940 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:01.941 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:01.945 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:02.940 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:02.942 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:02.946 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:03.942 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:03.943 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:03.948 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:04.942 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:04.943 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:04.948 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:05.944 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:05.945 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:05.962 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:06.945 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:06.946 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:06.950 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:07.946 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:07.947 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:07.951 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:08.947 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:08.948 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:08.953 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:09.946 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:09.948 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:09.952 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:10.947 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:10.949 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:10.975 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:11.949 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:11.950 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:11.955 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:12.950 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:12.952 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:12.956 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:13.950 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:13.952 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:13.956 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:14.952 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:14.953 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:14.958 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:15.953 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:15.955 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:15.959 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:16.954 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:16.956 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:16.960 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:17.956 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:17.957 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:17.961 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:18.955 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:18.956 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:18.960 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:19.956 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:19.958 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:19.962 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:20.957 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:20.958 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:20.963 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:21.958 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:21.960 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:21.964 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:22.959 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:22.961 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:22.965 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:23.960 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:23.962 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:23.967 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:24.961 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:24.962 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:24.967 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:25.962 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:25.963 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:25.968 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:26.963 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:26.965 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:26.969 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:27.963 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:27.964 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:28.006 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:28.964 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:28.966 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:28.971 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:29.964 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:29.966 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:30.013 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:30.966 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:30.967 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:31.033 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:31.967 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:31.969 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:31.976 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:32.968 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:32.969 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:33.051 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:33.968 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:33.970 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:33.974 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:34.969 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:34.971 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:34.975 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:35.970 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:35.972 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:35.976 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:36.971 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:36.973 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:36.988 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:37.971 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:37.973 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:37.978 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:38.973 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:38.975 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:38.979 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:39.974 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:39.989 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:40.016 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:40.976 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:40.977 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:41.034 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:41.975 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:41.977 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:41.982 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:42.977 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:42.978 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:42.982 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:43.978 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:43.979 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:43.984 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:44.979 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:44.980 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:44.995 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:45.980 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:45.982 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:46.019 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:46.981 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:46.982 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:47.073 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:47.982 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:47.983 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:47.988 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:48.981 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:48.983 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:48.988 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:49.982 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:49.984 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:49.989 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:50.982 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:50.984 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:50.988 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:51.983 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:51.985 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:51.989 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:52.983 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:52.984 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:52.997 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:53.983 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:53.985 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:53.989 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:54.985 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:54.986 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:54.990 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:55.986 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:55.987 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:55.991 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:56.987 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:56.988 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:56.993 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:57.988 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:57.989 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:57.993 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:58.988 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:58.989 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:58.994 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:59.989 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:18:59.991 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:18:59.995 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:00.991 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:00.992 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:01.007 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:01.991 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:01.992 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:01.996 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:02.991 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:02.992 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:02.997 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:03.993 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:03.994 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:04.002 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:04.993 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:04.995 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:04.999 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:05.993 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:05.995 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:05.999 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:06.994 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:06.995 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:06.999 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:07.993 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:07.995 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:07.999 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:08.995 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:08.996 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:09.001 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:09.994 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:09.996 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:10.001 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:10.995 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:10.997 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:11.002 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:11.996 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:11.998 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:12.003 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:12.997 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:12.999 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:13.004 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:13.998 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:13.999 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:14.005 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:14.999 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:15.001 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:15.006 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:15.999 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:16.001 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:16.006 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:17.000 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:17.001 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:17.007 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:17.999 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:18.001 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:18.006 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:19.001 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:19.003 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:19.059 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:20.001 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:20.003 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:20.015 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:21.002 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:21.004 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:21.009 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:22.003 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:22.004 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:22.010 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:23.003 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:23.004 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:23.010 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:24.003 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:24.004 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:24.010 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:25.004 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:25.006 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:25.011 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:26.004 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:26.006 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:26.011 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:27.005 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:27.006 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:27.012 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:28.006 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:28.007 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:28.013 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:29.006 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:29.008 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:29.014 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:30.006 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:30.007 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:30.011 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:31.007 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:31.009 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:31.014 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:32.008 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:32.009 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:32.015 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:33.009 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:33.011 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:33.017 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:34.009 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:34.011 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:34.016 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:35.011 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:35.012 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:35.018 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:36.011 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:36.013 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:36.017 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:37.012 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:37.013 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:37.019 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:38.013 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:38.014 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:38.018 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:39.013 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:39.015 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:39.021 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:40.014 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:40.016 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:40.021 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:41.015 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:41.016 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:41.022 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:42.016 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:42.018 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:42.023 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:43.017 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:43.019 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:43.024 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:44.018 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:44.020 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:44.026 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:45.019 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:45.021 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:45.026 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:46.019 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:46.021 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:46.028 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:47.021 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:47.023 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:47.030 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:48.022 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:48.025 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:48.033 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:49.022 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:49.024 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:49.029 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:50.022 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:50.024 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:50.030 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:51.022 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:51.024 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:51.029 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:52.023 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:52.024 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:52.029 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:53.024 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:53.025 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:53.052 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:54.025 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:54.026 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:54.031 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:55.026 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:55.027 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:55.031 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:56.027 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:56.028 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:56.034 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:57.028 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:57.030 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:57.035 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:58.029 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:58.030 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:58.036 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:59.030 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:19:59.031 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:19:59.037 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:00.030 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:00.032 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:00.036 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:01.030 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:01.032 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:01.036 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:02.033 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:02.034 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:02.067 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:03.032 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:03.034 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:03.038 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:04.032 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:04.033 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:04.039 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:05.033 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:05.035 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:05.040 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:06.033 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:06.035 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:06.039 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:07.034 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:07.035 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:07.040 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:08.034 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:08.036 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:08.040 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:09.035 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:09.036 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:09.042 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:10.035 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:10.037 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:10.041 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:11.036 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:11.038 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:11.044 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:12.036 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:12.038 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:12.042 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:13.038 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:13.040 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:13.045 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:14.038 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:14.040 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:14.046 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:15.040 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:15.042 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:15.047 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:16.041 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:16.042 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:16.047 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:17.041 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:17.043 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:17.048 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:18.041 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:18.043 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:18.047 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:19.042 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:19.043 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:19.066 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:20.042 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:20.044 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:20.048 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:21.042 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:21.044 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:21.048 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:22.043 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:22.045 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:22.050 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:23.045 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:23.046 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:23.052 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:24.046 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:24.048 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:24.054 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:25.048 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:25.049 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:25.055 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:26.047 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:26.049 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:26.053 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:27.049 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:27.050 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:27.056 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:28.050 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:28.052 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:28.057 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:29.051 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:29.073 XSTOK[1707:74345] THREAD WARNING: ['PushNotification'] took '22.536133' ms. Plugin should use a background thread.
+2015-10-26 17:20:29.075 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:29.167 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:30.051 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:30.053 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:30.058 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:31.052 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:31.054 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:31.059 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:32.053 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:32.055 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:32.059 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:33.053 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:33.055 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:33.060 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:34.054 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:34.056 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:34.061 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:35.055 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:35.056 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:35.061 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:36.055 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:36.057 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:36.062 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:37.056 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:37.058 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:37.063 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:38.057 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:38.058 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:38.063 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:39.057 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:39.059 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:39.063 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:40.058 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:40.060 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:40.065 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:41.059 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:41.061 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:41.067 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:42.060 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:42.061 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:42.067 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:43.059 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:43.061 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:43.067 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:44.060 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:44.062 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:44.068 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:45.061 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:45.063 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:45.067 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:46.060 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:46.062 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:46.067 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:47.061 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:47.063 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:47.068 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:48.062 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:48.063 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:48.069 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:49.061 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:49.062 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:49.068 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:50.062 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:50.064 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:50.069 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:51.062 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:51.064 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:51.069 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:52.062 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:52.064 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:52.069 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:53.063 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:53.065 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:53.070 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:54.063 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:54.065 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:54.071 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:55.063 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:55.065 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:55.071 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:56.065 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:56.067 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:56.072 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:57.066 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:57.068 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:57.074 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:58.067 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:58.068 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:58.073 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:59.067 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:20:59.068 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:20:59.073 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:00.068 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:00.069 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:00.074 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:01.069 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:01.070 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:01.074 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:02.069 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:02.070 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:02.076 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:03.069 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:03.071 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:03.076 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:04.070 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:04.071 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:04.077 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:05.069 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:05.071 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:05.077 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:06.072 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:06.073 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:06.078 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:07.073 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:07.074 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:07.079 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:08.074 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:08.075 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:08.079 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:09.074 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:09.076 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:09.082 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:10.074 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:10.076 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:10.080 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:11.074 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:11.076 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:11.080 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:12.076 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:12.077 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:12.081 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:13.076 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:13.078 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:13.083 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:14.077 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:14.079 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:14.084 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:15.078 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:15.079 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:15.084 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:16.077 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:16.079 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:16.084 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:17.079 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:17.081 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:17.086 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:18.081 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:18.082 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:18.087 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:19.080 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:19.082 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:19.113 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:20.083 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:20.085 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:20.090 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:21.083 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:21.084 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:21.089 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:22.084 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:22.085 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:22.089 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:23.084 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:23.086 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:23.090 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:24.086 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:24.088 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:24.093 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:25.087 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:25.089 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:25.093 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:26.088 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:26.090 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:26.095 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:27.088 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:27.089 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:27.094 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:28.089 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:28.090 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:28.095 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:29.089 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:29.091 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:29.095 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:30.090 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:30.091 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:30.095 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:31.090 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:31.092 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:31.096 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:32.091 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:32.093 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:32.097 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:33.092 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:33.094 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:33.098 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:34.093 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:34.095 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:34.100 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:35.094 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:35.095 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:35.100 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:36.095 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:36.097 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:36.101 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:37.095 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:37.097 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:37.101 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:38.097 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:38.098 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:38.103 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:39.097 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:39.099 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:39.103 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:40.147 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:40.148 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:40.182 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:41.100 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:41.102 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:41.221 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:42.100 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:42.102 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:42.106 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:43.101 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:43.103 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:43.108 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:44.102 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:44.104 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:44.147 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:45.102 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:45.103 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:45.114 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:46.103 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:46.105 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:46.141 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:47.104 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:47.105 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:47.122 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:48.104 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:48.106 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:48.209 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:49.104 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:49.118 XSTOK[1707:74345] THREAD WARNING: ['PushNotification'] took '13.858154' ms. Plugin should use a background thread.
+2015-10-26 17:21:49.120 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:49.130 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:50.106 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:50.107 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:50.120 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:51.108 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:51.110 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:51.122 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:52.107 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:52.109 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:52.161 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:53.109 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:53.111 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:53.159 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:54.110 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:54.111 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:54.205 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:55.110 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:55.112 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:55.131 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:56.112 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:56.119 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:56.145 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:57.111 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:57.113 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:57.121 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:58.112 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:58.113 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:58.156 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:59.111 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:21:59.113 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:21:59.129 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:22:00.112 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:22:00.114 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:22:00.130 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:22:01.113 XSTOK[1707:74345] Push Plugin register called
+2015-10-26 17:22:01.115 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:22:01.150 XSTOK[1707:74345] Push Plugin register failed
+2015-10-26 17:22:07.472 XSTOK[1793:78110] Apache Cordova native platform version 3.9.1 is starting.
+2015-10-26 17:22:07.472 XSTOK[1793:78110] Multi-tasking -> Device: YES, App: YES
+2015-10-26 17:22:07.486 XSTOK[1793:78110] Unlimited access to network resources
+2015-10-26 17:22:07.505 XSTOK[1793:78110] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-10-26 17:22:07.724 XSTOK[1793:78110] [CDVTimer][file] 37.813962ms
+2015-10-26 17:22:08.348 XSTOK[1793:78110] [CDVTimer][splashscreen] 624.368012ms
+2015-10-26 17:22:08.348 XSTOK[1793:78110] [CDVTimer][mobileaccessibility] 0.106990ms
+2015-10-26 17:22:08.349 XSTOK[1793:78110] [CDVTimer][TotalPluginStartup] 662.940979ms
+2015-10-26 17:22:08.359 XSTOK[1793:78110] active
+2015-10-26 17:22:08.541 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:22:08.843 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/index.html
+2015-10-26 17:22:09.679 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:22:10.715 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:10.718 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:10.910 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:11.718 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:11.720 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:11.724 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:12.716 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:12.717 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:12.721 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:13.716 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:13.718 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:13.722 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:14.718 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:14.719 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:14.724 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:15.718 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:15.759 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:15.781 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:16.720 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:16.722 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:16.726 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:17.720 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:17.722 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:17.726 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:18.721 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:18.723 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:18.727 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:19.721 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:19.722 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:19.788 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:20.723 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:20.725 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:20.729 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:21.723 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:21.725 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:21.729 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:22.723 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:22.725 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:22.729 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:23.725 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:23.727 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:23.731 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:24.726 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:24.728 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:24.732 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:25.727 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:25.729 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:25.733 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:26.728 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:26.729 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:26.733 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:27.728 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:27.729 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:27.733 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:28.728 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:28.729 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:28.734 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:29.729 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:29.730 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:29.735 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:30.731 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:30.734 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:30.737 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:31.730 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:31.732 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:31.736 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:32.731 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:32.733 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:32.738 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:33.731 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:33.733 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:33.738 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:34.731 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:34.732 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:34.749 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:35.732 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:35.733 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:35.738 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:36.731 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:36.733 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:36.737 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:37.733 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:37.734 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:37.740 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:38.734 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:38.736 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:38.740 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:39.735 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:39.737 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:39.742 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:40.736 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:40.737 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:40.743 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:41.736 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:41.737 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:41.746 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:42.738 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:42.740 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:42.745 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:43.738 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:43.740 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:43.744 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:44.738 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:44.740 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:44.749 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:45.740 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:45.741 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:45.837 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:46.234 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/home.html
+2015-10-26 17:22:46.740 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:46.742 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:46.746 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:47.740 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:47.742 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:47.748 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:48.740 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:48.742 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:48.747 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:49.741 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:49.743 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:49.749 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:50.741 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:50.743 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:50.750 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:51.742 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:51.744 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:51.749 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:52.743 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:52.745 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:52.750 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:53.744 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:53.746 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:53.751 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:54.745 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:54.746 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:54.752 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:55.745 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:55.747 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:55.752 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:56.746 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:56.747 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:56.753 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:57.746 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:57.748 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:57.753 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:58.748 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:58.749 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:58.755 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:59.748 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:22:59.750 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:22:59.755 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:00.749 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:00.750 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:00.755 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:01.749 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:01.751 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:01.755 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:02.749 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:02.751 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:02.756 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:03.749 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:03.751 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:03.756 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:04.749 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:04.751 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:04.756 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:05.751 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:05.753 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:05.757 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:06.753 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:06.755 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:06.759 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:07.754 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:07.756 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:07.760 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:08.754 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:08.755 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:08.760 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:09.756 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:09.757 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:09.762 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:10.756 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:10.758 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:10.762 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:11.756 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:11.758 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:11.763 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:12.757 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:12.759 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:12.763 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:13.757 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:13.759 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:13.763 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:14.760 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:14.761 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:14.766 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:15.760 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:15.793 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:15.795 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:16.762 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:16.763 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:16.768 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:17.763 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:17.764 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:17.769 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:18.763 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:18.765 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:18.769 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:19.763 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:19.764 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:19.769 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:20.763 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:20.765 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:20.769 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:21.765 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:21.767 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:21.771 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:22.766 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:22.767 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:22.771 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:23.766 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:23.768 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:23.772 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:24.768 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:24.770 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:24.788 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:25.768 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:25.770 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:25.775 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:26.770 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:26.771 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:26.776 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:27.771 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:27.772 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:27.777 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:28.770 XSTOK[1793:78110] Push Plugin register called
+2015-10-26 17:23:28.772 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:28.776 XSTOK[1793:78110] Push Plugin register failed
+2015-10-26 17:23:29.289 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:23:29.647 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/search.html
+2015-10-26 17:23:39.433 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:23:40.021 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/marketplace_auction.html#d4d41a
+2015-10-26 17:23:43.610 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:23:43.930 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/search.html
+2015-10-26 17:23:50.888 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:23:51.349 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/assorted_auction.html#ded0
+2015-10-26 17:24:39.203 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:24:39.546 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/search.html
+2015-10-26 17:24:46.057 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:24:46.536 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/assorted_auction.html#ded0
+2015-10-26 17:24:58.974 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:24:59.284 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/search.html
+2015-10-26 17:25:05.702 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:25:06.163 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/assorted_auction.html#ded1
+2015-10-26 17:25:54.756 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:25:55.114 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/search.html
+2015-10-26 17:26:04.401 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:26:04.844 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/assorted_auction.html#ded0
+2015-10-26 17:26:39.349 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:26:39.657 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/search.html
+2015-10-26 17:26:45.610 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:26:45.938 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/logout.html
+2015-10-26 17:26:45.941 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:26:46.102 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/index.html
+2015-10-26 17:26:46.327 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:26:46.707 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/home.html
+2015-10-26 17:26:48.901 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:26:48.973 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/dashboard.html
+2015-10-26 17:26:48.976 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:26:49.196 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/signin.html
+2015-10-26 17:26:53.178 XSTOK[1793:78110] _BSMachError: (os/kern) invalid capability (20)
+2015-10-26 17:26:53.179 XSTOK[1793:78110] _BSMachError: (os/kern) invalid name (15)
+2015-10-26 17:27:18.863 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:27:19.178 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/search.html?
+2015-10-26 17:27:36.558 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:27:36.951 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/notifications.html
+2015-10-26 17:27:40.260 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:27:40.596 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/search.html
+2015-10-26 17:27:47.860 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:27:48.276 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/assorted_auction.html#ded1
+2015-10-26 17:29:42.304 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:29:42.916 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/assorted_auction.html#ded1
+2015-10-26 17:30:37.556 XSTOK[1793:78110] Resetting plugins due to page load.
+2015-10-26 17:30:38.063 XSTOK[1793:78110] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/ABCB24C7-2264-4C70-9730-1154DD65F6CC/XSTOK.app/www/assorted_auction.html#ded1
+2015-10-26 17:32:10.064 XSTOK[1830:82115] Apache Cordova native platform version 3.9.1 is starting.
+2015-10-26 17:32:10.074 XSTOK[1830:82115] Multi-tasking -> Device: YES, App: YES
+2015-10-26 17:32:10.089 XSTOK[1830:82115] Unlimited access to network resources
+2015-10-26 17:32:10.097 XSTOK[1830:82115] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-10-26 17:32:10.349 XSTOK[1830:82115] [CDVTimer][file] 25.489986ms
+2015-10-26 17:32:11.520 XSTOK[1830:82115] [CDVTimer][splashscreen] 1170.599043ms
+2015-10-26 17:32:11.520 XSTOK[1830:82115] [CDVTimer][mobileaccessibility] 0.099003ms
+2015-10-26 17:32:11.521 XSTOK[1830:82115] [CDVTimer][TotalPluginStartup] 1196.820974ms
+2015-10-26 17:32:11.531 XSTOK[1830:82115] active
+2015-10-26 17:32:11.814 XSTOK[1830:82115] Resetting plugins due to page load.
+2015-10-26 17:32:12.416 XSTOK[1830:82115] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/4BCB4816-FDA9-4509-A951-2A700CDBBE3D/XSTOK.app/www/index.html
+2015-10-26 17:32:12.640 XSTOK[1830:82115] Resetting plugins due to page load.
+2015-10-26 17:32:13.660 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:13.663 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:13.681 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:14.664 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:14.665 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:14.669 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:15.661 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:15.663 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:15.768 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:16.662 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:16.664 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:16.668 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:17.663 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:17.665 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:17.687 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:18.663 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:18.665 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:18.669 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:19.663 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:19.665 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:19.669 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:20.663 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:20.665 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:20.669 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:21.665 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:21.667 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:21.671 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:22.666 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:22.667 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:22.673 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:23.666 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:23.667 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:23.672 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:24.667 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:24.668 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:24.673 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:25.733 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:25.735 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:25.803 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:26.669 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:26.670 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:26.676 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:27.668 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:27.670 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:27.675 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:28.669 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:28.671 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:28.676 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:29.670 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:29.672 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:29.676 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:30.671 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:30.672 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:30.678 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:31.672 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:31.673 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:31.679 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:32.673 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:32.674 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:32.680 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:33.673 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:33.675 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:33.680 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:34.674 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:34.676 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:34.681 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:35.675 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:35.677 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:35.681 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:36.676 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:36.678 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:36.682 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:37.677 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:37.678 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:37.682 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:38.678 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:38.679 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:38.685 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:39.678 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:39.680 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:39.684 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:40.679 XSTOK[1830:82115] Push Plugin register called
+2015-10-26 17:32:40.681 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:40.686 XSTOK[1830:82115] Push Plugin register failed
+2015-10-26 17:32:40.917 XSTOK[1830:82115] Failed to load webpage with error: The operation couldn’t be completed. (NSURLErrorDomain error -999.)
+2015-10-26 17:32:40.918 XSTOK[1830:82115] Resetting plugins due to page load.
+2015-10-26 17:32:41.066 XSTOK[1830:82115] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/4BCB4816-FDA9-4509-A951-2A700CDBBE3D/XSTOK.app/www/search.html
+2015-10-26 17:32:46.800 XSTOK[1830:82115] Resetting plugins due to page load.
+2015-10-26 17:32:46.978 XSTOK[1830:82115] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/4BCB4816-FDA9-4509-A951-2A700CDBBE3D/XSTOK.app/www/marketplace_auction.html#d4d41a
+2015-10-26 17:32:49.517 XSTOK[1830:82115] Resetting plugins due to page load.
+2015-10-26 17:32:49.628 XSTOK[1830:82115] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/4BCB4816-FDA9-4509-A951-2A700CDBBE3D/XSTOK.app/www/search.html
+2015-10-26 17:32:57.498 XSTOK[1830:82115] Resetting plugins due to page load.
+2015-10-26 17:32:57.676 XSTOK[1830:82115] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/4BCB4816-FDA9-4509-A951-2A700CDBBE3D/XSTOK.app/www/assorted_auction.html#ded1
+2015-10-26 17:34:26.579 XSTOK[1870:83512] Apache Cordova native platform version 3.9.1 is starting.
+2015-10-26 17:34:26.592 XSTOK[1870:83512] Multi-tasking -> Device: YES, App: YES
+2015-10-26 17:34:26.618 XSTOK[1870:83512] Unlimited access to network resources
+2015-10-26 17:34:26.645 XSTOK[1870:83512] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-10-26 17:34:27.108 XSTOK[1870:83512] [CDVTimer][file] 53.167045ms
+2015-10-26 17:34:27.945 XSTOK[1870:83512] [CDVTimer][splashscreen] 836.821973ms
+2015-10-26 17:34:27.946 XSTOK[1870:83512] [CDVTimer][mobileaccessibility] 0.094950ms
+2015-10-26 17:34:27.946 XSTOK[1870:83512] [CDVTimer][TotalPluginStartup] 890.776992ms
+2015-10-26 17:34:27.956 XSTOK[1870:83512] active
+2015-10-26 17:34:28.115 XSTOK[1870:83512] Resetting plugins due to page load.
+2015-10-26 17:34:29.556 XSTOK[1870:83512] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/AF47F483-3781-4F00-91F4-544D406E5A7C/XSTOK.app/www/index.html
+2015-10-26 17:34:29.732 XSTOK[1870:83512] Resetting plugins due to page load.
+2015-10-26 17:34:30.762 XSTOK[1870:83512] Push Plugin register called
+2015-10-26 17:34:30.764 XSTOK[1870:83512] Push Plugin register failed
+2015-10-26 17:34:30.790 XSTOK[1870:83512] Push Plugin register failed
+2015-10-26 17:34:31.764 XSTOK[1870:83512] Push Plugin register called
+2015-10-26 17:34:31.766 XSTOK[1870:83512] Push Plugin register failed
+2015-10-26 17:34:31.783 XSTOK[1870:83512] Push Plugin register failed
+2015-10-26 17:34:32.761 XSTOK[1870:83512] Push Plugin register called
+2015-10-26 17:34:32.763 XSTOK[1870:83512] Push Plugin register failed
+2015-10-26 17:34:32.767 XSTOK[1870:83512] Push Plugin register failed
+2015-10-26 17:34:33.763 XSTOK[1870:83512] Push Plugin register called
+2015-10-26 17:34:33.764 XSTOK[1870:83512] Push Plugin register failed
+2015-10-26 17:34:33.768 XSTOK[1870:83512] Push Plugin register failed
+2015-10-26 17:34:34.763 XSTOK[1870:83512] Push Plugin register called
+2015-10-26 17:34:34.765 XSTOK[1870:83512] Push Plugin register failed
+2015-10-26 17:34:34.770 XSTOK[1870:83512] Push Plugin register failed
+2015-10-26 17:34:35.763 XSTOK[1870:83512] Push Plugin register called
+2015-10-26 17:34:35.764 XSTOK[1870:83512] Push Plugin register failed
+2015-10-26 17:34:35.769 XSTOK[1870:83512] Push Plugin register failed
+2015-10-26 17:34:36.765 XSTOK[1870:83512] Push Plugin register called
+2015-10-26 17:34:36.766 XSTOK[1870:83512] Push Plugin register failed
+2015-10-26 17:34:36.771 XSTOK[1870:83512] Push Plugin register failed
+2015-10-26 17:34:37.765 XSTOK[1870:83512] Push Plugin register called
+2015-10-26 17:34:37.766 XSTOK[1870:83512] Push Plugin register failed
+2015-10-26 17:34:37.772 XSTOK[1870:83512] Push Plugin register failed
+2015-10-26 17:34:38.766 XSTOK[1870:83512] Push Plugin register called
+2015-10-26 17:34:38.767 XSTOK[1870:83512] Push Plugin register failed
+2015-10-26 17:34:38.772 XSTOK[1870:83512] Push Plugin register failed
+2015-10-26 17:34:39.431 XSTOK[1870:83512] Failed to load webpage with error: The operation couldn’t be completed. (NSURLErrorDomain error -999.)
+2015-10-26 17:34:39.432 XSTOK[1870:83512] Resetting plugins due to page load.
+2015-10-26 17:34:39.814 XSTOK[1870:83512] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/AF47F483-3781-4F00-91F4-544D406E5A7C/XSTOK.app/www/search.html
+2015-10-26 17:34:46.852 XSTOK[1870:83512] Resetting plugins due to page load.
+2015-10-26 17:34:46.962 XSTOK[1870:83512] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/AF47F483-3781-4F00-91F4-544D406E5A7C/XSTOK.app/www/all_events.html
+2015-10-26 17:34:52.527 XSTOK[1870:83512] Resetting plugins due to page load.
+2015-10-26 17:34:52.632 XSTOK[1870:83512] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/AF47F483-3781-4F00-91F4-544D406E5A7C/XSTOK.app/www/search.html
+2015-10-26 17:34:58.003 XSTOK[1870:83512] Resetting plugins due to page load.
+2015-10-26 17:34:58.257 XSTOK[1870:83512] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/AF47F483-3781-4F00-91F4-544D406E5A7C/XSTOK.app/www/assorted_auction.html#ded1
+2015-10-26 17:44:55.351 XSTOK[1905:86290] Apache Cordova native platform version 3.9.1 is starting.
+2015-10-26 17:44:55.375 XSTOK[1905:86290] Multi-tasking -> Device: YES, App: YES
+2015-10-26 17:44:55.384 XSTOK[1905:86290] Unlimited access to network resources
+2015-10-26 17:44:55.395 XSTOK[1905:86290] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-10-26 17:44:55.592 XSTOK[1905:86290] [CDVTimer][file] 35.116971ms
+2015-10-26 17:44:56.420 XSTOK[1905:86290] [CDVTimer][splashscreen] 827.813983ms
+2015-10-26 17:44:56.420 XSTOK[1905:86290] [CDVTimer][mobileaccessibility] 0.106990ms
+2015-10-26 17:44:56.420 XSTOK[1905:86290] [CDVTimer][TotalPluginStartup] 863.712966ms
+2015-10-26 17:44:56.431 XSTOK[1905:86290] active
+2015-10-26 17:44:56.507 XSTOK[1905:86290] Resetting plugins due to page load.
+2015-10-26 17:44:56.935 XSTOK[1905:86290] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/20AF3A6C-2D30-4109-9849-AFB79C0FE4C3/XSTOK.app/www/index.html
+2015-10-26 17:44:57.718 XSTOK[1905:86290] Resetting plugins due to page load.
+2015-10-26 17:44:58.760 XSTOK[1905:86290] Push Plugin register called
+2015-10-26 17:44:58.763 XSTOK[1905:86290] Push Plugin register failed
+2015-10-26 17:44:58.767 XSTOK[1905:86290] Push Plugin register failed
+2015-10-26 17:44:59.762 XSTOK[1905:86290] Push Plugin register called
+2015-10-26 17:44:59.764 XSTOK[1905:86290] Push Plugin register failed
+2015-10-26 17:44:59.768 XSTOK[1905:86290] Push Plugin register failed
+2015-10-26 17:45:00.760 XSTOK[1905:86290] Push Plugin register called
+2015-10-26 17:45:00.762 XSTOK[1905:86290] Push Plugin register failed
+2015-10-26 17:45:00.766 XSTOK[1905:86290] Push Plugin register failed
+2015-10-26 17:45:01.761 XSTOK[1905:86290] Push Plugin register called
+2015-10-26 17:45:01.763 XSTOK[1905:86290] Push Plugin register failed
+2015-10-26 17:45:01.767 XSTOK[1905:86290] Push Plugin register failed
+2015-10-26 17:45:02.762 XSTOK[1905:86290] Push Plugin register called
+2015-10-26 17:45:02.763 XSTOK[1905:86290] Push Plugin register failed
+2015-10-26 17:45:02.768 XSTOK[1905:86290] Push Plugin register failed
+2015-10-26 17:45:03.762 XSTOK[1905:86290] Push Plugin register called
+2015-10-26 17:45:03.764 XSTOK[1905:86290] Push Plugin register failed
+2015-10-26 17:45:03.768 XSTOK[1905:86290] Push Plugin register failed
+2015-10-26 17:45:04.763 XSTOK[1905:86290] Push Plugin register called
+2015-10-26 17:45:04.765 XSTOK[1905:86290] Push Plugin register failed
+2015-10-26 17:45:04.769 XSTOK[1905:86290] Push Plugin register failed
+2015-10-26 17:45:05.763 XSTOK[1905:86290] Push Plugin register called
+2015-10-26 17:45:05.765 XSTOK[1905:86290] Push Plugin register failed
+2015-10-26 17:45:05.769 XSTOK[1905:86290] Push Plugin register failed
+2015-10-26 17:45:06.600 XSTOK[1905:86290] Failed to load webpage with error: The operation couldn’t be completed. (NSURLErrorDomain error -999.)
+2015-10-26 17:45:06.601 XSTOK[1905:86290] Resetting plugins due to page load.
+2015-10-26 17:45:06.710 XSTOK[1905:86290] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/20AF3A6C-2D30-4109-9849-AFB79C0FE4C3/XSTOK.app/www/all_events.html
+2015-10-26 17:45:25.004 XSTOK[1905:86290] THREAD WARNING: ['AppVersion'] took '15028.116943' ms. Plugin should use a background thread.
+2015-10-26 17:45:25.008 XSTOK[1905:86352] void SendDelegateMessage(NSInvocation *): delegate (webView:decidePolicyForNavigationAction:request:frame:decisionListener:) failed to return after waiting 10 seconds. main run loop mode: kCFRunLoopDefaultMode
+2015-10-26 17:45:30.428 XSTOK[1905:86290] Resetting plugins due to page load.
+2015-10-26 17:45:30.559 XSTOK[1905:86290] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/20AF3A6C-2D30-4109-9849-AFB79C0FE4C3/XSTOK.app/www/search.html
+2015-10-26 17:45:36.629 XSTOK[1905:86290] Resetting plugins due to page load.
+2015-10-26 17:45:36.862 XSTOK[1905:86290] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/20AF3A6C-2D30-4109-9849-AFB79C0FE4C3/XSTOK.app/www/assorted_auction.html#ded1
+2015-10-26 17:45:51.919 XSTOK[1905:86290] _BSMachError: (os/kern) invalid capability (20)
+2015-10-26 17:45:51.919 XSTOK[1905:86290] _BSMachError: (os/kern) invalid name (15)
+2015-10-26 17:45:55.223 XSTOK[1905:86290] THREAD WARNING: ['AppVersion'] took '2744.475830' ms. Plugin should use a background thread.
+2015-10-26 17:47:42.184 XSTOK[1943:87766] Apache Cordova native platform version 3.9.1 is starting.
+2015-10-26 17:47:42.221 XSTOK[1943:87766] Multi-tasking -> Device: YES, App: YES
+2015-10-26 17:47:42.235 XSTOK[1943:87766] Unlimited access to network resources
+2015-10-26 17:47:42.251 XSTOK[1943:87766] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-10-26 17:47:42.437 XSTOK[1943:87766] [CDVTimer][file] 40.813029ms
+2015-10-26 17:47:43.273 XSTOK[1943:87766] [CDVTimer][splashscreen] 835.492015ms
+2015-10-26 17:47:43.273 XSTOK[1943:87766] [CDVTimer][mobileaccessibility] 0.102997ms
+2015-10-26 17:47:43.273 XSTOK[1943:87766] [CDVTimer][TotalPluginStartup] 877.090991ms
+2015-10-26 17:47:43.283 XSTOK[1943:87766] active
+2015-10-26 17:47:43.399 XSTOK[1943:87766] Resetting plugins due to page load.
+2015-10-26 17:47:43.770 XSTOK[1943:87766] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/7DF102EF-4E9F-46FB-96BD-5E0BFDEBF793/XSTOK.app/www/index.html
+2015-10-26 17:47:44.235 XSTOK[1943:87766] Resetting plugins due to page load.
+2015-10-26 17:47:45.255 XSTOK[1943:87766] Push Plugin register called
+2015-10-26 17:47:45.258 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:45.262 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:46.256 XSTOK[1943:87766] Push Plugin register called
+2015-10-26 17:47:46.258 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:46.262 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:47.257 XSTOK[1943:87766] Push Plugin register called
+2015-10-26 17:47:47.259 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:47.263 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:48.258 XSTOK[1943:87766] Push Plugin register called
+2015-10-26 17:47:48.260 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:48.264 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:49.258 XSTOK[1943:87766] Push Plugin register called
+2015-10-26 17:47:49.260 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:49.264 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:50.064 XSTOK[1943:87766] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/7DF102EF-4E9F-46FB-96BD-5E0BFDEBF793/XSTOK.app/www/home.html
+2015-10-26 17:47:50.258 XSTOK[1943:87766] Push Plugin register called
+2015-10-26 17:47:50.260 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:50.264 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:51.259 XSTOK[1943:87766] Push Plugin register called
+2015-10-26 17:47:51.260 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:51.265 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:52.260 XSTOK[1943:87766] Push Plugin register called
+2015-10-26 17:47:52.262 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:52.266 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:53.261 XSTOK[1943:87766] Push Plugin register called
+2015-10-26 17:47:53.262 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:53.268 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:54.261 XSTOK[1943:87766] Push Plugin register called
+2015-10-26 17:47:54.262 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:54.268 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:55.262 XSTOK[1943:87766] Push Plugin register called
+2015-10-26 17:47:55.263 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:55.269 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:56.263 XSTOK[1943:87766] Push Plugin register called
+2015-10-26 17:47:56.264 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:56.269 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:57.263 XSTOK[1943:87766] Push Plugin register called
+2015-10-26 17:47:57.265 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:57.270 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:58.264 XSTOK[1943:87766] Push Plugin register called
+2015-10-26 17:47:58.266 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:58.270 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:59.264 XSTOK[1943:87766] Push Plugin register called
+2015-10-26 17:47:59.265 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:47:59.270 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:48:00.265 XSTOK[1943:87766] Push Plugin register called
+2015-10-26 17:48:00.266 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:48:00.271 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:48:01.265 XSTOK[1943:87766] Push Plugin register called
+2015-10-26 17:48:01.266 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:48:01.272 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:48:02.267 XSTOK[1943:87766] Push Plugin register called
+2015-10-26 17:48:02.268 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:48:02.273 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:48:03.267 XSTOK[1943:87766] Push Plugin register called
+2015-10-26 17:48:03.269 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:48:03.274 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:48:04.267 XSTOK[1943:87766] Push Plugin register called
+2015-10-26 17:48:04.269 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:48:04.274 XSTOK[1943:87766] Push Plugin register failed
+2015-10-26 17:48:04.936 XSTOK[1943:87766] Resetting plugins due to page load.
+2015-10-26 17:48:05.049 XSTOK[1943:87766] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/7DF102EF-4E9F-46FB-96BD-5E0BFDEBF793/XSTOK.app/www/search.html
+2015-10-26 17:48:09.700 XSTOK[1943:87766] Resetting plugins due to page load.
+2015-10-26 17:48:09.905 XSTOK[1943:87766] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/7DF102EF-4E9F-46FB-96BD-5E0BFDEBF793/XSTOK.app/www/assorted_auction.html#ded1
+2015-10-26 17:48:31.499 XSTOK[1943:87766] THREAD WARNING: ['AppVersion'] took '10767.689941' ms. Plugin should use a background thread.
+2015-10-26 17:48:31.503 XSTOK[1943:87815] void SendDelegateMessage(NSInvocation *): delegate (webView:decidePolicyForNavigationAction:request:frame:decisionListener:) failed to return after waiting 10 seconds. main run loop mode: kCFRunLoopDefaultMode
+2015-10-26 17:49:59.852 XSTOK[1984:89164] Apache Cordova native platform version 3.9.1 is starting.
+2015-10-26 17:49:59.853 XSTOK[1984:89164] Multi-tasking -> Device: YES, App: YES
+2015-10-26 17:49:59.868 XSTOK[1984:89164] Unlimited access to network resources
+2015-10-26 17:49:59.885 XSTOK[1984:89164] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-10-26 17:50:00.093 XSTOK[1984:89164] [CDVTimer][file] 75.839043ms
+2015-10-26 17:50:00.613 XSTOK[1984:89164] [CDVTimer][splashscreen] 519.385993ms
+2015-10-26 17:50:00.613 XSTOK[1984:89164] [CDVTimer][mobileaccessibility] 0.120997ms
+2015-10-26 17:50:00.613 XSTOK[1984:89164] [CDVTimer][TotalPluginStartup] 595.969021ms
+2015-10-26 17:50:00.624 XSTOK[1984:89164] active
+2015-10-26 17:50:00.672 XSTOK[1984:89164] Resetting plugins due to page load.
+2015-10-26 17:50:01.197 XSTOK[1984:89164] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/50EA3FF4-2F48-4492-8CF6-A31141B890DA/XSTOK.app/www/index.html
+2015-10-26 17:50:01.245 XSTOK[1984:89164] Resetting plugins due to page load.
+2015-10-26 17:50:02.266 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:02.268 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:02.272 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:03.268 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:03.270 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:03.274 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:04.266 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:04.267 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:04.298 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:05.266 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:05.268 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:05.273 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:06.210 XSTOK[1984:89164] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/50EA3FF4-2F48-4492-8CF6-A31141B890DA/XSTOK.app/www/home.html
+2015-10-26 17:50:06.309 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:06.311 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:06.315 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:07.316 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:07.321 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:07.326 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:08.317 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:08.319 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:08.323 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:09.318 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:09.319 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:09.325 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:10.318 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:10.319 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:10.325 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:11.319 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:11.321 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:11.325 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:12.322 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:12.326 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:12.396 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:13.319 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:13.321 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:13.326 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:14.321 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:14.322 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:14.327 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:15.321 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:15.322 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:15.327 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:16.321 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:16.323 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:16.327 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:17.321 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:17.323 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:17.328 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:18.322 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:18.324 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:18.329 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:19.323 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:19.325 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:19.330 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:20.324 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:20.325 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:20.330 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:21.324 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:21.326 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:21.332 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:22.324 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:22.325 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:22.331 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:23.324 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:23.326 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:23.331 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:24.324 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:24.326 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:24.351 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:25.324 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:25.326 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:25.331 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:26.326 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:26.328 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:26.333 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:27.327 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:27.329 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:27.334 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:28.328 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:28.329 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:28.335 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:29.329 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:29.331 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:29.337 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:30.330 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:30.331 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:30.653 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:31.330 XSTOK[1984:89164] Push Plugin register called
+2015-10-26 17:50:31.332 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:31.340 XSTOK[1984:89164] Push Plugin register failed
+2015-10-26 17:50:33.245 XSTOK[2016:89725] Apache Cordova native platform version 3.9.1 is starting.
+2015-10-26 17:50:33.246 XSTOK[2016:89725] Multi-tasking -> Device: YES, App: YES
+2015-10-26 17:50:33.248 XSTOK[2016:89725] Unlimited access to network resources
+2015-10-26 17:50:33.250 XSTOK[2016:89725] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-10-26 17:50:33.276 XSTOK[2016:89725] [CDVTimer][file] 1.643002ms
+2015-10-26 17:50:33.318 XSTOK[2016:89725] [CDVTimer][splashscreen] 41.581035ms
+2015-10-26 17:50:33.318 XSTOK[2016:89725] [CDVTimer][mobileaccessibility] 0.083983ms
+2015-10-26 17:50:33.318 XSTOK[2016:89725] [CDVTimer][TotalPluginStartup] 43.946981ms
+2015-10-26 17:50:33.329 XSTOK[2016:89725] active
+2015-10-26 17:50:33.378 XSTOK[2016:89725] Resetting plugins due to page load.
+2015-10-26 17:50:33.800 XSTOK[2016:89725] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/12753E0B-D9E3-4886-9281-0749F076EB86/XSTOK.app/www/index.html
+2015-10-26 17:50:33.953 XSTOK[2016:89725] Resetting plugins due to page load.
+2015-10-26 17:50:34.983 XSTOK[2016:89725] Push Plugin register called
+2015-10-26 17:50:34.986 XSTOK[2016:89725] Push Plugin register failed
+2015-10-26 17:50:34.991 XSTOK[2016:89725] Push Plugin register failed
+2015-10-26 17:50:35.985 XSTOK[2016:89725] Push Plugin register called
+2015-10-26 17:50:35.986 XSTOK[2016:89725] Push Plugin register failed
+2015-10-26 17:50:35.992 XSTOK[2016:89725] Push Plugin register failed
+2015-10-26 17:50:36.984 XSTOK[2016:89725] Push Plugin register called
+2015-10-26 17:50:36.985 XSTOK[2016:89725] Push Plugin register failed
+2015-10-26 17:50:37.069 XSTOK[2016:89725] Push Plugin register failed
+2015-10-26 17:50:37.985 XSTOK[2016:89725] Push Plugin register called
+2015-10-26 17:50:37.986 XSTOK[2016:89725] Push Plugin register failed
+2015-10-26 17:50:37.991 XSTOK[2016:89725] Push Plugin register failed
+2015-10-26 17:50:38.071 XSTOK[2016:89725] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/12753E0B-D9E3-4886-9281-0749F076EB86/XSTOK.app/www/home.html
+2015-10-26 17:50:38.986 XSTOK[2016:89725] Push Plugin register called
+2015-10-26 17:50:38.987 XSTOK[2016:89725] Push Plugin register failed
+2015-10-26 17:50:38.991 XSTOK[2016:89725] Push Plugin register failed
+2015-10-26 17:50:39.986 XSTOK[2016:89725] Push Plugin register called
+2015-10-26 17:50:39.987 XSTOK[2016:89725] Push Plugin register failed
+2015-10-26 17:50:39.991 XSTOK[2016:89725] Push Plugin register failed
+2015-10-26 17:50:40.987 XSTOK[2016:89725] Push Plugin register called
+2015-10-26 17:50:40.989 XSTOK[2016:89725] Push Plugin register failed
+2015-10-26 17:50:40.994 XSTOK[2016:89725] Push Plugin register failed
+2015-10-26 17:50:41.986 XSTOK[2016:89725] Push Plugin register called
+2015-10-26 17:50:41.988 XSTOK[2016:89725] Push Plugin register failed
+2015-10-26 17:50:41.994 XSTOK[2016:89725] Push Plugin register failed
+2015-10-26 17:50:42.988 XSTOK[2016:89725] Push Plugin register called
+2015-10-26 17:50:42.990 XSTOK[2016:89725] Push Plugin register failed
+2015-10-26 17:50:42.995 XSTOK[2016:89725] Push Plugin register failed
+2015-10-26 17:50:43.988 XSTOK[2016:89725] Push Plugin register called
+2015-10-26 17:50:43.990 XSTOK[2016:89725] Push Plugin register failed
+2015-10-26 17:50:43.995 XSTOK[2016:89725] Push Plugin register failed
+2015-10-26 17:50:44.989 XSTOK[2016:89725] Push Plugin register called
+2015-10-26 17:50:44.990 XSTOK[2016:89725] Push Plugin register failed
+2015-10-26 17:50:44.996 XSTOK[2016:89725] Push Plugin register failed
+2015-10-26 17:50:45.325 XSTOK[2016:89725] Resetting plugins due to page load.
+2015-10-26 17:50:45.441 XSTOK[2016:89725] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/12753E0B-D9E3-4886-9281-0749F076EB86/XSTOK.app/www/search.html
+2015-10-26 17:51:08.151 XSTOK[2016:89725] Resetting plugins due to page load.
+2015-10-26 17:51:08.629 XSTOK[2016:89725] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/12753E0B-D9E3-4886-9281-0749F076EB86/XSTOK.app/www/assorted_auction.html#ded1
+2015-10-26 17:51:14.467 XSTOK[2016:89725] THREAD WARNING: ['AppVersion'] took '2412.954102' ms. Plugin should use a background thread.
+2015-10-26 17:51:34.848 XSTOK[2016:89725] THREAD WARNING: ['Notification'] took '33.317871' ms. Plugin should use a background thread.
+2015-10-26 17:52:09.854 XSTOK[2049:90876] Apache Cordova native platform version 3.9.1 is starting.
+2015-10-26 17:52:09.863 XSTOK[2049:90876] Multi-tasking -> Device: YES, App: YES
+2015-10-26 17:52:09.881 XSTOK[2049:90876] Unlimited access to network resources
+2015-10-26 17:52:09.910 XSTOK[2049:90876] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-10-26 17:52:10.073 XSTOK[2049:90876] [CDVTimer][file] 21.524966ms
+2015-10-26 17:52:10.597 XSTOK[2049:90876] [CDVTimer][splashscreen] 524.013996ms
+2015-10-26 17:52:10.597 XSTOK[2049:90876] [CDVTimer][mobileaccessibility] 0.121951ms
+2015-10-26 17:52:10.598 XSTOK[2049:90876] [CDVTimer][TotalPluginStartup] 546.348989ms
+2015-10-26 17:52:10.607 XSTOK[2049:90876] active
+2015-10-26 17:52:10.711 XSTOK[2049:90876] Resetting plugins due to page load.
+2015-10-26 17:52:11.299 XSTOK[2049:90876] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/4B6BAC4D-0099-497B-8149-2AFA8F40A442/XSTOK.app/www/index.html
+2015-10-26 17:52:11.505 XSTOK[2049:90876] Resetting plugins due to page load.
+2015-10-26 17:52:12.547 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:12.550 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:12.555 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:13.549 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:13.551 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:13.555 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:14.551 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:14.552 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:14.556 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:15.551 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:15.552 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:15.847 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:16.551 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:16.552 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:16.556 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:17.551 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:17.553 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:17.557 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:18.552 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:18.553 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:18.573 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:19.191 XSTOK[2049:90876] Finished load of: file:///Users/xstok/Library/Developer/CoreSimulator/Devices/36E5706A-DAA1-44F0-8547-A0BDC7B3A23F/data/Containers/Bundle/Application/4B6BAC4D-0099-497B-8149-2AFA8F40A442/XSTOK.app/www/home.html
+2015-10-26 17:52:19.554 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:19.555 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:19.560 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:20.555 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:20.556 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:20.561 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:21.555 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:21.556 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:21.562 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:22.556 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:22.558 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:22.563 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:23.557 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:23.559 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:23.564 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:24.557 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:24.559 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:24.564 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:25.558 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:25.559 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:25.564 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:26.558 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:26.559 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:26.563 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:27.560 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:27.561 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:27.594 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:28.560 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:28.562 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:28.602 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:29.559 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:29.561 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:29.565 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:30.560 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:30.561 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:30.566 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:31.561 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:31.562 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:31.568 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:32.562 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:32.563 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:32.568 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:33.562 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:33.563 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:33.567 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:34.562 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:34.564 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:34.569 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:35.564 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:35.565 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:35.570 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:36.565 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:36.567 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:36.571 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:37.565 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:37.567 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:37.572 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:38.566 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:38.568 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:38.573 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:39.567 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:39.568 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:39.573 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:40.568 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:40.569 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:40.575 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:41.569 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:41.570 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:41.575 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:42.568 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:42.570 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:42.575 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:43.570 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:43.571 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:43.576 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:44.571 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:44.572 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:44.577 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:45.570 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:45.572 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:45.646 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:46.571 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:46.572 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:46.578 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:47.572 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:47.575 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:47.580 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:48.572 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:48.573 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:48.579 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:49.573 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:49.575 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:49.580 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:50.574 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:50.575 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:50.581 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:51.574 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:51.575 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:51.579 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:52.574 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:52.575 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:52.581 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:53.576 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:53.577 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:53.581 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:54.576 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:54.578 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:54.697 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:55.576 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:55.578 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:55.582 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:56.577 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:56.579 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:56.584 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:57.578 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:57.580 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:57.584 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:58.580 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:58.582 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:58.593 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:59.580 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:52:59.581 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:52:59.585 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:53:00.580 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:53:00.581 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:53:00.585 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:53:01.581 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:53:01.583 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:53:01.588 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:53:02.582 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:53:02.584 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:53:02.589 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:53:03.583 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:53:03.585 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:53:03.613 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:53:04.583 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:53:04.584 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:53:04.589 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:53:05.585 XSTOK[2049:90876] Push Plugin register called
+2015-10-26 17:53:05.586 XSTOK[2049:90876] Push Plugin register failed
+2015-10-26 17:53:05.590 XSTOK[2049:90876] Push Plugin register failed

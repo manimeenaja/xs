@@ -7,63 +7,66 @@
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/style.css" rel="stylesheet" type="text/css" media="screen,projection"/>
-         <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
         <script type="text/javascript" src='js/main.js'></script>
         <script type="text/javascript" src="cordova.js"></script>
         <!--Let browser know website is optimized for mobile-->
         <script type="text/javascript">
             $(function () {
-                 add_menu('',2, 0);
+                add_menu('', 2, 0);
                 if (localStorage.kyc_status == '1') {
                     //  window.location.href = "kyc_c.html";
                 }
-                $('.welcome-body').height($(window).height()-$('#menu-add').height() - $('.welcome-head').height() - 15);
+                $('.welcome-body').height($(window).height() - $('#menu-add').height() - $('.welcome-head').height() - 15);
                 $.ajax({url: localStorage.host + 'get_started.php', data: {user_id: rc4_dr(localStorage.user_id)}, type: 'get', success: function (data) {
                         console.log(data);
                         //alert(data['Category Interest'].length);
-                        $('.cat_div').width(210 * data['Category Interest'].length );
+                        if( data['Category Interest'] !== null) {
+                        $('.cat_div').width(210 * data['Category Interest'].length);
                         var body = '';
-                        for(var i = 0; i < data['Category Interest'].length ; i++) {
+                        for (var i = 0; i < data['Category Interest'].length; i++) {
                             var quantity = data['Category Interest'][i]['quantity'];
-                            if(quantity == '') {
+                            if (quantity == '') {
                                 quantity = '-';
                             }
-                            body += '<div class="cal_div_body"><div class=""><img class="img-responsive" width="100%" height="135" alt="" src="'+data['Category Interest'][i]['image']+'"></div><div class="center-align padding-tb-5 padding-lr-10 truncate">'+data['Category Interest'][i]['name']+'</div><div class="center-align padding-tb-5">Qty: '+quantity+'</div><div class="center-align padding-10"><a class="x-orange-border x-orange padding-5 border-radius-3">Bid Now</a></div></div>';
+                            body += '<div class="cal_div_body"><div class=""><img class="img-responsive" width="100%" height="135" alt="" src="' + data['Category Interest'][i]['image'] + '"></div><div class="center-align padding-tb-5 padding-lr-10 truncate">' + data['Category Interest'][i]['name'] + '</div><div class="center-align padding-tb-5">Qty: ' + quantity + '</div><div class="center-align padding-10"><a class="x-orange-border x-orange padding-5 border-radius-3">Bid Now</a></div></div>';
                         }
                         //console.log(body);
                         $('.cat_div').html(body);
-                        
-                        $('.cat_all').width(210 * data['All Category'].length );
+                    } else {
+                        $('#cat_div').hide();
+                    }
+                        $('.cat_all').width(210 * data['All Category'].length);
                         var body = '';
-                        for(var i = 0; i < data['All Category'].length ; i++) {
+                        for (var i = 0; i < data['All Category'].length; i++) {
                             var quantity = data['All Category'][i]['quantity'];
-                            if(quantity == '') {
+                            if (quantity == '') {
                                 quantity = '-';
                             }
-                            body += '<div class="cat_all_body"><div class=""><img class="img-responsive" width="100%" height="135" alt="" src="'+data['All Category'][i]['image']+'"></div><div class="center-align padding-tb-5 padding-lr-10 truncate">'+data['All Category'][i]['name']+'</div><div class="center-align padding-tb-5">Qty: '+quantity+'</div><div class="center-align padding-10"><a class="x-orange-border x-orange padding-5 border-radius-3">Bid Now</a></div></div>';
+                            body += '<div class="cat_all_body"><div class=""><img class="img-responsive" width="100%" height="135" alt="" src="' + data['All Category'][i]['image'] + '"></div><div class="center-align padding-tb-5 padding-lr-10 truncate">' + data['All Category'][i]['name'] + '</div><div class="center-align padding-tb-5">Qty: ' + quantity + '</div><div class="center-align padding-10"><a class="x-orange-border x-orange padding-5 border-radius-3">Bid Now</a></div></div>';
                         }
                         //console.log(body);
                         $('.cat_all').html(body);
-                        $('.rec').width(210 * data['Recommended Auction'].length );
+                        $('.rec').width(210 * data['Recommended Auction'].length);
                         var body = '';
-                        for(var i = 0; i < data['Recommended Auction'].length ; i++) {
+                        for (var i = 0; i < data['Recommended Auction'].length; i++) {
                             var quantity = data['Recommended Auction'][i]['quantity'];
-                            if(quantity == '') {
+                            if (quantity == '') {
                                 quantity = '-';
                             }
-                            body += '<div class="rec_body"><div class=""><img class="img-responsive" width="100%" height="135" alt="" src="'+data['Recommended Auction'][i]['image']+'"></div><div class="center-align padding-tb-5 padding-lr-10 truncate">'+data['Recommended Auction'][i]['name']+'</div><div class="center-align padding-tb-5">Qty: '+quantity+'</div><div class="center-align padding-10"><a class="x-orange-border x-orange padding-5 border-radius-3">Bid Now</a></div></div>';
+                            body += '<div class="rec_body"><div class=""><img class="img-responsive" width="100%" height="135" alt="" src="' + data['Recommended Auction'][i]['image'] + '"></div><div class="center-align padding-tb-5 padding-lr-10 truncate">' + data['Recommended Auction'][i]['name'] + '</div><div class="center-align padding-tb-5">Qty: ' + quantity + '</div><div class="center-align padding-10"><a class="x-orange-border x-orange padding-5 border-radius-3">Bid Now</a></div></div>';
                         }
                         //console.log(body);
                         $('.rec').html(body);
-                }
+                    }
+                });
+
             });
-                
-            });
-            
-            
+
+
             //http://fa.xstok.com/webservices/get_started.php?user_id=1
-            
+
         </script>
     </head>
 
@@ -73,104 +76,104 @@
             <div class="col s12 xstok darken-1 font-24 center-align white-text padding-10">Let's get you started</div>
         </div>
         <div class="welcome-body">
-        <div class="row margin-bottom-0">
-            <div class="col s12">
-                <div class="card">
-                    <div class="card-content padding-0">
-                        <span class="card-title padding-lr-10 x-grey">Categories of your Interest</span>
-                        <div class="divider"></div>
-                        <div class="width-100p scrollable_div">
-                        <div class="cat_div padding-10 valign-wrapper">
-                            <div class="preloader-wrapper big active center-block valign">
-                                <div class="spinner-layer spinner-blue-only">
-                                    <div class="circle-clipper left">
-                                        <div class="circle"></div>
-                                    </div><div class="gap-patch">
-                                        <div class="circle"></div>
-                                    </div><div class="circle-clipper right">
-                                        <div class="circle"></div>
+            <div class="row margin-bottom-0" id="cat_div">
+                <div class="col s12">
+                    <div class="card">
+                        <div class="card-content padding-0">
+                            <span class="card-title padding-lr-10 x-grey">Categories of your Interest</span>
+                            <div class="divider"></div>
+                            <div class="width-100p scrollable_div">
+                                <div class="cat_div padding-10 valign-wrapper">
+                                    <div class="preloader-wrapper big active center-block valign">
+                                        <div class="spinner-layer spinner-blue-only">
+                                            <div class="circle-clipper left">
+                                                <div class="circle"></div>
+                                            </div><div class="gap-patch">
+                                                <div class="circle"></div>
+                                            </div><div class="circle-clipper right">
+                                                <div class="circle"></div>
+                                            </div>
+                                        </div>
                                     </div>
+
+                                    <div class="cal_div_body hide">
+                                        <div class=""><img class="img-responsive" width="100%" height="135" alt="" src="http://xstok.s3.amazonaws.com/admin/upload/lot_image/2015/07/55b53e172d20b124330485955b53e172d243.jpg"></div>
+                                        <div class="center-align padding-tb-5">PV 80/20 Coral Suiting Fabric</div>
+                                        <div class="center-align padding-tb-5">Qty: 3,409 mtrs</div>
+                                        <div class="center-align padding-10"><a class="x-orange-border x-orange padding-5 border-radius-3">Bid Now</a></div>
+                                    </div>                            
+
                                 </div>
                             </div>
-                            
-                            <div class="cal_div_body hide">
-                                <div class=""><img class="img-responsive" width="100%" height="135" alt="" src="http://xstok.s3.amazonaws.com/admin/upload/lot_image/2015/07/55b53e172d20b124330485955b53e172d243.jpg"></div>
-                                 <div class="center-align padding-tb-5">PV 80/20 Coral Suiting Fabric</div>
-                            <div class="center-align padding-tb-5">Qty: 3,409 mtrs</div>
-                            <div class="center-align padding-10"><a class="x-orange-border x-orange padding-5 border-radius-3">Bid Now</a></div>
-                            </div>                            
-                           
+
                         </div>
+                        <div class="card-action hide">
+                            <a class="x-orange hide" href="#">All <i class="fa fa-long-arrow-right"></i></a>                       
                         </div>
-                        
-                    </div>
-                    <div class="card-action hide">
-                        <a class="x-orange hide" href="#">All <i class="fa fa-long-arrow-right"></i></a>                       
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col s12">
-                <div class="card">
-                    <div class="card-content padding-0">
-                        <span class="card-title padding-lr-10 x-grey">All Categories</span>
-                        <div class="divider"></div>
-                        <div class="width-100p scrollable_div">
-                        <div class="cat_all padding-10 valign-wrapper">
-                            <div class="preloader-wrapper big active center-block valign">
-                                <div class="spinner-layer spinner-blue-only">
-                                    <div class="circle-clipper left">
-                                        <div class="circle"></div>
-                                    </div><div class="gap-patch">
-                                        <div class="circle"></div>
-                                    </div><div class="circle-clipper right">
-                                        <div class="circle"></div>
+            <div class="row margin-bottom-0">
+                <div class="col s12">
+                    <div class="card">
+                        <div class="card-content padding-0">
+                            <span class="card-title padding-lr-10 x-grey">All Categories</span>
+                            <div class="divider"></div>
+                            <div class="width-100p scrollable_div">
+                                <div class="cat_all padding-10 valign-wrapper">
+                                    <div class="preloader-wrapper big active center-block valign">
+                                        <div class="spinner-layer spinner-blue-only">
+                                            <div class="circle-clipper left">
+                                                <div class="circle"></div>
+                                            </div><div class="gap-patch">
+                                                <div class="circle"></div>
+                                            </div><div class="circle-clipper right">
+                                                <div class="circle"></div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
+                        <div class="card-action hide">
+                            <a class="x-orange hide" href="#">All <i class="fa fa-long-arrow-right"></i></a>                       
                         </div>
-                        
-                    </div>
-                    <div class="card-action hide">
-                        <a class="x-orange hide" href="#">All <i class="fa fa-long-arrow-right"></i></a>                       
                     </div>
                 </div>
             </div>
-        </div>
-            <div class="row">
-            <div class="col s12">
-                <div class="card">
-                    <div class="card-content padding-0">
-                        <span class="card-title padding-lr-10 x-grey">Our Recommendations</span>
-                        <div class="divider"></div>
-                        <div class="width-100p scrollable_div">
-                        <div class="rec padding-10 valign-wrapper">
-                            <div class="preloader-wrapper big active center-block valign">
-                                <div class="spinner-layer spinner-blue-only">
-                                    <div class="circle-clipper left">
-                                        <div class="circle"></div>
-                                    </div><div class="gap-patch">
-                                        <div class="circle"></div>
-                                    </div><div class="circle-clipper right">
-                                        <div class="circle"></div>
+            <div class="row margin-bottom-0">
+                <div class="col s12">
+                    <div class="card">
+                        <div class="card-content padding-0">
+                            <span class="card-title padding-lr-10 x-grey">Our Recommendations</span>
+                            <div class="divider"></div>
+                            <div class="width-100p scrollable_div">
+                                <div class="rec padding-10 valign-wrapper">
+                                    <div class="preloader-wrapper big active center-block valign">
+                                        <div class="spinner-layer spinner-blue-only">
+                                            <div class="circle-clipper left">
+                                                <div class="circle"></div>
+                                            </div><div class="gap-patch">
+                                                <div class="circle"></div>
+                                            </div><div class="circle-clipper right">
+                                                <div class="circle"></div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
+                        <div class="card-action hide">
+                            <a class="x-orange hide" href="#">All <i class="fa fa-long-arrow-right"></i></a>                       
                         </div>
-                        
-                    </div>
-                    <div class="card-action hide">
-                        <a class="x-orange hide" href="#">All <i class="fa fa-long-arrow-right"></i></a>                       
                     </div>
                 </div>
             </div>
-        </div>
         </div>
         <!--Import jQuery before materialize.js-->
-       
+
         <script type="text/javascript">
             $(function () {
                 // add_menu('',2, 0);
@@ -178,7 +181,7 @@
                     //  window.location.href = "kyc_c.html";
                 }
 
-                
+
             });
 
 
