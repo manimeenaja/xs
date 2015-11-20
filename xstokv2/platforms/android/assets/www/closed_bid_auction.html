@@ -59,9 +59,12 @@
                             }
                             if (hide_details_list_price == "Y") {
                                 $("#hide_details_list_price_id").hide();
-                                $(".table-list").hide();
                             } else {
                                 $("#hide_details_list_price_id").show();
+                            }
+                            if ((hide_details_list_price == "Y" && hide_details_starting_value == 'Y')) {
+                                $(".table-list").hide();
+                            } else {
                                 $(".table-list").show();
                             }
                             if (hide_details_price_per_unit == "Y") {
@@ -69,8 +72,11 @@
                             } else {
                                 $("#list_price_per_unit").show();
                             }
-
-
+                            if (hide_details_request_for_sample == "Y") {
+                                $(".sample-request").show();
+                            } else {
+                                $(".sample-request").hide();
+                            }
 
                             if (hide_details_hide_emd_required == "Y") {
                                 $("#hide_details_hide_emd_required_id").hide();
@@ -117,7 +123,7 @@
                              } else {
                              $('.hot_auction').hide();
                              }*/
-                             $('.product_description table tr').each(function (i) {
+                            $('.product_description table tr').each(function (i) {
                                 $('.product_description table').removeAttr('width');
 //$('.product_description table').width($(window).width());
                                 $(this).children('td').each(function (j) {
@@ -195,6 +201,10 @@
                                     reserve_price = (100 - reserve_price);
                                     ass_reserve_price = parseFloat(detail[0]['reserve_price']);
                                 }
+                                localStorage.ass_auc_buy_now_price = detail[0]['buy_now'];
+                                if (detail[0]['auc_type_id'] == localStorage.closed_bid_auction) {
+                                    localStorage.ass_auc_buy_now_price = ass_reserve_price;
+                                }
                                 $('.head-percentage-text').after(' ' + dis_symbol);
                                 $('.head-percentage-text').addClass('curr_per_bid_' + hash);
                                 $('.head-list-discount-text').html(reserve_price);
@@ -231,10 +241,10 @@
                                 $('.head-total-bid-text').addClass('total_bid_' + hash);
                                 var unit_price_auction = detail[0]['unit_price_auction'];
                                 $('.unit_price_auction_val').html(unit_price_auction);
-                                if(unit_price_auction=='Y'){
-                                    $('.set-auto-bid').attr('placeholder','Enter per unit in rupees');
+                                if (unit_price_auction == 'Y') {
+                                    $('.set-auto-bid').attr('placeholder', 'Enter per unit in rupees');
                                 } else {
-                                    $('.set-auto-bid').attr('placeholder','Enter value in rupees'); 
+                                    $('.set-auto-bid').attr('placeholder', 'Enter value in rupees');
                                 }
                                 show_data(detail[0]['auc_type_id'], ass_reserve_price, hash, detail[0]['auction_on'], detail[0]['min_incr_value'], discount_value, actual_price, detail[0]['unit_price'], unit_price_auction);
                                 setInterval(function () {
@@ -277,11 +287,12 @@
                                 $('.div_tendor').attr('min_incr_value', detail[0]['min_incr_value']);
                                 $('.div_tendor').attr('auction_on', detail[0]['auction_on']);
                                 $('.div_tendor').attr('auction_on', detail[0]['auction_on']);
+                                $('.span_start_price_').html(numberWithCommas(round(reserve_price_start_price, 0)));
                                 $('.interested').attr('interest_val', discount_value);
                                 $('.interested').attr('dynamic_lot', hash);
                                 $('.dup_curr_bid').html(discount_value);
                                 $('.dup_curr_bid').addClass('dup_curr_bid_' + hash);
-                                $('.bid-now-select').change(function () {
+                                $('.bid-now-select').on('blur change', function () {
                                     if ($('#dd_' + hash + ' option:selected').text().toLowerCase() == 'bid') {
                                         $('#bid_now_button_' + hash).addClass('disabled');
                                     } else {
@@ -346,16 +357,13 @@
                                     }, 500);
                                     $('.buy_now_button').attr('id', 'direct_buy_' + hash + '');
                                     $('.buy_now_button').addClass('direct_buy_' + hash + '');
-                                }
-                                localStorage.ass_auc_buy_now_price = detail[0]['buy_now'];
-                                if (detail[0]['auc_type_id'] == localStorage.closed_bid_auction) {
-                                    localStorage.ass_auc_buy_now_price = ass_reserve_price;
-                                }
+                                }                                
                                 $('.head-buy-now-price-text').html(buy_now);
-                                var buy_now_btn = '<a id="buy_' + hash + '" class="btn btn-xstok buy_' + hash + ' hide" href="shipping_detail.html?#' + hash + '-' + detail[0]['room_id'] + '" role="button">Proceed to Payment</a>';
+                                var buy_now_btn = '<a id="buy_' + hash + '" class="waves-effect waves-light btn xstok darken-1 buy_' + hash + ' hide" href="shipping_detail.html?#' + hash + '-' + detail[0]['room_id'] + '" role="button">Proceed to Payment</a>';
                                 $('.bid-now-buy-now-btn').html(buy_now_btn);
                                 $('.bid_now_button').attr("id", "bid_now_button_" + hash);
                                 $('.bid_now_button').attr("bid_type", detail[0]['auc_type_id']);
+                                $('.bid_now_button').attr("start_price", detail[0]['start_price']);
                                 $('.bid_now_button').attr("dynamic_lot", hash);
                                 var mL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
                                 var tender_date = new Date(date_fution(detail[0]['start_date']));
@@ -430,25 +438,31 @@
                                 $('#list_price_per_unit').html('-');
                                 hide_details_list_price_ctl = "Y";
                             } else {
-                                $('#list_price_per_unit').html('<i class="fa fa-inr"></i> ' + numberWithCommas(RoundTo(parseFloat(actual_price) / parseFloat(detail[0]['unit_price']), parseFloat(0.5)),1));
+                                $('#list_price_per_unit').html('<i class="fa fa-inr"></i> ' + numberWithCommas(RoundTo(parseFloat(actual_price) / parseFloat(detail[0]['unit_price']), parseFloat(0.5)), 1));
                                 hide_details_list_price_ctl = "N";
                             }
-                            $('#start_price_value').html('<i class="fa fa-inr"></i> ' + numberWithCommas(round(discount_value, 0)));
+                            $('#start_price_value').html('<i class="fa fa-inr"></i> <span class="span_start_price_">' + numberWithCommas(round(reserve_price_start_price, 0)) + '</span>');
                             if (hide_details_starting_discount == 'Y') {
                                 $('#start_price_discount').html('-');
                             } else {
-                                $('#start_price_discount').html(round(reserve_price, 2));
+                                $('#start_price_discount').html(100 - (parseFloat(round((((reserve_price_start_price) / Math.round(actual_price)) * 100), 2))));
                             }
-
+                            if (unit_price_auction == 'Y') {
+                                var t = (parseFloat(detail[0]['start_price']) / parseFloat(detail[0]['unit_price'])).toString();
+                                $('.mini_price ').html(' <i class="fa fa-inr"></i> ' + number_format(RoundTo(t.replace(/,/g, ''), 0.5), 1, '.', ','));
+                            } else {
+                                var t = (detail[0]['start_price']).toString();
+                                $('.mini_price ').html(' <i class="fa fa-inr"></i> ' + number_format(RoundTo(t.replace(/,/g, ''), 0.5), 1, '.', ','));
+                            }
                             if (hide_details_start_price_per_unit == 'Y') {
                                 $('#start_price_per_unit').html('-');
                             } else {
-                                $('#start_price_per_unit').html('<i class="fa fa-inr"></i> ' + numberWithCommas(RoundTo(parseFloat(discount_value) / parseFloat(detail[0]['unit_price']), parseFloat(0.5)),1));
+                                $('#start_price_per_unit').html('<i class="fa fa-inr"></i> <span class="span_start_price_per_unit_">' + number_format(RoundTo((reserve_price_start_price / parseFloat(detail[0]['unit_price'])), 0.5), 1, '.', ',') + '</span>');
                             }
                             $('#current_price_value').html('<i class="fa fa-inr"></i> <span class="curr_bid_' + rc4_er(detail[0]['lot_id']) + '">' + numberWithCommas(round(discount_value, 0)) + '</span>');
                             $('#current_price_discount').html('<span class="curr_per_bid_' + rc4_er(detail[0]['lot_id']) + '">' + round(reserve_price, 2) + '</span>');
                             var select_body = "";
-                            select_body += '<div id="dd_' + hash + '" class="" tabindex="1"  golden_time="' + golden_time + '" golden_time_value ="' + rc4_er(golden_time_value) + '" auc_end_date = "' + rc4_er(date_fution(detail[0]['end_date'])) + '" dynamic_min_user="' + rc4_er(dynamic_min_user) + '" dynamic_lot="' + hash + '" dynamic_room="' + dynamic_room + '"  actual_price="' + actual_price + '" discount_value="' + discount_value + '" reserve_price="' + round(reserve_price, 2) + '" og_dynamic_min_user="' + detail[0]['min_user'] + '" auction_on="' + detail[0]['auction_on'] + '" min_incr_value="' + detail[0]['min_incr_value'] + '" unit_price_auction="' + unit_price_auction + '" ><input type="text" name="first_bid" id="first_bid" class="form-control input-sm select_tab first_bid" placeholder="Please enter your offer" onkeyup="allnumeric(\'first_bid\')"></div>';
+                            select_body += '<div id="dd_' + hash + '" class="" tabindex="1"  golden_time="' + golden_time + '" golden_time_value ="' + rc4_er(golden_time_value) + '" auc_end_date = "' + rc4_er(date_fution(detail[0]['end_date'])) + '" dynamic_min_user="' + rc4_er(dynamic_min_user) + '" dynamic_lot="' + hash + '" dynamic_room="' + dynamic_room + '"  actual_price="' + actual_price + '" discount_value="' + discount_value + '" reserve_price="' + round(reserve_price, 2) + '" og_dynamic_min_user="' + detail[0]['min_user'] + '" auction_on="' + detail[0]['auction_on'] + '" min_incr_value="' + detail[0]['min_incr_value'] + '" unit_price_auction="' + unit_price_auction + '" ><input type="number" name="first_bid" id="first_bid" class="form-control input-sm select_tab first_bid" placeholder="Please enter your offer" onkeyup="allnumeric(\'first_bid\')"></div>';
                             var min_incr_value = 0;
                             $('.bidvalue').addClass('cal_bid_cal_' + hash);
                             $('.bidding-area-left').html(select_body);
@@ -496,11 +510,11 @@
                                  }*/
                             }, 100);
                         }
-                         supplier_rating(hash, detail[0]['supplier_id']);
+                        supplier_rating(hash, detail[0]['supplier_id']);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         // if (textStatus === "timeout") {
-                        x_alert("You seem to have lost internet connection, please reconnect to get going");
+                        x_alert("You seem to have lost internet connection, please reconnect to get going", 'No connection');
                         window.location.href = "no_connection.html";
                         // }
                     }
@@ -513,16 +527,20 @@
                         var detail = JSON.parse(data);
                         console.log(detail);
                         $('.rating-since').html(detail['company_created']);
-                        $('.rating-comp').html(detail['comp_trans']);
-                        $('.rating-repeat').html(1 - round((detail['num_of_one_time_buyer'] / detail['num_of_comp_trans']), 2) + ' %');
-                        var rating_value = round(((parseFloat(detail['goods_avg']) + parseFloat(detail['delivery_avg'])) / 2), 2);
-                        rating_star(rating_value,'rating-star');
-                        
-                        $('.rating-good-count').html(round(detail['goods_avg'],2));
-                        $('.rating-delivery-count').html(round(detail['delivery_avg'],2));
-                        rating_star(detail['goods_avg'],'rating-good-star');
-                        rating_star(detail['delivery_avg'],'rating-delivery-star');
-                        
+                        $('.rating-comp').html(detail['comp_trans']);                        
+                        if(detail['num_of_one_time_buyer'] == 0 && detail['num_of_comp_trans'] == 0) {$('.rating-repeat').html(0 + ' %');} else { $('.rating-repeat').html((1 - round((parseFloat(detail['num_of_one_time_buyer']) / parseFloat( detail['num_of_comp_trans'])), 2))*100 + ' %');}
+                        var goods_avg = detail['goods_avg']; 
+                        if(detail['goods_avg'] === null) { goods_avg= 0; }
+                        var delivery_avg = detail['delivery_avg']; 
+                        if(detail['delivery_avg'] === null) { delivery_avg= 0; }
+                        var rating_value = round(((parseFloat(goods_avg) + parseFloat(delivery_avg)) / 2), 2);
+                        rating_star(rating_value, 'rating-star');
+
+                        $('.rating-good-count').html(round(detail['goods_avg'], 2));
+                        $('.rating-delivery-count').html(round(detail['delivery_avg'], 2));
+                        rating_star(detail['goods_avg'], 'rating-good-star');
+                        rating_star(detail['delivery_avg'], 'rating-delivery-star');
+
                     }
                 });
             }
@@ -535,8 +553,8 @@
                 <i class="fa fa-angle-double-up"></i>
             </a>
         </div>
-        <div class="header row font-size-1-6-em xstok-text-white  padding-10 width-100p position-fixed z-index-1">
-            <div class="col s2 left-align"><a onclick="back()" class="xstok-text-white"><i class="fa fa-chevron-left"></i></a></i></div>
+        <div class="header row font-size-1-6-em xstok-text-white  padding-10 width-100p position-fixed z-index-1 nav">
+            <div class="col s2 left-align" onclick="back()" ><a class="xstok-text-white"><i class="fa fa-chevron-left"></i></a></div>
             <div class="col s9 supplier-name"><i class="fa fa-spinner fa-pulse"></i></div>
             <div class="col s1 right-align" onclick='$("#more_options").openModal()'><i class="fa fa-ellipsis-v"></i></div>
         </div>
@@ -571,7 +589,7 @@
                 <div class="col s12 m6">
                     <div class="card grey lighten-5">
                         <div class="card-content">
-                            <span class="card-title x-grey bold line-height-25"><span class="head-title-text"><i class="fa fa-spinner fa-pulse"></i></span><span class="right heart-detail"><i class="fa fa-heart"></i></span></span>
+                            <span class="card-title x-grey bold line-height-25"><span class="head-title-text"><i class="fa fa-spinner fa-pulse"></i></span><span class="right heart-detail"><i class="fa fa-heart-o"></i></span></span>
                             <div class="tender-period-main">
                                 <div class="tender-period font-13  margin-top-5 padding-tb-5 padding-lr-5  grey lighten-3">Presale Review</div>
                                 <div class="font-12 tender-period head-tender-start-text padding-lr-10 row margin-bottom-0"></div>
@@ -585,7 +603,7 @@
                                 <div class="font-12 tender-period head-tender-start-text padding-lr-10 row margin-bottom-0"></div>
                                 <div class="font-12 head-tender-period-text padding-lr-10 row margin-bottom-0"></div>
                             </div>
-                            <span class="gotoroom"><a class="gotoroom">View room</a> |</span><span> <a class="sample-request" onclick="sample_request()">Request Sample</a></span><span class="right hide"> <a class="" onclick=" $('#rating').openModal()">See Seller details</a></span>
+                            <span class="gotoroom"><a class="gotoroom">View room</a> |</span><span> <a class="sample-request" onclick="sample_request()">Request Sample</a></span><span class="right"> <a class="" onclick=" $('#rating').openModal()">See Seller details</a></span>
                         </div>
                         <div class="card-action grey lighten-3 padding-tb-5 info_all">
                             <div class="timertitle font-bold font-15">
@@ -614,11 +632,17 @@
                                         <td id="list_price_value">-</td>
                                         <td id="list_price_discount">-</td>
                                     </tr>
+                                    <tr id="hide_details_start_price_id">
+                                        <td><b>Start Price</b></td>
+                                        <td id="start_price_per_unit">-</td>
+                                        <td id="start_price_value">-</td>
+                                        <td id="start_price_discount"></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>                       
                         <div class="card-action padding-tb-5 white-text green lighten-1">
-                            <div class="center-align">EMD Required : <i class="fa fa-inr"></i> <span class="head-list-price-text" id="emd_req">2,00,000</span></div>                            
+                            <div class="center-align">EMD Required : <i class="fa fa-inr"></i> <span class="head-list-price-text" id="emd_req"><i class="fa fa-spinner fa-pulse"></i></span></div>                            
                         </div> 
                     </div>
                 </div>
@@ -630,7 +654,7 @@
                         <span class="unit_price_auction_val hide"></span>
                         <span class="unit_price_val hide"></span>
                         <span class="span_unit_db hide"></span>
-                        <span class="dup_curr_bid hide"></span>        
+                        <span class="dup_curr_bid hide"></span>
                         <div class="card-action padding-5 ">
                             <span class="f_well_for_count "></span>
                             <div class="auctions-status-text center-align font-size-1-6-em padding-bottom-0"></div>
@@ -652,11 +676,14 @@
                                         <a class="bidnow bid_now_button hide waves-effect waves-light btn white-text xstok darken-1 font-14">Bid Now <i class="fa fa-gavel"></i></a>
                                     </div>                                    
                                 </div>
-                                <div class="presale-review padding-lr-10"><span class="tender-period font-20">Presale Review</span></div>
-                                <div class="padding-lr-10">
-                                    <button class="btn btn-buy-action bid_now_button hide xstok darken-1 interested width-100p">I'm Interested</button>
-                                </div>                                
+                                <div class="div_tendor hide">
+                                    <div class="presale-review padding-lr-10"><span class="tender-period font-20">Presale Review</span></div>
+                                    <div class="padding-lr-10">
+                                        <button class="btn btn-buy-action bid_now_button hide xstok darken-1 interested width-100p">I'm Interested</button>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="padding-lr-10 padding-bottom-10">Minimum offer price: <span class="mini_price"></span></div>
                             <div class="assorted_hide padding-bottom-5-p">Reserve price not met</div>
                             <div class="bidvalue margin-bottom-20 padding-lr-10"></div>
                             <div class="mybidvalue padding-10" style="">
@@ -948,8 +975,22 @@
                             var actual_price = $('#dd_' + $(this).attr('dynamic_lot')).attr('actual_price');
                             var tender_bid_detail = $('#dd_' + $(this).attr('dynamic_lot')).attr('tender_bid_detail');
                             var unit_price_auction = $('#dd_' + $(this).attr('dynamic_lot')).attr('unit_price_auction');
+                            var start_price = $('#dd_' + $(this).attr('dynamic_lot')).attr('start_price');
                             if (first_bid != 'Bid' && first_bid > 0 && $('#dd_' + $(this).attr('dynamic_lot') + ' option:selected').val() != 'Bid') {
-                                if ($(this).attr('bid_type') != localStorage.closed_bid_auction) {
+                                if ($('.unit_price_auction_val').text() == 'Y' && parseFloat($('.span_start_price_').html().replace(/,/g, '')) > 0) {
+                                    var per_unit_value_ = ((parseFloat(RoundTo(parseFloat($('.span_start_price_').html().replace(/,/g, '')) / parseFloat($('.unit_price_val').text()), 0.5))));
+                                    var per_unit_res_value_ = ((parseFloat(RoundTo(parseFloat(discount_value) / parseFloat($('.unit_price_val').text()), 0.5))));
+                                    var total_value_ = (parseFloat(first_bid) * parseFloat($('.unit_price_val').text()));
+                               } else if($('.unit_price_auction_val').text()!='Y' && parseFloat($('.span_start_price_').html().replace(/,/g, ''))>0){
+                                    var per_unit_value_ = ((parseFloat(RoundTo(parseFloat(discount_value) / parseFloat($('.unit_price_val').text()), 0.5))));
+                                    var per_unit_res_value_ = ((parseFloat(RoundTo(parseFloat(discount_value), 0.5))));
+                                    var total_value_ = (parseFloat(first_bid) * parseFloat($('.unit_price_val').text()));
+                                } else if($('.unit_price_auction_val').text()!='Y' && parseFloat($('.span_start_price_').html().replace(/,/g, ''))<1) {
+                                    var per_unit_value_ = 0;
+                                    var per_unit_res_value_ = ((parseFloat(RoundTo( parseFloat(discount_value),0.5 ))));
+                                    var total_value_ = (parseFloat(first_bid)*parseFloat($('.unit_price_val').text()));
+                                } else {
+                                    per_unit_value_ = 1;
                                 }
                                 var z = first_bid;
                                 if (isNaN(z)) {
@@ -957,11 +998,36 @@
                                         $('#toast-container').remove();
                                     });
                                     $('.msg_' + dynamic_lot).hide().html(localStorage.bid_numeric_error);
-                                } else if (typeof $('.my_bid_' + dynamic_lot).html() != 'undefined' && parseFloat(first_bid) <= parseFloat($('.my_bid_' + dynamic_lot).html().replace(/,/g, ''))) {
+                                } else if ($('.unit_price_auction_val').text() == 'Y' && parseFloat(first_bid) < parseFloat(per_unit_value_.toString().replace(/,/g, '')) && $('.my_bid_' + dynamic_lot).html().replace(/,/g, '') < 1) {
+                                    Materialize.toast(localStorage.bid_place_min_price, 2000, 'x-red bold', function () {
+                                        $('#toast-container').remove();
+                                    });
+                                    $('.msg_' + dynamic_lot).hide().html(localStorage.bid_place_min_price);
+                                } else if ($('.unit_price_auction_val').text() != 'Y' && typeof $('.my_bid_' + dynamic_lot).html() != 'undefined' && parseFloat(first_bid) <= parseFloat($('.my_bid_' + dynamic_lot).html().replace(/,/g, ''))) {
                                     Materialize.toast(localStorage.bid_place_error, 2000, 'x-red bold', function () {
                                         $('#toast-container').remove();
                                     });
                                     $('.msg_' + dynamic_lot).hide().html(localStorage.bid_place_error);
+                                } else if ($('.unit_price_auction_val').text() != 'Y' && parseFloat(first_bid) < parseFloat(per_unit_value_.toString().replace(/,/g, ''))) {
+                                    Materialize.toast(localStorage.bid_place_min_price, 2000, 'x-red bold', function () {
+                                        $('#toast-container').remove();
+                                    });
+                                    $('.msg_' + dynamic_lot).html(localStorage.bid_place_min_price);
+                                } else if ($('.unit_price_auction_val').text() == 'Y' && parseFloat(first_bid) >= parseFloat(per_unit_res_value_ * 2) && $('.my_bid_' + dynamic_lot).html().replace(/,/g, '') < 1) {
+                                    Materialize.toast(localStorage.bid_place_error_unit_price_100_reserve, 2000, 'x-red bold', function () {
+                                        $('#toast-container').remove();
+                                    });
+                                    $('.msg_' + dynamic_lot).html(localStorage.bid_place_error_unit_price_100_reserve);
+                                } else if ($('.unit_price_auction_val').first().text() == 'Y' && parseFloat(first_bid) < RoundTo(($('.my_bid_' + dynamic_lot).html().replace(/,/g, '') / parseFloat($('.unit_price_val').first().text())), 0.5)) {
+                                    Materialize.toast('Please place higher bid', 2000, 'x-red bold', function () {
+                                        $('#toast-container').remove();
+                                    });
+                                    $('.msg_' + dynamic_lot).html("Please place higher bid");
+                                } else if ($('.unit_price_auction_val').first().text() != 'Y' && parseFloat(first_bid) < $('.my_bid_' + dynamic_lot).html().replace(/,/g, '')) {
+                                    Materialize.toast('Please place higher bid', 2000, 'x-red bold', function () {
+                                        $('#toast-container').remove();
+                                    });
+                                    $('.msg_' + dynamic_lot).html("Please place higher bid");
                                 } else if ($('.bid_cal_' + dynamic_lot).html() != localStorage.winner__) {
                                     if (localStorage.emd_for_this_auc != 'N' && localStorage.emd_for_this_auc > 0) {
                                         var og_emd__ = round(localStorage.emd_for_this_auc);
@@ -973,7 +1039,7 @@
                                         //  $('.msg_' + dynamic_lot).html(localStorage.EMD_over__).fadeIn('slow').delay(5000).fadeOut('slow');
                                         var confirmtitle = localStorage.pay_emd;
                                         var confirmbutton = 'Top up,Cancel';
-                                        var confirmlink = 'emd.html';
+                                        var confirmlink = 'emd.html';                                        
                                         showEmdConfirm(confirmtitle, confirmbutton, confirmlink);
                                     } else if (parseFloat(localStorage.emd_bal.replace(/,/g, '')) < parseFloat(og_emd__) && $('#auc_type_id_val').val() == localStorage.closed_bid_auction) {
                                         var confirmtitle = localStorage.pay_emd;
@@ -981,22 +1047,25 @@
                                         var confirmlink = 'emd.html';
                                         showEmdConfirm(confirmtitle, confirmbutton, confirmlink);
                                     } else {
-                                        //var temp_unit_price_ = ($('.unit_price_auction_val').text()=='Y')?" (Per "+$('.span_unit_db').text()+" of Rs. "+number_format(parseFloat(parseFloat(dis_value)/parseFloat()),1, '.', ',')+")":"";
-                                        var temp_unit_price_ = ($('.unit_price_auction_val').text() == 'Y') ? " (Per " + $('.span_unit_db').text() + " of Rs. " + number_format(RoundTo((dis_value / parseFloat($('.unit_price_val').text())), 0.5), 1, '.', ',') + ")" : "";
-                                        if (localStorage.my_bid_val.replace(/,/g, '') < 1 || $('.bid_cal_' + dynamic_lot).html() == localStorage.winner__) {
-                                            if (localStorage.emd_for_this_auc != 'N' && localStorage.emd_for_this_auc > 0) {
-                                                var og_emd__ = round(localStorage.emd_for_this_auc);
-                                            } else {
-                                                var og_emd__ = round(parseFloat($('#list_price_actual').html().replace(/,/g, '')) / parseFloat(localStorage.limit_val));
-                                            }
-                                            var list_actual_price__ = $('#list_price_actual').html();
+                                        if (localStorage.emd_for_this_auc != 'N' && localStorage.emd_for_this_auc > 0) {
+                                            var og_emd__ = round(localStorage.emd_for_this_auc);
+                                        } else {
+                                            var og_emd__ = (round(parseFloat($('#list_price_actual').html().replace(/,/g, '')) / parseFloat(localStorage.limit_val)));
+                                        }
+                                        var list_actual_price__ = $('#list_price_actual').html();
+                                        if ($('.unit_price_auction_val').text() == 'Y') {
+                                            var confirm_bid__ = numberWithCommas(total_value_);
+                                        } else {
                                             var confirm_bid__ = numberWithCommas(first_bid);
-
+                                        }
+                                        //var temp_unit_price_ = ($('.unit_price_auction_val').text()=='Y')?" (Per "+$('.span_unit_db').text()+" of Rs. "+number_format(parseFloat(parseFloat(dis_value)/parseFloat()),1, '.', ',')+")":"";
+                                        var temp_unit_price_ = ($('.unit_price_auction_val').text() == 'Y') ? " (Per " + $('.span_unit_db').text() + " of Rs. " + confirm_bid__ + ")" : "";
+                                        if (localStorage.my_bid_val.replace(/,/g, '') < 1 || $('.bid_cal_' + dynamic_lot).html() == localStorage.winner__) {
                                             if (tender_bid_detail != 'Yes') {
                                                 if (parseFloat(first_bid) < parseFloat(discount_value)) {
-                                                    var confirm_msg = localStorage.confirm_offer_with_msg__.replace("og_emd__", numberWithCommas(og_emd__)).replace("confirm_bid__", confirm_bid__);
+                                                    var confirm_msg = localStorage.confirm_offer_with_msg__.replace("og_emd__", numberWithCommas(og_emd__)).replace("confirm_bid__", first_bid + temp_unit_price_);
                                                 } else {
-                                                    var confirm_msg = localStorage.confirm_offer_with_msg__.replace("og_emd__", numberWithCommas(og_emd__)).replace("confirm_bid__", confirm_bid__);
+                                                    var confirm_msg = localStorage.confirm_offer_with_msg__.replace("og_emd__", numberWithCommas(og_emd__)).replace("confirm_bid__", first_bid + temp_unit_price_);
                                                     if (unit_price_auction == 'Y') {
                                                         confirm_msg = confirm_msg.replace('confirm_bid__', 'confirm_bid__ ( Price per __unit : unit_price_value )');
                                                         confirm_msg = confirm_msg.replace("confirm_bid__", confirm_bid__).replace("__unit", $('#unit').text()).replace('unit_price_value', $('.head-per-value-text').text());
@@ -1012,12 +1081,12 @@
                                                 // }
                                             }
                                         } else if (parseFloat(first_bid) < parseFloat(discount_value)) {
-                                            var confirm_msg = localStorage.confirm_offer_with_msg__.replace("og_emd__", numberWithCommas(og_emd__)).replace("confirm_bid__", first_bid);
+                                            var confirm_msg = localStorage.confirm_offer_with_msg__.replace("og_emd__", numberWithCommas(og_emd__)).replace("confirm_bid__", first_bid + temp_unit_price_);
                                         } else {
                                             if ($('#auc_type_id_val').val() == localStorage.closed_bid_auction && $('.bid_cal_' + dynamic_lot).text() == '') {
                                                 seal_bid_deduct_emd = 2;
                                                 if (parseFloat(first_bid) >= parseFloat(discount_value)) {
-                                                    var confirm_msg = localStorage.confirm_offer_with_msg__.replace("og_emd__", numberWithCommas(og_emd__)).replace("confirm_bid__", first_bid);
+                                                    var confirm_msg = localStorage.confirm_offer_with_msg__.replace("og_emd__", numberWithCommas(og_emd__)).replace("confirm_bid__", first_bid + temp_unit_price_);
                                                 } else {
                                                     var confirm_msg = (($('#auc_type_id_val').val() == localStorage.closed_bid_auction) ? localStorage.confirm_offer_of_bid : localStorage.confirm_place_bid) + " Rs. " + numberWithCommas(first_bid) + " " + temp_unit_price_ + " Note: this will block EMD of Rs. " + og_emd__;
                                                 }
@@ -1027,7 +1096,7 @@
                                         }
                                         var confirmtitle = localStorage.bid_now;
                                         var confirmbutton = 'Yes,Cancel';
-                                        var confirmlink = localStorage.host + '../classes/service_manage_auction.class.php?action=save_intial_bid_auction&user_id=' + localStorage.user_id + '&admin_id=' + localStorage.user_id + '&lot_id=' + dynamic_lot + '&room_id=' + dynamic_room + '&golden_time=' + golden_time + '&golden_time_value=' + golden_time_value + '&first_bid=' + first_bid + '&auction_on=' + auction_on + '&reserve_price=' + reserve_price + '&discount_value=' + discount_value + '&actual_price=' + actual_price + '&dynamic_min_user=' + dynamic_min_user + '&bid_type=' + bid_type + '&tender_local_var=' + localStorage.tender_local_var + '';
+                                        var confirmlink = localStorage.host + '../classes/service_manage_auction.class.php?action=save_intial_bid_auction&user_id=' + localStorage.user_id + '&admin_id=' + localStorage.user_id + '&lot_id=' + dynamic_lot + '&room_id=' + dynamic_room + '&golden_time=' + golden_time + '&golden_time_value=' + golden_time_value + '&first_bid=' + confirm_bid__.replace(/,/g, '') + '&auction_on=' + auction_on + '&reserve_price=' + reserve_price + '&discount_value=' + discount_value + '&actual_price=' + actual_price + '&dynamic_min_user=' + dynamic_min_user + '&bid_type=' + bid_type + '&tender_local_var=' + localStorage.tender_local_var + '';                                        
                                         showConfirm(confirm_msg, confirmtitle, confirmbutton, confirmlink, dynamic_lot, localStorage.tender_msg);
                                     }
                                 }
@@ -1044,7 +1113,7 @@
                                 if (parseFloat(localStorage.emd_bal.replace(/,/g, '')) < parseFloat(og_emd__)) {
                                     //localStorage.EMD_over__ = localStorage.EMD_over__.replace('/buyer_dashboard?action=emd_details', 'emd.html');
                                     // $('.msg_' + dynamic_lot).html(localStorage.EMD_over__).fadeIn('slow');
-                                    Materialize.toast('<a href="emd.html">'+localStorage.EMD_over__ +'</a>', 999999999999, 'x-red bold font-20', function () {
+                                    Materialize.toast('<a href="emd.html">' + localStorage.EMD_over__ + '</a>', 999999999999, 'x-red bold font-20', function () {
                                         $('#toast-container').remove();
                                     });
                                 } else {
@@ -1088,7 +1157,7 @@
                                 if (parseFloat($('.curr_bid_' + dynamic_lot).html().replace(/,/g, '')) > 0) {
                                     var curr_val = parseFloat($('.curr_bid_' + dynamic_lot).html().replace(/,/g, ''));
                                 } else {
-                                    var curr_val = parseFloat($('.span_start_price').html().replace(/,/g, ''));
+                                    var curr_val = parseFloat($('.span_start_price_').html().replace(/,/g, ''));
                                 }
                                 var z = first_bid;
                                 if (isNaN(z)) {
@@ -1305,7 +1374,7 @@
                             }
                         }, 400);
                     });
-                    $(window).scroll(function () {
+                    $(window).on('touchmove scroll', function () {
                         sticky_relocate();
                     });
                     function sticky_relocate() {
@@ -1316,18 +1385,23 @@
                         if (window_top > div_top) {
                             $('.header').css('background-color', 'rgba(255,163,0,1)');
                             $('.header').addClass('z-depth-1');
-                            $('.supplier-name').removeClass('text-shadow-supplier');
+                            $('div.supplier-name').removeClass('text-shadow-supplier');
                             // $('.stick').css('top', '0');
                         } else {
                             $('.header').css('background-color', 'rgba(255,163,0,' + window_top / div_top + ')');
+                            $('.header').css('text-shadow', '0px 0px 10px rgba(0,0,0,' + (1 - (window_top / div_top)) + ')');
                             $('.header').removeClass('z-depth-1');
-                            $('.supplier-name').addClass('text-shadow-supplier');
+                            $('div.supplier-name').addClass('text-shadow-supplier');
                             //$('.stick').css('top', 'none');
                         }
-                        if (window_top > info_all) {
+                        if ($(window).scrollTop() + $(window).height() == $(document).height()) {
                             $('.bid_now_main').fadeOut();
                         } else {
-                            $('.bid_now_main').fadeIn();
+                            if (window_top > info_all) {
+                                $('.bid_now_main').fadeOut();
+                            } else {
+                                $('.bid_now_main').fadeIn();
+                            }
                         }
                         if (window_top > show_top_bid) {
                             $('.top-bid').fadeIn();
@@ -1451,12 +1525,19 @@
                                             $('#div_auto_bid_active').addClass('hide');
                                         }
                                         $('.my_bid_' + dynamic_lot[idx]).text(obj.my_bid);
+                                        if ($('.unit_price_auction_val').text() == 'Y' && obj.my_bid.replace(/,/g, '') > 0) {
+                                            $('.my_bid_' + dynamic_lot[idx]).html(" Rs. " + numberWithCommas(parseFloat(obj.my_bid.replace(/,/g, '')) / parseFloat($('.unit_price_val').text())));
+                                        }
                                         localStorage.my_bid_val = obj.my_bid.replace(/,/g, '');
                                         if ($('#clock_').html() != localStorage.auction_expired__) {
                                             $('#div_no_tendor').removeClass('hide');
                                         }
-                                        if (parseFloat($('.my_bid_' + dynamic_lot[idx]).text().replace(/,/g, '')) >= parseFloat(localStorage.ass_auc_buy_now_price)) {
-                                            $('.assorted_hide').text(localStorage.reserve_price_met_).css('color', 'green');
+                                        var my_bid_ = parseFloat($('.my_bid_' + dynamic_lot[idx]).text().replace(/,/g, ''));
+                                        if(my_bid_ != 0 ) {
+                                            my_bid_ = parseFloat($('.my_bid_' + dynamic_lot[idx]).text().split(' Rs. ')[1].replace(/,/g, ''));
+                                        }                                        
+                                        if (my_bid_ >= parseFloat(localStorage.ass_auc_buy_now_price)) {
+                                            $('.assorted_hide').html(localStorage.reserve_price_met_).css('color', 'green');
                                         }
                                         if (parseFloat(obj.curr_bid.replace(/,/g, '')) >= parseFloat(localStorage.ass_auc_buy_now_price) && $('.my_bid_' + dynamic_lot[idx]).text().replace(/,/g, '') >= parseFloat(localStorage.ass_auc_buy_now_price)) {
                                             if ($('#clock_').html() != localStorage.auction_expired__) {
@@ -1474,9 +1555,18 @@
                                             $('.assorted_hide').show();
                                         }
                                         if (parseFloat(obj.curr_bid.replace(/,/g, '')) >= parseFloat(localStorage.ass_auc_buy_now_price)) {
-                                            $('.final_my_bid_' + dynamic_lot[idx]).text(obj.curr_bid);
+                                            //$('.final_my_bid_' + dynamic_lot[idx]).text(obj.curr_bid);
                                         }
-                                        if (parseFloat($('.my_bid_' + dynamic_lot[idx]).text().replace(/,/g, '')) > 0) {
+                                        if (parseFloat(auc_type_id) == localStorage.assorted_auction) {
+                                            if (parseFloat(obj.curr_bid.replace(/,/g, '')) >= parseFloat(localStorage.ass_auc_buy_now_price)){
+                                                $('.assorted_hide').hide();
+                                                $('.buy-now-panel').addClass('hide');
+                                            } else if($('#clock_').text()!= localStorage.auction_expired__ && $('#clock_').text()!='') {
+                                                $('.assorted_hide').show();
+                                                $('.buy-now-panel').removeClass('hide');
+                                            }
+                                        }
+                                        if (my_bid_ > 0) {
                                             $('#bid_now_button_' + dynamic_lot[idx]).val(localStorage.increase_bid__);
                                             $('.bid_now').html(localStorage.increase_bid__);
                                         }
@@ -1499,8 +1589,8 @@
                                         $('.auto_bid').addClass('hide');
                                         $('#withdraw_' + dynamic_lot[idx]).addClass('hide');
 
-                                        $('#div_no_tendor').addClass('hide');
-                                        $('.div_tendor').removeClass('hide');
+                                        $('#div_no_tendor').removeClass('hide');
+                                        $('.div_tendor').addClass('hide');
                                         $('#span_time_left').html(localStorage.presale_time_left);
                                         /* $('.span_curr_bid').hide();
                                          $('.span_curr_bid_per').hide();
@@ -1601,6 +1691,11 @@
                             success: function (data) {
                                 if (data == 'Yes')
                                     $('.fa-heart').addClass('w_selected');
+                                if (data == 'Yes') {
+                                    $('#heart' + rc4_er(lot_id) + rc4_er(room_id)).html('<i class="fa fa-heart x-red"></i>');
+                                } else {
+                                    $('#heart' + rc4_er(lot_id) + rc4_er(room_id)).html('<i class="fa fa-heart-o"></i>');
+                                }
                             }
                         });
                     }

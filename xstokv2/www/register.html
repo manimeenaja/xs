@@ -114,6 +114,7 @@
                                         } else if (responseText > 0) {
                                             EmailIDAvailResult.html('<i class="fa fa-times x-red"></i>');
                                             $('button[type="submit"]').attr('disabled','disabled');
+                                            x_alert('Email already exists. Please register with different Email');
                                         } else {
                                         }
                                     }

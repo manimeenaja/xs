@@ -116,7 +116,7 @@
         <script type="text/javascript" src="js/materialize.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                add_menu('dashboard',2, 0);
+                add_menu('dashboard', 2, 0);
                 $('select').material_select();
                 $('.button-collapse').sideNav({
                     menuWidth: 300, // Default is 240
@@ -130,7 +130,7 @@
                 }, 3000);
                 $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'auction_won_list', type: 'webservice', user_id: localStorage.user_id}, type: 'get', success: function (data) {
                         var logininfo = JSON.parse(data);
-                        console.log(logininfo);
+                        //console.log(logininfo);
                         //http://192.168.0.13/classes/buyer_dashboard.class.php?action=auction_won_list&type=html&user_id=d0
                         var total_auction_won = "";
                         if (logininfo['auction_won'].length) {
@@ -138,15 +138,15 @@
                         }
                         $('.total_auction_won').html(logininfo['auction_won'].length + logininfo['wholesale_auction'].length);
                         $('.collection.dash').append(total_auction_won);
-                }
-            });
+                    }
+                });
                 $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'buyer', days: '7', type: 'webservice', user_id: localStorage.user_id}, type: 'get', success: function (data) {
                         $('.list_loader').remove();
                         $('.collection.dash').removeClass('center-align');
                         var logininfo = JSON.parse(data);
                         var lot_array = '';
                         var room_id_array = '';
-                        console.log(logininfo);
+                        //console.log(logininfo);
                         localStorage.cover_pic_path = logininfo['user_detail']['cover_pic_path'];
                         localStorage.profile_pic = logininfo['user_detail']['profile_pic'];
                         var star = "";
@@ -217,11 +217,11 @@
                         /*-------------------Watchlist  end-------------------------*/
                         /*-------------------Auction  won start-------------------------*/
                         /*var total_auction_won = "";
-                        if (logininfo['total_auction_won'].length) {
-                            total_auction_won += '<li class="collection-item col m4 s6" value="auction_won"><div class="row margin-bottom-0"><div class="col s12 padding-lr-2-5"><div class="card green  darken-1"><div class="card-content white-text padding-10"><div class="card-title white-text"><span class="x-green"><i class="fa fa-trophy"></i></span><span class="right">' + (logininfo['total_auction_won'].length) + '</span></div></div><div class="card-action  green  lighten-1 white-text padding-5 center-align">Order in Process</div></div></div></div></li>';
-                        }
-                        $('.total_auction_won').html(logininfo['total_auction_won'].length);
-                        $('.collection.dash').append(total_auction_won);*/
+                         if (logininfo['total_auction_won'].length) {
+                         total_auction_won += '<li class="collection-item col m4 s6" value="auction_won"><div class="row margin-bottom-0"><div class="col s12 padding-lr-2-5"><div class="card green  darken-1"><div class="card-content white-text padding-10"><div class="card-title white-text"><span class="x-green"><i class="fa fa-trophy"></i></span><span class="right">' + (logininfo['total_auction_won'].length) + '</span></div></div><div class="card-action  green  lighten-1 white-text padding-5 center-align">Order in Process</div></div></div></div></li>';
+                         }
+                         $('.total_auction_won').html(logininfo['total_auction_won'].length);
+                         $('.collection.dash').append(total_auction_won);*/
                         /*-------------------Auction  won end-------------------------*/
                         /*-------------------emd start-------------------------*/
                         var bal_emd = "";
@@ -257,16 +257,47 @@
                         //console.log(lot_array);
                         localStorage.lot_id_array = lot_array;
                         localStorage.room_id_array = room_id_array;
-                        Materialize.showStaggeredList('.collection');
-                        $('.collection-item').click(function () {
-                            window.location.href = $(this).attr('value') + '.html';
+                        $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'get_buyer_transaction', type: 'webservice', user_id: localStorage.user_id}, type: 'get', success: function (data) {
+                                var logininfo = JSON.parse(data);
+                                //console.log(logininfo);
+                                /*-------------------History start-------------------------*/
+                                var orders = "";
+                                if (logininfo['data_ary'].length) {
+                                    orders = '<li value="orders" class="collection-item col m4 s4" ><div class="row margin-bottom-0 "><div class="col s12 padding-lr-2-5"><div class="card grey lighten-5" style=""><div class="card-content padding-10"><span class="card-title font-15"><i class="fa fa-truck"></i> ' + (logininfo['data_ary'].length) + '</span><p> Orders </p></div></div></div></div></li>';
+                                }
+                                $('.history_all').html(logininfo['data_ary'].length);
+                                $('.collection.dash').append(orders);
+                                /*-------------------History end-------------------------*/
+                                //http://192.168.0.13/classes/buyer_dashboard.class.php?action=buyer_auction_history&user_id=d6d713&type=webservice
+                                $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'buyer_auction_history', type: 'webservice', user_id: localStorage.user_id}, type: 'get', success: function (data) {
+                                        var logininfo = JSON.parse(data);
+                                        console.log(logininfo);
+                                        /*-------------------Orders start-------------------------*/
+                                        var history = "";
+                                        if (logininfo['active_auction_table'].length) {
+                                            history = '<li value="history" class="collection-item col m4 s4" ><div class="row margin-bottom-0 "><div class="col s12 padding-lr-2-5"><div class="card grey lighten-5" style=""><div class="card-content padding-10"><span class="card-title font-15"><i class="fa fa-history"></i> ' + (logininfo['active_auction_table'].length) + '</span><p> History </p></div></div></div></div></li>';
+                                        }
+                                        $('.orders_all').html(logininfo['active_auction_table'].length);
+                                        $('.collection.dash').append(history);                                       
+                                        /*-------------------History end-------------------------*/
+                                        var sample_track = '<li value="sample_track" class="collection-item col m4 s4" ><div class="row margin-bottom-0 "><div class="col s12 padding-lr-2-5"><div class="card grey lighten-5" style=""><div class="card-content padding-10"><span class="card-title font-15"><i class="fa fa-search"></i></span><p> Track Sample </p></div></div></div></div></li>';
+                                        $('.collection.dash').append(sample_track);
+                                        Materialize.showStaggeredList('.collection');
+                                        $('.collection-item').click(function () {
+                                            window.location.href = $(this).attr('value') + '.html';
+                                        });
+                                    }
+                                });
+                            }
                         });
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        x_alert("You seem to have lost internet connection, please reconnect to get going");
+                        x_alert("You seem to have lost internet connection, please reconnect to get going", 'No connection');
                         window.location.href = "no_connection.html";
                     }
                 });
+                // http://192.168.0.13/classes/buyer_dashboard.class.php?action=get_buyer_transaction&type=webservice&user_id=d6d713
+
                 setInterval(function () {
                     $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'get_tym_ticker', lot_id: localStorage.lot_id_array, room_id: localStorage.room_id_array, user_id: localStorage.user_id}, type: 'get', success: function (data) {
                             var logininfo = JSON.parse(data);
@@ -303,6 +334,15 @@
                         }
                     });
                 }, 1000);
+                var remove = setTimeout(function () {
+                    var devicePlatform = find_platform();
+                    if (devicePlatform == 'iOS') {
+                        $('.padding-top-130').css('padding-top', 150);
+                        $('.padding-top-130').removeClass('padding-top-130');
+                    }
+                    //clearInterval(remove);
+                }, 500);
+
             });
         </script>
     </body>

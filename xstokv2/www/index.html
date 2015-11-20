@@ -16,10 +16,14 @@
             document.addEventListener("deviceready", onDeviceReady, false);
 
             function onDeviceReady() {
-                var options = new ContactFindOptions();
-                options.filter = "XSTOK Support";
-                var fields = ["displayName", "name"];
-                navigator.contacts.find(fields, onSuccess, onError, options);
+                if(typeof(ContactFindOptions) != "function") {
+                    window.location.href = 'home.html';
+                } else {
+                    var options = new ContactFindOptions();
+                    options.filter = "XSTOK Support";
+                    var fields = ["displayName", "name"];
+                    navigator.contacts.find(fields, onSuccess, onError, options);
+                }
             }
 
             function onSuccess(contact) {

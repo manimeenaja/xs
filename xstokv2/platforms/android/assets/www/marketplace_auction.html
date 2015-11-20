@@ -56,6 +56,7 @@
                             $('.selected-offer-qty').html(detail[0]['minimum_quantity']);
                             $('#min_quantity').html(detail[0]['minimum_quantity']);
                             $('#span_total_quantity').html(detail[0]['total_quantity']);
+                            $('.span_total_quantity').html(detail[0]['og_total_quantity']);
                             $('.package').html(detail[0]['shipping']);
                             $('.package *[style]').attr('style', '');
                             $('.tnc *[style]').attr('style', '');
@@ -79,26 +80,40 @@
                             console.log(img);
                             $('.head-image').empty();
                             localStorage.image_count = 0;
-                            for (var i = 0; i < img.length; i++) {
-                                if (detail[0]['image'].indexOf("|")) {
-                                    image = detail[0]['image'].split('|');
-                                    for (var j = 0; j < image.length; j++) {
-                                        var src = image[j];
+                            localStorage.image_slide = '';
+                            console.log(img.length);
+                            if (img.length == 1) {
+                                src = img[0];
+                                if (img[0] == '') {
+                                    src = 'images/no_image.jpg';
+                                }
+                                $('.head-image').append('<div><img  alt="xstok" class="head-image-img" src="' + src + '"></div>');
+                                localStorage.image_slide = src;
+                                console.log(src);
+                                localStorage.image_count = parseInt(localStorage.image_count) + 1;
+                            } else {
+                                for (var i = 0; i < img.length; i++) {
+                                    if (detail[0]['image'].indexOf("|")) {
+                                        image = detail[0]['image'].split('|');
+
+                                        for (var j = 0; j < image.length; j++) {
+                                            var src = image[j];
+                                            if (image[j] == '') {
+                                                src = 'images/no_image.jpg';
+                                            }
+                                            $('.head-image').append('<div><img  alt="xstok" class="head-image-img" src="' + src + '"></div>');
+                                            localStorage.image_count = parseInt(localStorage.image_count) + 1;
+                                            localStorage.image_slide += '|' + src;
+                                        }
+                                    } else {
+                                        var src = detail[0]['image'];
                                         if (image[j] == '') {
                                             src = 'images/no_image.jpg';
                                         }
-                                        $('.head-image').append('<div><img  alt="xstok" class="head-image-img" src="' + src + '"></div>');
+                                        $('.head-image').append('<div><img alt="xstok" class="head-image-img" src="' + detail[0]['image'] + '"></div>');
+                                        localStorage.image_slide += '|' + detail[0]['image'];
                                         localStorage.image_count = parseInt(localStorage.image_count) + 1;
-                                        localStorage.image_slide += '|' + src;
                                     }
-                                } else {
-                                    var src = detail[0]['image'];
-                                    if (image[j] == '') {
-                                        src = 'images/no_image.jpg';
-                                    }
-                                    $('.head-image').append('<div><img alt="xstok" class="head-image-img" src="' + detail[0]['image'] + '"></div>');
-                                    localStorage.image_slide += '|' + detail[0]['image'];
-                                    localStorage.image_count = parseInt(localStorage.image_count) + 1;
                                 }
                             }
                             show_data(hash, detail[0]['minimum_quantity'], detail[0]['total_quantity'], detail[0]['no_of_variation'], detail[0]['id']);
@@ -122,7 +137,10 @@
                             }, 0);
                             $('.head-image-img').click(function () {
                                 var back = $(this).parent().prev().find('img').attr('src');
-                                $('#image').height($(window).outerHeight());
+                                if (typeof back == 'undefined') {
+                                    back = $(this).attr('src');
+                                }
+                                $('#image').height($(window).outerHeight() + 2);
                                 $(".panzoom-elements").html('<img src="' + $(this).attr('src') + '">');
                                 $(".next_image").attr('onclick', 'next_image("' + $(this).attr('src') + '")');
                                 $(".back_image").attr('onclick', 'back_image("' + back + '")');
@@ -161,6 +179,12 @@
                             get_unit(detail[0]['lot_unit']);
                             $('.heart-detail').attr('onclick', 'heart(\'' + rc4_er(detail[0]['lot_id']) + '\',\'-1\',\'' + localStorage.marketplace_auction + '\')');
                             $('.heart-detail').attr('id', 'heart' + rc4_er(detail[0]['lot_id']) + '-1');
+                            if (hide_details_request_for_sample == "Y") {
+                                $(".sample-request").show();
+                            } else {
+                                $(".sample-request").hide();
+                            }
+                            //get_product_with_lot_name(detail[0]['lot_id'], 'Y');
                             /*var hide_details_array = detail[0]['hide_details'];
                              var hide_details = hide_details_array.split(',');
                              var reserve_price_start_price = detail[0]['start_price'];
@@ -615,13 +639,12 @@
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         // if (textStatus === "timeout") {
-                        x_alert("You seem to have lost internet connection, please reconnect to get going");
+                        x_alert("You seem to have lost internet connection, please reconnect to get going",'No connection');
                         window.location.href = "no_connection.html";
                         // }
                     }
                 });
-                $('.offer_select').change(function () {
-
+                $('.offer_select').on('blur change', function () {
                     $('#current_price').html($('.offer_select option:selected').attr('cal_val'));
                     $('#span_offer_qty').html($('.offer_select option:selected').val());
                     $('#current_per_price').html(numberWithCommas($('.offer_select option:selected').attr('cal_dis')));
@@ -632,7 +655,7 @@
                         $("#available_quantity_table").html(data);
                     });
                 });
-                $('.makeoffer_select').change(function () {
+                $('.makeoffer_select').on('blur change', function () {
                     $('#makecurrent_price').html($('.makeoffer_select option:selected').attr('cal_val'));
                     $('#span_offer_qty').html($('.makeoffer_select option:selected').val());
                     $('.selected-offer-qty').html($('.makeoffer_select option:selected').val());
@@ -653,8 +676,12 @@
                         console.log(detail);
                         $('.rating-since').html(detail['company_created']);
                         $('.rating-comp').html(detail['comp_trans']);
-                        $('.rating-repeat').html(1 - round((detail['num_of_one_time_buyer'] / detail['num_of_comp_trans']), 2) + ' %');
-                        var rating_value = round(((parseFloat(detail['goods_avg']) + parseFloat(detail['delivery_avg'])) / 2), 2);
+                        if(detail['num_of_one_time_buyer'] == 0 && detail['num_of_comp_trans'] == 0) {$('.rating-repeat').html(0 + ' %');} else { $('.rating-repeat').html((1 - round((parseFloat(detail['num_of_one_time_buyer']) / parseFloat( detail['num_of_comp_trans'])), 2))*100 + ' %');}
+                        var goods_avg = detail['goods_avg']; 
+                        if(detail['goods_avg'] === null) { goods_avg= 0; }
+                        var delivery_avg = detail['delivery_avg']; 
+                        if(detail['delivery_avg'] === null) { delivery_avg= 0; }
+                        var rating_value = round(((parseFloat(goods_avg) + parseFloat(delivery_avg)) / 2), 2);
                         rating_star(rating_value, 'rating-star');
 
                         $('.rating-good-count').html(round(detail['goods_avg'], 2));
@@ -674,8 +701,8 @@
                 <i class="fa fa-angle-double-up"></i>
             </a>
         </div>
-        <div class="header row font-size-1-6-em xstok-text-white  padding-10 width-100p position-fixed z-index-1">
-            <div class="col s2 left-align"><a onclick="back()" class="xstok-text-white"><i class="fa fa-chevron-left"></i></a></i></div>
+        <div class="header row font-size-1-6-em xstok-text-white  padding-10 width-100p position-fixed z-index-1 nav">
+            <div class="col s2 left-align" onclick="back()"><a class="xstok-text-white"><i class="fa fa-chevron-left"></i></a></div>
             <div class="col s9 supplier-name"><i class="fa fa-spinner fa-pulse"></i></div>
             <div class="col s1 right-align" onclick='$("#more_options").openModal()'><i class="fa fa-ellipsis-v"></i></div>
         </div>
@@ -707,10 +734,11 @@
                 <div class="col s12 m6">
                     <div class="card grey lighten-5 margin-bottom-0">
                         <div class="padding-10">
-                            <span class="card-title x-grey bold line-height-25 text-transform-capitalize"><span class="head-title-text"><i class="fa fa-spinner fa-pulse"></i></span><span class="right heart-detail"><i class="fa fa-heart"></i></span></span>
+                            <span class="card-title x-grey bold line-height-25 text-transform-capitalize"><span class="head-title-text"><i class="fa fa-spinner fa-pulse"></i></span><span class="right heart-detail"><i class="fa fa-heart-o"></i></span></span>
                             <div class="qty font-13 x-light-blue">
-                                Total Quantity: <span class="total_quantity"></span> <span class="span_unit_db"></span> | Available Quantity: <span class="span_available_quantity"></span> <span class="span_unit_db"></span>
+                                Total Quantity: <span class="span_total_quantity"></span> <span class="span_unit_db"></span> | Available Quantity: <span class="span_available_quantity"></span> <span class="span_unit_db"></span>
                             </div>
+                            <span> <a class="sample-request" onclick="sample_request()">Request Sample</a></span>
                         </div>
                         <div class="card-action grey lighten-3 padding-tb-5 info_all">
                             <div class="timertitle font-bold font-15">
@@ -748,7 +776,7 @@
                                             <div class="col s6 total-value left-align font-13">Total Value:<br><i class="fa fa-inr"></i> <span id="current_price"></span></div>
                                         </div>
                                         <div class="card-action padding-tb-5 grey lighten-5">
-                                            <div class="center-align">EMD Required : <i class="fa fa-inr"></i> <span class="head-list-price-text" id="emd_req"></span></div>
+                                            <div class="center-align">EMD Required : <i class="fa fa-inr"></i> <span class="head-list-price-text" id="emd_req"><i class="fa fa-spinner fa-pulse"></i></span></div>
                                         </div> 
                                     </div>
                                 </div>
@@ -1098,12 +1126,12 @@
                                     var og_emd__ = round(parseFloat(localStorage.emd_for_this_auc));
                                 }
                                 if (parseFloat(localStorage.emd_bal.replace(/,/g, '')) < parseFloat(og_emd__) && $('#emd_required_val').html() == 'EMD Released Winner') {
-                                    var confirmtitle = localStorage.EMD_over__;
+                                    var confirmtitle = 'Top Up';
                                     var confirmbutton = 'Top up,Cancel';
                                     var confirmlink = 'emd.html';
                                     showEmdConfirm(confirmtitle, confirmbutton, confirmlink);
                                 } else if (parseFloat(localStorage.emd_bal.replace(/,/g, '')) < parseFloat(og_emd__)) {
-                                    var confirmtitle = localStorage.EMD_over__;
+                                    var confirmtitle = 'Top Up';
                                     var confirmbutton = 'Top up,Cancel';
                                     var confirmlink = 'emd.html';
                                     showEmdConfirm(confirmtitle, confirmbutton, confirmlink);
@@ -1138,8 +1166,8 @@
                             if (localStorage.makecal_value == '' && localStorage.makedis_value == '') {
                                 per_price = $('#dd1_' + dynamic_lot + ' option:selected').attr('cal_dis').replace(/,/g, '');
                             }
-                            var per_price_less = parseFloat((50 / 100)) * parseFloat(per_price);
-                            var per_price_more = parseFloat(per_price);
+                            var per_price_less = round(parseFloat((50 / 100)) * parseFloat(per_price), 2);
+                            var per_price_more = round(parseFloat(per_price), 2);
                             $.post(localStorage.host + '../classes/service_manage_wholesale_auction.class.php?action=save_buy_now_offer_click_count&user_id=' + localStorage.user_id + '&admin_id=' + localStorage.user_id + '&lot_id=' + $(this).attr('dynamic_lot') + '&room_id=-1&buy_now_offer=Offer', {id: -1},
                             function (data) {
                                 //$("#fakhruddin").html(data);
@@ -1177,6 +1205,7 @@
                                 var confirmbutton = 'Yes,Cancel';
                                 var confirmlink = localStorage.host + '../classes/service_manage_wholesale_auction.class.php?action=save_update_wholesale_auction_offer&user_id=' + localStorage.user_id + '&admin_id=' + localStorage.user_id + '&lot_id=' + dynamic_lot + '&room_id=-1&qty=' + $("#span_offer_qty").html() + '&per_pcs=' + per_price + '&total_val=' + z + '&emd=' + rc4_er(localStorage.emd_for_this_auc) + '&total_quantity=' + $("#span_total_quantity").html() + '&size_=' + size_ + '&sub_qty_=' + sub_qty_ + '&color_=' + color_ + '&step_1_id=' + $('.makeoffer_select').attr('id_info') + '&min_quantity=' + $('#min_quantity').html();
                                 console.log(confirmlink);
+                                $('#make_offer').html('<i class="fa fa-spinner fa-pulse"></i>Waiting');
                                 showmakeofferConfirm(confirmtitle, confirm_msg_, confirmbutton, confirmlink, dynamic_lot);
                                 $('#text_make_offer').val('');
                                 $("#div_offer_places").html('');
@@ -1218,7 +1247,7 @@
                             }
                         }, 400);
                     });
-                    $(window).scroll(function () {
+                    $(window).on('touchmove scroll', function () {
                         sticky_relocate();
                     });
                     function sticky_relocate() {
@@ -1229,19 +1258,23 @@
                         if (window_top > div_top) {
                             $('.header').css('background-color', 'rgba(255,163,0,1)');
                             $('.header').addClass('z-depth-1');
-                            $('.supplier-name').removeClass('text-shadow-supplier');
+                            $('div.supplier-name').removeClass('text-shadow-supplier');
                             // $('.stick').css('top', '0');
                         } else {
                             $('.header').css('background-color', 'rgba(255,163,0,' + window_top / div_top + ')');
                             $('.header').css('text-shadow', '0px 0px 10px rgba(0,0,0,' + (1 - (window_top / div_top)) + ')');
                             $('.header').removeClass('z-depth-1');
-                            $('.supplier-name').addClass('text-shadow-supplier');
+                            $('div.supplier-name').addClass('text-shadow-supplier');
                             //$('.stick').css('top', 'none');
                         }
-                        if (window_top > info_all) {
+                        if ($(window).scrollTop() + $(window).height() == $(document).height()) {
                             $('.bid_now_main').fadeOut();
                         } else {
-                            $('.bid_now_main').fadeIn();
+                            if (window_top > info_all) {
+                                $('.bid_now_main').fadeOut();
+                            } else {
+                                $('.bid_now_main').fadeIn();
+                            }
                         }
                         if (window_top > show_top_bid) {
                             $('.top-bid').fadeIn();
@@ -1317,11 +1350,11 @@
                                             if (data1.status == 'Y') {
                                                 $("#offer_plcae_div").hide();
                                                 //$("#div_offer_places").html("<div class='padding-10 '>Your offer of " + numberWithCommas(data1.offer_amount) + " for " + data1.qty + " " + $('.span_unit_db').first().text() + " has been received. Supplier is reviewing the offer and will revert within 24 hours. <a class='right' onclick='show_offer_place_div();'> <i class='fa fa-pencil'></i> Change Offer</a></div>");
-                                                $("#div_offer_places").html("<div class='padding-10 font-14'>Your offer has been received, supplier is reviewing the offer and will revert within 24 hours. <br /><br/> <b>Offer Details: </b><br/>Qty: " + data1.qty + " <span class='span_unit_db'></span> <br> Price/<span class='span_unit_db'></span>: <i class='fa fa-inr'></i> " + data1.offer_amount + " <br>  Total value: <i class='fa fa-inr'></i> " + numberWithCommas(data1.offer_amount * data1.per_pcs) + "<br />  <a class='left padding-10 center-align width-100p' onclick='show_offer_place_div();'> <i class='fa fa-pencil'></i> Change Offer</a></div>");
-                                            } else{
-                                                if(data1.status=='D'){
+                                                $("#div_offer_places").html("<div class='padding-10 font-14'>Your offer has been received, supplier is reviewing the offer and will revert within 24 hours. <br /><br/> <b>Offer Details: </b><br/>Qty: " + data1.qty + " <span class='span_unit_db'></span> <br> Price/<span class='span_unit_db'></span>: <i class='fa fa-inr'></i> " + data1.offer_amount + " <br>  Total value: <i class='fa fa-inr'></i> " +numberWithCommas( round(( parseFloat(data1.offer_amount)* parseFloat(data1.qty) ),2)) + "<br />  <a class='left padding-10 center-align width-100p' onclick='show_offer_place_div();'> <i class='fa fa-pencil'></i> Change Offer</a></div>");
+                                            } else {
+                                                if (data1.status == 'D') {
                                                     $("#offer_plcae_div").hide();
-                                                    $("#div_offer_places").html("<div class='padding-10 font-14'>Your offer is declined. <br /> <b>Offer Details: </b><br>Qty: " +data1.qty+" <span class='span_unit_db'></span> <br> Price/<span class='span_unit_db'></span>: " +data1.offer_amount+" <br> Total value: <i class='fa fa-inr'></i> " +numberWithCommas( round(( parseFloat(data1.offer_amount)* parseFloat(data1.qty) ),2)) +"<br /> <a class='left padding-10 center-align width-100p' onclick='show_offer_place_div();'> <i class='fa fa-pencil'></i> Change Offer</a></div>");
+                                                    $("#div_offer_places").html("<div class='padding-10 font-14'>Your offer is declined. <br /> <b>Offer Details: </b><br>Qty: " + data1.qty + " <span class='span_unit_db'></span> <br> Price/<span class='span_unit_db'></span>: " + data1.offer_amount + " <br> Total value: <i class='fa fa-inr'></i> " + numberWithCommas(round((parseFloat(data1.offer_amount) * parseFloat(data1.qty)), 2)) + "<br /> <a class='left padding-10 center-align width-100p' onclick='show_offer_place_div();'> <i class='fa fa-pencil'></i> Change Offer</a></div>");
                                                 }
                                             }
                                         }
@@ -1362,8 +1395,8 @@
                                         $(".div_offer_content").html('<div class="padding-10 font-24 center-align">' + localStorage.out_of_stock__ + '</div>');
                                     }
                                 } else {
-                                    if(data1.status=='D') {                                        
-                                        $("#div_offer_places").html("<div class='padding-10 font-14'>Your offer is declined. <br /> <b>Offer Details: </b><br>Qty: " +data1.qty+" <span class='span_unit_db'></span> <br> Price/<span class='span_unit_db'></span>: " +data1.offer_amount+" <br> Total value: <i class='fa fa-inr'></i> " +numberWithCommas( round(( parseFloat(data1.offer_amount)* parseFloat(data1.qty)),2)) +"<br /> <a class='left padding-10 center-align width-100p' onclick='show_offer_place_div();'> <i class='fa fa-pencil'></i> Change Offer</a></div>");
+                                    if (data1.status == 'D') {
+                                        $("#div_offer_places").html("<div class='padding-10 font-14'>Your offer is declined. <br /> <b>Offer Details: </b><br>Qty: " + data1.qty + " <span class='span_unit_db'></span> <br> Price/<span class='span_unit_db'></span>: " + data1.offer_amount + " <br> Total value: <i class='fa fa-inr'></i> " + numberWithCommas(round((parseFloat(data1.offer_amount) * parseFloat(data1.qty)), 2)) + "<br /> <a class='left padding-10 center-align width-100p' onclick='show_offer_place_div();'> <i class='fa fa-pencil'></i> Change Offer</a></div>");
                                     }
                                 }
                             }
@@ -1422,6 +1455,11 @@
                             success: function (data) {
                                 if (data == 'Yes')
                                     $('.fa-heart').addClass('w_selected');
+                                if (data == 'Yes') {
+                                    $('#heart' + rc4_er(lot_id) + rc4_er(room_id)).html('<i class="fa fa-heart x-red"></i>');
+                                } else {
+                                    $('#heart' + rc4_er(lot_id) + rc4_er(room_id)).html('<i class="fa fa-heart-o"></i>');
+                                }
                             }
                         });
                     }

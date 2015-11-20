@@ -29,6 +29,10 @@
                 </div>
                 <div id="test1" class="tab-body row grey lighten-5 padding-top-56 padding-bottom-20">
                     <form id="login" class="padding-top-15" data-parsley-validate novalidate>
+                        <input type="hidden" name="mobile_no_verification"/>
+                        <input type="hidden" name="authorize_status"/>
+                        <input type="hidden" name="email_verification"/>
+                        <input type="hidden" name="role_id"/>
                         <div class="row margin-bottom-0">
                             <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
                                 <span class="x-required" style="">*</span>
@@ -454,8 +458,8 @@
                                             var retries = 0;
                                             function onDeviceReady() {
                                                 //FastClick.attach(document.body);
-                                                //pictureSource = navigator.camera.PictureSourceType;
-                                                //destinationType = navigator.camera.DestinationType;
+                                                pictureSource = navigator.camera.PictureSourceType;
+                                                destinationType = navigator.camera.DestinationType;
                                                 if (device.platform == "Android") {
                                                     // document.addEventListener("backbutton", onBackKeyDown, false);
                                                 }
@@ -475,7 +479,7 @@
                                                     $('#upload').removeClass('disable');
                                                     $('#upload').html('<i class="fa fa-cloud-upload x-white"></i> Upload Visiting Card</a>');
                                                     $('.upload-succ').html('<i class="fa fa-check x-green fa-2x"></i>');
-                                                    x_alert('Visiting Card Uploaded');
+                                                    x_alert('Visiting Card Uploaded','Done!!');
 
                                                 }
 
@@ -488,7 +492,7 @@
                                                     } else {
                                                         retries = 0;
                                                         clearCache();
-                                                        x_alert('Upload failed Please try again');
+                                                        x_alert('Upload failed Please try again','Failed!!');
                                                         $('.upload-succ').html('<i class="fa fa-times x-red fa-2x"></i>');
                                                     }
                                                 }
@@ -525,14 +529,14 @@
 
                                                     navigator.camera.getPicture(uploadPhoto,
                                                             function (message) {
-                                                                x_alert('Load failed');
+                                                                x_alert('No files were selected.','Files');
                                                             },
                                                             {quality: 50,
                                                                 destinationType: Camera.DestinationType.FILE_URI,
                                                                 sourceType: Camera.PictureSourceType.PHOTOLIBRARY}
                                                     );
                                                 } else {
-                                                    x_alert('Please fill the document name field');
+                                                    x_alert('Please fill the document name field','Incomplete');
                                                 }
 
                                             }
@@ -587,7 +591,7 @@
                                                 console.log("upload error source " + error.source);
                                                 console.log("upload error target " + error.target);
                                             }
-                                            $(window).scroll(function () {
+                                            $(window).on('touchmove scroll', function () {
                                                 //tab_stick();
                                             });
                                             $(document).ready(function () {
@@ -646,7 +650,7 @@
                                                         $('.dealing').html(body);
                                                     },
                                                     error: function (jqXHR, textStatus, errorThrown) {
-                                                        x_alert(localStorage.no_connection);
+                                                        x_alert(localStorage.no_connection,'No Connection');
                                                         window.location.href = "no_connection.html";
                                                     }
                                                 });
@@ -662,7 +666,7 @@
                                                         $('.interested_category').html(body);
                                                     },
                                                     error: function (jqXHR, textStatus, errorThrown) {
-                                                        x_alert(localStorage.no_connection);
+                                                        x_alert(localStorage.no_connection,'No Connection');
                                                         window.location.href = "no_connection.html";
                                                     }
                                                 });
@@ -680,6 +684,10 @@
                                                         $('input[name="department"]').val(logininfo['buyer_detail']['department']);
                                                         $('input[name="last_name"]').attr('value', logininfo['buyer_detail']['last_name']);
                                                         $('input[name="first_name"]').val(logininfo['buyer_detail']['first_name']);
+                                                        $('input[name="mobile_no_verification"]').val(logininfo['buyer_detail']['mobile_no_verification']);
+                                                        $('input[name="authorize_status"]').val(logininfo['login_detail']['authorize_status']);
+                                                        $('input[name="role_id"]').val(logininfo['login_detail']['role_id']);
+                                                        $('input[name="email_verification"]').val(logininfo['login_detail']['email_verification']);
                                                         if (logininfo['buyer_detail']['visiting_card'] != '') {
                                                             $('.visting-card').html('<img src="' + logininfo['buyer_detail']['visiting_card'] + '"class="width-100p" >');
                                                         }
@@ -1028,7 +1036,7 @@
                                                         $('#login button[type="submit"]').html('Processing   <i class="fa fa-refresh fa-spin"></i>');
                                                         e.preventDefault();
                                                         var self = this;
-                                                        var json = '{"id":"' + rc4_dr(localStorage.user_id) + '","email_id":"' + $('input[name="email_id"]').val() + '","admin_id":"' + rc4_dr(localStorage.user_id) + '","name":"' + $('input[name="first_name"]').val() + ' ' + $('input[name="last_name"]').val() + '","first_name":"' + $('input[name="first_name"]').val() + '","last_name":"' + $('input[name="last_name"]').val() + '","mobile_no":"' + $('input[name="mobile_no"]').val() + '","phone_no":"' + $('input[name="phone_no"]').val() + '","title":"' + $('input[name="title"]').val() + '","department":"' + $('input[name="department"]').val() + '","active":"Y","role_id":"3","action":"update","form_type":"FrontEnd","registration_type":"Buyer"}';
+                                                        var json = '{"id":"' + rc4_dr(localStorage.user_id) + '","email_id":"' + $('input[name="email_id"]').val() + '","admin_id":"' + rc4_dr(localStorage.user_id) + '","name":"' + $('input[name="first_name"]').val() + ' ' + $('input[name="last_name"]').val() + '","first_name":"' + $('input[name="first_name"]').val() + '","last_name":"' + $('input[name="last_name"]').val() + '","mobile_no":"' + $('input[name="mobile_no"]').val() + '","phone_no":"' + $('input[name="phone_no"]').val() + '","title":"' + $('input[name="title"]').val() + '","department":"' + $('input[name="department"]').val() + '","mobile_no_verification":"' + $('input[name="mobile_no_verification"]').val() + '","authorize_status":"'+$('input[name="authorize_status"]').val()+'","email_verification":"'+$('input[name="email_verification"]').val()+'","active":"Y","role_id":"'+$('input[name="role_id"]').val()+'","action":"update","form_type":"FrontEnd","registration_type":"Buyer"}';
                                                         // http://xstok.com/webservices/buyer_registration.php?json={"id":"8","admin_id":"1","name":"Nitin Pandey","first_name":"Nitin","last_name":"Pandey","mobile_no":"9664242221","mobile_no_verification":"Y","phone_no":"","email_id":"nitin@ezcommindia.com","password":"","active":"Y","title":"","department":"","comment":"Pls fill PAN No not correct","role_id":"3","pass":"d41d8cd98f00b204e9800998ecf8427e","now":"2015-09-10 10:20:26","action":"update","form_type":"FrontEnd","registration_type":"Buyer","authorize_status":"Y","account_manager":"2","visiting_card":null}
 
                                                         console.log(json);
@@ -1042,7 +1050,7 @@
                                                                 }, 700);
                                                             },
                                                             error: function (jqXHR, textStatus, errorThrown) {
-                                                                x_alert(localStorage.no_connection);
+                                                                x_alert(localStorage.no_connection,'No Connection');
                                                                 window.location.href = "no_connection.html";
                                                             }
                                                         });
@@ -1069,7 +1077,7 @@
                                                                     }, 700);
                                                                 },
                                                                 error: function (jqXHR, textStatus, errorThrown) {
-                                                                    x_alert(localStorage.no_connection);
+                                                                    x_alert(localStorage.no_connection,'No Connection');
                                                                     window.location.href = "no_connection.html";
                                                                 }
                                                             });
@@ -1097,7 +1105,7 @@
                                                                     }, 700);
                                                                 },
                                                                 error: function (jqXHR, textStatus, errorThrown) {
-                                                                    x_alert(localStorage.no_connection);
+                                                                    x_alert(localStorage.no_connection,'No Connection');
                                                                     window.location.href = "no_connection.html";
                                                                 }
                                                             });
@@ -1127,7 +1135,7 @@
                                                                 }, 700);
                                                             },
                                                             error: function (jqXHR, textStatus, errorThrown) {
-                                                                x_alert(localStorage.no_connection);
+                                                                x_alert(localStorage.no_connection,'No Connection');
                                                                 window.location.href = "no_connection.html";
                                                             }
                                                         });
@@ -1154,7 +1162,7 @@
                                                                 }, 700);
                                                             },
                                                             error: function (jqXHR, textStatus, errorThrown) {
-                                                                x_alert(localStorage.no_connection);
+                                                                x_alert(localStorage.no_connection,'No Connection');
                                                                 window.location.href = "no_connection.html";
                                                             }
                                                         });
@@ -1221,7 +1229,7 @@
                                                         },
                                                         error: function (jqXHR, textStatus, errorThrown) {
                                                             //      if (textStatus === "timeout") {
-                                                            x_alert(localStorage.no_connection);
+                                                            x_alert(localStorage.no_connection,'No Connection');
                                                             window.location.href = "no_connection.html";
                                                             //    }
                                                         }

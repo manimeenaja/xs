@@ -152,6 +152,7 @@ localStorage.reserve_price_met_ = 'Reserve price met';
 localStorage.confirm_auto_choose_val_ = "Your auto bid value doesn't match auction minimum increment value <br /> <br />Choose from one of the values below";
 localStorage.confirm_100_per_auto_bid = "You have entered price of more than 100% of the start value. Do you wish to continue?";
 localStorage.no_connection = "You seem to have lost internet connection, please reconnect to get going";
+localStorage.bid_place_min_price = 'Please enter value above minimum offer price';
 localStorage.hide_list_p_percent = 1;
 localStorage.supp_id_list_array = [1470, 1868];
 /*----------------DEFINED END-------------------*/
@@ -169,9 +170,15 @@ if ('addEventListener' in document) {
 function back() {
     window.history.back();
 }
-function x_alert(data) {
+function x_alert(data, title) {
     //alert(data);
-    navigator.notification.alert(data);
+    if (typeof title == 'undefined') {
+        title = '';
+    }
+    navigator.notification.alert(data,ep,title);
+}
+function ep() {
+
 }
 function auction_detail(id, auc_type_id) {
     //window.location.href = 'auction_detail.html#' + id;
@@ -196,17 +203,19 @@ function auction_detail(id, auc_type_id) {
     }
 }
 function coming_soon() {
-    x_alert('This auction will become live soon. We will notify you when it becomes live.');
+    x_alert('This auction will become live soon. We will notify you when it becomes live.', 'Coming Soon');
 }
 function auction_room(lot_id, room_id) {
     window.location.href = 'auction_room.html#' + lot_id + '-' + room_id;
 }
-function shipping_detail(lot_id, room_id) {
-    window.location.href = 'shipping_detail.html#' + lot_id + '-' + room_id;
+function shipping_detail(lot_id, room_id, winner_id, order_status_id) {
+    window.location.href = 'shipping_detail.html#' + lot_id + '-' + room_id + '-' + winner_id + '-' + order_status_id;
 }
 
 function redirect(location, hash) {
     if (typeof hash === 'undefined') {
+        hash = '';
+    } else if (hash == '') {
         hash = '';
     } else {
         hash = '#' + hash;
@@ -229,7 +238,7 @@ function redirect(location, hash) {
         window.location.href = location + ".html" + hash;
     }
 }
-function home_select(search_category, search_category_name, search_table_name, type) {
+function home_select(search_category, search_category_name, search_table_name, type,hash) {
     if (localStorage.logged_in == '1') {
         if (type == 0) {
             localStorage.search_category = search_category;
@@ -237,7 +246,7 @@ function home_select(search_category, search_category_name, search_table_name, t
             localStorage.search_category_name = search_category_name;
             redirect('search');
         } else if (type == 1) {
-            redirect(search_table_name);
+            redirect(search_table_name,hash);
         } else if (type == 2) {
             window.open(search_table_name, "_system");
         }
@@ -319,7 +328,7 @@ function add_menu(location, type, show_logo, options, events) {
     if (options == 1) {
         options_menu = '';
     }
-    if (localStorage.toggle == 'gird') {
+    if (localStorage.toggle == 'grid') {
         var view = 'list';
         var view_type = 'grid';
     } else {
@@ -344,9 +353,9 @@ function add_menu(location, type, show_logo, options, events) {
     }
     var profile = '';
     if (location == 'dashboard') {
-        profile = '<a href="profile.html" class="right  height-56 padding-lr-10 x-grey font-bold"><img src="' + localStorage.profile_pic + '" class="circle dash-profile-image-img left" alt="Profile Picture"> ' + localStorage.name + ' </a>';
+        profile = '<a href="profile.html" class="right  height-56 padding-lr-10 x-grey font-bold text-transform-capitalize"><img src="' + localStorage.profile_pic + '" class="circle dash-profile-image-img left" alt="Profile Picture"> ' + localStorage.name + ' </a>';
     }
-    $('#menu-add').html('<ul id="slide-out" class="side-nav grey lighten-5"><li class="padding-top-15 left-align main" style="background: -webkit-linear-gradient(top, rgba(0,0,0,0.0), rgba(0,0,0,0.6)), url(' + localStorage.cover_pic_path + ');background-size: cover;"><span class="image-menu logged_in "><img src="' + localStorage.profile_pic + '" class="circle profile-image-img left" alt="Profile Picture"></span><br><span class="name-menu logged_in "><a class="white-text line-height-1 text-transform-capitalize" href="profile.html">' + localStorage.name + '</a></span><br><span class="logged_in ext-transform-capitalize">EMD Balance: <i class="fa fa-inr"></i> <span class="emd-bal">' + localStorage.emd_bal + '</span></span></li><li class="main_option homeactive"><a href="home.html"><span class="menu-icon"><i class="mdi-action-home"></i></span><span class="menu-text"> Home</span></a></li><li class="main_option allactive logged_in verified" onclick="all_listing()"><a href="javascript:void(0)"><span class="menu-icon"><i class="mdi-social-public"></i></span><span class="menu-text"> Ongoing Sales</span></a></li><li class="main_option dashboardactive logged_in verified"><a href="dashboard.html"><span class="menu-icon"><i class="mdi-social-poll"></i></span><span class="menu-text"> Dashboard</span></a></li><li class="main_option roomactive logged_in verified"><a href="all_events.html"><span class="menu-icon"><i class="fa fa-gavel"></i></span><span class="menu-text">  All Events </span></a></li><li class="main_option calendaractive logged_in verified"><a href="calendar.html"><span class="menu-icon"><i class="mdi-editor-insert-invitation"></i></span><span class="menu-text"> Calendar</span></a></li><li class="main_option watchlistactive logged_in verified"><a href="watchlist.html"><span class="menu-icon"><i class="fa fa-heart " style="font-size: 21px  !important;"></i></span><span class="menu-text"> WatchList</span><span class="menu_count watchlist_count"></span></a></li><li class="main_option notificationsactive logged_in verified"><a href="notifications.html"><span class="menu-icon"><i class="fa fa-bell " style="font-size: 21px  !important;"></i></span><span class="menu-text">  Notifications </span><span class="menu_count notification_count"></span></a></li><li class="main_option cartactive logged_in verified"><a href="shipping_detail.html#d7-0"><span class="menu-icon"><i class="fa fa-truck " style="font-size: 21px  !important;"></i></span><span class="menu-text">  Cart</span><span class="menu_count cart_count"></span></a></li><div class="divider"></div><li onclick="redirect(\'story\')"><a href="javascript:void(0)"> Our Story</a></li><li onclick="redirect(\'buyer_protection\')"><a href="javascript:void(0)">  Buyer Protection </a></li><li onclick="redirect(\'work_with_us\')"><a href="javascript:void(0)">  Work With Us </a></li><li onclick="redirect(\'contact\')"><a href="javascript:void(0)">  Contact Us </a></li><div class="divider"></div><li class="logged_in"><a href="logout.html"><i class="fa fa-power-off"></i>  Sign Out</a></li><li class="logged_out"><a href="signin.html"><i class="fa fa-sign-in"></i>  Login</a></li></ul><a href="#" data-activates="slide-out" class="button-collapse ' + type_menu + '"><i class="mdi-navigation-menu"></i></a>' + profile + '<a href="#" class="right  height-56 ' + show_logo_menu + '"><img class="height-56" src="images/logo.png"></a><a href="#" class="font-24 ' + events_menu + '">Events</a><a href="#" class="font-24 ' + events_menu_cal + '">Calendar</a><a href="#" class="button-grid ' + options_menu + '" view="' + view_type + '"><i class="fa fa-' + view + '"></i></a><a href="#" class="button-search ' + options_menu + '"><div class="input-field"><input id="search" type="search" required><label for="search"><i class="fa fa-search"></i></label></div></a>');
+    $('#menu-add').html('<ul id="slide-out" class="side-nav grey lighten-5"><li class="padding-top-15 left-align main" style="background: -webkit-linear-gradient(top, rgba(0,0,0,0.0), rgba(0,0,0,0.6)), url(' + localStorage.cover_pic_path + ');background-size: cover;"><span class="image-menu logged_in "><a href="profile.html"><img src="' + localStorage.profile_pic + '" class="circle profile-image-img left" alt="Profile Picture"></a></span><br><span class="name-menu logged_in "><a class="white-text line-height-1 text-transform-capitalize" href="profile.html">' + localStorage.name + '</a></span><br><span class="logged_in ext-transform-capitalize">EMD Balance: <i class="fa fa-inr"></i> <span class="emd-bal">' + localStorage.emd_bal + '</span></span></li><li class="main_option homeactive"><a href="home.html"><span class="menu-icon"><i class="mdi-action-home"></i></span><span class="menu-text"> Home</span></a></li><li class="main_option allactive logged_in verified" onclick="all_listing()"><a href="javascript:void(0)"><span class="menu-icon"><i class="mdi-social-public"></i></span><span class="menu-text"> Ongoing Sales</span></a></li><li class="main_option dashboardactive logged_in verified"><a href="dashboard.html"><span class="menu-icon"><i class="mdi-social-poll"></i></span><span class="menu-text"> Dashboard</span></a></li><li class="main_option roomactive logged_in verified"><a href="all_events.html"><span class="menu-icon"><i class="fa fa-gavel"></i></span><span class="menu-text">  All Events </span></a></li><li class="main_option calendaractive logged_in verified"><a href="calendar.html"><span class="menu-icon"><i class="mdi-editor-insert-invitation"></i></span><span class="menu-text"> Calendar</span></a></li><li class="main_option watchlistactive logged_in verified"><a href="watchlist.html"><span class="menu-icon"><i class="fa fa-heart " style="font-size: 21px  !important;"></i></span><span class="menu-text"> WatchList</span><span class="menu_count watchlist_count"></span></a></li><li class="main_option notificationsactive logged_in verified"><a href="notifications.html"><span class="menu-icon"><i class="fa fa-bell " style="font-size: 21px  !important;"></i></span><span class="menu-text">  Notifications </span><span class="menu_count notification_count"></span></a></li><li class="main_option cartactive logged_in verified"><a href="shipping_detail.html#d7-0-0-1"><span class="menu-icon"><i class="fa fa-truck " style="font-size: 21px  !important;"></i></span><span class="menu-text">  Cart</span><span class="menu_count cart_count"></span></a></li><div class="divider"></div><li onclick="redirect(\'story\')"><a href="javascript:void(0)"> Our Story</a></li><li onclick="redirect(\'buyer_protection\')"><a href="javascript:void(0)">  Buyer Protection </a></li><li onclick="redirect(\'work_with_us\')"><a href="javascript:void(0)">  Work With Us </a></li><li onclick="redirect(\'contact\')"><a href="javascript:void(0)">  Contact Us </a></li><div class="divider"></div><li class="logged_in"><a href="logout.html"><i class="fa fa-power-off"></i>  Sign Out</a></li><li class="logged_out"><a href="signin.html"><i class="fa fa-sign-in"></i>  Login</a></li></ul><a href="#" data-activates="slide-out" class="button-collapse ' + type_menu + '"><i class="mdi-navigation-menu"></i></a>' + profile + '<a href="#" class="right  height-56 ' + show_logo_menu + '"><img class="height-56" src="images/logo.png"></a><a href="#" class="font-24 ' + events_menu + '">Events</a><a href="#" class="font-24 ' + events_menu_cal + '">Calendar</a><a href="#" class="button-grid ' + options_menu + '" view="' + view_type + '"><i class="fa fa-' + view + '"></i></a><a href="#" class="button-search ' + options_menu + '"><div class="input-field"><input id="search" type="search" required><label for="search"><i class="fa fa-search"></i></label></div></a>');
 
     if (localStorage.logged_in == '0' || localStorage.getItem("logged_in") === null) {
         $('.logged_in').hide();
@@ -404,9 +413,22 @@ function no_result(data) {
 }
 function search_loader() {
     $('.search-list').html();
-    $('.search-list').html('<li class="center-align no-shadow loader"><div class="preloader-wrapper big active"><div class="spinner-layer spinner-blue-only loader-round"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></li> ');
-    $('li.center-align.no-shadow').css('margin-top', $(window).height());
+    if (localStorage.page == '1') {
+        $('.search-list').html('<li class="center-align no-shadow loader"><div class="preloader-wrapper big active"><div class="spinner-layer spinner-blue-only loader-round"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></li> ');
+        $('li.center-align.no-shadow').css('margin-top', $(window).height());
+    } else {
+        if ($('.loader').length <= 0) {
+            $('.search-list').append('<li class="center-align no-shadow loader" style="clear:both;"><div class="progress xstok"><div class="indeterminate xstok"></div></div></li> ');
+        }
+    }
 }
+
+function no_more() {
+    if ($('.nomore').length <= 0) {
+        $('.search-list').append('<li class="center-align no-shadow nomore font-17">THAT\'S ALL FOLKS!</li> ');
+    }
+}
+
 function rc4_er(string) {
     return bin2hex(rc4_fun(localStorage.key_code, string.toString()).toString());
 }
@@ -425,7 +447,7 @@ function heart(lot_id, room_id, auc_type_id) {
             if (data == 'success') {
                 $('#heart' + lot_id + room_id).html('<i class="fa fa-heart x-red"></i>');
             } else {
-                $('#heart' + lot_id + room_id).html('<i class="fa fa-heart"></i>');
+                $('#heart' + lot_id + room_id).html('<i class="fa fa-heart-o"></i>');
             }
         }
     });
@@ -584,6 +606,9 @@ function confirm_watchlist(lot_id) {
     var user_id = localStorage.user_id;
     $.getJSON(localStorage.host + "../classes/buyer_dashboard.class.php?action=remove_watchlist&lot_id=" + lot_id + "&user_id=" + user_id, function (data) {
         if (data['status'] == "success") {
+            var count = ($('.watchlist-count').html().split('(')[1]);
+            count = parseFloat(count.split(')')[0]) - 1;
+            $('.watchlist-count').html('(' + count + ')');
             $('.watchlist_' + lot_id).each(function () {
                 $(this).remove();
             });
@@ -615,7 +640,7 @@ if (localStorage.logged_in == '1') {
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     /*    if (textStatus === "timeout") {
-                     x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                     x_alert("You seem to have lost internet connection, please reconnect to get going",'No connection'); window.location.href = "no_connection.html";
                      }*/
                 }
             });
@@ -639,7 +664,7 @@ if (localStorage.logged_in == '1') {
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     /*    if (textStatus === "timeout") {
-                     x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+                     x_alert("You seem to have lost internet connection, please reconnect to get going",'No connection'); window.location.href = "no_connection.html";
                      }*/
                 }
             });
@@ -737,7 +762,7 @@ function supplier_circle() {
         },
         error: function (jqXHR, textStatus, errorThrown) {
             /*  if (textStatus === "timeout") {
-             x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+             x_alert("You seem to have lost internet connection, please reconnect to get going",'No connection'); window.location.href = "no_connection.html";
              }*/
         }
     });
@@ -752,7 +777,7 @@ function insert_update_emd_temp_table(lot_id, room_id) {
         },
         error: function (jqXHR, textStatus, errorThrown) {
             /*  if (textStatus === "timeout") {
-             x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+             x_alert("You seem to have lost internet connection, please reconnect to get going",'No connection'); window.location.href = "no_connection.html";
              }*/
         }
     });
@@ -786,44 +811,46 @@ function get_product_with_lot_name(lot_id, hide_details_list_price_ctl) {
             var bid = JSON.parse(data);
             console.log(bid);
             var table_body = "";
-            for (var i = 0; i < bid.length; i++) {
-                var image;
-                if (bid[i]['image'].indexOf("|")) {
-                    image = bid[i]['image'].split('|');
-                    for (var j = 0; j < image.length; j++) {
-                        var src = image[j];
+            if (bid != null) {
+                for (var i = 0; i < bid.length; i++) {
+                    var image;
+                    if (bid[i]['image'].indexOf("|")) {
+                        image = bid[i]['image'].split('|');
+                        for (var j = 0; j < image.length; j++) {
+                            var src = image[j];
+                            if (image[j] == '') {
+                                src = 'images/no_image.jpg';
+                            }
+                            $('.head-image').append('<div><img  alt="xstok" class="head-image-img" src="' + src + '"></div>');
+                            localStorage.image_count = parseInt(localStorage.image_count) + 1;
+                            localStorage.image_slide += '|' + src;
+                        }
+                        table_body += '<div class="product_detail_list"><div class="product_images"><img src=" ' + image[0] + '" ></div><div class="product_details_text"><div class="product_titles_list"><b>Title</b> : ' + bid[i]['title'] + '</div><div class="product_quantity_list"><b>Quantity</b> : ' + bid[i]['unit'] + '</div>';
+                        if (hide_details_list_price_ctl == "N")
+                        {
+                            table_body += '<div class="product_price_list"><b>Price/<span class="unit"></span></b> : <i class="fa fa-inr"></i> ' + numberWithCommas(bid[i]['price']) + '</div>';
+                        }
+                        table_body += '<div class="product_condition_list"><b>Condition</b> : ' + bid[i]['condition'] + '</div></div></div>';
+                    } else {
+                        var src = bid[i]['image'];
                         if (image[j] == '') {
                             src = 'images/no_image.jpg';
                         }
-                        $('.head-image').append('<div><img  alt="xstok" class="head-image-img" src="' + src + '"></div>');
+                        table_body += '<div class="product_detail_list"><div class="product_images"><img src=" ' + src + '" ></div><div class="product_details_text"><div class="product_titles_list"><b>Title</b> : ' + bid[i]['title'] + '</div><div class="product_quality_list"><b>Quantity</b> : ' + bid[i]['unit'] + '</div>';
+                        if (hide_details_list_price_ctl == "N")
+                        {
+                            table_body += '<div class="product_price_list"><b>Price/<span class="unit"></span></b> : <i class="fa fa-inr"></i> ' + numberWithCommas(bid[i]['price']) + '</div>';
+                        }
+                        table_body += '<div class="product_condition_list"><b>Condition</b> : ' + bid[i]['condition'] + '</div></div></div>';
+
+
+                        $('.head-image').append('<div><img alt="xstok" class="head-image-img" src="' + bid[i]['image'] + '"></div>');
+                        localStorage.image_slide += '|' + bid[i]['image'];
                         localStorage.image_count = parseInt(localStorage.image_count) + 1;
-                        localStorage.image_slide += '|' + src;
                     }
-                    table_body += '<div class="product_detail_list"><div class="product_images"><img src=" ' + image[0] + '" ></div><div class="product_details_text"><div class="product_titles_list"><b>Title</b> : ' + bid[i]['title'] + '</div><div class="product_quantity_list"><b>Quantity</b> : ' + bid[i]['unit'] + '</div>';
-                    if (hide_details_list_price_ctl == "N")
-                    {
-                        table_body += '<div class="product_price_list"><b>Price/<span class="unit"></span></b> : <i class="fa fa-inr"></i> ' + numberWithCommas(bid[i]['price']) + '</div>';
-                    }
-                    table_body += '<div class="product_condition_list"><b>Condition</b> : ' + bid[i]['condition'] + '</div></div></div>';
-                } else {
-                    var src = bid[i]['image'];
-                    if (image[j] == '') {
-                        src = 'images/no_image.jpg';
-                    }
-                    table_body += '<div class="product_detail_list"><div class="product_images"><img src=" ' + src + '" ></div><div class="product_details_text"><div class="product_titles_list"><b>Title</b> : ' + bid[i]['title'] + '</div><div class="product_quality_list"><b>Quantity</b> : ' + bid[i]['unit'] + '</div>';
-                    if (hide_details_list_price_ctl == "N")
-                    {
-                        table_body += '<div class="product_price_list"><b>Price/<span class="unit"></span></b> : <i class="fa fa-inr"></i> ' + numberWithCommas(bid[i]['price']) + '</div>';
-                    }
-                    table_body += '<div class="product_condition_list"><b>Condition</b> : ' + bid[i]['condition'] + '</div></div></div>';
 
-
-                    $('.head-image').append('<div><img alt="xstok" class="head-image-img" src="' + bid[i]['image'] + '"></div>');
-                    localStorage.image_slide += '|' + bid[i]['image'];
-                    localStorage.image_count = parseInt(localStorage.image_count) + 1;
+                    $('.image-count-value').html(localStorage.image_count);
                 }
-
-                $('.image-count-value').html(localStorage.image_count);
             }
             setTimeout(function () {
                 $('.single-item').slick({
@@ -838,7 +865,10 @@ function get_product_with_lot_name(lot_id, hide_details_list_price_ctl) {
             $('.product_details').html(table_body);
             $('.head-image-img').click(function () {
                 var back = $(this).parent().prev().find('img').attr('src');
-                $('#image').height($(window).outerHeight());
+                if (typeof back == 'undefined') {
+                    back = $(this).attr('src');
+                }
+                $('#image').height($(window).outerHeight() + 2);
                 $(".panzoom-elements").html('<img src="' + $(this).attr('src') + '">');
                 $(".next_image").attr('onclick', 'next_image("' + $(this).attr('src') + '")');
                 $(".back_image").attr('onclick', 'back_image("' + back + '")');
@@ -877,7 +907,7 @@ function get_product_with_lot_name(lot_id, hide_details_list_price_ctl) {
         },
         error: function (jqXHR, textStatus, errorThrown) {
             /* if (textStatus === "timeout") {
-             x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+             x_alert("You seem to have lost internet connection, please reconnect to get going",'No connection'); window.location.href = "no_connection.html";
              }*/
         }
     });
@@ -908,7 +938,7 @@ function get_packege_detail(lot_id, room_id) {
         },
         error: function (jqXHR, textStatus, errorThrown) {
             /*  if (textStatus === "timeout") {
-             x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+             x_alert("You seem to have lost internet connection, please reconnect to get going",'No connection'); window.location.href = "no_connection.html";
              }*/
         }
     });
@@ -961,7 +991,7 @@ function supplier_detail(id) {
         },
         error: function (jqXHR, textStatus, errorThrown) {
             /*  if (textStatus === "timeout") {
-             x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+             x_alert("You seem to have lost internet connection, please reconnect to get going",'No connection'); window.location.href = "no_connection.html";
              }*/
         }
     });
@@ -1085,10 +1115,10 @@ function showConfirm(msg, title, buttonlabels, link, dynamic_lot) {
     // http://192.168.0.13/classes/service_manage_auction.class.php?action=save_intial_bid_auction&user_id=d3&admin_id=d3&lot_id=d3&room_id=d7&golden_time=N&golden_time_value=d6d712&first_bid=172800&auction_on=discount&reserve_price=70&discount_value=144000&actual_price=480000&dynamic_min_user=d6&bid_type=All&tender_local_var=N
 
     /* if (confirm(msg) == true) {
-     onConfirm(link, dynamic_lot);
-     } else {
-     
-     }*/
+        onConfirm(link, dynamic_lot);
+    } else {
+
+    }*/
 //need t*o change 
 
 
@@ -1096,14 +1126,14 @@ function showConfirm(msg, title, buttonlabels, link, dynamic_lot) {
 
 
     navigator.notification.confirm(
-            msg, // message
-            function (index) {
-                if (index == 1) {
-                    onConfirm(link, dynamic_lot);
-                }
-            }, // callback to invoke with index of button pressed
-            title, // title
-            buttonlabels          // buttonLabels
+     msg, // message
+     function (index) {
+     if (index == 1) {
+     onConfirm(link, dynamic_lot);
+     }
+     }, // callback to invoke with index of button pressed
+     title, // title
+     buttonlabels          // buttonLabels
             );
 
 }
@@ -1111,7 +1141,9 @@ function showConfirm(msg, title, buttonlabels, link, dynamic_lot) {
 
 
 function onConfirm(link, dynamic_lot) {
+    $('.bid_now_button').html('<i class="fa fa-spinner fa-pulse"></i>Waiting');
     $.ajax({url: link, data: {}, type: 'get', success: function (data) {
+            $('.bid_now_button').html('Bid Now');
             $('.current_value').html('');
             $('#autobid').closeModal();
             Materialize.toast(data, 2000, 'x-red bold', function () {
@@ -1165,7 +1197,7 @@ function onConfirm(link, dynamic_lot) {
         },
         error: function (jqXHR, textStatus, errorThrown) {
             //    if (textStatus === "timeout") {
-            x_alert("You seem to have lost internet connection, please reconnect to get going");
+            x_alert("You seem to have lost internet connection, please reconnect to get going", 'No connection');
             window.location.href = "no_connection.html";
             //}
         }
@@ -1220,7 +1252,7 @@ function insertIntoDb_shipping(event) {
             success: function (data) {
                 if (data == 'Yes')
                     $('.ship_loader').html('completed');
-                x_alert('Email sent successfully');
+                x_alert('Email sent successfully', 'Successful');
                 $('#shipping_qoute').closeModal();
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -1248,7 +1280,7 @@ function insertIntoDb(event) {
             success: function (data) {
                 if (data == 'Yes')
                     $('.auc_loader').html('completed');
-                x_alert('Email sent successfully');
+                x_alert('Email sent successfully', 'Successful');
                 $('#email_auction').closeModal();
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -1271,7 +1303,7 @@ function auction_assort_close_allow_buy(lot_id, room_id) {
         },
         error: function (jqXHR, textStatus, errorThrown) {
             /* if (textStatus === "timeout") {
-             x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+             x_alert("You seem to have lost internet connection, please reconnect to get going",'No connection'); window.location.href = "no_connection.html";
              }*/
         }
     });
@@ -1403,7 +1435,7 @@ function bid_counter(hash) {
         },
         error: function (jqXHR, textStatus, errorThrown) {
             /*if (textStatus === "timeout") {
-             x_alert("You seem to have lost internet connection, please reconnect to get going"); window.location.href = "no_connection.html";
+             x_alert("You seem to have lost internet connection, please reconnect to get going",'No connection'); window.location.href = "no_connection.html";
              }*/
         }
     });
@@ -1430,6 +1462,7 @@ function wholesale_makeoffer_submit(lot_id, confirmlink) {
         url: confirmlink,
         data: {},
         success: function (data) {
+            $('#make_offer').html('Make Offer');
             x_alert(data);
         }
     });
@@ -1452,10 +1485,12 @@ function showbuynowConfirm(confirmtitle, confirm_msg_, confirmbutton, confirmlin
             );
 }
 function wholesale_buy_now_submit(lot_id, confirmlink) {
+    $('.bid_now_button').html('<i class="fa fa-spinner fa-pulse"></i>Waiting');
     $.ajax({
         url: confirmlink,
         data: {},
         success: function (data) {
+            $('.bid_now_button').html('Buy Now');
             shipping_detail(lot_id, '0');
         }
     });
@@ -1471,7 +1506,9 @@ function showEmdConfirm(confirmtitle, confirmbutton, confirmlink) {
             localStorage.EMD_over__, // message
             function (index) {
                 if (index == 1) {
+                    $('.bid_now_button').html('<i class="fa fa-spinner fa-pulse"></i>Waiting');
                     window.location.href = confirmlink;
+                    $('.bid_now_button').html('Bid Now');
                 }
             }, // callback to invoke with index of button pressed
             confirmtitle, // title
@@ -1482,14 +1519,16 @@ function sample_request() {
     var sample_lot_id = localStorage.sample_lot_id;
     var sample_room_id = localStorage.sample_room_id;
     var sample_user_id = localStorage.user_id;
-
+    /*localStorage.url = '/sample_buy_now/'+rc4_er(localStorage.sample_lot_id)+'/'+ localStorage.user_id+'/';
+    window.location.href = 'sample_buy_now.html';*/
+    /*-------------------OLD SAMPLING---------------------------------*/
     $.ajax({
         url: localStorage.host + '../classes/common.class.php?action=request_for_sample&lot_id=' + rc4_er(sample_lot_id) + '&room_id=' + rc4_er(sample_room_id) + '&user_id=' + sample_user_id,
         data: {},
         success: function (data) {
             //console.log(data);
             var detail = JSON.parse(data);
-            x_alert(detail.msg);
+            x_alert(detail.msg,'Sample Request');
         }
     });
 }
@@ -1534,6 +1573,7 @@ function reg_function(devicecheck) {
         "ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {}});
 
     push.on('registration', function (data) {
+        localStorage.registrationId = data.registrationId;
         deviceRegistered(data.registrationId);
         clearInterval(devicecheck);
     });
@@ -1590,7 +1630,7 @@ function show_callout_auc() {
 function search_feedback_send_submit() {
     //search_feedback.php?json={"id":"1","user_id":"1","name":"Nitin Pandey1","email_id":"nitin@ezcommindia.com","product_name":"test","feedback":"dfsdfs","action":"insert","ip":"123.123.12.12"}
     if ($('#product_name').val() == '') {
-        x_alert('Please fill Product name.');
+        x_alert('Please fill Product name', 'Form incomplete');
     } else {
         var json = '{"id":"","user_id":"' + rc4_dr(localStorage.user_id) + '","name":"' + localStorage.name + '","email_id":"' + localStorage.email_id + '","product_name":"' + $('#product_name').val() + '","feedback":"' + $('#feedback').val() + '","action":"insert","ip":""}';
         $.ajax({url: localStorage.host + 'search_feedback.php', data: {json: json}, type: 'get', success: function (info) {
@@ -1632,28 +1672,34 @@ function confirm_empty_watchlist(lot_id) {
                     $(this).remove();
                 });
             });
-            x_alert("All auctions removed successfully from the Watchlist");
+            $('.watchlist-count').html('');
+            x_alert("All auctions removed successfully from the Watchlist", 'Watchlist cleared');
         }
     });
 }
 
 setTimeout(function () {
     version_check();
-}, 2000);
+}, 1000);
 
 
 function version_check() {
     // /classes/.class.php?action=cart_count&u_=' . $enc_dec->encrypt_num($_SESSION['user_id'])
+    if (localStorage.logged_in == '1') {
+        $.ajax({url: localStorage.host + '../classes/buyer_dashboard_inc.class.php?action=cart_count&user_id=' + localStorage.user_id, data: {}, type: 'get', success: function (data) {
+                var detail = JSON.parse(data);
+                if (detail['cart_count'] != 0) {
+                    $('.cart_count').html(detail['cart_count']);
+                    $('.cartactive').show();
+                } else {
+                    $('.cartactive').hide();
+                }
 
-    $.ajax({url: localStorage.host + '../classes/buyer_dashboard_inc.class.php?action=cart_count&user_id=' + localStorage.user_id, data: {}, type: 'get', success: function (data) {
-            var detail = JSON.parse(data);
-            if (detail['cart_count'] != 0) {
-                $('.cart_count').html(detail['cart_count']);
             }
-
-        }
-    });
+        });
+    }
     $.ajax({url: localStorage.host + 'app_version.php?app_type=' + localStorage.device, data: {}, type: 'get', success: function (data) {
+            var detail = JSON.parse(data);
             var ver = setInterval(function () {
                 if (typeof device != 'undefined') {
                     cordova.getAppVersion.getVersionNumber().then(function (version) {
@@ -1662,15 +1708,24 @@ function version_check() {
                         var msg = 'Newer version of XSTOK is released. Please update the app now.';
                         var title = 'Update app';
                         var buttonlabels = 'Update,Cancel';
-                        if (current_vr != data) {
+                        if ($.inArray(current_vr, detail) == -1) {
                             version_confirm(msg, title, buttonlabels);
                         }
                     });
                 }
             }, 1000);
-
         }
     });
+    if (localStorage.logged_in == '1') {
+        $.ajax({url: localStorage.host + 'auth_check.php?i=' + rc4_dr(localStorage.user_id), data: {}, type: 'get', success: function (data) {
+                var detail = JSON.parse(data);
+                if (data != '1') {
+                    x_alert('You don`t have access to XSTOK. Please contact the XSTOK team for further details.','Oops!!');
+                    window.location.href = 'logout.html';
+                }
+            }
+        });
+    }
     // http://192.168.0.13/webservices/
 }
 
@@ -1688,7 +1743,12 @@ function version_confirm(msg, title, buttonlabels) {
                 if (index == 1) {
                     onConfirm_ver();
                 } else {
-                    navigator.app.exitApp();
+                    var devicePlatform = find_platform();
+                    if (devicePlatform == 'iOS') {
+                        window.location.href = 'logout.html';
+                    } else {
+                        navigator.app.exitApp();
+                    }
                 }
             },
             title,
@@ -1698,8 +1758,14 @@ function version_confirm(msg, title, buttonlabels) {
 }
 
 function onConfirm_ver() {
-    window.open('https://play.google.com/store/apps/details?id=com.centerac.xstok', '_system');
-    navigator.app.exitApp();
+    var devicePlatform = find_platform();
+    if (devicePlatform == 'iOS') {
+        window.open('https://itunes.apple.com/us/app/xstok/id995586035?mt=8', '_system');
+        window.location.href = 'logout.html';
+    } else {
+        window.open('https://play.google.com/store/apps/details?id=com.centerac.xstok', '_system');
+        navigator.app.exitApp();
+    }
 }
 
 function more_info() {
@@ -1737,13 +1803,73 @@ function infocus(lot_id) {
 function date_fution(date) {
     var devicePlatform = find_platform();
     if (devicePlatform == 'iOS') {
-        var dateStr = date; //returned from mysql timestamp/datetime field
-        var a = dateStr.split(" ");
-        var d = a[0].split("-");
-        var t = a[1].split(":");
-        var start_date = new Date(d[0], (d[1] - 1), d[2], t[0], t[1], t[2]);
-        return start_date;
+        if (date) {
+            var dateStr = date; //returned from mysql timestamp/datetime field
+            var a = dateStr.split(" ");
+            var d = a[0].split("-");
+            var t = a[1].split(":");
+            var start_date = new Date(d[0], (d[1] - 1), d[2], t[0], t[1], t[2]);
+            return start_date;
+        } else {
+            return date;
+        }
     } else {
         return date;
     }
+}
+function isiPhone() {
+    var devicePlatform = find_platform();
+    if (devicePlatform == 'iOS') {
+        return true;
+    } else {
+        return false;
+    }
+    /*return (
+     (navigator.platform.indexOf("iPhone") != -1) ||
+     (navigator.platform.indexOf("iPod") != -1) ||
+     (navigator.platform.indexOf("iPad") != -1)
+     );*/
+}
+var ip = setInterval(function () {
+    if (isiPhone()) {
+        $('#menu-add').addClass('h-76');// .css('height', '76px !important');
+        $('.nav').addClass('p-t-20');
+        $('nav').addClass('p-t-20');
+        $('.height-76').addClass('h-76');
+        //$('.header a.xstok-text-white').addClass('padding-lr-5 padding-tb-10');
+        clearInterval(ip);
+    }
+}, 0);
+var top_padding = setInterval(function () {
+    if (window.location.href.indexOf("home") < 0) {
+        if (isiPhone()) {
+            console.log($('nav').outerHeight() + 'px !important');
+            if ($('.padding-top-56').css('padding-top') == '56px') {
+                var height = $('nav').outerHeight();
+                if ($('nav').length < 1) {
+                    height = $('.nav').outerHeight();
+                }
+                console.log(height + 'px !important');
+                $('.padding-top-56').attr('style', 'padding-top: ' + height + 'px !important');
+                clearInterval(top_padding);
+            } else if ($('.nav').css('padding-top') == '20px') {
+                console.log($('.nav').css('padding-top') + 'px !important');
+                clearInterval(top_padding);
+            }
+        }
+    }
+}, 0);
+if (isiPhone()) {
+    $('input').focus(function () {
+        if (isiPhone()) {
+            $('#menu-add').addClass('position-absoulte').removeClass('position-fixed');
+            $('.profile-tabs-ul').addClass('position-absoulte').removeClass('position-fixed');
+        }
+    });
+    $('input').blur(function () {
+        if (isiPhone()) {
+            $('#menu-add').addClass('position-fixed').removeClass('position-absoulte');
+            $('.profile-tabs-ul').addClass('position-fixed').removeClass('position-absoulte');
+        }
+    });
 }

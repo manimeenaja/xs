@@ -44,7 +44,7 @@
         <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
         <script type="text/javascript">
-            $(document).ready(function () {
+            $(document).ready(function () {                
                 add_menu('room',0, 0, 0, 1);                
                 $('.button-collapse').sideNav({
                     menuWidth: 300, // Default is 240
@@ -101,11 +101,11 @@
                             $('.search-list').html(body);
                         } else {
                             $('.search-list').html('<li class="no-room no-shadow font-20 center-align" style="border-bottom: none !important;padding: 30px !important;">No rooms present at the moment</li>');
-                        }
+                        }                        
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         // if (textStatus === "timeout") {
-                        x_alert(localStorage.no_connection);
+                        x_alert(localStorage.no_connection,'No connection');
                         window.location.href = "no_connection.html";
                         // }
                     }

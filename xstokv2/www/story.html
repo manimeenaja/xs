@@ -53,7 +53,7 @@
                 $(window).scrollTop(1);
                 sticky_relocate();
             });
-            $(window).scroll(function () {
+            $(window).on('touchmove scroll', function () {
                 sticky_relocate();
             });
             function sticky_relocate() {

@@ -46,7 +46,50 @@
             <ul class="collapsible popout filter" data-collapsible="">
                 <li>
                     <div class="collapsible-header active">Supplier<span class="count suppliercount" style="display: none;">0</span></div>
-                    <div class="collapsible-body supplier padding-10"></div>
+                    <div class="collapsible-body supplier padding-10 center-align">
+                        <div class="preloader-wrapper big active">
+                            <div class="spinner-layer spinner-blue">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+
+                            <div class="spinner-layer spinner-red">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+
+                            <div class="spinner-layer spinner-yellow">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+
+                            <div class="spinner-layer spinner-green">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </li>
                 <li>
                     <div class="collapsible-header">Condition<span class="count conditioncount" style="display: none;">0</span></div>
@@ -260,6 +303,7 @@
                                     }
                                 }
                                 supplierbody += '<div class="row margin-bottom-0 padding-lr-10"><input ' + supplierchecked + '  id="checkboxsupplier-1" type="checkbox" name="supplier" value="-1" suppliername="XSTOK" data-toggle="checkbox" class="filled-in"><label class="checkbox" for="checkboxsupplier-1">XSTOK</label></div>';
+                                $('.supplier').removeClass('center-align');
                                 $('.supplier').html(supplierbody);
                             }
                             $("input[name='supplier']").change(function () {
@@ -354,7 +398,7 @@
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
                             //   if (textStatus === "timeout") {
-                            x_alert(localStorage.no_connection);
+                            x_alert(localStorage.no_connection,'No connection');
                             window.location.href = "no_connection.html";
                             //    }
                         }

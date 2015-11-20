@@ -51,7 +51,7 @@
                             lot_array += rc4_er(logininfo['auction_won'][i]['lot_id']) + ',';
                             room_id_array += rc4_er(logininfo['auction_won'][i]['room_id']) + ',';
                             /// if (logininfo['auction_won'][i]['order_id'] == '1' || logininfo['auction_won'][i]['order_id'] == '2' || logininfo['auction_won'][i]['order_id'] == '3') {
-                            var function_name = "shipping_detail(\"" + rc4_er(logininfo['auction_won'][i]['lot_id']) + "\",\"" + logininfo['auction_won'][i]['room_id'] + "\")";
+                            var function_name = "shipping_detail(\"" + rc4_er(logininfo['auction_won'][i]['lot_id']) + "\",\"" + logininfo['auction_won'][i]['room_id'] + "\",\""+logininfo['auction_won'][i]['winner_id']+"\",\""+logininfo['auction_won'][i]['order_status_id']+"\")";
                             //} else {
                             //    var function_name = "auction_detail(\"" + rc4_er(logininfo['auction_won'][i]['lot_id']) + "\",\"" + logininfo['auction_won'][i]['auc_type_id'] + "\")";
                             // }
@@ -102,7 +102,7 @@
                         });
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        x_alert("You seem to have lost internet connection, please reconnect to get going");
+                        x_alert("You seem to have lost internet connection, please reconnect to get going",'No connection');
                         window.location.href = "no_connection.html";
                     }
                 });
@@ -113,11 +113,11 @@
                     if(data['status']=="success"){
                         //alert(data['url']);
                         //window.location.href = data['url'];
-                         shipping_detail(lot_id, '0');
+                         shipping_detail(lot_id, '0','0','0');
                     } else if(data['status']=="exceed"){
                         x_alert(data['msg']);                       
                     }  else if(data['status']=="emd"){
-                        x_alert(data['msg']);
+                        x_alert(data['msg'],'EMD');
                     } else {
                         x_alert(data['msg']);
                     }

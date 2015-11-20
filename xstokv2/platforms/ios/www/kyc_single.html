@@ -84,7 +84,7 @@
                 <div class="row margin-bottom-0 hide">
                     <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0 ">
                         <span class="x-required" style="">*</span>
-                        <input id="company_name" placeholder="" type="text" class="validate" name="company_name" required data-parsley-required-message="Please enter your Company name">
+                        <input id="company_name" placeholder="" type="text" class="validate" name="company_name" data-parsley-required-message="Please enter your Company name">
                         <label for="company_name">Company Name</label>
                     </div>
                 </div>            
@@ -98,7 +98,7 @@
                 <div class="row margin-bottom-0 hide">
                     <div class="col offset-s1 offset-m1 s10 m10 input-field margin-top-0" style="margin-bottom: 40px;width: 71%">
                         <span class="x-required" style="">*</span>
-                        <input id="mobile_no" name="mobile_no" pattern="^[0-9+/ /]*$" maxlength="16" type="text" class="validate" placeholder="Mobile" required data-parsley-required-message="Please enter your Mobile Number">
+                        <input id="mobile_no" name="mobile_no" pattern="^[0-9+/ /]*$" maxlength="16" type="text" class="validate" placeholder="Mobile"  data-parsley-required-message="Please enter your Mobile Number">
                     </div>
                 </div>
                 <div class="row margin-bottom-0">
@@ -306,10 +306,10 @@
                                         $('.mobile_no').html(data['msg'][0]['mobile_no']);
                                         $('.email_id').html(data['msg'][0]['email_id']);
                                         $('#comments_feedback').html(data['msg'][0]['comments_feedback']);
-                                        if(data['msg'][0]['city']!= '') {
+                                        if (data['msg'][0]['city'] != '') {
                                             $('#other_city_div').show();
                                         }
-                                        if(data['msg'][0]['state']!= '') {
+                                        if (data['msg'][0]['state'] != '') {
                                             $('#other_state_div').show();
                                         }
                                         $('input[name="email_id"]').val(data['msg'][0]['email_id']);
@@ -332,8 +332,8 @@
                                             $.post(localStorage.host + '../classes/common.class.php?action=get_statte_list&c_=' + country_id + '', {id: country_id},
                                             function (info) {
                                                 var items = [];
+                                                items.push("<option value=''>Select State Name</option>");
                                                 if (info) {
-                                                    items.push("<option value=''>Select State Name</option>");
                                                     $.each($.parseJSON(info), function (idx, obj) {
                                                         var select_s = '';
                                                         if (data['msg'][0]['state_id'] == obj.id) {
@@ -352,11 +352,11 @@
                                                 var items = [];
                                                 items.push("<option value=''>Select City Name</option>");
                                                 if (infoc) {
-                                                    console.log(state_id + '   '+  data['msg'][0]['city_id']);
-                                                    $.each($.parseJSON(infoc), function (idx, obj) {  
-                                                    console.log(obj.id + '   '+  data['msg'][0]['city_id']);
+                                                    console.log(state_id + '   ' + data['msg'][0]['city_id']);
+                                                    $.each($.parseJSON(infoc), function (idx, obj) {
+                                                        console.log(obj.id + '   ' + data['msg'][0]['city_id']);
                                                         var select_c = '';
-                                                        if (data['msg'][0]['city_id'] == obj.id) {  
+                                                        if (data['msg'][0]['city_id'] == obj.id) {
                                                             select_c = 'selected';
                                                         }
                                                         items.push("<option " + select_c + " value=" + obj.id + ">" + obj.city_name + "</option>");
@@ -416,10 +416,10 @@
                                     function (data) {
                                         var items = [];
                                         items.push("<option value=''>Select State Name</option>");
-                                        if (data) {                                            
+                                        if (data) {
                                             $.each($.parseJSON(data), function (idx, obj) {
                                                 items.push("<option value=" + obj.id + ">" + obj.state_name + "</option>");
-                                            });                                            
+                                            });
                                         }
                                         items.push("<option value='Other'>Other</option>");
                                         console.log(items);
@@ -427,14 +427,16 @@
                                     });
                                 });
                                 $("select#city_id").change(function () {
-                                     var id = $("select#city_id option:selected").attr('value');
-                                    if(id =='Other') {
+                                    var id = $("select#city_id option:selected").attr('value');
+                                    if (id == 'Other') {
                                         $('#other_city_div').show();
+                                    } else {
+                                        $('#other_city_div').hide();
                                     }
                                 });
                                 $("select#state_id").change(function () {
-                                    var id = $("select#state_id option:selected").attr('value');                                    
-                                    if (id != 0) {                                        
+                                    var id = $("select#state_id option:selected").attr('value');
+                                    if (id != 0) {
                                         $.post(localStorage.host + '../classes/common.class.php?action=get_city_list&c_=' + id + '', {id: id},
                                         function (data) {
                                             var items = [];
@@ -444,14 +446,16 @@
                                                     items.push("<option value=" + obj.id + ">" + obj.city_name + "</option>");
                                                 });
                                             }
-                                             items.push("<option value='Other'>Other</option>");
+                                            items.push("<option value='Other'>Other</option>");
                                             $("select#city_id").html(items.join(""));
                                         });
                                     }
-                                    if(id =='Other') {
+                                    if (id == 'Other') {
                                         $('#other_state_div').show();
+                                    } else {
+                                        $('#other_state_div').hide();
                                     }
-                                    
+
                                 });
                                 $("#login").submit(function (e) {
                                     if ($('#login').parsley('isValid')) {
@@ -515,8 +519,8 @@
                                                 $('.email_veri_resend').hide();
                                                 $('button[type="submit"]').removeAttr('disabled');
                                                 $('button[type="submit"]').removeAttr('onclick');
-                                            } else { 
-                                                $('button[type="submit"]').attr('onclick','x_alert("Please verified your email")');
+                                            } else {
+                                                $('button[type="submit"]').attr('onclick', 'x_alert("Please verified your email")');
                                             }
 
                                         }

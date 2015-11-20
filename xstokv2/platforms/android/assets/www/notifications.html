@@ -95,7 +95,7 @@
                             var id = rc4_er(logininfo['notification_all'][i]['id']);
                             var uid = rc4_er(logininfo['notification_all'][i]['user_id']);
                             var image = '';
-                            if (typeof logininfo['notification_all'][i]['image'] != 'undefined') {
+                            if (typeof logininfo['notification_all'][i]['image'] != 'undefined' && logininfo['notification_all'][i]['image'] != '' ) {
                                 image = "<div><img src='" + logininfo['notification_all'][i]['image'] + "' alt='' class='width-100p notification_img_main'/></div>";
                             }
                             notification_all += "<li class='z-depth-1' id='" + rc4_er(logininfo['notification_all'][i]['id']) + "' onclick='open_notification(\"" + rc4_er(logininfo['notification_all'][i]['id']) + "\")'><span class='url hide'>" + logininfo['notification_all'][i]['url'] + "</span><div class='collapsible-header height-auto padding-lr-0'><div class='header-info padding-lr-10'><div class='header-deatils padding-10 vertical-align-top display-inline-block' style='width:90%'><div class='header-bid font-15 font-style-italic ' >" + logininfo['notification_all'][i]['text'] + "</div></div><div class='display-inline-block center-align' style='width:10%' onclick=\"remove_notification(\'" + id + "\',\'" + uid + "\')\"><i class='fa fa-times-circle' style='margin-right: 0;width: 100%;float: none;'></i></div></div>" + image + "</div></li>";
@@ -119,7 +119,7 @@
                         });
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        x_alert("You seem to have lost internet connection, please reconnect to get going");
+                        x_alert("You seem to have lost internet connection, please reconnect to get going",'No connection');
                         window.location.href = "no_connection.html";
                     }
                 });
@@ -188,7 +188,7 @@
                         });
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        x_alert("You seem to have lost internet connection, please reconnect to get going");
+                        x_alert("You seem to have lost internet connection, please reconnect to get going",'No connection');
                         window.location.href = "no_connection.html";
                     }
                 });

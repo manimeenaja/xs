@@ -106,7 +106,7 @@
         <script type="text/javascript" src="js/materialize.min.js"></script>        
         <script type="text/javascript">
                 $(window).resize(function () {
-                    $('.collection-item').height(($(window).height() - $('nav').height() - $('.footer').height() - 2) / 2);
+                    $('.collection-item').height(($(window).height() - $('nav').outerHeight() - $('.footer').height() - 2) / 2);
                     $('.round-dash').css('margin-top', ($('.dash').height() - $('.round-dash').height()) / 2);
                     $('.round-dash').css('margin-left', ($('.dash').width() - $('.round-dash').width()) / 2);
                 });
@@ -115,19 +115,19 @@
                         var body = "";
                         for (var i = 0; i < logininfo['category'].length; i++) {
                             console.log(logininfo['category'][i]);
-                            body += '<li class="collection-item col m6 s6 transparent valign-wrapper background-size-cover homelist" style="background-image: url(' + localStorage.host + '../images/' + logininfo['category'][i][3] + ')" onClick="home_select(\'' + logininfo['category'][i][0] + '\',\'' + logininfo['category'][i][1] + '\',\'' + logininfo['category'][i][2] + '\',\'' + logininfo['category'][i][4] + '\')" ><h5 class="valign center-align width-100p white-text text-shadow-home">' + logininfo['category'][i][1] + '</h5></li>';
+                            body += '<li class="collection-item col m6 s6 transparent valign-wrapper background-size-cover homelist" style="background-image: url(' + localStorage.host + '../images/' + logininfo['category'][i][3] + ')" onClick="home_select(\'' + logininfo['category'][i][0] + '\',\'' + logininfo['category'][i][1] + '\',\'' + logininfo['category'][i][2] + '\',\'' + logininfo['category'][i][4] + '\',\'' + logininfo['category'][i][5] + '\')" ><h5 class="valign center-align width-100p white-text text-shadow-home">' + logininfo['category'][i][1] + '</h5></li>';
                         }
                         console.log(body);
                         $('.footer').removeClass('hide');
                         $('.round-dash ').removeClass('hide');
                         $('.collection').html(body);
                         Materialize.showStaggeredList('.collection');
-                        $('.collection-item').height(($(window).height() - $('nav').height() - $('.footer').height() - 2) / 2);
+                        $('.collection-item').height(($(window).height() - $('nav').outerHeight() - $('.footer').height() - 2) / 2);
                         $('.round-dash').css('margin-top', ($('.dash').height() - $('.round-dash').height()) / 2);
                         $('.round-dash').css('margin-left', ($('.dash').width() - $('.round-dash').width()) / 2);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        x_alert(localStorage.no_connection);
+                        x_alert(localStorage.no_connection,'No connection');
                         window.location.href = "no_connection.html";
                     }
                 });

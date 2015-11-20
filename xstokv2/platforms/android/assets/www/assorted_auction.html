@@ -67,7 +67,11 @@
                             } else {
                                 $("#list_price_per_unit").show();
                             }
-
+                            if (hide_details_request_for_sample == "Y") {
+                                $(".sample-request").show();
+                            } else {
+                                $(".sample-request").hide();
+                            }
 
 
                             if (hide_details_hide_emd_required == "Y") {
@@ -278,7 +282,7 @@
                                 $('.interested').attr('dynamic_lot', hash);
                                 $('.dup_curr_bid').html(discount_value);
                                 $('.dup_curr_bid').addClass('dup_curr_bid_' + hash);
-                                $('.bid-now-select').change(function () {
+                                $('.bid-now-select').on('blur change', function(){
                                     if ($('#dd_' + hash + ' option:selected').text().toLowerCase() == 'bid') {
                                         $('#bid_now_button_' + hash).addClass('disabled');
                                     } else {
@@ -507,7 +511,7 @@
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         // if (textStatus === "timeout") {
-                        x_alert("You seem to have lost internet connection, please reconnect to get going");
+                        x_alert("You seem to have lost internet connection, please reconnect to get going",'No connection');
                         window.location.href = "no_connection.html";
                         // }
                     }
@@ -521,8 +525,12 @@
                         console.log(detail);
                         $('.rating-since').html(detail['company_created']);
                         $('.rating-comp').html(detail['comp_trans']);
-                        $('.rating-repeat').html(1 - round((detail['num_of_one_time_buyer'] / detail['num_of_comp_trans']), 2) + ' %');
-                        var rating_value = round(((parseFloat(detail['goods_avg']) + parseFloat(detail['delivery_avg'])) / 2), 2);
+                        if(detail['num_of_one_time_buyer'] == 0 && detail['num_of_comp_trans'] == 0) {$('.rating-repeat').html(0 + ' %');} else { $('.rating-repeat').html((1 - round((parseFloat(detail['num_of_one_time_buyer']) / parseFloat( detail['num_of_comp_trans'])), 2))*100 + ' %');}
+                        var goods_avg = detail['goods_avg']; 
+                        if(detail['goods_avg'] === null) { goods_avg= 0; }
+                        var delivery_avg = detail['delivery_avg']; 
+                        if(detail['delivery_avg'] === null) { delivery_avg= 0; }
+                        var rating_value = round(((parseFloat(goods_avg) + parseFloat(delivery_avg)) / 2), 2);
                         rating_star(rating_value, 'rating-star');
 
                         $('.rating-good-count').html(round(detail['goods_avg'], 2));
@@ -542,8 +550,8 @@
                 <i class="fa fa-angle-double-up"></i>
             </a>
         </div>
-        <div class="header row font-size-1-6-em xstok-text-white  padding-10 width-100p position-fixed z-index-1">
-            <div class="col s2 left-align"><a onclick="back()" class="xstok-text-white"><i class="fa fa-chevron-left"></i></a></i></div>
+        <div class="header row font-size-1-6-em xstok-text-white  padding-10 width-100p position-fixed z-index-1 nav">
+            <div class="col s2 left-align" onclick="back()"><a class="xstok-text-white"><i class="fa fa-chevron-left"></i></a></div>
             <div class="col s9 supplier-name"><i class="fa fa-spinner fa-pulse"></i></div>
             <div class="col s1 right-align" onclick='$("#more_options").openModal()'><i class="fa fa-ellipsis-v"></i></div>
         </div>
@@ -578,8 +586,8 @@
                 <div class="col s12 m6">
                     <div class="card grey lighten-5">
                         <div class="card-content">
-                            <div class="card-title x-grey bold line-height-25"><span class="head-title-text"><i class="fa fa-spinner fa-pulse"></i></span><span class="right heart-detail"><i class="fa fa-heart"></i></span></div>                            
-                            <span class="gotoroom"><a class="gotoroom">View room</a> |</span><span> <a class="sample-request" onclick="sample_request()">Request Sample</a></span><span class="right hide"> <a class="" onclick=" $('#rating').openModal()">See Seller details</a></span>
+                            <div class="card-title x-grey bold line-height-25"><span class="head-title-text"><i class="fa fa-spinner fa-pulse"></i></span><span class="right heart-detail"><i class="fa fa-heart-o"></i></span></div>                            
+                            <span class="gotoroom"><a class="gotoroom">View room</a> |</span><span> <a class="sample-request" onclick="sample_request()">Request Sample</a></span><span class="right"> <a class="" onclick=" $('#rating').openModal()">See Seller details</a></span>
                         </div>
                         <div class="card-action grey lighten-3 padding-tb-5 info_all">
                             <div class="timertitle font-bold font-15">
@@ -624,7 +632,7 @@
                             </table>
                         </div>                       
                         <div class="card-action padding-tb-5 white-text green lighten-1">
-                            <div class="center-align">EMD Required : <i class="fa fa-inr"></i> <span class="head-list-price-text" id="emd_req">2,00,000</span></div>                            
+                            <div class="center-align">EMD Required : <i class="fa fa-inr"></i> <span class="head-list-price-text" id="emd_req"><i class="fa fa-spinner fa-pulse"></i></span></div>                            
                         </div> 
                     </div>
                 </div>
@@ -661,11 +669,13 @@
                                         <a class="bidnow bid_now_button hide waves-effect waves-light btn white-text xstok darken-1 font-14">Bid Now <i class="fa fa-gavel"></i></a>
                                     </div>                                    
                                 </div>
+                                <div class="div_tendor hide">
                                 <div class="presale-review padding-lr-10"><span class="tender-period font-20">Presale Review</span></div>
                                 <div class="span_show_text padding-10 font-14"></div>
                                 <div class="padding-lr-10">
                                     <button class="btn btn-buy-action bid_now_button hide xstok darken-1 interested width-100p">I'm Interested</button>
-                                </div>                                
+                                </div> 
+                                </div>
                             </div>
                             <div class="bidvalue margin-bottom-20 padding-lr-10"></div>
                             <div class="mybidvalue padding-10" style="">
@@ -945,7 +955,7 @@
                                         first_bid = first_bid.replace(/,/g, "");
                                     }
                                     first_bid = parseFloat(first_bid);
-                                    dis_value = first_bid;
+                                    dis_value = parseFloat($('.bid-now-select option:selected').text().replace(/,/g, ''));
                                     bid_type = 'All';
                                 } else {
                                     /* Materialize.toast(localStorage.bid_select_error__, 2000, 'x-red bold', function () {
@@ -1317,7 +1327,7 @@
                             }
                         }, 400);
                     });
-                    $(window).scroll(function () {
+                    $(window).on('touchmove scroll', function () {
                         sticky_relocate();
                     });
                     function sticky_relocate() {
@@ -1328,19 +1338,23 @@
                         if (window_top > div_top) {
                             $('.header').css('background-color', 'rgba(255,163,0,1)');
                             $('.header').addClass('z-depth-1');
-                            $('.supplier-name').removeClass('text-shadow-supplier');
+                            $('div.supplier-name').removeClass('text-shadow-supplier');
                             // $('.stick').css('top', '0');
                         } else {
                             $('.header').css('background-color', 'rgba(255,163,0,' + window_top / div_top + ')');
                             $('.header').css('text-shadow', '0px 0px 10px rgba(0,0,0,' + (1 - (window_top / div_top)) + ')');
                             $('.header').removeClass('z-depth-1');
-                            $('.supplier-name').addClass('text-shadow-supplier');
+                            $('div.supplier-name').addClass('text-shadow-supplier');
                             //$('.stick').css('top', 'none');
                         }
-                        if (window_top > info_all) {
+                        if ($(window).scrollTop() + $(window).height() == $(document).height()) {
                             $('.bid_now_main').fadeOut();
                         } else {
-                            $('.bid_now_main').fadeIn();
+                            if (window_top > info_all) {
+                                $('.bid_now_main').fadeOut();
+                            } else {
+                                $('.bid_now_main').fadeIn();
+                            }
                         }
                         if (window_top > show_top_bid) {
                             $('.top-bid').fadeIn();
@@ -1476,6 +1490,7 @@
                                         $('.my_per_bid_' + dynamic_lot[idx]).text(obj.user_per);
                                         $('.total_bid_' + dynamic_lot[idx]).text(obj.total_bid);
                                     } else if (obj.tender_period == 'Yes') {
+                                        $('.bidnow').show();
                                         $('.tender-period-main').show();
                                         $('.normal-period-main').hide();
                                         $('.withdraw-sml-dis').addClass('hide');
@@ -1590,6 +1605,11 @@
                             success: function (data) {
                                 if (data == 'Yes')
                                     $('.fa-heart').addClass('w_selected');
+                                if (data == 'Yes') {
+                                    $('#heart' + rc4_er(lot_id) + rc4_er(room_id)).html('<i class="fa fa-heart x-red"></i>');
+                                } else {
+                                    $('#heart' + rc4_er(lot_id) + rc4_er(room_id)).html('<i class="fa fa-heart-o"></i>');
+                                }
                             }
                         });
                     }

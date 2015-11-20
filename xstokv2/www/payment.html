@@ -50,7 +50,7 @@
                 setTimeout(function () {
                     $('.iframe').height($(window).height() - 62);
                     $('.iframe').width($(window).width() -4);
-                }, 1000);
+                }, 2000);
                 submit_pass();
                 var paycheck = setInterval(function () {
                     //   localStorage.notification_emd = rc4_er(logininfo['notification_emd']);
@@ -75,16 +75,16 @@
     </head>
 
     <body class="grey lighten-4">
-        <div class="row  margin-bottom-0 padding-tb-5 nav">
+        <div class="row  margin-bottom-0 padding-tb-5 nav position-fixed grey lighten-4">
             <div class="col s2">
                 <a onclick="back()" class="back"><i class="fa fa-chevron-left fa-2x"></i></a>
             </div>
             <div class="col offset-s6 s4"><img class="logo-login width-100p" src="images/logo.png"/></div>
         </div> 
-        <div class="InAppBrowser">
+        <div class="InAppBrowser padding-top-56">
             <iframe class="iframe" src=""></iframe>
         </div>
-        <a href="dashboard.html" style="display: none" class="btn btn-xstok payment-dash xstok darken-1">Move Dashboard</a>
+        <a href="dashboard.html" style="display: none" class="btn btn-xstok payment-dash xstok darken-1">Move to Dashboard</a>
         <div id="modal1" class="modal">
             <div class="modal-content">
                 <div class="font-bold font-14">Please enter your login password</div>

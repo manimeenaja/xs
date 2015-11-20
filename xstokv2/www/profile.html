@@ -78,7 +78,7 @@
         <script type="text/javascript" src="js/materialize.min.js"></script>
         <script type="text/javascript" src="js/parsley.min.js"></script>
         <script type="text/javascript">
-            $(window).scroll(function () {
+            $(window).on('touchmove scroll', function () {
                 tab_stick();
             });
             $(document).ready(function () {
@@ -110,13 +110,17 @@
                         $('.col-md-4').addClass('col s5');
                         $('.col-md-6').addClass('col s6');
                         $('.col-md-9').addClass('col s9');
-                        $('.edit-link a[href="/buyer_registration/edit/' + localStorage.user_id + '/').attr('href', 'profile_edit.html#test1');
-                        $('.edit-link a[href="/buyer_company/edit/' + localStorage.user_id + '/').attr('href', 'profile_edit.html#test2');
-                        $('.edit-link a[href="/buyer_business/edit/' + localStorage.user_id + '/').attr('href', 'profile_edit.html#test3');
-                        $('.edit-link a[href="/buyer_general/edit/' + localStorage.user_id + '/').attr('href', 'profile_edit.html#test4');
-                        $('.edit-link a[href="/buyer_bank/edit/' + localStorage.user_id + '/').attr('href', 'profile_edit.html#test5');
-                        $('.edit-link a[href="/buyer_documents/edit/' + localStorage.user_id + '/').attr('href', 'profile_edit.html#test6');
+                        $('.edit-link a[href="/buyer_registration/edit/' + localStorage.user_id + '/"]').attr('href', 'profile_edit.html#test1');
+                        $('.edit-link a[href="/buyer_company/edit/' + localStorage.user_id + '/"]').attr('href', 'profile_edit.html#test2');
+                        $('.edit-link a[href="/buyer_business/edit/' + localStorage.user_id + '/"]').attr('href', 'profile_edit.html#test3');
+                        $('.edit-link a[href="/buyer_general/edit/' + localStorage.user_id + '/"]').attr('href', 'profile_edit.html#test4');
+                        $('.edit-link a[href="/buyer_bank/edit/' + localStorage.user_id + '/"]').attr('href', 'profile_edit.html#test5');
+                        $('.edit-link a[href="/buyer_documents/edit/' + localStorage.user_id + '/"]').attr('href', 'profile_edit.html#test6');
                         $('.my_profile_doc').each(function () {
+                            $(this).attr('onclick', 'window.open("' + $(this).attr('href') + '", "_system")');
+                            $(this).attr('href', '#');
+                        });
+                        $('.profile-items-r a').each(function () {
                             $(this).attr('onclick', 'window.open("' + $(this).attr('href') + '", "_system")');
                             $(this).attr('href', '#');
                         });
