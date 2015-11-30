@@ -2,7 +2,7 @@
 <html>
     <head>
         <!--Import materialize.css-->
-
+        <link rel="shortcut icon" href="favicon.ico">
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/style.css" rel="stylesheet" type="text/css" media="screen,projection"/>
@@ -126,8 +126,8 @@
                         $('.add-emd-button').click(function () {
                             if ($('#add-emd').val() == '') {
                                 x_alert('Please fill a amount','EMD amount');
-                            } else if (parseFloat($('#add-emd').val()) < 20000) {
-                                x_alert('Amount should be greater or equal to Rs. 20,000','EMD amount');
+                            } else if (parseFloat($('#add-emd').val()) < 5000) {
+                                x_alert('Amount should be greater or equal to Rs. 5,000','EMD amount');
                             } else {
                                 $.ajax({url: localStorage.host + '../classes/buyer_dashboard.class.php', data: {action: 'add_emd', type: 'webservice', user_id: localStorage.user_id, emd_amount: $('#add-emd').val()}, type: 'get', success: function (data) {
                                         var logininfo = JSON.parse(data);

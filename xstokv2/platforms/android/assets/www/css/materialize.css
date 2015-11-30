@@ -5859,7 +5859,8 @@ a.waves-effect .waves-ripple {
   width: 100%;
   background: #000;
   display: none;
-  will-change: opacity; }
+  will-change: opacity;
+touch-action:none;-ms-touch-action:none;}
 
 .modal.modal-fixed-footer {
   padding: 0;

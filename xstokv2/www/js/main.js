@@ -1,10 +1,11 @@
 /*----------------DEFINED START-------------------*/
 
 //localStorage.host = "http://192.168.0.13/webservices/";
+//localStorage.host = "http://192.168.0.16/webservices/";
 //localStorage.host = "http://192.168.0.12/webservices/";
 //localStorage.host = "http://beta.xstok.com/webservices/";
-localStorage.host = "http://fa.xstok.com/webservices/";
-//localStorage.host = "http://www.xstok.com/webservices/";
+//localStorage.host = "http://fa.xstok.com/webservices/";
+localStorage.host = "http://www.xstok.com/webservices/";
 localStorage.device = 'Android';
 localStorage.vr = 'new';
 localStorage.key_code = 'euhe68vjdr1aX4F091c7aCggSMBf0A7M';
@@ -45,7 +46,7 @@ localStorage.sold__ = 'Sold';
 localStorage.losing__ = 'Losing';
 localStorage.sold_out_ = 'Auction Sold Out';
 localStorage.out_bid_ = 'You have been Outbid';
-localStorage.out_of_stock__ = 'Out of Stock';
+localStorage.out_of_stock__ = 'Sorry, we are all sold out.';
 localStorage.withdraw_msg__ = 'You have Withdrawn';
 localStorage.auction_cancel__ = 'Auction has been cancelled';
 localStorage.withdraw_winner_msg__ = "Sorry you can't withdraw from this auction, you are the highest bidder";
@@ -132,6 +133,7 @@ localStorage.confirm_auto_choose_val_ = 'Your auto bid value doesn\'t match auct
 localStorage.confirm_offer_with_msg__ = 'Confirm offer of Rs. confirm_bid__. Note: If your offer is above the Reserve Price, EMD of Rs. og_emd__ will be blocked.';
 localStorage.time_left__ = 'Time Left';
 localStorage.presale_time_left = 'Review time left';
+localStorage.disapproved = 'You don`t have access to XSTOK. Please contact the XSTOK team for further details.';
 localStorage.presale = 'Presale Review';
 localStorage.pay_emd = 'Pay EMD';
 localStorage.emd_list_price_limit = 200000;
@@ -175,7 +177,7 @@ function x_alert(data, title) {
     if (typeof title == 'undefined') {
         title = '';
     }
-    navigator.notification.alert(data,ep,title);
+    navigator.notification.alert(data, ep, title);
 }
 function ep() {
 
@@ -209,7 +211,7 @@ function auction_room(lot_id, room_id) {
     window.location.href = 'auction_room.html#' + lot_id + '-' + room_id;
 }
 function shipping_detail(lot_id, room_id, winner_id, order_status_id) {
-    window.location.href = 'shipping_detail.html#' + lot_id + '-' + room_id + '-' + winner_id + '-' + order_status_id;
+    window.location.href = 'shipping_detail.html#' + lot_id + '_' + room_id + '_' + winner_id + '_' + order_status_id;
 }
 
 function redirect(location, hash) {
@@ -238,7 +240,7 @@ function redirect(location, hash) {
         window.location.href = location + ".html" + hash;
     }
 }
-function home_select(search_category, search_category_name, search_table_name, type,hash) {
+function home_select(search_category, search_category_name, search_table_name, type, hash) {
     if (localStorage.logged_in == '1') {
         if (type == 0) {
             localStorage.search_category = search_category;
@@ -246,7 +248,7 @@ function home_select(search_category, search_category_name, search_table_name, t
             localStorage.search_category_name = search_category_name;
             redirect('search');
         } else if (type == 1) {
-            redirect(search_table_name,hash);
+            redirect(search_table_name, hash);
         } else if (type == 2) {
             window.open(search_table_name, "_system");
         }
@@ -355,7 +357,7 @@ function add_menu(location, type, show_logo, options, events) {
     if (location == 'dashboard') {
         profile = '<a href="profile.html" class="right  height-56 padding-lr-10 x-grey font-bold text-transform-capitalize"><img src="' + localStorage.profile_pic + '" class="circle dash-profile-image-img left" alt="Profile Picture"> ' + localStorage.name + ' </a>';
     }
-    $('#menu-add').html('<ul id="slide-out" class="side-nav grey lighten-5"><li class="padding-top-15 left-align main" style="background: -webkit-linear-gradient(top, rgba(0,0,0,0.0), rgba(0,0,0,0.6)), url(' + localStorage.cover_pic_path + ');background-size: cover;"><span class="image-menu logged_in "><a href="profile.html"><img src="' + localStorage.profile_pic + '" class="circle profile-image-img left" alt="Profile Picture"></a></span><br><span class="name-menu logged_in "><a class="white-text line-height-1 text-transform-capitalize" href="profile.html">' + localStorage.name + '</a></span><br><span class="logged_in ext-transform-capitalize">EMD Balance: <i class="fa fa-inr"></i> <span class="emd-bal">' + localStorage.emd_bal + '</span></span></li><li class="main_option homeactive"><a href="home.html"><span class="menu-icon"><i class="mdi-action-home"></i></span><span class="menu-text"> Home</span></a></li><li class="main_option allactive logged_in verified" onclick="all_listing()"><a href="javascript:void(0)"><span class="menu-icon"><i class="mdi-social-public"></i></span><span class="menu-text"> Ongoing Sales</span></a></li><li class="main_option dashboardactive logged_in verified"><a href="dashboard.html"><span class="menu-icon"><i class="mdi-social-poll"></i></span><span class="menu-text"> Dashboard</span></a></li><li class="main_option roomactive logged_in verified"><a href="all_events.html"><span class="menu-icon"><i class="fa fa-gavel"></i></span><span class="menu-text">  All Events </span></a></li><li class="main_option calendaractive logged_in verified"><a href="calendar.html"><span class="menu-icon"><i class="mdi-editor-insert-invitation"></i></span><span class="menu-text"> Calendar</span></a></li><li class="main_option watchlistactive logged_in verified"><a href="watchlist.html"><span class="menu-icon"><i class="fa fa-heart " style="font-size: 21px  !important;"></i></span><span class="menu-text"> WatchList</span><span class="menu_count watchlist_count"></span></a></li><li class="main_option notificationsactive logged_in verified"><a href="notifications.html"><span class="menu-icon"><i class="fa fa-bell " style="font-size: 21px  !important;"></i></span><span class="menu-text">  Notifications </span><span class="menu_count notification_count"></span></a></li><li class="main_option cartactive logged_in verified"><a href="shipping_detail.html#d7-0-0-1"><span class="menu-icon"><i class="fa fa-truck " style="font-size: 21px  !important;"></i></span><span class="menu-text">  Cart</span><span class="menu_count cart_count"></span></a></li><div class="divider"></div><li onclick="redirect(\'story\')"><a href="javascript:void(0)"> Our Story</a></li><li onclick="redirect(\'buyer_protection\')"><a href="javascript:void(0)">  Buyer Protection </a></li><li onclick="redirect(\'work_with_us\')"><a href="javascript:void(0)">  Work With Us </a></li><li onclick="redirect(\'contact\')"><a href="javascript:void(0)">  Contact Us </a></li><div class="divider"></div><li class="logged_in"><a href="logout.html"><i class="fa fa-power-off"></i>  Sign Out</a></li><li class="logged_out"><a href="signin.html"><i class="fa fa-sign-in"></i>  Login</a></li></ul><a href="#" data-activates="slide-out" class="button-collapse ' + type_menu + '"><i class="mdi-navigation-menu"></i></a>' + profile + '<a href="#" class="right  height-56 ' + show_logo_menu + '"><img class="height-56" src="images/logo.png"></a><a href="#" class="font-24 ' + events_menu + '">Events</a><a href="#" class="font-24 ' + events_menu_cal + '">Calendar</a><a href="#" class="button-grid ' + options_menu + '" view="' + view_type + '"><i class="fa fa-' + view + '"></i></a><a href="#" class="button-search ' + options_menu + '"><div class="input-field"><input id="search" type="search" required><label for="search"><i class="fa fa-search"></i></label></div></a>');
+    $('#menu-add').html('<ul id="slide-out" class="side-nav grey lighten-5"><li class="padding-top-15 left-align main" style="background: -webkit-linear-gradient(top, rgba(0,0,0,0.0), rgba(0,0,0,0.6)), url(' + localStorage.cover_pic_path + ');background-size: cover;"><span class="image-menu logged_in "><a href="profile.html"><img src="' + localStorage.profile_pic + '" class="circle profile-image-img left" alt="Profile Picture"></a></span><br><span class="name-menu logged_in "><a class="white-text line-height-1 text-transform-capitalize" href="profile.html">' + localStorage.name + '</a></span><br><span class="logged_in ext-transform-capitalize">EMD Balance: <i class="fa fa-inr"></i> <span class="emd-bal">' + localStorage.emd_bal + '</span></span></li><li class="main_option homeactive"><a href="home.html"><span class="menu-icon"><i class="mdi-action-home"></i></span><span class="menu-text"> Home</span></a></li><li class="main_option allactive logged_in verified" onclick="all_listing()"><a href="javascript:void(0)"><span class="menu-icon"><i class="mdi-social-public"></i></span><span class="menu-text"> Ongoing Sales</span></a></li><li class="main_option dashboardactive logged_in verified"><a href="dashboard.html"><span class="menu-icon"><i class="mdi-social-poll"></i></span><span class="menu-text"> Dashboard</span></a></li><li class="main_option roomactive logged_in verified"><a href="all_events.html"><span class="menu-icon"><i class="fa fa-gavel"></i></span><span class="menu-text">  All Events </span></a></li><li class="main_option calendaractive logged_in verified"><a href="calendar.html"><span class="menu-icon"><i class="mdi-editor-insert-invitation"></i></span><span class="menu-text"> Calendar</span></a></li><li class="main_option watchlistactive logged_in verified"><a href="watchlist.html"><span class="menu-icon"><i class="fa fa-heart " style="font-size: 21px  !important;"></i></span><span class="menu-text"> WatchList</span><span class="menu_count watchlist_count"></span></a></li><li class="main_option notificationsactive logged_in verified"><a href="notifications.html"><span class="menu-icon"><i class="fa fa-bell " style="font-size: 21px  !important;"></i></span><span class="menu-text">  Notifications </span><span class="menu_count notification_count"></span></a></li><li class="main_option cartactive logged_in verified"><a href="shipping_detail.html#d7_0_0_1"><span class="menu-icon"><i class="fa fa-truck " style="font-size: 21px  !important;"></i></span><span class="menu-text">  Cart</span><span class="menu_count cart_count"></span></a></li><div class="divider"></div><li onclick="redirect(\'story\')"><a href="javascript:void(0)"> Our Story</a></li><li onclick="redirect(\'buyer_protection\')"><a href="javascript:void(0)">  Buyer Protection </a></li><li onclick="redirect(\'work_with_us\')"><a href="javascript:void(0)">  Work With Us </a></li><li onclick="redirect(\'contact\')"><a href="javascript:void(0)">  Contact Us </a></li><div class="divider"></div><li class="logged_in"><a href="logout.html"><i class="fa fa-power-off"></i>  Sign Out</a></li><li class="logged_out"><a href="signin.html"><i class="fa fa-sign-in"></i>  Login</a></li></ul><a href="#" data-activates="slide-out" class="button-collapse ' + type_menu + '"><i class="mdi-navigation-menu"></i></a>' + profile + '<a href="#" class="right  height-56 ' + show_logo_menu + '"><img class="height-56" src="images/logo.png"></a><a href="#" class="font-24 ' + events_menu + '">Events</a><a href="#" class="font-24 ' + events_menu_cal + '">Calendar</a><a href="#" class="button-grid ' + options_menu + '" view="' + view_type + '"><i class="fa fa-' + view + '"></i></a><a href="#" class="button-search ' + options_menu + '"><div class="input-field"><input id="search" type="search" required><label for="search"><i class="fa fa-search"></i></label></div></a>');
 
     if (localStorage.logged_in == '0' || localStorage.getItem("logged_in") === null) {
         $('.logged_in').hide();
@@ -1115,10 +1117,10 @@ function showConfirm(msg, title, buttonlabels, link, dynamic_lot) {
     // http://192.168.0.13/classes/service_manage_auction.class.php?action=save_intial_bid_auction&user_id=d3&admin_id=d3&lot_id=d3&room_id=d7&golden_time=N&golden_time_value=d6d712&first_bid=172800&auction_on=discount&reserve_price=70&discount_value=144000&actual_price=480000&dynamic_min_user=d6&bid_type=All&tender_local_var=N
 
     /* if (confirm(msg) == true) {
-        onConfirm(link, dynamic_lot);
-    } else {
-
-    }*/
+     onConfirm(link, dynamic_lot);
+     } else {
+     
+     }*/
 //need t*o change 
 
 
@@ -1126,14 +1128,14 @@ function showConfirm(msg, title, buttonlabels, link, dynamic_lot) {
 
 
     navigator.notification.confirm(
-     msg, // message
-     function (index) {
-     if (index == 1) {
-     onConfirm(link, dynamic_lot);
-     }
-     }, // callback to invoke with index of button pressed
-     title, // title
-     buttonlabels          // buttonLabels
+            msg, // message
+            function (index) {
+                if (index == 1) {
+                    onConfirm(link, dynamic_lot);
+                }
+            }, // callback to invoke with index of button pressed
+            title, // title
+            buttonlabels          // buttonLabels
             );
 
 }
@@ -1146,9 +1148,9 @@ function onConfirm(link, dynamic_lot) {
             $('.bid_now_button').html('Bid Now');
             $('.current_value').html('');
             $('#autobid').closeModal();
-            Materialize.toast(data, 2000, 'x-red bold', function () {
-                $('#toast-container').remove();
-            });
+            /*Materialize.toast(data, 2000, 'x-red bold', function () {
+             $('#toast-container').remove();
+             });*/
             $('.msg_' + dynamic_lot).html(data);
             if (localStorage.tender_period == 'Yes') {
                 var ch = setInterval(function () {
@@ -1411,7 +1413,7 @@ function buy_now_submit(lot_id, room_id, total_bid, buy_now, discount_value, act
                     var lot_id = data.split('/')[2];
                     var room_id = data.split('/')[3];
                     //console.log('shipping_detail.html?#' + lot_id + '-' + room_id);
-                    window.location.href = 'shipping_detail.html?#' + lot_id + '-' + room_id;
+                    window.location.href = 'shipping_detail.html?#' + lot_id + '_' + room_id+'_0_1';
                 }
             }
         }
@@ -1458,6 +1460,7 @@ function showmakeofferConfirm(confirmtitle, confirm_msg_, confirmbutton, confirm
             );
 }
 function wholesale_makeoffer_submit(lot_id, confirmlink) {
+    $('#make_offer').html('<i class="fa fa-spinner fa-pulse"></i>Waiting');
     $.ajax({
         url: confirmlink,
         data: {},
@@ -1491,7 +1494,7 @@ function wholesale_buy_now_submit(lot_id, confirmlink) {
         data: {},
         success: function (data) {
             $('.bid_now_button').html('Buy Now');
-            shipping_detail(lot_id, '0');
+            shipping_detail(lot_id, '0','0','1');
         }
     });
 }
@@ -1515,22 +1518,25 @@ function showEmdConfirm(confirmtitle, confirmbutton, confirmlink) {
             confirmbutton          // buttonLabels
             );
 }
+function isEmpty(str) {
+    return (!str || 0 === str.length);
+}
 function sample_request() {
     var sample_lot_id = localStorage.sample_lot_id;
     var sample_room_id = localStorage.sample_room_id;
     var sample_user_id = localStorage.user_id;
-    /*localStorage.url = '/sample_buy_now/'+rc4_er(localStorage.sample_lot_id)+'/'+ localStorage.user_id+'/';
-    window.location.href = 'sample_buy_now.html';*/
+    localStorage.url = '/sample_buy_now/' + rc4_er(sample_lot_id) + '/' + localStorage.user_id + '/';
+    window.location.href = 'sample_buy_now.html';
     /*-------------------OLD SAMPLING---------------------------------*/
-    $.ajax({
-        url: localStorage.host + '../classes/common.class.php?action=request_for_sample&lot_id=' + rc4_er(sample_lot_id) + '&room_id=' + rc4_er(sample_room_id) + '&user_id=' + sample_user_id,
-        data: {},
-        success: function (data) {
-            //console.log(data);
-            var detail = JSON.parse(data);
-            x_alert(detail.msg,'Sample Request');
-        }
-    });
+    /*$.ajax({
+     url: localStorage.host + '../classes/common.class.php?action=request_for_sample&lot_id=' + rc4_er(sample_lot_id) + '&room_id=' + rc4_er(sample_room_id) + '&user_id=' + sample_user_id,
+     data: {},
+     success: function (data) {
+     //console.log(data);
+     var detail = JSON.parse(data);
+     x_alert(detail.msg,'Sample Request');
+     }
+     });*/
 }
 
 function download_exl(hash) {
@@ -1681,6 +1687,14 @@ function confirm_empty_watchlist(lot_id) {
 setTimeout(function () {
     version_check();
 }, 1000);
+setInterval(function () {
+    $('[id="sidenav-overlay"]').each(function () {
+        var $ids = $('[id=' + this.id + ']');
+        if ($ids.length > 1) {
+            $ids.not(':first').remove();
+        }
+    });
+}, 500);
 
 
 function version_check() {
@@ -1719,8 +1733,16 @@ function version_check() {
     if (localStorage.logged_in == '1') {
         $.ajax({url: localStorage.host + 'auth_check.php?i=' + rc4_dr(localStorage.user_id), data: {}, type: 'get', success: function (data) {
                 var detail = JSON.parse(data);
-                if (data != '1') {
-                    x_alert('You don`t have access to XSTOK. Please contact the XSTOK team for further details.','Oops!!');
+                if (data == '1') {
+                    localStorage.logged_in = 1;
+                    localStorage.verified = 1;
+                    localStorage.otp = 1;
+                    localStorage.kyc_status = 1;
+                } else if (data == '2') {
+                    localStorage.logged_in = 1;
+                    localStorage.verified = 0;
+                } else {
+                    x_alert(localStorage.disapproved, 'Oops!');
                     window.location.href = 'logout.html';
                 }
             }

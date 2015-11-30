@@ -131,6 +131,12 @@ input[type=text], input[type=password], input[type=email], input[type=url], inpu
 .width-100p {
     width: 100%;
 }
+.width-65p {
+    width: 65%;
+}
+.width-50p {
+    width: 50%;
+}
 .width-9p {
     width: 9%;
 }
@@ -696,9 +702,10 @@ nav ul li:hover, nav ul li.active {
 
 
 
-.search-list li img {
-    width: 100px;
-    height: 100px;
+.search-list-image img {
+    max-width: 100px;
+    max-height: 100px;
+   //opacity: 0;
 }
 
 .search-list-main-image {
@@ -1768,6 +1775,10 @@ li.main_option a i  {
     padding-top: 20px !important;
     clear: both;
 }
+.search-list-image {
+    overflow: hidden;
+    width: 100px;
+}
 @media only screen and (max-width: 360px) {
     .header-image.room img {
         width:80px;
@@ -1858,7 +1869,7 @@ li.main_option a i  {
         padding: 8px;
     }
     .search-list li img {
-        width: 95px;
+        max-width: 95px;
     }
 
 }

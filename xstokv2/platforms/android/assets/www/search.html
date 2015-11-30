@@ -2,7 +2,7 @@
 <html>
     <head>
         <!--Import materialize.css-->
-
+        <link rel="shortcut icon" href="favicon.ico">
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/style.css" rel="stylesheet" type="text/css" media="screen,projection"/>
@@ -48,7 +48,7 @@
                 <i class="fa fa-tags fa-2x"></i>
             </a>
             <ul>
-                <li><a class="btn-floating btn-large   red">Home textile <i class="material-icons">insert_chart</i></i></a></li>
+                <li><a class="btn-floating btn-large   red ">Home textile <i class="material-icons">insert_chart</i></i></a></li>
                 <li><a class="btn-floating btn-large yellow darken-1"><i class="material-icons">format_quote</i></a></li>
                 <li><a class="btn-floating btn-large green"><i class="material-icons">publish</i></a></li>
                 <li><a class="btn-floating btn-large blue"><i class="material-icons">attach_file</i></a></li>
@@ -90,7 +90,7 @@
                             }
                         }
                     }
-                    $(document).ready(function () {
+                    $(document).ready(function () {                        
                         //Materialize.showStaggeredList('.collection');
                         if (localStorage.callout_search == 0 || localStorage.getItem("callout_search") === null) {
                             //show_callout_search();
@@ -165,7 +165,7 @@
                         $('#search').focus(function () {
                             if (isiPhone()) {
                                 $('.fixed-action-btn').hide();
-                                $('#menu-add').addClass('position-absoulte').removeClass('position-fixed');                              
+                                $('#menu-add').addClass('position-absoulte').removeClass('position-fixed');
                             }
                         });
                         $('#search').blur(function () {
@@ -279,6 +279,8 @@
                                         var seen = 'hidden';
                                         var status = '';
                                         var status_class = '';
+                                        var qtty = '';
+                                        var class_green = 'x-light-green';
                                         if (typeof data.result[i]['seen_status'] != 'undefined') {
                                             if (data.result[i]['seen_status'] != '') {
                                                 seen = '';
@@ -288,13 +290,21 @@
                                         }
                                         var qt = data.result[i]['quantity'];
                                         var mim_d = '';
-                                        var cld = 'cldprice' + er_id ;
-                                        if(data.result[i]['auc_type_id'] == localStorage.marketplace_auction) {
+                                        var cld = 'cldprice' + er_id;
+                                        if (data.result[i]['auc_type_id'] == localStorage.marketplace_auction) {
                                             qt = data.result[i]['market_qty'];
-                                            mim_d =  'Minimum Buy Price: <i class="fa fa-inr"></i>'+numberWithCommas(data.result[i]['market_price']);
+                                            if (data.result[i]['market_price'] == null) {
+                                                data.result[i]['market_price'] = 0;
+                                            }
+                                            mim_d = 'Minimum Buy Price: <i class="fa fa-inr"></i>' + numberWithCommas(data.result[i]['market_price']);
                                             cld = '';
+                                            qtty = qt.trim().split(' ')[0];
+                                            if (qtty == '0') {
+                                                mim_d = 'Out of Stock';
+                                                class_green = 'x-red';
+                                            }
                                         }
-                                        body += '<li  id="' + data.result[i]['id'] + '" onClick="auction_detail(\'' + er_id + '\',\'' + data.result[i]['auc_type_id'] + '\')" class="collection-item opacity-1 avatar z-depth-1"><div class="search-list-main-image"><span class="search-list-status search-list-status-' + status_class + ' tag' + er_id + '">' + status + '</span><span class="search-list-image"><img src="' + data.result[i]['image'] + '" alt="" class=""></span></div><div class="search-list-main-body"><h6 class="truncate bold listing-title">' + data.result[i]['short_lot_name'] + '</h6><p class="font-11 truncate"><b>' + data.result[i]['company_name'] + '</b> Qty ' + qt + '</p><div class="divider"></div><div style="width: 60%;float: left;"><p class="font-11 center-align time' + er_id + '"></p></div><div style="width: 40%;float: left;"><p class=" x-light-green font-11 center-align ' + cld + ' ">'+mim_d+'</p></div><span class="secondary-content heart" auc-type-id="' + data.result[i]['auc_type_id'] + '" lot-id="' + data.result[i]['id'] + '" room-id="' + data.result[i]['room_id'] + '">' + wish_list + '</span></div></li>';
+                                        body += '<li  id="' + data.result[i]['id'] + '" onClick="auction_detail(\'' + er_id + '\',\'' + data.result[i]['auc_type_id'] + '\')" class="collection-item opacity-1 avatar z-depth-1"><div class="search-list-main-image"><span class="search-list-status search-list-status-' + status_class + ' tag' + er_id + '">' + status + '</span><span class="search-list-image"><img src="' + data.result[i]['image'] + '" alt="" class=""></span></div><div class="search-list-main-body"><h6 class="truncate bold listing-title">' + data.result[i]['short_lot_name'] + '</h6><p class="font-11 truncate"><b>' + data.result[i]['company_name'] + '</b> Qty ' + qt + '</p><div class="divider"></div><div style="width: 60%;float: left;"><p class="font-11 center-align time' + er_id + '"></p></div><div style="width: 40%;float: left;"><p class=" ' + class_green + ' font-11 center-align ' + cld + ' ">' + mim_d + '</p></div><span class="secondary-content heart" auc-type-id="' + data.result[i]['auc_type_id'] + '" lot-id="' + data.result[i]['id'] + '" room-id="' + data.result[i]['room_id'] + '">' + wish_list + '</span></div></li>';
 
                                         //body += '<li id="' + i + '" class="li-list" onClick="auction_detail(\'' + er_id + '\',\'' + data.result[i]['auc_type_id'] + '\')" discount="' + discount + '" time="' + day_time + '" ><div class="seen ' + seen + '  tag' + er_id + '"><img src="images/' + img + '.png"></div><div class="seen ' + new_list + '"><img src="images/new.png"></div><div class="row list-row ' + auction_detail_over + '"><div class="col-xs-3 list-image"><div class="heart" auc-type-id="' + data.result[i]['auc_type_id'] + '" lot-id="' + data.result[i]['id'] + '" room-id="' + data.result[i]['room_id'] + '">' + wish_list + '</div><div class="list-image-body"><img class="list-image-photo" src="' + data.result[i]['image'] + '"><div class="list-image-overlay"></div></div></div><div class="col-xs-5 list-body"><div class="list-head">' + data.result[i]['short_lot_name'] + '</div> <div class="list-subhead">' + description + '</div><div class="list-icon"><div class="day-left ' + dateshow + '"><i class="fa fa-clock-o"></i> ' + day + ' ' + lable + '</div><div class="qx ' + qx + '">QX</div><div class="hot_auction hide ' + hot + '"></div></div></div> <div class="col-xs-4 list-sold ' + display_sold + '"><div class="list-sold-text">Closed</div></div> <div class="col-xs-2 list-discount ' + display_dis + ' "><div class="list-discount-value discount-value-' + data.result[i]['id'] + '-' + data.result[i]['room_id'] + '">' + discount + '%</div><div class="list-discount-text discount-text-' + data.result[i]['id'] + '-' + data.result[i]['room_id'] + '">DISCOUNT</div></div><div class="col-xs-2 list-bid-now ' + display_dis + ' "><div class="list-bid-now-text">BID<br/>NOW</div></div></div></li>';
                                         lot_array += rc4_er(data.result[i]['id']) + ',';
@@ -317,6 +327,10 @@
                                         $('.loader').remove();
                                         $('.search-list').append(body);
                                     }
+                                    $('.search-list li img').css("opacity", 1); 
+                                    setInterval(function () {
+                                        resize();
+                                    }, 0);
                                     //Materialize.showStaggeredList('.collection');
                                     // update_discount();
                                     localStorage.page = parseFloat(localStorage.page) + 1;
@@ -462,13 +476,25 @@
                                         }
                                         var qt = data.result[i]['quantity'];
                                         var mim_d = '';
-                                        var cld = 'cldprice' + er_id ;
-                                        if(data.result[i]['auc_type_id'] == localStorage.marketplace_auction) {
+                                        var cld = 'cldprice' + er_id;
+                                        var qtty = '';
+                                        var class_green = 'x-light-green';
+                                        if (data.result[i]['auc_type_id'] == localStorage.marketplace_auction) {
+                                            console.log(data.result[i]['market_price']);
+                                            if (data.result[i]['market_price'] == null) {
+                                                data.result[i]['market_price'] = 0;
+                                            }
                                             qt = data.result[i]['market_qty'];
-                                            mim_d =  'Minimum Buy Price: <i class="fa fa-inr"></i>'+numberWithCommas(data.result[i]['market_price']);
+                                            mim_d = 'Minimum Buy Price: <i class="fa fa-inr"></i>' + numberWithCommas(data.result[i]['market_price']);
                                             cld = '';
+                                            qtty = qt.trim().split(' ')[0];
+                                            if (qtty == '0') {
+                                                mim_d = 'Out of Stock';
+                                                class_green = 'x-red';
+                                            }
                                         }
-                                        body += '<li  id="' + data.result[i]['id'] + '" onClick="auction_detail(\'' + er_id + '\',\'' + data.result[i]['auc_type_id'] + '\')" class="collection-item opacity-1 col s6 m4 display-inline-block grid"><div class="card-panel grey lighten-5 margin-tb-0 z-depth-1 padding-0"><div class="gird-list-head padding-tb-5 padding-lr-2-5"><p class="truncate bold margin-tb-0 font-12 listing-title">' + data.result[i]['short_lot_name'] + '</p><p class="truncate margin-tb-0 font-12">Qty ' + qt + '</p></div><div class="grid-list-image"><span class="grid-list-status search-list-status-' + status_class + ' tag' + er_id + '">' + status + '</span><span class="heart gird-list-heart font-20" auc-type-id="' + data.result[i]['auc_type_id'] + '" lot-id="' + data.result[i]['id'] + '" room-id="' + data.result[i]['room_id'] + '">' + wish_list + '</span><img src="' + data.result[i]['image'] + '" alt="" class="width-100p"></div><div class="grid-company-city padding-lr-5 x-light-grey-border-bottom-1 border-1"><span class="truncate grid-company font-11">' + data.result[i]['company_name'] + '</span><span class="grid-city font-11 right"><i class="fa fa-map-marker"></i> ' + data.result[i]['origin_city'] + '</span></div><div class="grid-body grid-body-dis-d6d616 x-light-grey-border-bottom-1"><div class="font-bold font-11 x-light-green center-align ' + cld + '">'+mim_d+'</div> <span class="font-bold font-14 x-light-green"> </span></div><div class="grid-body-foot font-12 time' + er_id + '  center-block center-align"></div></div></li>';
+
+                                        body += '<li  id="' + data.result[i]['id'] + '" onClick="auction_detail(\'' + er_id + '\',\'' + data.result[i]['auc_type_id'] + '\')" class="collection-item opacity-1 col s6 m4 display-inline-block grid"><div class="card-panel grey lighten-5 margin-tb-0 z-depth-1 padding-0"><div class="gird-list-head padding-tb-5 padding-lr-2-5"><p class="truncate bold margin-tb-0 font-12 listing-title">' + data.result[i]['short_lot_name'] + '</p><p class="truncate margin-tb-0 font-12">Qty ' + qt + '</p></div><div class="grid-list-image"><span class="grid-list-status search-list-status-' + status_class + ' tag' + er_id + '">' + status + '</span><span class="heart gird-list-heart font-20" auc-type-id="' + data.result[i]['auc_type_id'] + '" lot-id="' + data.result[i]['id'] + '" room-id="' + data.result[i]['room_id'] + '">' + wish_list + '</span><img src="' + data.result[i]['image'] + '" alt="" class="width-100p"></div><div class="grid-company-city padding-lr-5 x-light-grey-border-bottom-1 border-1"><span class="truncate grid-company font-11 display-inline-block width-50p">' + data.result[i]['company_name'] + '</span><span class="grid-city font-11 right"><i class="fa fa-map-marker"></i> ' + data.result[i]['origin_city'] + '</span></div><div class="grid-body grid-body-dis-d6d616 x-light-grey-border-bottom-1"><div class="font-bold font-11 ' + class_green + ' center-align ' + cld + '">' + mim_d + '</div> <span class="font-bold font-14 x-light-green"> </span></div><div class="grid-body-foot font-12 time' + er_id + '  center-block center-align"></div></div></li>';
 
                                         //body += '<li id="' + i + '" class="li-list" onClick="auction_detail(\'' + er_id + '\',\'' + data.result[i]['auc_type_id'] + '\')" discount="' + discount + '" time="' + day_time + '" ><div class="seen ' + seen + '  tag' + er_id + '"><img src="images/' + img + '.png"></div><div class="seen ' + new_list + '"><img src="images/new.png"></div><div class="row list-row ' + auction_detail_over + '"><div class="col-xs-3 list-image"><div class="heart" auc-type-id="' + data.result[i]['auc_type_id'] + '" lot-id="' + data.result[i]['id'] + '" room-id="' + data.result[i]['room_id'] + '">' + wish_list + '</div><div class="list-image-body"><img class="list-image-photo" src="' + data.result[i]['image'] + '"><div class="list-image-overlay"></div></div></div><div class="col-xs-5 list-body"><div class="list-head">' + data.result[i]['short_lot_name'] + '</div> <div class="list-subhead">' + description + '</div><div class="list-icon"><div class="day-left ' + dateshow + '"><i class="fa fa-clock-o"></i> ' + day + ' ' + lable + '</div><div class="qx ' + qx + '">QX</div><div class="hot_auction hide ' + hot + '"></div></div></div> <div class="col-xs-4 list-sold ' + display_sold + '"><div class="list-sold-text">Closed</div></div> <div class="col-xs-2 list-discount ' + display_dis + ' "><div class="list-discount-value discount-value-' + data.result[i]['id'] + '-' + data.result[i]['room_id'] + '">' + discount + '%</div><div class="list-discount-text discount-text-' + data.result[i]['id'] + '-' + data.result[i]['room_id'] + '">DISCOUNT</div></div><div class="col-xs-2 list-bid-now ' + display_dis + ' "><div class="list-bid-now-text">BID<br/>NOW</div></div></div></li>';
                                         lot_array += rc4_er(data.result[i]['id']) + ',';
@@ -489,6 +515,9 @@
                                         $('.loader').remove();
                                         $('.search-list').append(body);
                                     }
+                                    setInterval(function () {
+                                        $('.search-list li img').css("opacity", 1);  
+                                    }, 0);                                    
                                     lot_array = lot_array.substring(0, lot_array.length - 1);
                                     room_id_array = room_id_array.substring(0, room_id_array.length - 1);
                                     localStorage.lot_id_array = lot_array;
@@ -649,6 +678,45 @@
                             }
                         });
                     }, 1000);
+
+                    function resize() {
+                        $('.search-list-image img').each(function () {
+                            var maxWidth = 100; // Max width for the image
+                            var maxHeight = 100;    // Max height for the image
+                            if ($(window).width() <= 320) {
+                                var maxWidth = 95; // Max width for the image
+                                var maxHeight = 95;
+                            }
+                            var ratio = 0;  // Used for aspect ratio
+                            var width = $(this).width();    // Current image width
+                            var height = $(this).height();  // Current image height
+                            // Check if the current width is larger than the max
+                            if (width > maxWidth) {
+                                ratio = maxWidth / width;   // get ratio for scaling image
+                                $(this).css("width", maxWidth); // Set new width
+                                $(this).css("height", (height * ratio)+10);  // Scale height based on ratio
+                                $(this).css("margin-top", ((100 - (height * ratio))-10) / 2);    // Scale width based on ratio
+                                height = height * ratio;    // Reset height to match scaled image
+                                width = width * ratio;    // Reset width to match scaled image
+                            } else if(width == maxWidth) {
+                                ratio = maxWidth / width;   // get ratio for scaling image
+                                $(this).css("margin-top", ((100 - (height * ratio))-10) / 2);    // Scale width based on ratio
+                            }
+                            // Check if current height is larger than max
+                            if (height > maxHeight) {
+                                ratio = maxHeight / height; // get ratio for scaling image
+                                $(this).css("height", maxHeight);   // Set new height
+                                $(this).css("width", width * ratio);    // Scale width based on ratio
+                                $(this).css("margin-left", (100 - (width * ratio)) / 2);    // Scale width based on ratio
+                                width = width * ratio;    // Reset width to match scaled image
+                                height = height * ratio;    // Reset height to match scaled image
+                            } else if(height == maxHeight) {
+                                ratio = maxHeight / height; // get ratio for scaling image
+                                $(this).css("margin-left", (100 - (width * ratio)) / 2);    // Scale width based on ratio
+                            }
+                            $(this).css("opacity", 1);                            
+                        });
+                    }
 
         </script>
     </body>

@@ -2,7 +2,7 @@
 <html>
     <head>
         <!--Import materialize.css-->
-
+        <link rel="shortcut icon" href="favicon.ico">
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/slick.css" rel='stylesheet' type='text/css' />
@@ -66,7 +66,9 @@
                             $('#make_offer').attr('dynamic_lot', hash);
                             if (parseFloat(detail[0]['emd_for_this_auc']) > 0) {
                                 localStorage.emd_for_this_auc = detail[0]['emd_for_this_auc'];
-                            }
+                            }                            
+                            localStorage.sample_lot_id = detail[0]['lot_id'];
+                            localStorage.sample_room_id = detail[0]['room_id'];
                             var er_sup_id = rc4_er(detail[0]['supplier_id']);
                             supplier_detail(er_sup_id);
                             get_wishlist(detail[0]['lot_id'], detail[0]['room_id'], localStorage.marketplace_auction);
@@ -179,11 +181,20 @@
                             get_unit(detail[0]['lot_unit']);
                             $('.heart-detail').attr('onclick', 'heart(\'' + rc4_er(detail[0]['lot_id']) + '\',\'-1\',\'' + localStorage.marketplace_auction + '\')');
                             $('.heart-detail').attr('id', 'heart' + rc4_er(detail[0]['lot_id']) + '-1');
-                            if (hide_details_request_for_sample == "Y") {
-                                $(".sample-request").show();
-                            } else {
-                                $(".sample-request").hide();
-                            }
+                            $.ajax({url: localStorage.host + '../classes/common.class.php?action=get_sll_add_supplier_sample_request_by_lot_id&lot_id='+hash+'&user_id='+localStorage.user_id, data: {}, type: 'get', success: function (check_sample) {                                    
+                                    $.ajax({url: localStorage.host + '../classes/common.class.php?action=get_user_sample_request_by_email&lot_id='+hash+'&email_id='+rc4_er(localStorage.email_id), data: {}, type: 'get', success: function (check_sample_req) {
+                                            if(!isEmpty(check_sample) && isEmpty(check_sample_req)){ 
+                                                $(".sample-request").show(); 
+                                            } else if(!isEmpty(check_sample_req)){                                                 
+                                                $(".sample-request").show();
+                                                $(".sample-request").html('Track Sample');
+                                                $(".sample-request").attr('onclick','window.location.href="sample_track.html"');
+                                            }
+                                        }
+                                    });                                    
+                                }
+                            }); 
+                                                        
                             //get_product_with_lot_name(detail[0]['lot_id'], 'Y');
                             /*var hide_details_array = detail[0]['hide_details'];
                              var hide_details = hide_details_array.split(',');
@@ -738,7 +749,7 @@
                             <div class="qty font-13 x-light-blue">
                                 Total Quantity: <span class="span_total_quantity"></span> <span class="span_unit_db"></span> | Available Quantity: <span class="span_available_quantity"></span> <span class="span_unit_db"></span>
                             </div>
-                            <span> <a class="sample-request" onclick="sample_request()">Request Sample</a></span>
+                            <span> <a class="sample-request" style="display: none" onclick="sample_request()">Request Sample</a></span>
                         </div>
                         <div class="card-action grey lighten-3 padding-tb-5 info_all">
                             <div class="timertitle font-bold font-15">
@@ -816,7 +827,7 @@
                     </div>
                 </div> 
                 <div class="col s12 m6">
-                    <div class="card-panel grey lighten-5 padding-0 no-border margin-bottom-0">
+                    <div class="card-panel grey lighten-5 padding-0 no-border margin-bottom-0 available_quantity_table_box">
                         <div class="font-20 padding-lr-10 padding-tb-5">Price Quantity Matrix in  <span class="span_unit_db"></span></div>
                         <div id="available_quantity_table" class="card-action padding-tb-0 padding-lr-0 valign-wrapper">
                             <div class="preloader-wrapper big active  valign center-block">
@@ -1204,8 +1215,7 @@
                                 var confirmtitle = 'Confirm offer';
                                 var confirmbutton = 'Yes,Cancel';
                                 var confirmlink = localStorage.host + '../classes/service_manage_wholesale_auction.class.php?action=save_update_wholesale_auction_offer&user_id=' + localStorage.user_id + '&admin_id=' + localStorage.user_id + '&lot_id=' + dynamic_lot + '&room_id=-1&qty=' + $("#span_offer_qty").html() + '&per_pcs=' + per_price + '&total_val=' + z + '&emd=' + rc4_er(localStorage.emd_for_this_auc) + '&total_quantity=' + $("#span_total_quantity").html() + '&size_=' + size_ + '&sub_qty_=' + sub_qty_ + '&color_=' + color_ + '&step_1_id=' + $('.makeoffer_select').attr('id_info') + '&min_quantity=' + $('#min_quantity').html();
-                                console.log(confirmlink);
-                                $('#make_offer').html('<i class="fa fa-spinner fa-pulse"></i>Waiting');
+                                console.log(confirmlink);                                
                                 showmakeofferConfirm(confirmtitle, confirm_msg_, confirmbutton, confirmlink, dynamic_lot);
                                 $('#text_make_offer').val('');
                                 $("#div_offer_places").html('');
@@ -1302,6 +1312,7 @@
                                         $("#div_no_tendor").html('<div class="padding-10 font-24 center-align">' + localStorage.out_of_stock__ + '</div>');
                                         $("#div_offer_content").html('<div class="padding-10 font-24 center-align">' + localStorage.out_of_stock__ + '</div>');
                                         $("#available_quantity_table").html('<div class="padding-10 font-24 center-align">' + localStorage.out_of_stock__ + '</div>');
+                                        $('.available_quantity_table_box').hide();
                                     }
                                     //alert(obj.user_bid); 
                                     if (obj.qty_left > 0) {

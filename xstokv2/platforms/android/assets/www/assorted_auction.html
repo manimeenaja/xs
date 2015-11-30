@@ -2,7 +2,7 @@
 <html>
     <head>
         <!--Import materialize.css-->
-
+        <link rel="shortcut icon" href="favicon.ico">
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/slick.css" rel='stylesheet' type='text/css' />
@@ -54,8 +54,10 @@
 
                             if (hide_details_hide_quantity == "Y") {
                                 $(".product_quantity_list").hide();
+                                $('.quantity').hide();
                             } else {
                                 $(".product_quantity_list").show();
+                                $('.quantity').show();
                             }
                             if (hide_details_list_price == "Y") {
                                 $("#hide_details_list_price_id").hide();
@@ -67,13 +69,19 @@
                             } else {
                                 $("#list_price_per_unit").show();
                             }
-                            if (hide_details_request_for_sample == "Y") {
-                                $(".sample-request").show();
-                            } else {
-                                $(".sample-request").hide();
-                            }
-
-
+                            $.ajax({url: localStorage.host + '../classes/common.class.php?action=get_sll_add_supplier_sample_request_by_lot_id&lot_id='+hash+'&user_id='+localStorage.user_id, data: {}, type: 'get', success: function (check_sample) {                                    
+                                    $.ajax({url: localStorage.host + '../classes/common.class.php?action=get_user_sample_request_by_email&lot_id='+hash+'&email_id='+rc4_er(localStorage.email_id), data: {}, type: 'get', success: function (check_sample_req) {
+                                            if(!isEmpty(check_sample) && isEmpty(check_sample_req)){ 
+                                                $(".sample-request").show(); 
+                                            } else if(!isEmpty(check_sample_req)){                                                 
+                                                $(".sample-request").show();
+                                                $(".sample-request").html('Track Sample');
+                                                $(".sample-request").attr('onclick','window.location.href="sample_track.html"');
+                                            }
+                                        }
+                                    });                                    
+                                }
+                            });
                             if (hide_details_hide_emd_required == "Y") {
                                 $("#hide_details_hide_emd_required_id").hide();
                             } else {
@@ -98,6 +106,7 @@
                             if (parseFloat(detail[0]['emd_for_this_auc']) > 0) {
                                 localStorage.emd_for_this_auc = detail[0]['emd_for_this_auc'];
                             }
+                            $('.quantity').html(detail[0]['quantity']);
                             //product_price_list
 
                             var actual_price = 0;
@@ -353,7 +362,7 @@
                                     localStorage.ass_auc_buy_now_price = ass_reserve_price;
                                 }
                                 $('.head-buy-now-price-text').html(buy_now);
-                                var buy_now_btn = '<a id="buy_' + hash + '" class="btn xstok darken-1 white-text buy_' + hash + ' hide" href="shipping_detail.html?#' + hash + '-' + detail[0]['room_id'] + '" role="button">Proceed to Payment</a>';
+                                var buy_now_btn = '<a id="buy_' + hash + '" class="btn xstok darken-1 white-text buy_' + hash + ' hide" href="shipping_detail.html?#' + hash + '_' + detail[0]['room_id'] + '" role="button">Proceed to Payment</a>';
                                 $('.bid-now-buy-now-btn').html(buy_now_btn);
                                 $('.bid_now_button').attr("id", "bid_now_button_" + hash);
                                 $('.bid_now_button').attr("bid_type", detail[0]['auc_type_id']);
@@ -586,8 +595,9 @@
                 <div class="col s12 m6">
                     <div class="card grey lighten-5">
                         <div class="card-content">
-                            <div class="card-title x-grey bold line-height-25"><span class="head-title-text"><i class="fa fa-spinner fa-pulse"></i></span><span class="right heart-detail"><i class="fa fa-heart-o"></i></span></div>                            
-                            <span class="gotoroom"><a class="gotoroom">View room</a> |</span><span> <a class="sample-request" onclick="sample_request()">Request Sample</a></span><span class="right"> <a class="" onclick=" $('#rating').openModal()">See Seller details</a></span>
+                            <div class="card-title x-grey bold line-height-25"><span class="head-title-text"><i class="fa fa-spinner fa-pulse"></i></span><span class="right heart-detail"><i class="fa fa-heart-o"></i></span></div>   
+                            <div class="font-12 quantitydiv">Quantity: <span class="quantity"><i class="fa fa-spinner fa-pulse"></i></span></div>
+                            <span class="gotoroom"><a class="gotoroom">View room</a> |</span><span> <a class="sample-request" style="display: none;" onclick="sample_request()">Request Sample</a></span><span class="right"> <a class="" onclick=" $('#rating').openModal()">See Seller details</a></span>
                         </div>
                         <div class="card-action grey lighten-3 padding-tb-5 info_all">
                             <div class="timertitle font-bold font-15">
